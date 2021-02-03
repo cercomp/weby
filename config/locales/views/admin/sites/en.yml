@@ -17,7 +17,7 @@ en:
         exec:                   " Execute "
         index_news:             " Index news "
       reindex:
-        news_reindexed:         " News successfully indexed "
+        news_reindexed:         " News, Pages and events successfully indexed "
       list:
         name:                   " Name "
         dashboard:              " Dashboard "

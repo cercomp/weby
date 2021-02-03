@@ -1,0 +1,7 @@
+$("#news").html("<%= escape_javascript(render partial: 'journal/news/list') %>")
+$("#pages").html("<%= escape_javascript(render partial: 'sites/pages/list') %>")
+$("#events").html("<%= escape_javascript(render partial: 'calendar/events/list') %>")
+
+$('.news-total').html('<%= @news_sites.total_count %>');
+$('.pages-total').html('<%= @pages.total_count %>');
+$('.events-total').html('<%= @events.total_count %>');

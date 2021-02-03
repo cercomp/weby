@@ -8,7 +8,7 @@ module Calendar
     respond_to :html, :js, :json, :rss, :atom
 
     def index
-      @events = get_events
+      @events = Calendar::Event.get_events_db current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction)
 
       respond_with(@events) do |format|
         format.rss { render layout: false, content_type: Mime[:xml] } # index.rss.builder
@@ -18,7 +18,7 @@ module Calendar
     end
 
     def calendar
-      @events = get_events(false)
+      @events = Calendar::Event.get_events_db current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction, fetch_all: true)
       render json: Calendar::Event.as_fullcalendar_json(@events).to_json
     end
 
@@ -31,32 +31,6 @@ module Calendar
     end
 
     private
-
-    def tags
-      unescape_param(params[:tags]).split(',').map { |tag| tag.mb_chars.downcase.to_s }
-    end
-
-    def get_events paginate=true
-      params[:direction] ||= 'desc'
-      params[:page] ||= 1
-      # Vai ao banco por linha para recuperar
-      # tags e locales
-      events = current_site.events.
-        search(params[:search], params.fetch(:search_type, 1).to_i).
-        order(sort_column + ' ' + sort_direction)
-
-      events = events.page(params[:page]).per(params[:per_page]) if paginate
-
-      if params[:start] && params[:end]
-        events = events.where('(begin_at between :start and :end_date) OR '\
-                              '(end_at between :start and :end_date) OR '\
-                              '(begin_at < :start AND end_at > :end_date)',
-                              start: Time.zone.parse(params[:start]), end_date: Time.zone.parse(params[:end]).end_of_day)
-      end
-
-      events = events.tagged_with(tags, any: true) if params[:tags]
-      events
-    end
 
     def sort_column
       params[:sort] || 'calendar_events.id'

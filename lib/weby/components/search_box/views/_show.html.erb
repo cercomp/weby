@@ -1,10 +1,14 @@
 <div class="search_box_component <%=  component.align %>" style="width: <%= component.width.to_i > 0 ? "#{component.width}px" : "100%" %>;">
-  <%= form_tag main_app.news_index_path, class: 'form_search', method: 'get' do %>
+  <%= form_tag component.form_action, class: 'form_search', method: 'get' do %>
     <%= search_field_tag :search, nil, placeholder: t('.search') %>
-    <select id="options" onchange="search_action()">
-      <option value="/news"  <%= request.env['PATH_INFO'] == '/news' ? "selected" : '' %>>Notícias</option>
-      <option value="/pages" <%= request.env['PATH_INFO'] == '/pages' ? "selected" : '' %>>Páginas</option>
-    </select>
+    <% if component.action.blank? || component.action == 'choose' %>
+      <select id="options" onchange="search_action()">
+        <option value="/news"  <%= request.env['PATH_INFO'] == '/news' ? "selected" : '' %>><%= t('.news') %></option>
+        <option value="/pages" <%= request.env['PATH_INFO'] == '/pages' ? "selected" : '' %>><%= t('.pages') %></option>
+        <option value="/events" <%= request.env['PATH_INFO'] == '/events' ? "selected" : '' %>><%= t('.events') %></option>
+        <option value="/search" <%= request.env['PATH_INFO'] == '/search' ? "selected" : '' %>><%= t('.all') %></option>
+      </select>
+    <% end %>
     <% if component.show_button? %>
       <%= submit_tag t(".search") %>
     <% end %>

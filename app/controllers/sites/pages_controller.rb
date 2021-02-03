@@ -7,7 +7,7 @@ class Sites::PagesController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @pages = get_pages
+    @pages = Page.get_pages current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction)
     respond_with(@pages) do |format|
       format.json { render json: @pages, root: 'pages', meta: { total: @pages.total_count } }
     end
@@ -34,15 +34,6 @@ class Sites::PagesController < ApplicationController
   end
 
   private
-
-  def get_pages
-    params[:direction] ||= 'desc'
-
-    pages = current_site.pages.published.
-      search(params[:search], params.fetch(:search_type, 1).to_i).
-      order(sort_column + ' ' + sort_direction).
-      page(params[:page]).per(params[:per_page])
-  end
 
   def sort_column
     params[:sort] || 'pages.id'

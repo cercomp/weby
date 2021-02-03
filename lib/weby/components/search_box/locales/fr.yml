@@ -8,11 +8,21 @@ fr:
         width:              " Largeur "
         align:              " Alignement "
         show_button:        " Afficher bouton "
+        action:             " Tipo de busca do formulário "
   search_box:
     views:
       show:
         search:             " Recherche "
+        news:               " Notícias "
+        pages:              " Páginas "
+        events:             " Eventos "
+        all:                " Pesquisar tudo "
       form:
+        choose:             " Escolha do usuário "
+        news:               " Notícias "
+        pages:              " Páginas "
+        events:             " Eventos "
+        search:             " Busca geral "
         left:               " Gauche "
         right:              " Droit"
         center:             " Centre "

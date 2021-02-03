@@ -38,7 +38,7 @@ class Sites::Admin::PagesController < ApplicationController
     if params[:template] == 'list_popup'
       pages = pages.published
     end
-      pages.search(params[:search], 1) # 1 = busca com AND entre termos
+      pages.with_search(params[:search], 1) # 1 = busca com AND entre termos
       .order(sort_column + ' ' + sort_direction)
       .page(params[:page]).per(params[:per_page])
   end

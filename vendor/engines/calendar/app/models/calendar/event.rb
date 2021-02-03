@@ -2,6 +2,9 @@ module Calendar
   class Event < Calendar::ApplicationRecord
     include Trashable
     include OwnRepository
+    if ENV['ELASTICSEARCH_URL'].present?
+      include Calendar::EventElastic
+    end
 
     EVENT_TYPES = %w(regional national international)
 
@@ -21,7 +24,7 @@ module Calendar
     scope :upcoming, -> { where(' (begin_at >= :time OR end_at >= :time)', time: Time.current) }
     scope :previous, -> { where(' (end_at < :time)', time: Time.current) }
 
-    scope :search, ->(param, search_type) {
+    scope :with_search, ->(param, search_type) {
       if param.present?
         fields = ['calendar_event_i18ns.name', 'calendar_event_i18ns.information', 'calendar_events.url']
         query, values = '', {}
@@ -144,6 +147,86 @@ module Calendar
       end
       #default
       current_scope.new(params)
+    end
+
+    ##search
+    def self.get_events site, params
+      return [] if site.blank?
+      if ENV['ELASTICSEARCH_URL'].present?
+        get_events_es site, params
+      else
+        get_events_db site, params
+      end
+    end
+
+    def self.get_events_es site, params
+      params[:direction] = 'desc' if params[:direction].blank?
+      params[:page] = 1 if params[:page].blank?
+
+      filters = [{
+        term: {site_id: site.id}
+      }]
+      if params[:tags].present?
+        filters << {terms: {categories: normalize_tags(params[:tags])}}
+      end
+      if params[:start] && params[:end]
+        _start = Time.zone.parse(params[:start]).to_i
+        _end = Time.zone.parse(params[:end]).end_of_day.to_i
+        filters << {
+          bool: {
+            should: [
+              {range: {begin_at: {gte: _start, lte: _end}}},
+              {range: {end_at: {gte: _start, lte: _end}}},
+              {bool: {
+                must: [
+                  {range: {begin_at: {lte: _start}}},
+                  {range: {end_at: {gte: _end}}}
+                ]
+              }}
+            ]
+          }
+        }
+      end
+      if params[:fetch_all]
+        params[:per_page] = 10000 # Elasticsearch max results
+        params[:page] = 1
+      end
+      result = Calendar::Event.perform_search(params[:search],
+        filter: filters,
+        per_page: params[:per_page],
+        page: params[:page],
+        sort: params[:sort_column],
+        sort_direction: params[:sort_direction],
+        search_type: params.fetch(:search_type, 1).to_i
+      )
+    end
+
+    def self.get_events_db site, params
+      params[:direction] ||= 'desc'
+      params[:page] ||= 1
+      # Vai ao banco por linha para recuperar
+      # tags e locales
+      events = site.events.
+        with_search(params[:search], params.fetch(:search_type, 1).to_i).
+        order(params[:sort_column] + ' ' + params[:sort_direction])
+
+      events = events.page(params[:page]).per(params[:per_page]) unless params[:fetch_all]
+
+      if params[:start] && params[:end]
+        events = events.where('(begin_at between :start and :end_date) OR '\
+                              '(end_at between :start and :end_date) OR '\
+                              '(begin_at < :start AND end_at > :end_date)',
+                              start: Time.zone.parse(params[:start]), end_date: Time.zone.parse(params[:end]).end_of_day)
+      end
+
+      events = events.tagged_with(normalize_tags(params[:tags]), any: true) if params[:tags]
+      events
+    end
+
+    private
+
+    def self.normalize_tags tags
+      unescape_param(tags).split(',').map { |tag| tag.mb_chars.downcase.to_s }
     end
   end
 end
