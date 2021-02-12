@@ -138,6 +138,7 @@ class SitesController < ApplicationController
 
   def load_subsites
     @sites = @site.subsites.active
+        .includes(:main_site)
         .except(:order)
         .order("#{sort_column} #{sort_direction}")
         .page(params[:page])
