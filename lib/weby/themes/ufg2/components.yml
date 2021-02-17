@@ -69,7 +69,7 @@ top:
         publish: true
         menu:
           name: Principal
-      - settings: '{:width=>"", :align=>"right", :show_button=>"1"}'
+      - settings: '{:width=>"", :align=>"right", :show_button=>"1", :action=>"search"}'
         name: search_box
         position: 3
         publish: true
