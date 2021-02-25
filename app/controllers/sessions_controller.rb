@@ -62,7 +62,7 @@ class SessionsController < Devise::SessionsController
           session[:ldap_login] = ldap_user.first[ldap.attr_login].first.to_s
           session[:ldap_first_name] = ldap_user.first[ldap.attr_firstname].first.to_s
           session[:ldap_last_name] = ldap_user.first[ldap.attr_lastname].first.to_s
-          session[:ldap_email] = ldap_user.first[ldap.attr_mail].first.to_s
+          session[:ldap_email] = ldap.email_domain.present? ? "#{session[:ldap_login]}#{ldap.email_domain}" : ldap_user.first[ldap.attr_mail].first.to_s
           session[:ldap_type] = 'ldap'
           flash[:success] = t('ldap_login_sucess', login: ldap_user_login)
           flash[:warning] = t('link_weby_user')
