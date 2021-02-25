@@ -45,6 +45,8 @@ settings:
       value:
     attr_mail:
       value:
+    email_domain:
+      value:
     prefixo:
       value:
     sufixo:
