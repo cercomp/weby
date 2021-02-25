@@ -16,11 +16,18 @@
         </div>
       <% end %>
     </div>
-    <% if true #@show_new_user %>
-      <div class="dual-item">
+    <div class="dual-item">
+      <% if @user_exists %>
+        <div>
+          <%= link_to t('.new_user'), '#', disabled: true, class: 'btn btn-block btn-success disabled' %>
+          <div class="alert alert-danger">
+            <small><%= t('ldap_user_exists') %></small>
+          </div>
+        </div>
+      <% else %>
         <%= link_to t('.new_user'), new_user_path, class: 'btn btn-block btn-success' %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>
 

@@ -64,4 +64,5 @@ pt-BR:
   ldap_only_user: 'Usuário vinculado a um Login único, não é possivel definir senha'
   invalid: "Login ou senha inválidos. Por favor, informe um usuário válido."
   ldap_email_invalid: 'Não foi possível fazer a correspondência da identidade entre a conta Weby e o Login único'
+  ldap_user_exists: 'Já existe uma conta Weby com o email dessa credencial de Login único'
   shib_invalid: 'Identificação inválida'
