@@ -12,9 +12,9 @@ class SessionsController < Devise::SessionsController
       flash[:warning] = t('link_weby_user')
       @session = User.new
       @confirm = 'true'
-      #@show_new_user = User.find_by_login(ldap_user_login).blank?
       @name_suggested = session[:ldap_login]
       @cancelable = true
+      @user_exists = User.exists?(email: session[:ldap_email])
     end
     super
   end
@@ -68,8 +68,8 @@ class SessionsController < Devise::SessionsController
           flash[:warning] = t('link_weby_user')
           @session = User.new
           @confirm = 'true'
-          #@show_new_user = User.find_by_login(ldap_user_login).blank?
           @name_suggested = ldap_user_login;
+          @user_exists = User.exists?(email: session[:ldap_email])
           render :new
         else
           # Caso o auth source desse login no LDAP já esteja vinculado a uma conta Weby
@@ -122,25 +122,31 @@ class SessionsController < Devise::SessionsController
       flash[:error] = t('invalid')
       redirect_to login_path
     else
-      user = User.new(
-        login: session[:ldap_login],
-        email: session[:ldap_email],
-        password: "A#{SecureRandom.hex(32)}",
-        sign_in_count: 1,
-        current_sign_in_at: Time.current,
-        last_sign_in_at: Time.current,
-        current_sign_in_ip: '127.0.0.1',
-        last_sign_in_ip: '127.0.0.1',
-        first_name: session[:ldap_first_name],
-        last_name: session[:ldap_last_name],
-        confirmed_at: Time.current,
-        confirmation_sent_at: Time.current)
-      user.save!
-      AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save!
-      sign_in user
-      user.record_login(request.user_agent, request.remote_ip)
-      clear_ldap_session!
-      redirect_to session[:return_to] || root_path
+      if User.exists?(email: session[:ldap_email])
+        flash[:error] = t('ldap_user_exists')
+        redirect_to login_path(confirm: 'true')
+      else
+        _login = "#{session[:ldap_login]}#{'1' if User.exists?(login: session[:ldap_login])}"
+        user = User.new(
+          login: _login,
+          email: session[:ldap_email],
+          password: "A#{SecureRandom.hex(32)}",
+          sign_in_count: 1,
+          current_sign_in_at: Time.current,
+          last_sign_in_at: Time.current,
+          current_sign_in_ip: '127.0.0.1',
+          last_sign_in_ip: '127.0.0.1',
+          first_name: session[:ldap_first_name],
+          last_name: session[:ldap_last_name],
+          confirmed_at: Time.current,
+          confirmation_sent_at: Time.current)
+        user.save!
+        AuthSource.new(user_id: user.id, source_type: session[:ldap_type], source_login: session[:ldap_login]).save!
+        sign_in user
+        user.record_login(request.user_agent, request.remote_ip)
+        clear_ldap_session!
+        redirect_to session[:return_to] || root_path
+      end
     end
   end
 
