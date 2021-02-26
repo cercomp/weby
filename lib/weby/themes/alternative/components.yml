@@ -158,7 +158,8 @@ bottom:
     publish: true
     alias: Logo - UFG
 - settings: '{:html_class=>"address", :body=>{"pt-BR"=>"<p><span>UFG - Universidade
-    Federal de Goi&aacute;s</span></p>\r\n<p><span>Avenida Esperan&ccedil;a s/n, C&acirc;mpus
+    Federal de Goi&aacute;s</span></p>\r\n<p><span>CNPJ: 01.567.601/0001-43</span></p>\r\n<p><span>Avenida
+    Esperan&ccedil;a s/n, C&acirc;mpus
     Samambaia - Pr&eacute;dio da Reitoria.</span></p>\r\n<p><span>CEP 74690-900 Goi&acirc;nia
     - Goi&aacute;s - Brasil.</span></p>", "en"=>""}}'
   name: text
