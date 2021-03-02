@@ -31,7 +31,7 @@ class Admin::SettingsController < ApplicationController
         res = Weby::run_data_migration params[:file]
         flash[:notice] = t('.result', result: res)
       rescue Exception => e
-        flash[:error] = e
+        flash[:error] = [e.message, e.backtrace.first(5)].flatten.join('<br>')
       end
     else
       flash[:error] = t('.select_file')
