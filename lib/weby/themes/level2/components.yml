@@ -370,7 +370,7 @@ bottom:
     alias: Container
     children:
     - settings: '{:html_class=>"address", :body=>{"pt-BR"=>"<p><span>UFG - Universidade
-        Federal de Goi&aacute;s</span></p><p><span>CNPJ: 01567601/0001-43</span></p><p><span>Avenida
+        Federal de Goi&aacute;s</span></p><p><span>CNPJ: 01.567.601/0001-43</span></p><p><span>Avenida
         Esperan&ccedil;a s/n, C&acirc;mpus Samambaia - Pr&eacute;dio da Reitoria.</span></p><p><span>CEP
         74690-900 Goi&acirc;nia - Goi&aacute;s - Brasil.</span></p><p><span>Fone:
         +55 (62) 3521.1000</span></p>", "en"=>""}}'

@@ -5,9 +5,9 @@
 }
 
 .subsite_front_news_component > h2{
-    background-color: #EEE;
+    /* background-color: #EEE; */
     margin: 0px;
-    border-bottom: 1px solid silver;
+    /* border-bottom: 1px solid silver; */
     height: 30px;
     text-align: center;
 }
