@@ -32,14 +32,23 @@ class Sites::SearchesController < ApplicationController
   private
 
   def news_sort_column
-    params[:sort].present? ? params[:sort] : 'journal_news.created_at'
+    if params[:sort].blank?
+      params[:direction] = 'desc'
+    end
+    params[:sort].presence || 'journal_news.created_at'
   end
 
   def pages_sort_column
-    params[:sort] || 'pages.id'
+    if params[:sort].blank?
+      params[:direction] = 'desc'
+    end
+    params[:sort].presence || 'pages.created_at'
   end
 
   def events_sort_column
-    params[:sort] || 'calendar_events.id'
+    if params[:sort].blank?
+      params[:direction] = 'desc'
+    end
+    params[:sort].presence || 'calendar_events.created_at'
   end
 end

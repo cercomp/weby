@@ -219,7 +219,7 @@ module Journal
     private
 
     def self.normalize_tags tags
-      unescape_param(tags).split(',').map { |tag| tag.mb_chars.downcase.to_s }
+      ApplicationController.helpers.unescape_param(tags).split(',').map { |tag| tag.mb_chars.downcase.to_s }
     end
 
     def validate_date
