@@ -24,7 +24,7 @@ module Calendar
       # Vai ao banco por linha para recuperar
       # tags e locales
       events = current_site.events.
-        search(params[:search], 1) # 1 = busca com AND entre termos
+        with_search(params[:search], 1) # 1 = busca com AND entre termos
 
       events = events.order(sort_column + ' ' + sort_direction)
         .page(params[:page]).per(params[:per_page])

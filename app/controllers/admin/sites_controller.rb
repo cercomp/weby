@@ -74,6 +74,8 @@ class Admin::SitesController < Admin::BaseController
 
   def reindex
     @site.news_sites.reindex
+    @site.page.reindex
+    @site.events.reindex
     flash[:notice] = t('.news_reindexed')
     redirect_to edit_admin_site_path(@site)
   end

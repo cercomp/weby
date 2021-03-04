@@ -1,0 +1,31 @@
+﻿fr:
+  sites: 
+    pages: 
+      index: 
+        events:          " Événements "
+        pages:           " Pages "
+        news:            " Nouvelles "
+        advanced:        " Options avancées "
+        match_search:    " Recherche exacte "
+        and_search:      " Tous les mots "
+        or_search:       " Un des mots "
+        all_events:      " Tous "
+        upcoming_events: " En cours " 
+        previous_events: " Terminé "
+      show: 
+        event: " Événement "
+        period_event:  " Période de l'événement "
+        list_all:      " Liste tous "
+        categories:    " Catégories "
+        source:        " Source "
+        updated_at:    " Mise à Jour "
+        related_files: " Fichiers associés "
+        related_files: " Url associés "
+        size: " Taille "
+      list: 
+        read_more:     " En savoir plus "
+        no_pages:      " Aucune page trouvé "
+        no_events:     " Aucune événement trouvé "
+      related_files:
+        related_files: " Fichiers associés "
+        size:          " Taille "

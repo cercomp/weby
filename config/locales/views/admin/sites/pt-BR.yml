@@ -17,7 +17,7 @@ pt-BR:
         exec:                   " Rotinas "
         index_news:             " Indexar notícias "
       reindex:
-        news_reindexed:         " Notícias indexadas! "
+        news_reindexed:         " Notícias, páginas e eventos indexados! "
       list:
         name:                   " Nome "
         dashboard:              " Administração "

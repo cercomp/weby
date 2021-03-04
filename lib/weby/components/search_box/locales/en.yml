@@ -8,11 +8,21 @@ en:
         width:              " Width "
         align:              " Alignment "
         show_button:        " Show button "
+        action:             " Search element "
   search_box:
     views:
       show:
         search:             " Search "
+        news:               " News "
+        pages:              " Pages "
+        events:             " Events "
+        all:                " Search all "
       form:
+        choose:             " User selection "
+        news:               " News "
+        pages:              " Pages "
+        events:             " Events "
+        search:             " General search "
         left:               " Left "
         right:              " Right "
         center:             " Center "

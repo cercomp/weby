@@ -4,3 +4,26 @@ figure {
 img.flag {
   height: 17px;
 }
+
+.search-result-tabs {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  li {
+    margin-right: 12px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.result-total {
+  margin-left: 7px;
+}
+
+.result-panel {
+  display: none;
+  &.active {
+    display: block;
+  }
+}

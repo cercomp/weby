@@ -1,0 +1,65 @@
+<div class="news_list_container">
+  <h2>
+    <%= t(".search_results") %>
+  </h2>
+
+  <%= form_tag searches_path, method: 'get', remote: true, id: 'search-form' do %>
+    <div class="input-append search-field-button">
+        <%= text_field_tag :search, params[:search], placeholder: t('.placeholder') %>
+        <%= button_tag image_tag("components/icon_search.png"), class: 'btn', title: t("search") %>
+    </div>
+    <%= link_to t('.advanced'), '#', class: 'toggle-advanced-search', onclick: "return toggleAdvancedSearch()"%>
+    <span class="advanced-search<%= params[:search_type] ? "": " hide"%>">
+      <%= radio_button_tag :search_type, 0, params[:search_type]=='0' %><span><%= t('.match_search') %></span>
+      &nbsp;<%= radio_button_tag :search_type, 1, params[:search_type]=='1' %><span><%= t('.and_search') %></span>
+      &nbsp;<%= radio_button_tag :search_type, 2, params[:search_type]=='2' %><span><%= t('.or_search') %></span>
+    </span>
+    <%= hidden_field_tag 'sort', params[:sort] %>
+    <%= hidden_field_tag 'direction', params[:direction] %>
+    <%= hidden_field_tag 'tags', params[:tags] %>
+    <%= hidden_field_tag 'page', 1 %>
+    <%= hidden_field_tag 'per_page', "#{params[:per_page]}" %>
+  <% end %>
+
+  <span class="show_list active"></span>
+  <span class="show_grid"></span>
+
+  <% if params[:tags].present? %>
+    <% tags = unescape_param(params[:tags]).split(',') %>
+    <% tags.each do |tag| %>
+      <% othertags = tags.reject {|t| t == tag} %>
+      <span class="weby-label info">
+        <%= tag %> <%= link_to 'X', {tags: othertags.join(',')} %>
+      </span>
+    <% end %>
+  <% end %>
+  <ul class="search-result-tabs">
+    <li>
+      <%= link_to '#news-results', class: 'result-tab active' do %>
+        <%= t('.news') %> <span class="result-total news-total">&nbsp;</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to '#pages-results', class: 'result-tab' do %>
+        <%= t('.pages') %> <span class="result-total pages-total">&nbsp;</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to '#events-results', class: 'result-tab' do %>
+        <%= t('.events') %> <span class="result-total events-total">&nbsp;</span>
+      <% end %>
+    </li>
+  </ul>
+  <div id="news-results" class="result-panel active">
+    <div id="news" class="news-list"></div>
+  </div>
+  <div id="pages-results" class="pages_list_container result-panel">
+    <div id="pages" class="pages-list"></div>
+  </div>
+  <div id="events-results" class="result-panel">
+    <div id="events" class="events-list"></div>
+  </div>
+</div>
+
+<% content_for :javascripts, javascript_include_tag("searches") %>
+<% content_for :stylesheets, stylesheet_link_tag("search_results") %>
