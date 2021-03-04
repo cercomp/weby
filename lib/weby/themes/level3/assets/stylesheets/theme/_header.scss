@@ -24,16 +24,14 @@ body > header {
     }
 
     .ufg-logo {
-      height: 58px;
       img {
-        height: 100%;
+        height: 48px;
       }
     }
 
     .logo {
-      height: 42px;
       img {
-        height: 100%;
+        height: 34px;
       }
     }
 
@@ -56,19 +54,19 @@ body > header {
 
   .ufg-logo {
     margin-right: 24px;
-    height: 70px;
-    transition: height .2s;
+
     img {
-      height: 100%;
+      transition: height .2s;
+      height: 58px;
     }
   }
 
   .logo {
     margin-right: 20px;
-    height: 52px;
-    transition: height .2s;
+
     img {
-      height: 100%;
+      transition: height .2s;
+      height: 42px;
     }
   }
 

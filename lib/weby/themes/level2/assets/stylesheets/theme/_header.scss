@@ -12,24 +12,23 @@ body .header {
 .header {
   height: 100%;
   position: relative;
-  padding: 10px 0;
+  padding: 16px 0;
   margin-bottom: 60px;
-
-  .ufg-logo, .logo {
-    height: 100%;
-
-    img {
-      height: 100%;
-    }
-  }
 
   .ufg-logo {
     margin-right: 10px;
+
+    img {
+      height: 62px;
+    }
   }
 
   .logo {
     margin-right: 20px;
-    max-height: 51px;
+
+    img {
+      height: 46.5px;
+    }
   }
 
   .social-icons {
@@ -40,7 +39,7 @@ body .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 76px;
+    max-height: 68px;
   }
 
   .menu-bar {
@@ -53,7 +52,7 @@ body .header {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    bottom: -60px;
+    top: 100px;
     z-index: 4;
 
     .container {
@@ -63,23 +62,15 @@ body .header {
 
     .menu-logo, .menu-logo-ufg {
       display: none;
-      margin: 8px 0;
+      margin: 10px 0;
 
       a {
         display: block;
         font-size: 0;
       }
-    }
 
-    .menu-logo {
       img {
-        height: 31px
-      }
-    }
-
-    .menu-logo-ufg {
-      img {
-        height: 44px;
+        height: 40px;
       }
     }
 
@@ -89,7 +80,6 @@ body .header {
       max-width: none;
       left: 0;
       top: 0;
-      bottom: auto;
       z-index: 3;
       transform: none;
       padding: 0 20px;
@@ -99,8 +89,18 @@ body .header {
         margin: 0 auto;
       }
 
+      .menu-logo-ufg {
+        img {
+          height: 32px;
+        }
+      }
+
       .menu-logo {
         margin-right: 10px;
+
+        img {
+          height: 25px;
+        }
       }
 
       .menu-logo, .menu-logo-ufg {

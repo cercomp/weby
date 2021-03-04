@@ -506,11 +506,11 @@
       }
     }
   }
-  .header .ufg-logo, body > header.fixed .ufg-logo {
-    height: 48px;
+  .header .ufg-logo img, body > header.fixed .ufg-logo img {
+    height: 42px;
   }
-  .header .logo, body > header.fixed .logo {
-    height: 36px;
+  .header .logo img, body > header.fixed .logo img {
+    height: 30px;
   }
 
   .front_news_component, .subsite_front_news_component, .event_list_component {
@@ -593,11 +593,5 @@
       margin: 0 10px 30px;
       box-shadow: none;
     }
-  }
-}
-
-@media (max-width: 320px) {
-  .header .logo + .logo {
-    display: none;
   }
 }
