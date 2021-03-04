@@ -1,4 +1,4 @@
-Skin.where(theme: ['alternative', 'level2', 'level3', 'ufg2']).each do |skin|
+Skin.where(theme: ['alternative', 'level2', 'level3', 'ufg2', 'ufg']).each do |skin|
 
   search = skin.components.find_by(name: 'search_box')
   if search
