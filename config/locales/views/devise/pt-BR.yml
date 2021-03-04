@@ -16,10 +16,12 @@ pt-BR:
         field_first_name:    "Nome"
         field_last_name:     "Sobrenome"
       confirm:
+        weby_login:          "Conta Weby"
         link:                "Vincular"
-        new_user:            "É novo no Weby?"
+        new_user:            "Novo no Weby"
         field_login:         "Login"
         field_password:      "Senha"
+        cancel:              "Cancelar"
     registrations:
       form:
         login:               "Entrar"

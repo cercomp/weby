@@ -3,15 +3,31 @@
   wrapper: :devise_input,
   url: link_user_path do |f| %>
 
-  <%= f.input :auth, label: false, input_html: { value: @name_suggested } %>
-  <%= f.input :password, autofocus: true, label: false, placeholder: t('.field_password') %>
-
-  <% if @show_new_user %>
-    <%= link_to t('.new_user'), new_user_path, class: 'pull-right' %>
-  <% end %>
-
-  <div class="clearfix"></div>
-
-  <%= f.button :submit, t('.link'), class: 'btn-primary btn-block' %>
+  <div class="dual-panel">
+    <div class="dual-item">
+      <label for=""><%= t('.weby_login') %></label>
+      <%= f.input :auth, label: false, input_html: { value: @name_suggested } %>
+      <%= f.input :password, autofocus: true, label: false, placeholder: t('.field_password') %>
+      <div class="clearfix"></div>
+      <%= f.button :submit, t('.link'), class: 'btn-primary btn-block' %>
+      <% if @cancelable %>
+        <div class="text-right" style="margin-top: 15px">
+          <%= link_to t('.cancel'), login_path(cancel_ldap: true), class: 'pull-right' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="dual-item">
+      <% if @user_exists %>
+        <div>
+          <%= link_to t('.new_user'), '#', disabled: true, class: 'btn btn-block btn-success disabled' %>
+          <div class="alert alert-danger">
+            <small><%= t('ldap_user_exists') %></small>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to t('.new_user'), new_user_path, class: 'btn btn-block btn-success' %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 

@@ -179,6 +179,15 @@ class User < ApplicationRecord
     end
   end
 
+  def ldap_auth_source
+    auth_sources.ldap.first
+  end
+
+  # !!! use this method wisely
+  def clear_password!
+    self.update!(password: "A#{SecureRandom.hex(32)}")
+  end
+
   private
 
   def normalize_attributes

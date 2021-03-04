@@ -58,6 +58,9 @@ es:
       not_saved:
         one: "1 error impidió que este %{resource} fuese guardado:"
         other: "%{count} errores impidieron que este %{resource} fuese guardado:"
-  link_weby_user: "É necessário vincular seu usuário à uma conta no Weby. Se você já possui essa conta, por favor, informe seu usuário e senha."
+  ldap_login_sucess: "Login realizado con sucesso por autenticacion única: %{login}"
+  link_weby_user: "Se você já possuir uma conta no Weby, informe usuário e senha para vincular a este login, caso contrário, clique em Novo no Weby"
+  ldap_only_user: 'Usuário vinculado a um Login único, não é possivel definir senha'
   invalid: "Login ou senha inválidos. Por favor, informe um usuário válido."
+  ldap_email_invalid: 'Não foi possível fazer a correspondência da identidade entre a conta Weby e o Login único'
   shib_invalid: 'Identificação inválida'

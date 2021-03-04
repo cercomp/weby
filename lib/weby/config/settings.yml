@@ -45,11 +45,15 @@ settings:
       value:
     attr_mail:
       value:
+    email_domain:
+      value:
     prefixo:
       value:
     sufixo:
       value:
     ldaps:
+      value: 'false'
+    force_ldap_login:
       value: 'false'
   asset_host:
     disable_on_https:
