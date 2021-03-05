@@ -211,15 +211,13 @@ module Calendar
         order(params[:sort_column] + ' ' + params[:sort_direction])
 
       events = events.page(params[:page]).per(params[:per_page]) unless params[:fetch_all]
-
       if params[:start] && params[:end]
         events = events.where('(begin_at between :start and :end_date) OR '\
                               '(end_at between :start and :end_date) OR '\
                               '(begin_at < :start AND end_at > :end_date)',
                               start: Time.zone.parse(params[:start]), end_date: Time.zone.parse(params[:end]).end_of_day)
       end
-
-      events = events.tagged_with(normalize_tags(params[:tags]), any: true) if params[:tags]
+      events = events.tagged_with(normalize_tags(params[:tags]), any: true) if params[:tags].present?
       events
     end
 

@@ -133,7 +133,6 @@ class Page < ApplicationRecord
 
   def self.get_pages_db site, params
     params[:direction] ||= 'desc'
-    puts "->>>>>>> #{params[:sort_column]}"
 
     pages = site.pages.published.
       with_search(params[:search], params.fetch(:search_type, 1).to_i).
