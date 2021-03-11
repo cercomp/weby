@@ -5,7 +5,7 @@ module SitesHelper
     if @fb_included.blank?
       @fb_included = true
       "<div id=\"fb-root\"></div>"+
-      "<script async defer crossorigin=\"anonymous\" src=\"https://connect.facebook.net/#{current_locale == 'pt-BR' ? 'pt_BR' : 'en_US'}/sdk.js#xfbml=1&version=v3.3\"></script>"
+      "<script async defer crossorigin=\"anonymous\" src=\"https://connect.facebook.net/#{current_locale == 'pt-BR' ? 'pt_BR' : 'en_US'}/sdk.js#xfbml=1&version=v10.0&appId=260966418946169&autoLogAppEvents=1\" nonce=\"rGWiLV7l\"></script>"
     else
       ""
     end.html_safe
@@ -19,8 +19,9 @@ module SitesHelper
       html += "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>"
     end
     if current_site.send("#{type}_social_share_networks".to_sym).to_a.include?('facebook')
+      _href = request.original_url.gsub(/\?.*/, '')
       html += include_facebook_script
-      html += '<div class="fb-like" data-href="" data-width="" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>'
+      html += "<div class=\"fb-like\" data-href=\"\" data-width=\"\" data-layout=\"button_count\" data-action=\"like\" data-size=\"large\" data-show-faces=\"true\" data-share=\"true\"></div>"
     end
     html += '</div>'
     html.html_safe
