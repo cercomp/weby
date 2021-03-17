@@ -51,9 +51,21 @@ class SessionsController < Devise::SessionsController
       ldap_user = connect.search(:base => ldap.base, :filter => filter)
       #puts "---->>>>>>>>> #{ldap_user.first.inspect}"
       if ldap_user.first.nil?
-        # Caso as credenciais não sejam autenticadas no LDAP
-        super
-        current_user.record_login(request.user_agent, request.remote_ip) if current_user
+        # Caso não logou no LDAP -> tenta logar no banco
+        auth_user = User.find_by_login(params[:user][:auth])
+        if auth_user && auth_user.valid_password?(params[:user][:password])
+          # Logado
+          sign_in auth_user
+          current_user.record_login(request.user_agent, request.remote_ip)
+          set_flash_message!(:notice, :signed_in)
+          respond_with resource, location: after_sign_in_path_for(resource)
+        else
+          if ldap.force_ldap_login.to_s == 'true' && AuthSource.exists?(source_type: 'ldap', source_login: ldap_user_login)
+            flash[:warning] = t('user_has_link')
+          end
+          flash[:alert] = t(:invalid)
+          redirect_to login_path
+        end
       else
         # Caso o login seja bem sucedido no LDAP
         source = AuthSource.find_by(source_type: 'ldap', source_login: ldap_user_login)

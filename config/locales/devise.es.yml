@@ -60,7 +60,8 @@ es:
         other: "%{count} errores impidieron que este %{resource} fuese guardado:"
   ldap_login_sucess: "Login realizado con sucesso por autenticacion única: %{login}"
   link_weby_user: "Se você já possuir uma conta no Weby, informe usuário e senha para vincular a este login, caso contrário, clique em Novo no Weby"
-  ldap_only_user: 'Usuário vinculado a um Login único, não é possivel definir senha'
+  ldap_only_user: 'Não é possível definir senha. O acesso dessa conta é feito pelo Login único'
+  user_has_link: 'Esta conta está configurada para acessar utilizado o Login único'
   invalid: "Login ou senha inválidos. Por favor, informe um usuário válido."
   ldap_email_invalid: 'Não foi possível fazer a correspondência da identidade entre a conta Weby e o Login único'
   shib_invalid: 'Identificação inválida'
