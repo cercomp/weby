@@ -115,6 +115,12 @@ class ApplicationController < ActionController::Base
     redirect_back_or_default weby_login_url
   end
 
+  def is_on_mobile?
+    devices = 'Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini'
+    !!request.user_agent.match(devices)
+  end
+  helper_method :is_on_mobile?
+
   def set_tld_length
     if current_site && request.domain
       if Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))

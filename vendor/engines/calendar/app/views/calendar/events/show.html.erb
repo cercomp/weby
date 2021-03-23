@@ -1,5 +1,5 @@
 <% add_meta_tags @event %>
-<% content_for :social_code, render_social_share(:event) %>
+<% content_for :social_code, render_social_share(:event, @event) %>
 
 <article class="event-show">
   <%= weby_file_view(@event.image, :l, '128', nil) %>

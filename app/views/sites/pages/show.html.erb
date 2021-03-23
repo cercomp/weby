@@ -1,6 +1,6 @@
 <% if !defined?(as_component) %>
   <% add_meta_tags @page %>
-  <% content_for :social_code, render_social_share(:page) %>
+  <% content_for :social_code, render_social_share(:page, @page) %>
 <% end %>
 
 <article class="page-show">
