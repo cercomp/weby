@@ -335,8 +335,21 @@
   .social-toggle {
     display: flex;
   }
+  .social-buttons {
+    flex-wrap: wrap;
+    .wtsp-share {
+      flex: 0 0 100%;
+      margin-top: 22px;
+    }
+  }
   .header .container {
     position: relative;
+  }
+  .menu_accessibility_component.bar .direct-access {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
   }
   .header .social-icons {
     opacity: 0;

@@ -513,6 +513,13 @@
     height: 30px;
   }
 
+  .menu_accessibility_component.bar .direct-access {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
   .front_news_component, .subsite_front_news_component, .event_list_component {
     padding-top: 60px;
 
@@ -546,6 +553,14 @@
 
   .highlight-news {
     margin-top: 80px;
+  }
+
+  .social-buttons {
+    flex-wrap: wrap;
+    .wtsp-share {
+      flex: 0 0 100%;
+      margin-top: 22px;
+    }
   }
 
   body > header .social-icons {
