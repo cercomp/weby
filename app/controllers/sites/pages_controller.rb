@@ -33,6 +33,11 @@ class Sites::PagesController < ApplicationController
     end.compact.sort_by(&:position)
   end
 
+  def frame
+    cnt = open(params[:url]).read
+    render html: cnt.html_safe
+  end
+
   private
 
   def sort_column

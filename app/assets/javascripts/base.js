@@ -85,7 +85,7 @@ $(document).ready(function(){
     setTimeout(function(){
       alert.removeClass('visible');
     }, 5000);
-  };
+  }
 
   $('.toggle-contrast').click(function(){
     WEBY.toggleContrast();
@@ -95,5 +95,12 @@ $(document).ready(function(){
   ///init
   WEBY.checkContrast();
   WEBY.applyContrast();
+
+  $('.newtab-links iframe').each(function(){
+    $(this).on('load', function(ev){
+      const doc = this.contentDocument ? this.contentDocument : this.contentWindow.document;
+      $(doc).find('a').attr('target', '_blank');
+    });
+  });
 
 });
