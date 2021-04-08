@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     patch '/admin/subsites/:id' => 'sites#update_subsite', as: :update_subsite_admin
 
     resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
+    get '/fp', to: 'sites/pages#frame'
     get :pages, to: 'sites/pages#index', as: :site_pages
     get '/search', to: 'sites/searches#index', as: :searches
     #old routes
