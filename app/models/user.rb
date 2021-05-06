@@ -64,7 +64,7 @@ class User < ApplicationRecord
     select('DISTINCT users.* ')
       .joins('LEFT JOIN roles_users ON roles_users.user_id = users.id
               LEFT JOIN roles ON roles.id = roles_users.role_id')
-      .where(['roles.permissions != ? AND roles.site_id = ?', "Admin", id])
+      .where(['(roles.permissions != ? OR roles.permissions IS NULL) AND roles.site_id = ?', "Admin", id])
   }
 
   # Returns all users that have confirmed their registration.
