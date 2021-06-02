@@ -67,6 +67,7 @@ en:
       page: "Pages"
       event: "Events"
       news: "News"
+      facebookComments: "Add Facebook Comments"
     form:
       site_comments: " Comments about the goal of the site "
       example_width: " Example "
@@ -76,5 +77,6 @@ en:
       example_per_page: " Example "
       site_image: " Site image "
       main_site: " Main Site "
+      confirm_deactivate: "Are you sure you want to deactivate this site? It won't be possible to access the site and the admin area."
       domain_explain: " Fill in the domain field only if it's different than the default "
       google_analytics_hint: 'Paste here the The Global Site Tag code or the Tracking ID'

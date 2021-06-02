@@ -24,7 +24,7 @@
           <td> <%= site.title %> </td>
           <td> <%= site.description %> </td>
           <td>
-            <% if current_user.is_admin %>
+            <% if current_user.is_admin || current_user.is_local_admin?(site.id) %>
               <% if current_site %>
                 <% if site.status == 'active' %>
                   <%= link_to render_toggle(:status, 1, true), update_subsite_admin_path(site.id, site: {status: 'inactive'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>

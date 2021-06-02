@@ -49,7 +49,7 @@ class SessionsController < Devise::SessionsController
       end
       filter = Net::LDAP::Filter.join(Net::LDAP::Filter.eq(ldap.attr_login, ldap_user_login), Net::LDAP::Filter.eq(ldap.attr_password, ldap_user_pass))
       ldap_user = connect.search(:base => ldap.base, :filter => filter)
-      #puts "---->>>>>>>>> #{ldap_user.first.inspect}"
+      puts "---->>>>>>>>> #{ldap_user.first.inspect}"
       if ldap_user.first.nil?
         # Caso não logou no LDAP -> tenta logar no banco
         auth_user = User.find_by_login(params[:user][:auth])
@@ -71,10 +71,25 @@ class SessionsController < Devise::SessionsController
         source = AuthSource.find_by(source_type: 'ldap', source_login: ldap_user_login)
         if source.nil?
           # Caso o login no LDAP ainda não esteja vinculado a nenhuma conta no Weby
+          # Find the best email
+          ldap_email = ldap_user.first[ldap.attr_mail].first.to_s
+          if ldap.email_domain.blank?
+            best_email = ldap_email
+          else
+            if ldap.attr_eduperson.present?
+              eduperson = ldap_user.first[ldap.attr_eduperson].first.to_s
+              best_email = ldap_email if ldap_email.match("@#{ldap.email_domain}")
+              best_email = eduperson if best_email.blank? && eduperson.match("@#{ldap.email_domain}")
+              best_email = ldap_email if best_email.blank? && mail.match("#{ldap.email_domain}")
+              best_email = eduperson if best_email.blank? && eduperson.match("#{ldap.email_domain}")
+            end
+            best_email ||= ldap_email
+          end
+
           session[:ldap_login] = ldap_user.first[ldap.attr_login].first.to_s
           session[:ldap_first_name] = ldap_user.first[ldap.attr_firstname].first.to_s
           session[:ldap_last_name] = ldap_user.first[ldap.attr_lastname].first.to_s
-          session[:ldap_email] = ldap.email_domain.present? ? "#{session[:ldap_login]}#{ldap.email_domain}" : ldap_user.first[ldap.attr_mail].first.to_s
+          session[:ldap_email] = best_email
           session[:ldap_type] = 'ldap'
           flash[:success] = t('ldap_login_sucess', login: ldap_user_login)
           flash[:warning] = t('link_weby_user')

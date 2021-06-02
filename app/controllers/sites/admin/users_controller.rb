@@ -1,6 +1,7 @@
 # coding: utf-8
 class Sites::Admin::UsersController < ApplicationController
   before_action :require_user
+  before_action :is_admin, only: :create_subsite_local_admin
   before_action :check_authorization
   serialization_scope :view_context
 
@@ -37,6 +38,19 @@ class Sites::Admin::UsersController < ApplicationController
     else
       #flash[:notice] = t('.select_user')
     end
+    redirect_to action: "manage_roles", anchor: "adms"
+  end
+
+  ### global admin only
+  def create_subsite_local_admin
+    user_id = params[:id]
+    user = User.find(user_id)
+    subsites = current_site.subsites.active
+    subsites.each do |subsite|
+      admin_role = find_or_create_local_admin_role(subsite)
+      user.roles << admin_role unless user.role_ids.include?(admin_role.id)
+    end
+    flash[:notice] = "Adicionado em #{subsites.size} subsites"
     redirect_to action: "manage_roles", anchor: "adms"
   end
 
@@ -86,10 +100,10 @@ class Sites::Admin::UsersController < ApplicationController
 
   private
 
-  def find_or_create_local_admin_role
-    admin_role = current_site.roles.find_by(permissions: 'Admin')
+  def find_or_create_local_admin_role(site=current_site)
+    admin_role = site.roles.find_by(permissions: 'Admin')
     if admin_role.blank?
-      admin_role = current_site.roles.create!(name: 'Administrador', permissions: 'Admin')
+      admin_role = site.roles.create!(name: 'Administrador', permissions: 'Admin')
     end
     admin_role
   end

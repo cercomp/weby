@@ -16,7 +16,7 @@ fr:
   are_you_sure:                         " Você tem certeza? "
   are_you_sure_del_item:                " Você tem certeza que deseja excluir \"%{item}\"? "
   are_you_sure_unshare_item:            " Você tem certeza que deseja excluir o compartilhamento \"%{item}\"? "
-  are_you_sure_del_admin:               " Você tem certeza que deseja remover \"%{user}\" dos Administradores "
+  are_you_sure_del_admin:               " Você tem certeza que deseja remover \"%{user}\" dos Gestores "
   are_you_sure_del_many:                " Você tem certeza que deseja excluir todos os items selecionados? "
   activate_deactivate:                  " Ativar/Desativar "
   activate:                             " Ativar "
@@ -108,6 +108,7 @@ fr:
   ok:                                   " OK "
   of:                                   " de "
   only_admin:                           " Somente para usuários administradores "
+  only_managers:                        " Somente para usuários Gestores "
 #---P---#
   please_wait:                          " Por favor espere! "
   publish:                              " Publicar "
