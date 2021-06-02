@@ -49,7 +49,7 @@ class SessionsController < Devise::SessionsController
       end
       filter = Net::LDAP::Filter.join(Net::LDAP::Filter.eq(ldap.attr_login, ldap_user_login), Net::LDAP::Filter.eq(ldap.attr_password, ldap_user_pass))
       ldap_user = connect.search(:base => ldap.base, :filter => filter)
-      puts "---->>>>>>>>> #{ldap_user.first.inspect}"
+      #puts "---->>>>>>>>> #{ldap_user.first.inspect}"
       if ldap_user.first.nil?
         # Caso não logou no LDAP -> tenta logar no banco
         auth_user = User.find_by_login(params[:user][:auth])
