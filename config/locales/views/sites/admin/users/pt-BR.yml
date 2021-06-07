@@ -7,7 +7,7 @@ pt-BR:
           roles_permissions: " Permissões e Papéis "
           manage_users:      " Gerenciar Usuários "
           users:             " Usuários "
-          adms:              " Administradores "
+          adms:              " Gestores "
         enrole:
           enrole_user:       " Relacionar Usuários "
           role:              " Papéis "
@@ -21,9 +21,10 @@ pt-BR:
         role_form:
           confirm_unrole:    " Tem certeza que deseja remover todos os papéis de seu próprio usuário e se desvincular deste site? "
         enrole_adms:
-          enrole_user:       " Relacionar Administrador "
-          enroled_users:     " Administradores Relacionados "
-          none_user:         " Nenhum Administrador Relacionado "
+          enrole_user:       " Relacionar Gestor "
+          enroled_users:     " Gestores Relacionados "
+          none_user:         " Nenhum Gestor Relacionado "
+          enrole_subsites:   " Relacionar como Gestor nos Subsites "
         search:
           no_user_found:     " Nenhum usuário encontrado "
 

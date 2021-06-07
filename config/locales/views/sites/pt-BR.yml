@@ -82,5 +82,6 @@ pt-BR:
       example_per_page: " Exemplo "
       site_image: " Imagem do Site "
       main_site: " Site Principal "
+      confirm_deactivate: "Tem certeza que deseja desativar o site? Não será mais possível acessar o site e a área administrativa."
       domain_explain: " Preencha o domínio apenas se for diferente do padrão "
       google_analytics_hint: 'Cole o código de acompanhamento da tag de site global ou o ID de acompanhamento'

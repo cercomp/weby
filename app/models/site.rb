@@ -140,6 +140,10 @@ class Site < ApplicationRecord
 
   ##
 
+  def has_subsites?
+    subsites.active.any?
+  end
+
   def active?
     status == 'active'
   end

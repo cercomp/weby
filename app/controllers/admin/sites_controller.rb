@@ -45,11 +45,11 @@ class Admin::SitesController < Admin::BaseController
 
   def update
     if @site.update(site_params)
+      flash[:success] = t'successfully_updated'
+      record_activity('updated_site', @site)
       if @site.previous_changes["status"] == ["active", "inactive"] # check if status was changed from active to inactive
         ::SiteMailer.site_deactivated(@site)
       end
-      flash[:success] = t'successfully_updated'
-      record_activity('updated_site', @site)
       redirect_to params[:return_to] == 'index' ? admin_sites_path : edit_admin_site_path(@site.id)
     else
       if params[:return_to] == 'index'

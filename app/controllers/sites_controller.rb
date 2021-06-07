@@ -3,7 +3,8 @@ class SitesController < ApplicationController
 
   before_action :require_user, only: [:admin, :edit, :update, :destroy_subsite, :update_subsite]
   before_action :check_authorization, only: [:edit, :update]
-  before_action :is_admin, only: [:destroy_subsite, :update_subsite]
+  before_action :is_admin, only: :destroy_subsite
+  before_action :global_or_subsite_admin, only: :update_subsite
   before_action :load_subsite, only: [:destroy_subsite, :update_subsite]
 
   respond_to :html, :xml, :js
@@ -100,7 +101,13 @@ class SitesController < ApplicationController
     params[:site][:top_banner_id] ||= nil
     if @site.update(site_params)
       flash[:success] = t('successfully_updated')
-      redirect_to edit_site_admin_url(subdomain: @site)
+      record_activity('updated_site', @site)
+      if @site.previous_changes["status"] == ["active", "inactive"] # check if status was changed from active to inactive
+        ::SiteMailer.site_deactivated(@site)
+        redirect_to root_url(subdomain: nil)
+      else
+        redirect_to edit_site_admin_url(subdomain: @site)
+      end
     else
       load_subsites
       render :edit, layout: 'application'
@@ -161,6 +168,10 @@ class SitesController < ApplicationController
 
     if current_user.is_admin?
       permitted += [:name, :parent_id, :domain, :restrict_theme, grouping_ids: []]
+    end
+
+    if current_user.is_admin? || current_user.is_local_admin?(current_site.id)
+      permitted += [:status]
     end
 
     Site::SHAREABLES.each do |shareable|
