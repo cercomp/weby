@@ -63,7 +63,8 @@ Rails.application.configure do
 
   if ENV['STORAGE_BUCKET'].present?
     region = ENV['STORAGE_REGION'].presence || 'us-east-1'
-    path_style = ENV['STORAGE_HOST'].to_s.include?('aws') ? false : true
+    is_aws = ENV['STORAGE_HOST'].to_s.include?('aws')
+    path_style = is_aws ? false : true
 
     config.paperclip_defaults = {
       storage: :s3,
@@ -95,6 +96,7 @@ Rails.application.configure do
       config.fog_region = region
       config.fog_host = ENV['STORAGE_HOST']
       config.fog_path_style = path_style
+      config.aws_iam_roles = true if is_aws
     end
   end
 
