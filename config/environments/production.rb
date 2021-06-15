@@ -96,7 +96,6 @@ Rails.application.configure do
       config.fog_region = region
       config.fog_host = ENV['STORAGE_HOST']
       config.fog_path_style = path_style
-      config.aws_iam_roles = true if is_aws
     end
   end
 
