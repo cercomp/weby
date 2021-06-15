@@ -62,7 +62,8 @@ Rails.application.configure do
   config.log_level = :info #:debug
 
   if ENV['STORAGE_BUCKET'].present?
-    region = 'us-east-1'
+    region = ENV['STORAGE_REGION'].presence || 'us-east-1'
+    path_style = ENV['STORAGE_HOST'].to_s.include?('aws') ? false : true
 
     config.paperclip_defaults = {
       storage: :s3,
@@ -81,7 +82,7 @@ Rails.application.configure do
       s3_host_name: ENV['STORAGE_HOST'],
       s3_options: {
         endpoint: "https://#{ENV['STORAGE_HOST']}", # for aws-sdk
-        force_path_style: true # for aws-sdk (required for minio)
+        force_path_style: path_style # for aws-sdk (required for minio)
       },
       url: ':s3_path_url'
     }
@@ -93,7 +94,7 @@ Rails.application.configure do
       config.fog_directory = ENV['STORAGE_BUCKET']
       config.fog_region = region
       config.fog_host = ENV['STORAGE_HOST']
-      config.fog_path_style = true
+      config.fog_path_style = path_style
     end
   end
 
