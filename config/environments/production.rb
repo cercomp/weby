@@ -34,7 +34,15 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  asset_host = ENV['STORAGE_HOST'].present? ? "//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}" : proc {|*args| Weby::Assets.asset_host_for(args[0], args[1] || nil) }
+  asset_host = if ENV['STORAGE_HOST'].present?
+    if ENV['STORAGE_HOST'].to_s.include?('aws')
+      "//#{ENV['STORAGE_BUCKET']}.#{ENV['STORAGE_HOST']}"
+    else
+      "//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}"
+    end
+  else
+    proc {|*args| Weby::Assets.asset_host_for(args[0], args[1] || nil) }
+  end
   config.action_controller.asset_host = asset_host
   config.action_mailer.asset_host = asset_host
 
