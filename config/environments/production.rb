@@ -93,7 +93,7 @@ Rails.application.configure do
         endpoint: "https://#{ENV['STORAGE_HOST']}", # for aws-sdk
         force_path_style: path_style # for aws-sdk (required for minio)
       },
-      url: ':s3_path_url'
+      url: is_aws ? ':s3_domain_url' : ':s3_path_url'
     }
 
     AssetSync.configure do |config|
