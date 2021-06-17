@@ -69,10 +69,9 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :info #:debug
 
-  if ENV['STORAGE_BUCKET'].present?
+  if ENV['STORAGE_BUCKET'].present? && ENV['STORAGE_HOST'].present?
     region = ENV['STORAGE_REGION'].presence || 'us-east-1'
     is_aws = ENV['STORAGE_HOST'].to_s.include?('aws')
-    path_style = is_aws ? false : true
 
     config.paperclip_defaults = {
       storage: :s3,
@@ -88,13 +87,11 @@ Rails.application.configure do
         access_key_id: ENV['STORAGE_ACCESS_KEY'],
         secret_access_key: ENV['STORAGE_ACCESS_SECRET']
       },
-      s3_host_name: ENV['STORAGE_HOST'],
+      s3_host_alias: is_aws ? "#{ENV['STORAGE_BUCKET']}.s3-#{region}.amazonaws.com" : "#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}",
       s3_options: {
         endpoint: "https://#{ENV['STORAGE_HOST']}", # for aws-sdk
-        force_path_style: path_style # for aws-sdk (required for minio)
-      },
-      s3_host_alias: ("#{ENV['STORAGE_BUCKET']}.s3-#{region}.amazonaws.com" if is_aws),
-      url: is_aws ? ':s3_alias_url' : ':s3_path_url'
+        force_path_style: !is_aws # for aws-sdk (required for minio)
+      }
     }
 
     AssetSync.configure do |config|
@@ -104,7 +101,7 @@ Rails.application.configure do
       config.fog_directory = ENV['STORAGE_BUCKET']
       config.fog_region = region
       config.fog_host = ENV['STORAGE_HOST']
-      config.fog_path_style = path_style
+      config.fog_path_style = !is_aws
       config.run_on_precompile = false if ENV['ASSETS_MANUAL_SYNC'].to_s == 'true'
     end
   end

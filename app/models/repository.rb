@@ -26,9 +26,9 @@ class Repository < ApplicationRecord
     path: proc {
       Rails.env.production? ?
         '/up/:site_id/:style/:basename.:extension'
-      : ':rails_root/public:url'
+        : ':rails_root/public:url'
     },
-    url: '/up/:site_id/:style/:basename.:extension',
+    url: Rails.env.production? ? ':s3_alias_url' : '/up/:site_id/:style/:basename.:extension',
     convert_options: {
       o: "-quality 90",
       t: "-quality 80 -strip", #-crop 160x160+0+0 +repage
@@ -157,6 +157,9 @@ class Repository < ApplicationRecord
     attrs = attrs['repository'] if attrs.key? 'repository'
     id = attrs['id']
     attrs.except!('id', 'created_at', 'updated_at', 'deleted_at', 'site_id', 'type', '@type')
+
+    attrs['user_id'] = options[:user] unless User.unscoped.find_by(id: attrs['user_id'])
+
     repo = self.find_by(archive_file_name: attrs['archive_file_name'], site_id: options[:site_id]) || self.create!(attrs)
     if repo.persisted?
       Import::Application::CONVAR["repository"]["#{id}"] ||= "#{repo.id}"
