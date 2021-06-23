@@ -143,6 +143,7 @@ Rails.application.routes.draw do
           put :set_admin
         end
       end
+      resources :apps
       resources :roles, except: :show do
         collection do
           put :index
@@ -164,6 +165,21 @@ Rails.application.routes.draw do
       # route to paginate
       get 'users/page/:page' => 'users#index'
       get 'sites/page/:page' => 'sites#index'
+    end
+
+    # API
+    namespace :api, defaults: {format: :json} do
+      namespace :v1 do
+        get '/' => 'base#root'
+        resources :sites, only: [:index, :create, :show]
+        resources :locales, only: [:index]
+        resources :themes, only: [:index]
+        get '/users/find' => 'users#find', as: :find_user
+        #post '/login' => 'sessions#create'
+        #delete '/logout' => 'sessions#destroy'
+      end
+      get '/' => 'api#root'
+      match '*query' => 'api#not_found', via: :all
     end
   end
 
