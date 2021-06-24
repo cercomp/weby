@@ -68,6 +68,7 @@ es:
 #---F---#
   field_required:                       " Campo Obrigatório! "
   file_already_exists:                  " Já existe outro arquivo com o nome: %{value} "
+  file_already_exists_trash:            " Já existe outro arquivo com o nome '%{value}' na Lixeira "
   follow:                               " Seguir "
 #---G---#
 #---H---#

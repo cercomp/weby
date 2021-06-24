@@ -67,6 +67,7 @@ zh-CN:
 #---F---#
   field_required:                       " Field Required!  "
   file_already_exists:                  " There is another file named '%{value}' "
+  file_already_exists_trash:            " There is another file named '%{value}' in the Recycle bin "
   follow:                               " Follow "
 #---G---#
   generate:                             " Gerar "

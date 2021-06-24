@@ -113,7 +113,20 @@ class Repository < ApplicationRecord
     archive.instance_write(:file_name, CGI.unescape(archive.original_filename))
   end
 
-  validates :archive_file_name, uniqueness: { scope: :site_id, message: I18n.t('file_already_exists') }
+  validate :unique_archive_file_name
+
+  def unique_archive_file_name
+    check_repo = Repository.unscoped.where(site_id: site_id, archive_file_name: archive_file_name)
+    if persisted?
+      check_repo = check_repo.where.not(id: id)
+    end
+
+    if check_repo.exists?
+      check_repo = check_repo.first
+      errors.add(:archive_file_name, I18n.t(check_repo.is_trashed? ? 'file_already_exists_trash' : 'file_already_exists', value: check_repo.archive_file_name))
+    end
+  end
+  private :unique_archive_file_name
 
   # Reprocessamento de imagens para (re)gerar os thumbnails quando necessário
   def reprocess
