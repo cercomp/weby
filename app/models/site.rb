@@ -141,6 +141,13 @@ class Site < ApplicationRecord
   end
 
   ##
+  def find_or_create_local_admin_role!
+    admin_role = roles.find_by(permissions: 'Admin')
+    if admin_role.blank?
+      admin_role = roles.create!(name: 'Administrador', permissions: 'Admin')
+    end
+    admin_role
+  end
 
   def active?
     status == 'active'

@@ -18,9 +18,8 @@ module API
 
       def create
         site = Site.new(site_params)
-        if site.save
+        if create_site(site)
           Weby::Rights.seed_roles site.id
-          
           record_activity('created_site', site)
           render json: site, root: :site
         else
@@ -29,6 +28,32 @@ module API
       end
 
       private
+
+      def create_site site
+        ActiveRecord::Base.transaction do
+          # Validations
+          site.errors.add(:base, 'Nenhum gestor informado') && raise(ActiveRecord::Rollback) if params[:managers].blank?
+          managers = User.where(id: params[:managers])
+          site.errors.add(:base, 'Gestor não encontrado')   && raise(ActiveRecord::Rollback) if managers.blank?
+          site.errors.add(:base, 'Nenhum tema informado')   && raise(ActiveRecord::Rollback) if params[:theme].blank?
+          theme = ::Weby::Themes.theme(params[:theme])
+          site.errors.add(:base, 'Tema não encontrado')     && raise(ActiveRecord::Rollback) if theme.blank?
+          site.errors.add(:base, t('only_admin'))           && raise(ActiveRecord::Rollback) if theme.is_private
+          #
+          site.save!
+          # Assign site admins
+          admin_role = site.find_or_create_local_admin_role!
+          managers.each do |user|
+            user.roles << admin_role
+          end
+          # Assign theme
+          skin = site.skins.create!(name: theme.name.titleize, theme: theme.name, active: true)
+          record_activity('theme_installed', skin)
+          theme.populate skin, user: managers.first
+        end
+      rescue ActiveRecord::RecordInvalid
+        false
+      end
 
       def site_params
         params.require(:site).permit(:title, :top_banner_id, :name, :parent_id,

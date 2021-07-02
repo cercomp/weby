@@ -6,6 +6,7 @@ module API
         render json: {sites: api_v1_sites_path,
                       users: api_v1_find_user_path,
                       locales: api_v1_locales_path,
+                      groupings: api_v1_groupings_path,
                       themes: api_v1_themes_path}, status: 200
       end
 

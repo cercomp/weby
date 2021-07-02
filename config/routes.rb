@@ -174,6 +174,7 @@ Rails.application.routes.draw do
         resources :sites, only: [:index, :create, :show]
         resources :locales, only: [:index]
         resources :themes, only: [:index]
+        resources :groupings, only: [:index]
         get '/users/find' => 'users#find', as: :find_user
         #post '/login' => 'sessions#create'
         #delete '/logout' => 'sessions#destroy'

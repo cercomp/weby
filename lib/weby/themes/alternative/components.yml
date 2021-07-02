@@ -35,7 +35,7 @@ top:
     alias: Cabeçalho
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"",
-        :new_tab=>"0", :html_class=>"logo", :default_image=>"alternative/marca-prpg.svg"}'
+        :new_tab=>"0", :html_class=>"logo", :default_image=>""}'
       name: image
       position: 1
       publish: true
@@ -143,7 +143,7 @@ bottom:
   alias: Logos
   children:
   - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"",
-      :new_tab=>"0", :html_class=>"logo", :default_image=>"alternative/marca-prpg.svg",
+      :new_tab=>"0", :html_class=>"logo", :default_image=>"",
       :title=>{"pt-BR"=>"", "en"=>""}}'
     name: image
     position: 1
