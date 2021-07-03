@@ -8,10 +8,8 @@ module API
 
     def not_found name=nil, query=nil
       message = case name
-                  when :channel
-                    t('api.channels.not_found', name: query)
-                  when :concert
-                    t('api.transmissions.not_found')
+                when :sites
+                  t('api.sites.not_found', name: query)
                 end
       render json: {error: t('api.not_found'), message: message}, status: 404
     end

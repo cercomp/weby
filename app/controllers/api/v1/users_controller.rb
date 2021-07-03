@@ -13,7 +13,7 @@ module API
           user = User.find_by query
           render json: {found: user.present?, user: user}
         else
-          render json: {error: t('api.params_missing'), message: ''}, status: 403
+          render json: {error: t('api.params_missing', param: "email | login"), message: ''}, status: 403
         end
       end
     end

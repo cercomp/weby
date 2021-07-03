@@ -20,7 +20,8 @@ module API
 
       def authenticate_app
         token = request.headers['weby-api-token'] || params[:weby_api_token]
-        @app = App.find_by(api_token: token) if token.present?
+        code = request.headers['weby-app-code'] || params[:weby_app_code]
+        @app = App.find_by(api_token: token, code: code) if token.present? && code.present?
         render(json: {success: false, error: t('api.invalid_app')}, status: :unauthorized) unless @app
       end
     end

@@ -1,0 +1,7 @@
+en:
+  api:
+    invalid_app: Invalid App
+    not_found: Not found
+    params_missing: "Parameter is missing: %{param}"
+    sites:
+      not_found: Site not found

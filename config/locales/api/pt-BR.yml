@@ -1,0 +1,7 @@
+pt-BR:
+  api:
+    invalid_app: Sistema Inválido
+    not_found: Não encontrado
+    params_missing: "Parâmetro não informado: %{param}"
+    sites:
+      not_found: Site não encontrado

@@ -7,13 +7,13 @@ module API
       def index
         params[:page] ||= 1
         sites = Site.active.name_or_description_like(params[:search])
-        render json: sites, root: :sites, meta: build_meta(sites)
+        render json: sites, root: 'sites', meta: build_meta(sites)
       end
 
       def show
         site = Site.find_by id: params[:id]
         return not_found :site, params[:id] if !site
-        render json: site, root: :site
+        render json: site, root: 'site'
       end
 
       def create
