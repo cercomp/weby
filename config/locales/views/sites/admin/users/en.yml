@@ -7,6 +7,7 @@ en:
           roles_permissions: " Roles and Permissions "
           manage_users:      " Manage Users "
           users:             " Users "
+          adms:              " Admins "
         enrole:
           enrole_user:       " Enrole users "
           role:              " Roles "
@@ -20,10 +21,10 @@ en:
         role_form:
           confirm_unrole:    " Are you sure you wish to remove all of your roles and unrole from this site? "
         enrole_adms:
-          enrole_user:       " Enrole Site Manager "
-          enroled_users:     " Enroled Site Managers "
-          none_user:         " No Site Managers "
-          enrole_subsites:   " Enrole as Site Manager on Subsites "
+          enrole_user:       " Enrole Site Admin "
+          enroled_users:     " Enroled Site Admins "
+          none_user:         " No Site Admins "
+          enrole_subsites:   " Enrole as Site Admin on Subsites "
         search:
           no_user_found:     " No user found "
 

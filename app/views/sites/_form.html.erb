@@ -15,9 +15,6 @@
 
   <%= f.input :title, :input_html => {:maxlength => 50} %>
   <%= f.input :description, :input_html => {:rows => 4}, :hint => t(".site_comments"), :as => :text %>
-  <% if current_user.is_admin? || current_user.is_local_admin?(current_site.id) %>
-    <%= f.input :status, :collection => site_status_options, include_blank: false %>
-  <% end %>
   <%#= f.input :theme, :collection => @themes.collect{|name| [t("themes.#{name}.title"), name]} %>
   <%= f.input :body_width, :hint => t(".example_width") %>
   <%= f.input :google_analytics, :input_html => {:rows => 4}, :hint => t(".google_analytics_hint"), :as => :text %>
@@ -31,7 +28,7 @@
     :boolean_style => :nested,
     :collection => Locale.all.map{|l| [flag(l, show_name: true), l.id] } %>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary confirm-site-status', disable_with: t("please_wait"), data: {confirm_deactivate: t('.confirm_deactivate')} %>
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>

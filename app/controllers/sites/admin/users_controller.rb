@@ -1,7 +1,7 @@
 # coding: utf-8
 class Sites::Admin::UsersController < ApplicationController
   before_action :require_user
-  before_action :is_admin, only: :create_subsite_local_admin
+  #before_action :is_admin, only: :create_subsite_local_admin
   before_action :check_authorization
   serialization_scope :view_context
 
@@ -41,18 +41,19 @@ class Sites::Admin::UsersController < ApplicationController
     redirect_to action: "manage_roles", anchor: "adms"
   end
 
+  # DEACTIVADED
   ### global admin only
-  def create_subsite_local_admin
-    user_id = params[:id]
-    user = User.find(user_id)
-    subsites = current_site.subsites.active
-    subsites.each do |subsite|
-      admin_role = find_or_create_local_admin_role(subsite)
-      user.roles << admin_role unless user.role_ids.include?(admin_role.id)
-    end
-    flash[:notice] = "Adicionado em #{subsites.size} subsites"
-    redirect_to action: "manage_roles", anchor: "adms"
-  end
+  # def create_subsite_local_admin
+  #   user_id = params[:id]
+  #   user = User.find(user_id)
+  #   subsites = current_site.subsites.active
+  #   subsites.each do |subsite|
+  #     admin_role = find_or_create_local_admin_role(subsite)
+  #     user.roles << admin_role unless user.role_ids.include?(admin_role.id)
+  #   end
+  #   flash[:notice] = "Adicionado em #{subsites.size} subsites"
+  #   redirect_to action: "manage_roles", anchor: "adms"
+  # end
 
   def destroy_local_admin_role
     user_id = params[:id]

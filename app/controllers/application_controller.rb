@@ -266,21 +266,21 @@ class ApplicationController < ActionController::Base
 
   def is_admin
     return true if current_user.is_admin
-    flash[:error] = t'only_admin'
+    flash[:error] = t('only_admin')
 
     redirect_back(fallback_location: admin_path)
   end
 
   def global_or_local_admin
     return true if current_user.is_local_admin?(current_site.id) || current_user.is_admin
-    flash[:error] = t'only_managers'
+    flash[:error] = t('only_admin')
 
     redirect_back(fallback_location: admin_path)
   end
 
   def global_or_subsite_admin
     return true if current_user.is_local_admin?(params[:id]) || current_user.is_admin
-    flash[:error] = t'only_managers'
+    flash[:error] = t('only_admin')
 
     redirect_back(fallback_location: admin_path)
   end

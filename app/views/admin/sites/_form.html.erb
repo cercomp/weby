@@ -24,7 +24,7 @@
     :collection => Locale.all.map{|l| [flag(l, show_name: true), l.id] } %>
 
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= f.button :submit, class: 'btn btn-primary confirm-site-status', disable_with: t("please_wait"), data: {confirm_deactivate: t('.confirm_deactivate')} %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>

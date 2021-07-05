@@ -14,13 +14,8 @@
           </td>
           <td>
             <% if check_permission(Sites::Admin::UsersController, [:destroy_local_admin_role]) %>
-              <div class="text-right actions">
-                <%= render_dropdown_menu do %>
-                  <%= link_to icon('trash', text: t("destroy")),destroy_local_admin_role_site_admin_users_path(id: user.id), data: {confirm: t("are_you_sure_del_admin", user: user.fullname)}, method: :delete %>
-                  <% if current_user.is_admin? && current_site.has_subsites? %>
-                    <%= link_to icon('user', text: t('.enrole_subsites')), create_subsite_local_admin_site_admin_users_path(id: user.id), data: {confirm: t("are_you_sure", user: user.fullname)}, method: :post %>
-                  <% end %>
-                <% end %>
+              <div class="text-right">
+                <%= link_to icon('trash', text: t("destroy")),destroy_local_admin_role_site_admin_users_path(id: user.id), data: {confirm: t("are_you_sure_del_admin", user: user.fullname)}, method: :delete %>
               </div>
             <% end %>
           </td>
