@@ -149,6 +149,10 @@ class Site < ApplicationRecord
     admin_role
   end
 
+  def has_subsites?
+    subsites.active.any?
+  end
+
   def active?
     status == 'active'
   end

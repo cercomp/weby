@@ -45,6 +45,8 @@ settings:
       value:
     attr_mail:
       value:
+    attr_eduperson:
+      value:
     email_domain:
       value:
     prefixo:

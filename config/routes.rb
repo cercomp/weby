@@ -102,7 +102,7 @@ Rails.application.routes.draw do
       resources :users, only: [] do
         collection do
           get :manage_roles, :search
-          post :change_roles, :create_local_admin_role, :set_preferences
+          post :change_roles, :create_local_admin_role, :set_preferences #create_subsite_local_admin
           delete :destroy_local_admin_role
         end
       end
