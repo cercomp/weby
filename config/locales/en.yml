@@ -16,7 +16,7 @@ en:
   are_you_sure:                         " Are you sure? "
   are_you_sure_del_item:                " Are you sure you want to delete \"%{item}\"? "
   are_you_sure_unshare_item:            " Are you sure you want to delete the shared item \"%{item}\"? "
-  are_you_sure_del_admin:               " Are you sure you want to remove \"%{user}\" from site Admin "
+  are_you_sure_del_admin:               " Are you sure you want to remove \"%{user}\" from Site Admins "
   are_you_sure_del_many:                " Are you sure you want to delete all selected items? "
   activate_deactivate:                  " Activate/Deactivate "
   activate:                             " Activate "
@@ -108,7 +108,7 @@ en:
 #---O---#
   ok:                                   " OK "
   of:                                   " of "
-  only_admin:                           " Only for admin users "
+  only_admin:                           " Only for Admin Users "
 #---P---#
   please_wait:                          " Please Wait! "
   publish:                              " Publish "

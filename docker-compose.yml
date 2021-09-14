@@ -5,6 +5,7 @@ services:
     image: weby
     container_name: weby_ufg
     restart: always
+    build: .
     ports:
       - 3000:3000
     depends_on:

@@ -56,10 +56,7 @@ class Sites::Admin::SkinsController < ApplicationController
 
     alert = t('successfully_installed_theme')
     if params[:apply].to_s == 'true'
-      current_site.skins.update_all active: false
-      skin.update active: true
-      record_activity('theme_applied', skin)
-      alert = t('successfully_applied_theme')
+      alert = apply_skin(skin)
     end
 
     theme.populate skin, user: current_user
@@ -84,10 +81,7 @@ class Sites::Admin::SkinsController < ApplicationController
   end
 
   def apply
-    current_site.skins.update_all active: false
-    @skin.update active: true
-    record_activity('theme_applied', @skin)
-    flash[:success] = t('successfully_applied_theme')
+    flash[:success] = apply_skin(@skin)
     redirect_to site_admin_skin_path(@skin)
   end
 
@@ -106,6 +100,13 @@ class Sites::Admin::SkinsController < ApplicationController
   end
 
   private
+
+  def apply_skin skin
+    current_site.skins.update_all active: false
+    skin.update active: true
+    record_activity('theme_applied', skin)
+    t('successfully_applied_theme')
+  end
 
   def load_skin
     @skin = current_site.skins.find(params[:id])

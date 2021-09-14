@@ -24,6 +24,7 @@ pt-BR:
           enrole_user:       " Relacionar Administrador "
           enroled_users:     " Administradores Relacionados "
           none_user:         " Nenhum Administrador Relacionado "
+          enrole_subsites:   " Relacionar como Administrador nos Subsites "
         search:
           no_user_found:     " Nenhum usuário encontrado "
 

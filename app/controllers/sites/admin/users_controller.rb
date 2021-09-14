@@ -1,6 +1,7 @@
 # coding: utf-8
 class Sites::Admin::UsersController < ApplicationController
   before_action :require_user
+  #before_action :is_admin, only: :create_subsite_local_admin
   before_action :check_authorization
   serialization_scope :view_context
 
@@ -29,7 +30,7 @@ class Sites::Admin::UsersController < ApplicationController
 
   def create_local_admin_role
     if params.dig(:user, :id).present?
-      admin_role = find_or_create_local_admin_role
+      admin_role = current_site.find_or_create_local_admin_role!
       params[:user][:id].each do |user_id|
         user = User.find(user_id)
         user.roles << admin_role
@@ -39,6 +40,20 @@ class Sites::Admin::UsersController < ApplicationController
     end
     redirect_to action: "manage_roles", anchor: "adms"
   end
+
+  # DEACTIVADED
+  ### global admin only
+  # def create_subsite_local_admin
+  #   user_id = params[:id]
+  #   user = User.find(user_id)
+  #   subsites = current_site.subsites.active
+  #   subsites.each do |subsite|
+  #     admin_role = subsite.find_or_create_local_admin_role!
+  #     user.roles << admin_role unless user.role_ids.include?(admin_role.id)
+  #   end
+  #   flash[:notice] = "Adicionado em #{subsites.size} subsites"
+  #   redirect_to action: "manage_roles", anchor: "adms"
+  # end
 
   def destroy_local_admin_role
     user_id = params[:id]
@@ -84,13 +99,4 @@ class Sites::Admin::UsersController < ApplicationController
     render json: {ok: true}
   end
 
-  private
-
-  def find_or_create_local_admin_role
-    admin_role = current_site.roles.find_by(permissions: 'Admin')
-    if admin_role.blank?
-      admin_role = current_site.roles.create!(name: 'Administrador', permissions: 'Admin')
-    end
-    admin_role
-  end
 end

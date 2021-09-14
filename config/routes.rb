@@ -102,7 +102,7 @@ Rails.application.routes.draw do
       resources :users, only: [] do
         collection do
           get :manage_roles, :search
-          post :change_roles, :create_local_admin_role, :set_preferences
+          post :change_roles, :create_local_admin_role, :set_preferences #create_subsite_local_admin
           delete :destroy_local_admin_role
         end
       end
@@ -174,6 +174,7 @@ Rails.application.routes.draw do
         resources :sites, only: [:index, :create, :show]
         resources :locales, only: [:index]
         resources :themes, only: [:index]
+        resources :groupings, only: [:index]
         get '/users/find' => 'users#find', as: :find_user
         #post '/login' => 'sessions#create'
         #delete '/logout' => 'sessions#destroy'
