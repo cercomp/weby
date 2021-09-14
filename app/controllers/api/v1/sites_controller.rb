@@ -21,7 +21,6 @@ module API
         if site.save
           Weby::Rights.seed_roles site.id
           
-          record_activity('created_site', site)
           render json: site, root: :site
         else
           render json: {error: t('api.site_not_created'), message: site.errors.full_messages}, status: 403
