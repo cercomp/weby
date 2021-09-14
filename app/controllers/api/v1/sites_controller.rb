@@ -21,7 +21,7 @@ module API
         if create_site(site)
           Weby::Rights.seed_roles site.id
           
-          render json: site, root: :site
+          render json: site, root: 'data'
         else
           render json: {error: t('api.site_not_created'), message: site.errors.full_messages}, status: 403
         end
@@ -48,7 +48,6 @@ module API
           end
           # Assign theme
           skin = site.skins.create!(name: theme.name.titleize, theme: theme.name, active: true)
-          record_activity('theme_installed', skin)
           theme.populate skin, user: managers.first
         end
       rescue ActiveRecord::RecordInvalid
@@ -60,7 +59,7 @@ module API
           :domain, :description, :show_pages_author,
           :show_pages_created_at, :show_pages_updated_at,
           :restrict_theme, :body_width, :google_analytics,
-          :per_page, :per_page_default, :status,
+          :per_page, :per_page_default, :status, 
           {locale_ids: [], grouping_ids: []})
       end
     end
