@@ -66,6 +66,14 @@ class Site < ApplicationRecord
     end
   }
 
+  scope :name_like, ->(text) {
+    if text.present?
+      where('lower(sites.name) LIKE lower(:text)', text: "%#{text}%")
+    else
+      where(nil)
+    end
+  }
+
   scope :ordered_by_front_pages, ->(text) {
     page_query = Journal::News.select("coalesce(max(journal_news.updated_at),'1900-01-01')")
       .published.where('journal_news.site_id = sites.id').to_sql

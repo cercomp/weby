@@ -6,7 +6,7 @@ module API
 
       def index
         params[:page] ||= 1
-        sites = Site.active.name_or_description_like(params[:search])
+        sites = Site.active.name_like(params[:search])
         render json: sites, root: 'sites', meta: build_meta(sites)
       end
 
