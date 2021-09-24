@@ -66,9 +66,9 @@ class Site < ApplicationRecord
     end
   }
 
-  scope :name_like, ->(text) {
+  scope :name_equal, ->(text) {
     if text.present?
-      where('lower(sites.name) LIKE lower(:text)', text: "%#{text}%")
+      where('lower(sites.name) = lower(:text)', text: "%#{text}%")
     else
       where(nil)
     end
