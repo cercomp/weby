@@ -68,7 +68,7 @@ class Site < ApplicationRecord
 
   scope :name_equal, ->(text) {
     if text.present?
-      where('lower(sites.name) = lower(:text)', text: "%#{text}%")
+      where('lower(sites.name) = lower(:text)', text: "#{text}")
     else
       where(nil)
     end
