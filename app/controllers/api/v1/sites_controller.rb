@@ -27,6 +27,15 @@ module API
         end
       end
 
+      def update
+        site = Site.find(params[:id])
+        if site.update_attributes(site_params)
+          render json: site, root: 'data'
+        else
+          render json: {error: t('api.site_not_created'), message: @site.errors.full_messages}, status: 403
+        end
+      end
+
       private
 
       def create_site site
