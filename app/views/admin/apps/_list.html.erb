@@ -1,0 +1,36 @@
+<% if @apps.empty? %>
+    <div class="alert alert-warning">
+      <%= t(".none_apps") %>
+    </div>
+<% else %>
+  <div class="pull-left"> <%= info_page @apps %> </div>
+  <div class="pull-right"> <%= paginate @apps, remote: true %> </div>
+  <div class="clearfix"></div>
+
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th><%= sortable 'first_name', t(".name") %></th>
+        <th><%= sortable 'code', t(".code") %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @apps.each do |app| %>
+        <tr>
+          <td><%= link_to "#{app.name} #{content_tag(:span, icon(:'eye-open'), class: 'oh-c-i')}".html_safe, admin_app_path(app) %></td>
+          <td><%= link_to "#{app.code} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_app_path(app) %></td>
+          <td class="text-right">
+            <%= render_dropdown_menu do %>
+              <%= raw make_menu(app) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="pull-left"> <%= per_page_links @apps, true, :sm %> </div>
+  <div class="pull-right"> <%= paginate @apps, remote: true %> </div>
+  <div class="clearfix"></div>
+<% end %>

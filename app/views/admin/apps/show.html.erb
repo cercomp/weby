@@ -1,0 +1,10 @@
+<div id="app-details">
+  <p> <b><%= t('.name') %>:</b> <%= @app.name %> </p>
+  <p> <b><%= t('.code') %>:</b> <%= @app.code %> </p>
+  <p> <b><%= t('.token') %>:</b> <%= @app.api_token %> </p>
+</div>
+<div class="form-actions">
+  <%= make_menu(@app, :except => "show") %>
+  <%= link_to icon('list', text: t(".list_all")), admin_apps_path %>
+  <%= link_to icon('chevron-left', text: t("back")), :back %>
+</div>

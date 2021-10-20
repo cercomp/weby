@@ -4,6 +4,7 @@ pt-BR:
       menu_admin:
         settings:          " Configurações "
         users:             " Usuários "
+        apps:              " Sistemas "
         pages:             " Páginas "
         covers:            " Capas "
         menus:             " Menus "

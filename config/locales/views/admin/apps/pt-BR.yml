@@ -1,0 +1,19 @@
+pt-BR:
+  admin:
+    apps:
+      show:
+        list_all:          " Listar todos "
+        name:              " Nome "
+        code:              " Código "
+        token:             " Token de API "
+      new:
+        new_app:           " Novo Sistema "
+      form:
+        name:              " Nome "
+        code:              " Código "
+      index:
+        new_app:           " Novo Sistema "
+      list:
+        name:               " Nome "
+        code:               " Código "
+        none_apps:          " Nenhum Sistema "

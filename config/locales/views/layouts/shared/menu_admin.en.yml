@@ -4,6 +4,7 @@ en:
       menu_admin:
         settings:          " Settings "
         users:             " Users "
+        apps:              " Apps "
         pages:             " Pages "
         covers:            " Covers "
         menus:             " Menus "

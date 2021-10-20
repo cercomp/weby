@@ -1,0 +1,19 @@
+en:
+  admin:
+    apps:
+      show:
+        list_all:          " List all "
+        name:              " Name "
+        code:              " Code "
+        token:             " API Token "
+      new:
+        new_app:           " New App "
+      form:
+        name:              " Name "
+        code:              " Code "
+      index:
+        new_app:           " New App "
+      list:
+        name:               " Name "
+        code:               " Code "
+        none_apps:          " No apps "
