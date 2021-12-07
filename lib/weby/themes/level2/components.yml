@@ -146,7 +146,7 @@ top:
           :title=>{"pt-BR"=>"", "en"=>""}}'
         name: image
         position: 1
-        publish: true
+        publish: true"
         alias: Logo menu
       - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
           :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"menu-logo-ufg",
