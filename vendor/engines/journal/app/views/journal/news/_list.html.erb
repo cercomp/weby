@@ -23,7 +23,7 @@
       </summary>
       <div class="categories">
         <% news_site.categories.each do |category| %>
-          <span class="category"><%= link_to category.name , news_index_path( tags: category.name ), class: 'weby-label default' %></span>
+          <span class="category"><%= link_to category.name, news_index_path( tags: category.name, direction: 'desc', sort: 'journal_news.created_at',) , class: 'weby-label default' %></span>
         <% end %>
       </div>
       <p class="read_more"><%#= link_to t(".read_more"), news_path(news) %></p>
