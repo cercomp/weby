@@ -7,6 +7,7 @@ class Sites::SearchesController < ApplicationController
   def index
     @extension = current_site.extensions.find_by(name: 'journal')
     if !request.format.html?
+      desc_default_direction
       @news_sites = Journal::News.get_news(current_site, params.merge(sort_column: news_sort_column, sort_direction: sort_direction))
       @pages = Page.get_pages(current_site, params.merge(sort_column: pages_sort_column, sort_direction: sort_direction))
       @events = Calendar::Event.get_events(current_site, params.merge(sort_column: events_sort_column, sort_direction: sort_direction))
