@@ -7,6 +7,7 @@ class Sites::PagesController < ApplicationController
   respond_to :html, :js, :json
 
   def index
+    desc_default_direction
     @pages = Page.get_pages current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction)
     respond_with(@pages) do |format|
       format.json { render json: @pages, root: 'pages', meta: { total: @pages.total_count } }

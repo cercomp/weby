@@ -8,6 +8,7 @@ module Calendar
     respond_to :html, :js, :json, :rss, :atom
 
     def index
+      desc_default_direction
       @events = Calendar::Event.get_events_db current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction)
 
       respond_with(@events) do |format|

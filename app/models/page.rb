@@ -114,7 +114,7 @@ class Page < ApplicationRecord
 
 
   def self.get_pages_es site, params
-    params[:direction] = 'desc' if params[:direction].blank?
+    params[:sort_direction] = 'desc' if params[:sort_direction].blank?
     params[:page] = 1 if params[:page].blank?
 
     filters = [{

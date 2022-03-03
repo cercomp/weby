@@ -12,6 +12,7 @@ module Journal
 
     def index
       if !request.format.html?
+        desc_default_direction
         @news_sites = Journal::News.get_news(current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction))
       end
 

@@ -403,6 +403,10 @@ class ApplicationController < ActionController::Base
     %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
   end
 
+  def desc_default_direction
+    params[:direction] = 'desc' if params[:direction].blank?
+  end
+
   # NOTE overwrite devise url helpers
   def new_session_path(_arg)
     login_path
