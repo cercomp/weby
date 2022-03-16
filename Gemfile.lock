@@ -90,6 +90,8 @@ GEM
       activemodel (= 5.2.4.2)
       activesupport (= 5.2.4.2)
       arel (>= 9.0)
+    activerecord-nulldb-adapter (0.8.0)
+      activerecord (>= 5.2.0, < 7.1)
     activestorage (5.2.4.2)
       actionpack (= 5.2.4.2)
       activerecord (= 5.2.4.2)
@@ -445,6 +447,7 @@ DEPENDENCIES
   acadufg!
   active_model_serializers
   activemodel-serializers-xml
+  activerecord-nulldb-adapter
   acts-as-taggable-on (~> 6.5.0)
   asset_sync
   aws-sdk-s3 (~> 1)
