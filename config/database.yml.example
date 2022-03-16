@@ -1,9 +1,9 @@
 default: &default
-  adapter: postgresql
+  adapter: <%= ENV['DB_ADAPTER'] ||= 'postgresql' %>
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: <%= ENV['PG_USER'] ||= 'postgresql' %>
+  username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
   host: <%= ENV['PG_HOST'] %>
   database: <%= ENV['PG_DB'] %>
