@@ -506,7 +506,7 @@ DEPENDENCIES
   zip-zip (~> 0.3)
 
 RUBY VERSION
-   ruby 2.5.7p206
+   ruby 2.7.5p203
 
 BUNDLED WITH
    1.16.3

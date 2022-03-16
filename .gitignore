@@ -9,9 +9,7 @@
 /vendor/bundle
 
 # Ignore weby instances specifics configurations
-/config/database.yml
 /config/email.yml
-/config/secrets.yml
 /lib/weby/config/asset_host.yml
 /lib/weby/institutions/assets/*/*
 /lib/weby/institutions/*.yml
