@@ -1,5 +1,5 @@
 default: &default
-  adapter: <%= ENV['DB_ADAPTER'] ||= 'postgresql' %>
+  adapter: <%= ENV['DB_ADAPTER'] || 'postgresql' %>
   encoding: unicode
   pool: 5
   timeout: 5000
