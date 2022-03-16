@@ -7,6 +7,8 @@ gem 'rake', '13.0.1'
 
 gem 'thin', '~> 1.7.2'
 gem 'pg', '~> 1.2.3'
+gem 'activerecord-nulldb-adapter'
+
 gem 'bootsnap', '~> 1.4.6', require: false
 
 # js and css frameworks

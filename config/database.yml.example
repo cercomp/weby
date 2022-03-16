@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: <%= ENV['PG_USER'] %>
+  username: <%= ENV['PG_USER'] ||= 'postgresql' %>
   password: <%= ENV['PG_PASS'] %>
   host: <%= ENV['PG_HOST'] %>
   database: <%= ENV['PG_DB'] %>
