@@ -1,13 +1,13 @@
 default: &default
-  adapter: <%= ENV['DB_ADAPTER'] || 'postgresql' %>
+  adapter: <%= ENV['DB_ADAPTER'] %>
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: <%= ENV['PG_USER'] %>
-  password: <%= ENV['PG_PASS'] %>
-  host: <%= ENV['PG_HOST'] %>
-  database: <%= ENV['PG_DB'] %>
-  port: <%= ENV['PG_PORT'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  host: <%= ENV['DB_HOST'] %>
+  database: <%= ENV['DB_DB'] %>
+  port: <%= ENV['DB_PORT'] %>
 
 development:
   <<: *default
