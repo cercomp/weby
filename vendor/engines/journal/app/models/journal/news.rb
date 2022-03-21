@@ -2,6 +2,7 @@ module Journal
   class News < Journal::ApplicationRecord
     include Trashable
     include OwnRepository
+    include HasSlug
 
     weby_content_i18n :title, :summary, :text, required: :title
 
@@ -106,10 +107,6 @@ module Journal
       if news.persisted?
         Import::Application::CONVAR["news"]["#{id}"] ||= "#{news.id}"
       end
-    end
-
-    def to_param
-      "#{id} #{title}".parameterize
     end
 
     def published?

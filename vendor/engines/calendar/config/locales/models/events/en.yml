@@ -11,6 +11,7 @@ en:
         end_at:          "Final date"
         email:           "E-mail"
         url:             "URL"
+        slug:            "URL Slug"
         kind:            "Type"
         view_count:      "Views"
         image:           "Image"

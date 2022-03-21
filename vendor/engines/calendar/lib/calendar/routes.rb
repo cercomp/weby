@@ -14,7 +14,7 @@ module Calendar
             end
           end
         end
-        resources :events, module: 'calendar', path: 'e', only: [:show]
+        resources :events, module: 'calendar', path: 'e', only: [:show], concerns: :slug_check
         get :events, to: 'calendar/events#index'
         get :calendar, to: 'calendar/events#calendar'
       end

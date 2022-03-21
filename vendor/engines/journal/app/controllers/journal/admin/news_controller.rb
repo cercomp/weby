@@ -5,6 +5,7 @@ module Journal::Admin
     before_action :require_user
     before_action :check_authorization
     before_action :status_types, only: [:new, :edit, :create, :update, :index]
+    before_action :find_news, only: [:show, :edit, :update]
 
     respond_to :html, :js
 
@@ -68,7 +69,7 @@ module Journal::Admin
     end
 
     def show
-      @news = current_site.news.find(params[:id]).in(params[:show_locale])
+      @news = @news.in(params[:show_locale])
       respond_with(:admin, @news)
     end
 
@@ -78,7 +79,6 @@ module Journal::Admin
     end
 
     def edit
-      @news = current_site.news.find(params[:id])
       @draft = get_draft(@news.id)
     end
 
@@ -120,7 +120,6 @@ module Journal::Admin
 
     def update
       params[:news][:related_file_ids] ||= []
-      @news = current_site.news.find(params[:id])
       if @news.update(news_params)
         set_draft(nil, @news.id)
       end
@@ -250,7 +249,7 @@ module Journal::Admin
     end
 
     def news_params
-      params.require(:news).permit(:source, :url, :image, :status, :date_begin_at, :date_end_at,
+      params.require(:news).permit(:source, :url, :slug, :image, :status, :date_begin_at, :date_end_at,
                                    { news_sites_attributes: [:id, :site_id, :journal_news_id,
                                                               :category_list, :front],
                                      i18ns_attributes: [:id, :locale_id, :title,

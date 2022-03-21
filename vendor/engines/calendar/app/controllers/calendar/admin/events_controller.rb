@@ -3,6 +3,7 @@ module Calendar
     before_action :require_user
     before_action :check_authorization
     before_action :event_types, only: [:new, :edit, :create, :update]
+    before_action :find_event, only: [:show, :edit, :update]
 
     respond_to :html, :js, :json
 
@@ -40,7 +41,7 @@ module Calendar
     end
 
     def show
-      @event = current_site.events.find(params[:id]).in(params[:show_locale])
+      @event = @event.in(params[:show_locale])
     end
 
     def new
@@ -56,12 +57,10 @@ module Calendar
     end
 
     def edit
-      @event = current_site.events.find(params[:id])
     end
 
     def update
       params[:event][:related_file_ids] ||= []
-      @event = current_site.events.find(params[:id])
       @event.update(events_params)
       record_activity('updated_event', @event)
       respond_with(:admin, @event)
@@ -123,7 +122,7 @@ module Calendar
     end
 
     def events_params
-      params.require(:event).permit(:begin_at, :end_at, :email, :url,
+      params.require(:event).permit(:begin_at, :end_at, :email, :url, :slug,
                                    :kind, :category_list, :image,
                                    { i18ns_attributes: [:id, :locale_id, :name,
                                        :information, :place, :_destroy],

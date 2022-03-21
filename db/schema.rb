@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_205411) do
+ActiveRecord::Schema.define(version: 2022_03_08_193922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_205411) do
     t.integer "view_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "slug"
     t.index ["repository_id"], name: "index_calendar_events_on_repository_id"
     t.index ["site_id"], name: "index_calendar_events_on_site_id"
     t.index ["user_id"], name: "index_calendar_events_on_user_id"
@@ -162,6 +163,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_205411) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.string "slug"
     t.index ["repository_id"], name: "index_journal_news_on_repository_id"
     t.index ["site_id"], name: "index_journal_news_on_site_id"
     t.index ["user_id"], name: "index_journal_news_on_user_id"
@@ -288,6 +290,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_205411) do
     t.integer "view_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "slug"
     t.index ["site_id"], name: "index_pages_on_site_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end

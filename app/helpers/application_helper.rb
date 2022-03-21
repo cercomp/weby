@@ -607,4 +607,9 @@ module ApplicationHelper
     icon_url = site.favicon.archive.url
     icon_url.match(/https?\:\/\//) ? icon_url : "#{main_app.site_url(subdomain: site)}#{icon_url}"
   end
+
+  def get_route_path name
+    _route = Rails.application.routes.routes.detect{|r| r.name == name.to_s }
+    _route&.path&.spec.to_s[1..-1].to_s
+  end
 end

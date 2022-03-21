@@ -34,7 +34,7 @@
                           <% tag = settings[:filter_by] %>
                           <div class="thumbnail">
                             <h5 class="text-center"><%= link_to "#{t("components.#{comp.name}.name")}  - #{comp.alias.present? ? comp.alias : comp.default_alias}",
-                                share_admin_news_url(@news, site_id: site.id, subdomain: site, tag: tag) %></h5>
+                                share_admin_news_url(@news.id, site_id: site.id, subdomain: site, tag: tag) %></h5>
                           </div>
                         <% end %>
                       <% end %>

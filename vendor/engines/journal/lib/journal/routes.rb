@@ -50,7 +50,7 @@ module Journal
             end
           end
         end
-        resources :news, module: :journal, path: 'n', only: [:show] do
+        resources :news, module: :journal, path: 'n', only: [:show], concerns: :slug_check do
           collection do
             post :sort
           end

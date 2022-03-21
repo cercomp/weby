@@ -151,6 +151,8 @@ zh-CN:
   successfully_copied:                  " Style successfully copied "
   successfully_restored:                " Successfully Restored! "
   should_be_image:                      " Must be an image file "
+  slug_taken:                           " 这个链接已存在 "
+  slug_ok:                              " 可用网址 "
 #---T---#
   theme_already_installed:              " Theme already installed "
 #---U---#
