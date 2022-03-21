@@ -151,6 +151,8 @@ de:
   successfully_copied:                  " Style successfully copied "
   successfully_restored:                " Successfully Restored! "
   should_be_image:                      " Must be an image file "
+  slug_taken:                           " Url existiert bereits "
+  slug_ok:                              " verfügbare URL "
 #---T---#
   theme_already_installed:              " Theme already installed "
 #---U---#

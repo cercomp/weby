@@ -203,6 +203,41 @@ $(document).ready(function() {
       $.getScript($(this).find('option:selected').data('url'));
   });
 
+  ////// Check slug
+  $('[data-check-slug]').each(function(){
+    let $this = $(this);
+    $this.change(function(){
+      $.get($this.data('url'), {slug: $this.val(), id: $this.data('id')}, function(resp){
+        let fg = $this.closest('.form-group');
+        let cf = fg.find('.form-control-feedback');
+        let hb = fg.find('.help-block');
+        if (!cf.length) cf = $('<span class="glyphicon form-control-feedback" aria-hidden="true"></span>').appendTo(fg);
+        if (!hb.length) hb = $('<span class="help-block"></span>').appendTo(fg);
+        if (resp.empty) {
+          cf.remove();
+          hb.remove();
+          fg.removeClass('has-success').removeClass('has-error').removeClass('has-feedback')
+        } else {
+          hb.text(resp.message);
+          if (resp.taken) {
+            cf.removeClass('glyphicon-ok').addClass('glyphicon-remove');
+            fg.addClass('has-feedback').removeClass('has-success').addClass('has-error')
+          } else {
+            cf.removeClass('glyphicon-remove').addClass('glyphicon-ok');
+            fg.addClass('has-feedback').removeClass('has-error').addClass('has-success')
+          }
+        }
+      });
+    });
+
+    $this.on('input', function(e){
+      let t = e.target;
+      t.value = t.value.replace(' ', '-');
+      let badValues = /[^a-z-]/g;
+      t.value = t.value.replace(badValues, '');
+    });
+  });
+
   //// toggle fields based on checkboxes
   $(document).on('change', '.toggle-fields', function(){
     let $this = $(this);

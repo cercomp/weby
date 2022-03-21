@@ -2,8 +2,14 @@
   <%= f.show_errors %>
 
   <%= render('translates_form', f: f) %>
+  <%= f.input :slug, wrapper: :append do %>
+    <div class="input-group-addon">
+      <%= "#{site_url}#{get_route_path(:site_page)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>
+    </div>
+    <%= f.input_field :slug, as: :string, data: {check_slug: '', id: @page.id, url: check_slug_site_pages_path}, pattern: '^[a-z](-?[a-z])*$' %>
+  <% end %>
 
-  <%= f.input :publish, wrapper_html: { class: "side" }, 
+  <%= f.input :publish, wrapper_html: { class: "side" },
     as: :boolean,
     input_html: { class: "check-button" },
     wrapper: :checkbox %>
@@ -11,7 +17,7 @@
   <%= repository_search t(".related_files"),
     "related_file_ids", "page[related_file_ids][]", @page.related_files,
     multiple: true, file_types: false %>
-  
+
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>

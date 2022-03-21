@@ -17,6 +17,12 @@
     multiple: false, file_types: 'image' %>
 
   <%= render('translates_form', f: f) %>
+  <%= f.input :slug, wrapper: :append do %>
+    <div class="input-group-addon">
+      <%= "#{site_url}#{get_route_path(:news)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>
+    </div>
+    <%= f.input_field :slug, as: :string, data: {check_slug: '', id: @news.id, url: check_slug_news_index_path}, pattern: '^[a-z](-?[a-z])*$' %>
+  <% end %>
 
   <%= f.input :source, wrapper_html: {class: 'side'} %>
 

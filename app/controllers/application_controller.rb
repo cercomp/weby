@@ -211,6 +211,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def resource_class
+    parts = controller_path.split('/')
+    parts.delete_if { |part| part.match(/admin|sites/) && part != parts[-1] }.join('/')
+  end
+
   # carrega o recurso de um controller
   # ex: /users/2
   #
@@ -225,8 +230,7 @@ class ApplicationController < ActionController::Base
   # kudos para @josevalim em https://github.com/josevalim/inherited_resources
   def resource
     #get_resource_ivar || set_resource_ivar(controller_name.classify.constantize.send(:find, params[:id]))
-    parts = controller_path.split('/')
-    model_class = parts.delete_if { |part| part.match(/admin|sites/) && part != parts[-1] }.join('/')
+    model_class = resource_class
     get_resource_ivar || set_resource_ivar(model_class.classify.constantize.send(:find, params[:id]))
   end
 
@@ -434,6 +438,17 @@ class ApplicationController < ActionController::Base
       render template: 'errors/maintenance', layout: 'weby_pages'
     end
   end
+
+  #FINDERS
+
+  def find_page
+    if params[:id].match(/^\d+\-?/)
+      @page = current_site.pages.find(params[:id])
+    else
+      @page = current_site.pages.find_by(slug: params[:id])
+    end
+  end
+
 end
 
 module Import

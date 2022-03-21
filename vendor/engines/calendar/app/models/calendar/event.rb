@@ -2,6 +2,7 @@ module Calendar
   class Event < Calendar::ApplicationRecord
     include Trashable
     include OwnRepository
+    include HasSlug
     if ENV['ELASTICSEARCH_URL'].present?
       include Calendar::EventElastic
     end
@@ -51,10 +52,6 @@ module Calendar
 
     def title
       name
-    end
-
-    def to_param
-      "#{id} #{name}".parameterize
     end
 
     def category_list_before_type_cast

@@ -11,6 +11,7 @@ pt-BR:
         end_at:          "Data final"
         email:           "E-mail"
         url:             "URL"
+        slug:            "Slug da URL"
         kind:            "Tipo"
         view_count:      "Visualizações"
         image:           "Imagem"

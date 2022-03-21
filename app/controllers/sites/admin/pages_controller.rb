@@ -3,6 +3,7 @@ class Sites::Admin::PagesController < ApplicationController
 
   before_action :require_user
   before_action :check_authorization
+  before_action :find_page, only: [:show, :edit, :update]
 
   helper_method :sort_column
 
@@ -50,7 +51,7 @@ class Sites::Admin::PagesController < ApplicationController
   private :sort_column
 
   def show
-    @page = current_site.pages.find(params[:id]).in(params[:show_locale])
+    @page = @page.in(params[:show_locale])
   end
 
   def new
@@ -58,7 +59,6 @@ class Sites::Admin::PagesController < ApplicationController
   end
 
   def edit
-    @page = current_site.pages.find(params[:id])
   end
 
   def create
@@ -73,7 +73,6 @@ class Sites::Admin::PagesController < ApplicationController
   # PUT /pages/1.json
   def update
     params[:page][:related_file_ids] ||= []
-    @page = current_site.pages.find(params[:id])
     @page.update(page_params)
     record_activity('updated_page', @page)
     respond_with(:site_admin, @page)
@@ -128,7 +127,7 @@ class Sites::Admin::PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:publish,
+    params.require(:page).permit(:publish, :slug,
                                  { i18ns_attributes: [:id, :locale_id, :title, :text, :_destroy],
                                  related_file_ids: [] })
   end

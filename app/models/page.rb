@@ -1,5 +1,6 @@
 class Page < ApplicationRecord
   include Trashable
+  include HasSlug
   if ENV['ELASTICSEARCH_URL'].present?
     include PageElastic
   end
@@ -70,10 +71,6 @@ class Page < ApplicationRecord
     attrs['related_file_ids'] = attrs.delete('related_files').to_a.map { |repo| Import::Application::CONVAR["repository"]["#{repo['id']}"] }
 
     self.create!(attrs)
-  end
-
-  def to_param
-    "#{id} #{title}".parameterize
   end
 
   def real_updated_at

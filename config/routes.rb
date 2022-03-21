@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
 
+    concern :slug_check do
+      collection do
+        get :check_slug
+      end
+    end
+
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
@@ -9,7 +15,7 @@ Rails.application.routes.draw do
     delete '/admin/subsites/:id' => 'sites#destroy_subsite', as: :destroy_subsite_admin
     patch '/admin/subsites/:id' => 'sites#update_subsite', as: :update_subsite_admin
 
-    resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
+    resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show], concerns: :slug_check
     get '/fp', to: 'sites/pages#frame'
     get :pages, to: 'sites/pages#index', as: :site_pages
     get '/search', to: 'sites/searches#index', as: :searches

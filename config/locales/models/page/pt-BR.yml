@@ -24,6 +24,7 @@ pt-BR:
         categories:      "Categorias"
         type:            "Tipo da página"
         url:             "URL"
+        slug:            "Slug da URL"
         summary:         "Resumo"
         text:            "Texto"
         title:           "Título"
