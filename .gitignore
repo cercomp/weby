@@ -29,6 +29,7 @@ Gemfile-ext
 .sass-cache
 .ruby-version
 .env
+/docker/.env
 
 *.swp
 *~
