@@ -8,6 +8,7 @@
     </div>
     <%= f.input_field :slug, as: :string, data: {check_slug: '', id: @page.id, url: check_slug_site_pages_path}, pattern: '^[a-z](-?[a-z])*$' %>
   <% end %>
+  <span class="help-block"><%= t('slug_hint') %></span>
 
   <%= f.input :publish, wrapper_html: { class: "side" },
     as: :boolean,

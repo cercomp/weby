@@ -12,6 +12,7 @@
     </div>
     <%= f.input_field :slug, as: :string, data: {check_slug: '', id: @event.id, url: check_slug_events_path}, pattern: '^[a-z](-?[a-z])*$' %>
   <% end %>
+  <span class="help-block"><%= t('slug_hint') %></span>
 
   <%= f.input :begin_at, required: :true, label: t(".period") do %>
       <div class="row">

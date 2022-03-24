@@ -150,6 +150,7 @@ es:
   should_be_image:                      " Deve ser uma imagem "
   slug_taken:                           " URL ya existe "
   slug_ok:                              " URL disponible "
+  slug_hint:                            " Use solo letras minúsculas y guión - "
 #---T---#
   theme_already_installed:              " Tema já adicionado "
 #---U---#

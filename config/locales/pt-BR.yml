@@ -154,6 +154,7 @@ pt-BR:
   should_be_image:                      " Deve ser uma imagem "
   slug_taken:                           " URL já existe "
   slug_ok:                              " URL disponível "
+  slug_hint:                            " Utilize apenas letras minúsculas e hífen - "
 #---T---#
   theme_already_installed:              " Tema já adicionado "
 #---U---#

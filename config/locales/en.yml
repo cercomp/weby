@@ -153,6 +153,7 @@ en:
   should_be_image:                      " Must be an image file "
   slug_taken:                           " URL already exists "
   slug_ok:                              " URL available "
+  slug_hint:                            " Use only lowercase letters and dash - "
 #---T---#
   theme_already_installed:              " Theme already installed "
 #---U---#
