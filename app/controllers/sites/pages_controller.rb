@@ -1,12 +1,16 @@
 class Sites::PagesController < ApplicationController
+  include CheckSlug
+
   layout :choose_layout
 
   helper_method :sort_column
   before_action :check_current_site
+  before_action :find_page, only: :show
 
   respond_to :html, :js, :json
 
   def index
+    desc_default_direction
     @pages = Page.get_pages current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction)
     respond_with(@pages) do |format|
       format.json { render json: @pages, root: 'pages', meta: { total: @pages.total_count } }
@@ -14,7 +18,6 @@ class Sites::PagesController < ApplicationController
   end
 
   def show
-    @page = current_site.pages.find(params[:id])
     raise ActiveRecord::RecordNotFound if !@page.publish && @page.user != current_user
     if request.path != site_page_path(@page)
       redirect_to site_page_path(@page), status: :moved_permanently

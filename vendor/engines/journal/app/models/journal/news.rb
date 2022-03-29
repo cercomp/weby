@@ -2,6 +2,7 @@ module Journal
   class News < Journal::ApplicationRecord
     include Trashable
     include OwnRepository
+    include HasSlug
 
     weby_content_i18n :title, :summary, :text, required: :title
 
@@ -108,10 +109,6 @@ module Journal
       end
     end
 
-    def to_param
-      "#{id} #{title}".parameterize
-    end
-
     def published?
       status == 'published'
     end
@@ -178,7 +175,7 @@ module Journal
     end
 
     def self.get_news_es site, params
-      params[:direction] = 'desc' if params[:direction].blank?
+      params[:sort_direction] = 'desc' if params[:sort_direction].blank?
       params[:page] = 1 if params[:page].blank?
 
       filters = [{

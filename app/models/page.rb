@@ -1,5 +1,6 @@
 class Page < ApplicationRecord
   include Trashable
+  include HasSlug
   if ENV['ELASTICSEARCH_URL'].present?
     include PageElastic
   end
@@ -72,10 +73,6 @@ class Page < ApplicationRecord
     self.create!(attrs)
   end
 
-  def to_param
-    "#{id} #{title}".parameterize
-  end
-
   def real_updated_at
     i18n_updated = i18ns.sort_by{|i18n| i18n.updated_at }.last.updated_at
     updated_at > i18n_updated ? updated_at : i18n_updated
@@ -114,7 +111,7 @@ class Page < ApplicationRecord
 
 
   def self.get_pages_es site, params
-    params[:direction] = 'desc' if params[:direction].blank?
+    params[:sort_direction] = 'desc' if params[:sort_direction].blank?
     params[:page] = 1 if params[:page].blank?
 
     filters = [{

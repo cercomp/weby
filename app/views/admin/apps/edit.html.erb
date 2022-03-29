@@ -1,0 +1,5 @@
+<%= simple_form_for [:admin, @app] do |f| %>
+  <%= f.show_errors %>
+  <%= render partial: "form", object: f %>
+<% end %>
+

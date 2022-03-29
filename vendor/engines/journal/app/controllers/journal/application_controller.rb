@@ -35,5 +35,13 @@ module Journal
     def load_extension
       @extension = current_site.extensions.find_by(name: 'journal')
     end
+
+    def find_news
+      if params[:id].match(/^\d+\-?/)
+        @news = current_site.news.find(params[:id])
+      else
+        @news = current_site.news.find_by(slug: params[:id])
+      end
+    end
   end
 end

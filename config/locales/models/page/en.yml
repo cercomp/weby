@@ -23,6 +23,7 @@ en:
         source:          "Source"
         type:            "Page type"
         url:             "URL"
+        slug:            "URL Slug"
         summary:         "Summary"
         text:            "Text"
         title:           "Title"

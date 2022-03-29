@@ -6,7 +6,9 @@ class Site < ApplicationRecord
 
   has_many :subsites, foreign_key: :parent_id, class_name: 'Site', dependent: :nullify
   has_many :roles, dependent: :destroy
+  has_one :admin_role, -> { Role.local_admin }, class_name: 'Role'
   has_many :users, through: :roles
+  has_many :admin_users, through: :admin_role, source: :users, class_name: 'User'
   has_many :views, dependent: :delete_all
   has_many :activity_records, dependent: :delete_all
   has_many :menus, -> { order(position: :asc) }, dependent: :destroy
@@ -59,6 +61,14 @@ class Site < ApplicationRecord
       where('lower(sites.name) LIKE lower(:text) OR
              lower(sites.description) LIKE lower(:text) OR
              lower(sites.title) LIKE lower(:text)', text: "%#{text}%")
+    else
+      where(nil)
+    end
+  }
+
+  scope :name_equal, ->(text) {
+    if text.present?
+      where('lower(sites.name) = lower(:text)', text: "#{text}")
     else
       where(nil)
     end
@@ -139,6 +149,17 @@ class Site < ApplicationRecord
   end
 
   ##
+  def find_or_create_local_admin_role!
+    admin_role = roles.find_by(permissions: 'Admin')
+    if admin_role.blank?
+      admin_role = roles.create!(name: 'Administrador', permissions: 'Admin')
+    end
+    admin_role
+  end
+
+  def has_subsites?
+    subsites.active.any?
+  end
 
   def active?
     status == 'active'

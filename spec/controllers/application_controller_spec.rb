@@ -152,10 +152,10 @@ describe ApplicationController do
     end
   end
 
-  describe "global_local_admin" do
+  describe "global_or_local_admin" do
     skip "will return true if current_user is_local_admin" do
       let(:new_user) { FactoryGirls.create(:user) }
-      expect(assigns(:global_local_admin)).to receive(:new_user).and_return(false)
+      expect(assigns(:global_or_local_admin)).to receive(:new_user).and_return(false)
     end
 
     it "will redirect to admin_path" do

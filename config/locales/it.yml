@@ -148,6 +148,8 @@ it:
   successfully_copied:                  " Estilo copiado con sucesso "
   successfully_restored:                " Restaurado com sucesso! "
   should_be_image:                      " Deve ser uma imagem "
+  slug_taken:                           " l'URL esiste già "
+  slug_ok:                              " URL disponibile "
 #---T---#
   theme_already_installed:              " Tema já adicionado "
 #---U---#

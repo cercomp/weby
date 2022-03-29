@@ -13,4 +13,20 @@ $(function (){
     url.find('.parent-domain').text(main_site.val() ? `${main_site.find(':selected').data('name')}.` : '');
     url.find('.domain').text(domain.val().length > 0 ? domain.val() : url.find('.domain').data('default'));
   });
+
+  const siteSubmit = $('.confirm-site-status');
+  if (siteSubmit.length > 0) {
+    siteSubmit.closest('form').submit(function(e){
+      if ($(this).find('#site_status').val() == 'inactive') {
+        if (confirm(siteSubmit.data('confirm-deactivate'))) {
+          return true;
+        } else {
+          e.preventDefault();
+          return false;
+        }
+      } else {
+        return true;
+      }
+    });
+  }
 });

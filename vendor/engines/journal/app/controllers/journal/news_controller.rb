@@ -7,11 +7,13 @@ module Journal
     helper_method :sort_column
     before_action :check_current_site
     before_action :load_extension, only: [:index, :show]
+    before_action :find_news, only: :show
 
     respond_to :html, :js, :json, :rss
 
     def index
       if !request.format.html?
+        desc_default_direction
         @news_sites = Journal::News.get_news(current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction))
       end
 
@@ -23,7 +25,6 @@ module Journal
     end
 
     def show
-      @news = current_site.news.find(params[:id])
       raise ActiveRecord::RecordNotFound if !@news.published? && @news.user != current_user
       if request.path != news_path(@news)
         redirect_to news_path(@news), status: :moved_permanently

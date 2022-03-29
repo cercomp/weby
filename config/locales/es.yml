@@ -105,7 +105,7 @@ es:
 #---O---#
   ok:                                   " OK "
   of:                                   " de "
-  only_admin:                           " Sólo para usuarios administradores "
+  only_admin:                           " Sólo para usuarios Administradores "
 #---P---#
   please_wait:                          " Por favor espere! "
   publish:                              " Publicar "
@@ -148,6 +148,9 @@ es:
   successfully_copied:                  " Estilo copiado con sucesso "
   successfully_restored:                " Restaurado com sucesso! "
   should_be_image:                      " Deve ser uma imagem "
+  slug_taken:                           " URL ya existe "
+  slug_ok:                              " URL disponible "
+  slug_hint:                            " Use solo letras minúsculas y guión - "
 #---T---#
   theme_already_installed:              " Tema já adicionado "
 #---U---#

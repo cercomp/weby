@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   constraints(Weby::Subdomain) do
 
+    concern :slug_check do
+      collection do
+        get :check_slug
+      end
+    end
+
     get '/' => 'sites#show', as: :site
     get '/admin' => 'sites#admin', as: :site_admin
     get '/admin/edit' => 'sites#edit', as: :edit_site_admin
@@ -9,7 +15,7 @@ Rails.application.routes.draw do
     delete '/admin/subsites/:id' => 'sites#destroy_subsite', as: :destroy_subsite_admin
     patch '/admin/subsites/:id' => 'sites#update_subsite', as: :update_subsite_admin
 
-    resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show]
+    resources :pages, as: :site_pages, controller: 'sites/pages', path: 'p', only: [:show], concerns: :slug_check
     get '/fp', to: 'sites/pages#frame'
     get :pages, to: 'sites/pages#index', as: :site_pages
     get '/search', to: 'sites/searches#index', as: :searches
@@ -102,7 +108,7 @@ Rails.application.routes.draw do
       resources :users, only: [] do
         collection do
           get :manage_roles, :search
-          post :change_roles, :create_local_admin_role, :set_preferences
+          post :change_roles, :create_local_admin_role, :set_preferences #create_subsite_local_admin
           delete :destroy_local_admin_role
         end
       end
@@ -143,6 +149,7 @@ Rails.application.routes.draw do
           put :set_admin
         end
       end
+      resources :apps
       resources :roles, except: :show do
         collection do
           put :index
@@ -164,6 +171,22 @@ Rails.application.routes.draw do
       # route to paginate
       get 'users/page/:page' => 'users#index'
       get 'sites/page/:page' => 'sites#index'
+    end
+
+    # API
+    namespace :api, defaults: {format: :json} do
+      namespace :v1 do
+        get '/' => 'base#root'
+        resources :sites, only: [:index, :create, :show, :update]
+        resources :locales, only: [:index]
+        resources :themes, only: [:index]
+        resources :groupings, only: [:index]
+        get '/users/find' => 'users#find', as: :find_user
+        #post '/login' => 'sessions#create'
+        #delete '/logout' => 'sessions#destroy'
+      end
+      get '/' => 'api#root'
+      match '*query' => 'api#not_found', via: :all
     end
   end
 
