@@ -2,7 +2,7 @@ module HasSlug
   extend ActiveSupport::Concern
 
   included do
-    validates :slug, uniqueness: { scope: :site_id }
+    validates :slug, uniqueness: { scope: :site_id, allow_blank: true }
   end
 
   def generate_slug
