@@ -69,4 +69,8 @@ module SitesHelper
     href = is_contrast_mode ? url : ''
     stylesheet_link_tag(href, class: "contrast-css #{'active' if is_contrast_mode}", data: {src: url})
   end
+
+  def view_count_text site
+    "#{number_with_delimiter site.view_count} #{t('sites.admin.views_count')} #{l Time.now, format: :medium}"
+  end
 end

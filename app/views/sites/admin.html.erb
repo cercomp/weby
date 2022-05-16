@@ -4,7 +4,7 @@
   <h4>Bem vindo, <%= current_user %></h4>
   <div class="row">
     <% if current_site.has_extension('journal') && check_permission(Journal::Admin::NewsController, :index) %>
-      <div class="col-md-6">
+      <div class="col-md-7">
         <div class="panel panel-default box">
           <div class="panel-heading">
             <% if check_permission Journal::Admin::NewsController, :new %>
@@ -39,8 +39,8 @@
         </div>
       </div>
     <% end %>
-    <% if current_site.has_extension('calendar') && check_permission(Calendar::Admin::EventsController, :index) %>
-      <div class="col-md-6">
+    <div class="col-md-5">
+      <% if current_site.has_extension('calendar') && check_permission(Calendar::Admin::EventsController, :index) %>
         <div class="panel panel-default box">
           <div class="panel-heading">
             <% if check_permission Calendar::Admin::EventsController, :new %>
@@ -53,8 +53,20 @@
             <div id='calendar' data-url="<%= admin_events_path %>"></div>
           </div>
         </div>
+      <% end %>
+      <div class="panel panel-default box">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= "#{icon('eye-open')} #{t('.site_view')}".html_safe %></h3>
+          <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+          <div>
+            <span class="view-count-text"><%= view_count_text current_site %></span>&nbsp;&nbsp;
+            <%= link_to icon('refresh'), '#', class: 'refresh-view-count', data: {url: site_url(format: :json)} %>
+          </div>
+        </div>
       </div>
-    <% end %>
+    </div>
     <div class="col-md-8">
       <% if check_permission Sites::Admin::RepositoriesController, :index %>
         <div class="panel panel-default box">

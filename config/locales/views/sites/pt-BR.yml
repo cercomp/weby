@@ -19,6 +19,8 @@ pt-BR:
       title_repositories: 'Arquivos'
       title_history: 'Histórico'
       title_menus: 'Menus'
+      site_view: Visualizações do site
+      views_count: 'visualizações até'
     index:
       new_site: "NOVO SITE"
       sites: "SITES"

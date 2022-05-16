@@ -13,4 +13,11 @@ $(document).ready(function() {
       }
     }
   });
+
+  $('.refresh-view-count').click(function(ev) {
+    $.getJSON($(this).data('url'), function(data){
+      $('.view-count-text').text(data.site.view_count);
+    });
+    return false;
+  });
 });

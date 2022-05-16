@@ -19,6 +19,8 @@ en:
       title_repositories: 'Repository'
       title_history: 'Log'
       title_menus: 'Menus'
+      site_view: Site views
+      views_count: 'views until'
     index:
       new_site: "NEW SITE"
       sites: "SITES"

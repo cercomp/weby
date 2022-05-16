@@ -6,7 +6,7 @@ class SitesController < ApplicationController
   before_action :is_admin, only: [:destroy_subsite, :update_subsite]
   before_action :load_subsite, only: [:destroy_subsite, :update_subsite]
 
-  respond_to :html, :xml, :js
+  respond_to :html, :xml, :js, :json
 
   helper_method :sort_column
 
@@ -45,6 +45,20 @@ class SitesController < ApplicationController
     fail ActiveRecord::RecordNotFound unless @site
     params[:id] = @site.id
     params[:per_page] = nil
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: {
+          site: {
+            name: @site.name,
+            url: @site.url,
+            description: @site.description,
+            title: @site.title,
+            view_count: helpers.view_count_text(@site)
+          }
+        }
+      }
+    end
   end
 
   def robots
