@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get '/fp', to: 'sites/pages#frame'
     get :pages, to: 'sites/pages#index', as: :site_pages
     get '/search', to: 'sites/searches#index', as: :searches
+    get 'sitemap.xml' => 'sites#sitemap'
+
     #old routes
     get 'pages/:id(-:title)' => 'sites/pages#redirect', constraints: {id: /\d+/}
 

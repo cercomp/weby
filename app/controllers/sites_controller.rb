@@ -88,6 +88,28 @@ class SitesController < ApplicationController
     render plain: custom_robots_file ? custom_robots_file : File.read(Rails.root.join('public', 'default_robots.txt')), layout: false, content_type: 'text/plain'
   end
 
+  def sitemap
+    @items = []
+    current_site.own_news.published.available.includes(:i18ns).order(updated_at: :desc).find_each do |news|
+      @items << {
+        loc: news_url(news),
+        lastmod: news.updated_at.strftime("%Y-%m-%d")
+      }
+    end
+    current_site.pages.published.includes(:i18ns).order(updated_at: :desc).find_each do |page|
+      @items << {
+        loc: site_page_url(page),
+        lastmod: page.updated_at.strftime("%Y-%m-%d")
+      }
+    end
+    current_site.events.includes(:i18ns).order(updated_at: :desc).find_each do |event|
+      @items << {
+        loc: event_url(event),
+        lastmod: event.updated_at.strftime("%Y-%m-%d")
+      }
+    end
+  end
+
   #### BACK-END
 
   def admin
