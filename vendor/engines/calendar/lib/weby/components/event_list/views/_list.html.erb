@@ -4,7 +4,7 @@
     <%= link_to component.label.camelize, show_all_link %>
   </h2>
 <% end %>
-<ul id="events">
+<%= content_tag :ul, id: 'events', class: ('empty' if @events.blank?) do %>
   <% @events.each do |event| %>
     <li style="list-style-type:none;">
       <article>
@@ -43,6 +43,6 @@
     </li>
   <% end %>
   <div class="clear clearfix"> </div>
-</ul>
+<% end %>
 <%= paginate @events, param_name: "event_list_page#{component.id}", remote: true, comp_url: component.persisted? ? main_app.site_component_path(component.id) : nil, page_links: true %>
 <span class="link_to_all"><%= link_to component.link_to_all, show_all_link if component.link_to_all.present? %></span>

@@ -90,6 +90,9 @@
     grid-template-columns: repeat(2, 300px);
     grid-template-rows: repeat(4, auto);
     justify-content: center;
+    &.empty {
+      padding-top: 30px;
+    }
   }
 }
 
