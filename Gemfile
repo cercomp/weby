@@ -31,12 +31,12 @@ gem 'oj' #boost json parsing
 gem 'omniauth-shibboleth'
 
 # assets
+gem 'sprockets', '3.7.2'
+gem 'sprockets-rails', '3.4.2'
 gem 'sassc-rails', '2.1.2'
 gem 'uglifier', '~> 4.2.0'
 gem 'therubyracer', :platforms => :ruby
 gem 'non-stupid-digest-assets' # Generate assets without digest.
-gem 'sprockets', '3.7.2'
-gem 'sprockets-rails', '3.4.2'
 
 gem 'simple_form', '~> 5.0.2'
 gem 'rails-observers', '~> 0.1.5'
