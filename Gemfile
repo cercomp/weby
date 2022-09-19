@@ -80,7 +80,7 @@ end
 
 group :development do
   gem 'binding_of_caller', '~> 0.8.0'
-  gem 'better_errors', '~> 1.1.0'
+  gem 'better_errors', '~> 2.9.1'
   gem 'meta_request', '~> 0.7.0'
   gem 'letter_opener', '~> 1.2.0'
   gem 'bullet'
