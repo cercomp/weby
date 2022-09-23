@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   helper Feedback::MessagesHelper
   helper_method :current_user_session, :sort_direction, :test_permission,
                 :current_locale, :current_site, :current_skin, :current_settings, :current_roles_assigned,
-                :component_is_available
+                :component_is_available, :markdown_renderer
 
   def admin
     render 'admin/admin'
@@ -76,6 +76,10 @@ class ApplicationController < ActionController::Base
 
   def current_skin
     @current_skin ||= current_site.active_skin
+  end
+
+  def markdown_renderer
+    @markdown_renderer ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, tables: true)
   end
 
   # Return Settings as a Hash object

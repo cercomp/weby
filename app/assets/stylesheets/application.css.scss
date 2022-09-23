@@ -670,6 +670,10 @@ hr {
   }
 }
 
+.toastui-editor-defaultUI-toolbar .scroll-sync:before {
+  content: 'Rolar' !important;
+}
+
 .tab-content {
   padding-top: 15px;
 }
