@@ -2,24 +2,25 @@
   <%= f.i18ns_fields_for(locale) do |g| %>
     <%= g.input :_destroy, wrapper: :checkbox, as: :boolean if g.object.try(:id) %>
     <%= g.input :title %>
-      <div class="tinymce-editor">
-        <%= g.input :summary,
-          input_html: {class: "mceSimple", style: "height: 180px;", data: {field: 'summary'}},
-          as: :text %>
-        <%= g.input :text,
-          input_html: {class: "mceAdvance", style: " height: 320px;", data: {field: 'text'}},
-          as: :text %>
+    <div class="tinymce-editor">
+      <%= g.input :summary,
+        input_html: {class: "mceSimple", style: "height: 180px;", data: {field: 'summary'}},
+        as: :text %>
+      <%= g.input :text,
+        input_html: {class: "mceAdvance", style: " height: 320px;", data: {field: 'text'}},
+        as: :text %>
+    </div>
+    <div class="tui-editor">
+      <div class="form-group text optional news_i18ns_summary">
+        <label><%= t 'activerecord.attributes.journal/news/i18ns.summary' %></label>
+        <div class="md-editor simple" id="<%= SecureRandom.hex(16) %>" data-field="summary" data-value="<%= g.object.summary %>"></div>
       </div>
-      <div class="tui-editor">
-        <div class="form-group text optional news_i18ns_summary">
-          <label><%= t 'activerecord.attributes.journal/news/i18ns.summary' %></label>
-          <div class="md-editor simple" id="<%= SecureRandom.hex(16) %>" data-field="summary" data-value="<%= g.object.summary %>"></div>
-        </div>
-        <div class="form-group text optional news_i18ns_text">
-          <label><%= t 'activerecord.attributes.journal/news/i18ns.text' %></label>
-          <div class="md-editor" id="<%= SecureRandom.hex(16) %>" data-field="text"  data-value="<%= g.object.text %>"></div>
-        </div>
+      <div class="form-group text optional news_i18ns_text">
+        <label><%= t 'activerecord.attributes.journal/news/i18ns.text' %></label>
+        <div class="md-editor" id="<%= SecureRandom.hex(16) %>" data-field="text" data-value="<%= g.object.text %>"></div>
       </div>
+    </div>
   <% end %>
 <% end %>
+<% include_tui_editor %>
 <%= target_dialog %>

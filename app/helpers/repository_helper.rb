@@ -246,10 +246,10 @@ module RepositoryHelper
     case str_or_object
     when String
       if ENV['STORAGE_HOST'].present?
-        str = str.to_s.gsub(/="\/up\//, "=\"//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}/up/")
+        str_or_object = str_or_object.to_s.gsub(/="\/up\//, "=\"//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}/up/")
       end
-      str.html_safe
-    when Journal::News
+      str_or_object.html_safe
+    when Journal::News, Page
       field = str_or_object.send(options[:field])
       if str_or_object.text_type == 'markdown'
         markdown_renderer.render(field).html_safe

@@ -61,4 +61,15 @@ module PagesHelper
       content_tag(:span, category.name, class: 'label label-info')
     end.join(' ').html_safe
   end
+
+  def include_tui_editor
+    if !@tui_included
+      content_for :javascripts, javascript_include_tag("toastui-editor-all.min.js")
+      if I18n.locale == :"pt-BR"
+        content_for :javascripts, javascript_include_tag("toastui-editor-pt-br.js")
+      end
+      content_for :stylesheets, stylesheet_link_tag("toastui-editor.min.css")
+      @tui_included = true
+    end
+  end
 end

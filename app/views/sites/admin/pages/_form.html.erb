@@ -2,6 +2,19 @@
   <%= f.show_errors %>
 
   <%= render('translates_form', f: f) %>
+
+  <%= render 'sites/admin/shared/advanced_options' do %>
+    <span class="role-config right-checkbox">
+      <%= render_toggle(
+            "page[text_type]",
+            'markdown',
+            @page.text_type == 'markdown'
+          )
+      %>
+      <span class="checkbox-label"><%= t 'markdown' %></span>
+    </span>
+  <% end %>
+
   <%= f.input :slug, wrapper: :append do %>
     <div class="input-group-addon">
       <%= "#{site_url}#{get_route_path(:site_page)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>

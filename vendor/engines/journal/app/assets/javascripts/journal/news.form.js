@@ -113,53 +113,15 @@ $(document).ready(function(){
     return false;
   });
 
-  let switchEditor = function(is_markdown) {
-    if (is_markdown) {
-      $('.tinymce-editor').hide()
-      $('.tui-editor').show()
-    } else {
-      $('.tinymce-editor').show()
-      $('.tui-editor').hide()
-    }
-  }
-
   $('#news_text_type').change(function(){
     switchEditor($(this).is(':checked'));
   });
   switchEditor($('#news_text_type').is(':checked'));
 
-  $('#news_text_type').closest('form').submit(function(){
-    $('.md-editor').each(function(){
-      let $this = $(this);
-      let editor = $this.data('editor')
-      let input = $this.closest('.tab-pane').find('textarea[data-field='+$this.data('field')+']')
-      console.log(input, editor.getMarkdown())
-      input.val(editor.getMarkdown())
-    });
-  });
+  $('#news_text_type').closest('form').submit(submitEditorValues);
 
-  ////
   $('.md-editor').each(function(){
-    const Editor = toastui.Editor;
-    let $this = $(this)
-    let editor = new Editor({
-      el: this,
-      language: 'pt-BR',
-      height: ($(this).is('.simple') ? '200px' : '350px'),
-      initialEditType: 'markdown',
-      initialValue: $this.data('value'),
-      hideModeSwitch: true,
-      previewStyle: 'vertical',
-      events: {
-        change: function(type) {
-          // let input = $this.closest('.tab-pane').find('textarea[data-field='+$this.data('field')+']')
-          // console.log(input, editor.getMarkdown())
-          // input.text(editor.getMarkdown())
-        }
-      }
-    });
-    $this.data('editor', editor);
+    initMarkdownEditor(this)
   });
-
 
 });

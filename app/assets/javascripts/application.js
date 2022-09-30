@@ -110,6 +110,74 @@ function initDropmic() {
   });
 }
 
+////// Toast UI Editor - for markdown
+
+function switchEditor(is_markdown) {
+  if (is_markdown) {
+    $('.tinymce-editor').hide()
+    $('.tui-editor').data('enabled', true).show()
+  } else {
+    $('.tinymce-editor').show()
+    $('.tui-editor').data('enabled', false).hide()
+  }
+}
+
+function submitEditorValues(ev) {
+  $(this).find('.md-editor').each(function(){
+    let $this = $(this);
+    if ($this.closest('.tui-editor').data('enabled')) {
+      let editor = $this.data('editor')
+      let input = $this.closest('.tab-pane').find('textarea[data-field='+$this.data('field')+']')
+      input.val(editor.getMarkdown())
+    }
+  });
+}
+
+function createImgButton(editorEl) {
+  const button = document.createElement('button');
+  button.className = 'image toastui-editor-toolbar-icons';
+  button.style.margin = 0;
+  button.addEventListener('click', (ev) => {
+    if(WEBY.getRepositoryDialog){
+      WEBY.getRepositoryDialog().open({
+        file_types: ["image"],
+        multiple: false,
+        include_others: true,
+        onsubmit: function(items) {
+          editorEl.data('editor').insertText("!["+items[0].description+"]("+items[0].medium_path+")")
+        }
+      });
+    }
+    ev.preventDefault();
+  });
+  return button;
+}
+
+function initMarkdownEditor(elem) {
+  const Editor = toastui.Editor;
+  $this = $(elem);
+  let editor = new Editor({
+    el: elem,
+    language: 'pt-BR',
+    height: ($(elem).is('.simple') ? '200px' : '350px'),
+    initialEditType: 'markdown',
+    initialValue: $this.data('value'),
+    hideModeSwitch: true,
+    previewStyle: 'vertical',
+    toolbarItems: [
+      ['heading', 'bold', 'italic', 'strike'],
+      ['hr', 'quote'],
+      ['ul', 'ol', 'task', 'indent', 'outdent'],
+      ['table', 'link'],
+      ['code', {
+        el: createImgButton($this),
+        tooltip: 'Inserir imagem'
+      },  'codeblock']
+    ]
+  });
+  $this.data('editor', editor);
+}
+
 $(document).on('ajaxComplete', initDropmic);
 
 $(document).ready(function() {

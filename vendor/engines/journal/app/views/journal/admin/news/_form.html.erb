@@ -18,30 +18,17 @@
 
   <%= render('translates_form', f: f) %>
 
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingOne">
-        <div class="panel-title">
-          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Opções avançadas
-          </a>
-        </div>
-      </div>
-      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-        <div class="panel-body">
-          <span class="role-config right-checkbox">
-            <%= render_toggle(
-                  "news[text_type]",
-                  'markdown',
-                  @news.text_type == 'markdown'
-                )
-            %>
-            <span>Markdown</span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render 'sites/admin/shared/advanced_options' do %>
+    <span class="role-config right-checkbox">
+      <%= render_toggle(
+            "news[text_type]",
+            'markdown',
+            @news.text_type == 'markdown'
+          )
+      %>
+      <span class="checkbox-label"><%= t 'markdown' %></span>
+    </span>
+  <% end %>
 
   <%= f.input :slug, wrapper: :append do %>
     <div class="input-group-addon">
@@ -78,7 +65,4 @@
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag("journal/news.form") %>
-<% content_for :javascripts, javascript_include_tag("https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js") %>
-<% content_for :javascripts, javascript_include_tag("https://uicdn.toast.com/editor/latest/i18n/pt-br.js") %>
 <% content_for :stylesheets, stylesheet_link_tag("datetime") %>
-<% content_for :stylesheets, stylesheet_link_tag("https://uicdn.toast.com/editor/latest/toastui-editor.min.css") %>

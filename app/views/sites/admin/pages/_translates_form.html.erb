@@ -2,9 +2,18 @@
   <%= f.i18ns_fields_for(locale) do |g| %>
     <%= g.input :_destroy, wrapper: :checkbox, as: :boolean if g.object.try(:id) %>
     <%= g.input :title %>
-    <%= g.input :text,
-      input_html: {class: "mceAdvance", style: " height: 320px;"},
-      as: :text %>
+    <div class="tinymce-editor">
+      <%= g.input :text,
+        input_html: {class: "mceAdvance", style: " height: 320px;", data: {field: :text}},
+        as: :text %>
+    </div>
+    <div class="tui-editor">
+      <div class="form-group text optional page_i18ns_text">
+        <label><%= t 'activerecord.attributes.page/i18ns.text' %></label>
+        <div class="md-editor" id="<%= SecureRandom.hex(16) %>" data-field="text" data-value="<%= g.object.text %>"></div>
+      </div>
+    </div>
   <% end %>
 <% end %>
+<% include_tui_editor %>
 <%= target_dialog %>
