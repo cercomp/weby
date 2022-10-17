@@ -529,12 +529,6 @@ input[type=checkbox] {
   }
 }
 
-.right-checkbox {
-  .checkbox-label {
-    margin-left: 8px;
-  }
-}
-
 table .checkbox label,
 #backup .checkbox label {
   padding-left: 22px;
@@ -674,10 +668,6 @@ hr {
       }
     }
   }
-}
-
-.toastui-editor-defaultUI-toolbar .scroll-sync:before {
-  content: 'Rolar' !important;
 }
 
 .tab-content {

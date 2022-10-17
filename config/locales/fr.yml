@@ -21,7 +21,6 @@ fr:
   activate_deactivate:                  " Ativar/Desativar "
   activate:                             " Ativar "
   active:                               " Ativo "
-  advanced_options:                     " Opciones avanzadas "
   #access_denied:                        " Acesso negado "
   #access_denied_page:                   " Você não está autorizado a ver está página "
   add_sub_menu:                         " Adiciona um item de menu filho "
@@ -89,7 +88,6 @@ fr:
   look_changed:                         " Aparência alterada "
   link_to_file:                         " Link para o arquivo "
 #---M---#
-  markdown:                             " Usar formato Markdown "
   moved_file_to_recycle_bin:            " Arquivo movido para a lixeira. "
   moved_page_to_recycle_bin:            " Página movida para a lixeira. "
   move:                                 " Mover "

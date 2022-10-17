@@ -23,7 +23,6 @@ it:
   activate_deactivate:                  " Ativar/Desativar "
   activate:                             " Activar "
   active:                               " Activo "
-  advanced_options:                     " Opciones avanzadas "
   #access_denied:                        " Acesso negado "
   #access_denied_page:                   " Você não está autorizado a ver está página "
   add_sub_menu:                         " Adiciona um item de menu filho "
@@ -88,7 +87,6 @@ it:
   look_changed:                         " Aparência alterada "
   link_to_file:                         " Enlace al archivo "
 #---M---#
-  markdown:                             " Usar formato Markdown "
   move:                                 " Mover "
   manage_roles:                         " Gerenciar Papéis "
   missing_account:                      " Lo sentimos, pero no podemos localizar su cuenta. Este enlace puede ser válido o caducado. Intente reiniciar el proceso de recuperación de contraseña. "

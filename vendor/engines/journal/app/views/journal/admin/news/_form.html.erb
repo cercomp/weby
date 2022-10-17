@@ -17,19 +17,6 @@
     multiple: false, file_types: 'image' %>
 
   <%= render('translates_form', f: f) %>
-
-  <%= render 'sites/admin/shared/advanced_options' do %>
-    <span class="role-config right-checkbox">
-      <%= render_toggle(
-            "news[text_type]",
-            'markdown',
-            @news.text_type == 'markdown'
-          )
-      %>
-      <span class="checkbox-label"><%= t 'markdown' %></span>
-    </span>
-  <% end %>
-
   <%= f.input :slug, wrapper: :append do %>
     <div class="input-group-addon">
       <%= "#{site_url}#{get_route_path(:news)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>
