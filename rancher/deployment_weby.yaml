@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weby
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weby
+  template:
+    metadata:
+      labels:
+        app: weby
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: weby
+            optional: false
+        - secretRef:
+            name: weby
+            optional: false
+        image: dh.cercomp.ufg.br/weby/weby-develop:1.3
+        imagePullPolicy: IfNotPresent
+        name: weby
+        ports:
+        - containerPort: 3000
+          name: 3000tcp30509
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
