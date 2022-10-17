@@ -127,7 +127,7 @@ class Sites::Admin::PagesController < ApplicationController
   private
 
   def page_params
-    params.require(:page).permit(:publish, :slug, :text_type,
+    params.require(:page).permit(:publish, :slug,
                                  { i18ns_attributes: [:id, :locale_id, :title, :text, :_destroy],
                                  related_file_ids: [] })
   end

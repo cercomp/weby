@@ -20,7 +20,6 @@ en:
   are_you_sure_del_many:                " Are you sure you want to delete all selected items? "
   activate_deactivate:                  " Activate/Deactivate "
   activate:                             " Activate "
-  advanced_options:                     " Advanced options "
   access_denied:                        " Access denied "
   access_denied_page:                   " You are not allowed to see this page "
   add_sub_menu:                         " Add sub menu item "
@@ -89,7 +88,6 @@ en:
   look_changed:                         " Appearence was changed "
   link_to_file:                         " Link to the file "
 #---M---#
-  markdown:                             " Use Markdown format "
   moved_file_to_recycle_bin:            " Moved file to recycle bin. "
   moved_page_to_recycle_bin:            " Moved page to recycle bin. "
   move:                                 " Move "

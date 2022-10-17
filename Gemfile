@@ -59,7 +59,6 @@ gem 'prawn', '~> 2.0.1'
 gem 'prawn-table', '~> 0.2.1'
 gem 'momentjs-rails', '~> 2.20.1'
 gem 'bootstrap-daterangepicker-rails', '~> 3.0.4'
-gem 'redcarpet', '~> 3.5.1'
 
 # error tracking
 gem 'rollbar'

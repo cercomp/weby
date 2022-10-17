@@ -13,12 +13,12 @@
     <% end %>
   </p>
   <p>
-    <%= render_user_content @news, field: :summary %>
+    <%= render_user_content @news.summary %>
   </p>
 </summary>
 
 <div class="body">
-  <%= render_user_content @news, field: :text %>
+  <%= render_user_content @news.text %>
   <% if @news.related_files.any? %>
     <% if !@news.text.match(/\<audio/) %>
       <% @news.related_files.each do |file| %>
