@@ -5,6 +5,12 @@ metadata:
     app: weby
   name: weby
 spec:
+  defaultBackend:
+    service:
+      name: weby
+      port:
+        number: 3000
+  ingressClassName: nginx
   rules:
   - host: weby.ufg.br
     http:
