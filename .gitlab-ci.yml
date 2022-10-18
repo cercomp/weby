@@ -1,6 +1,6 @@
 stages:
   - build
-  - deploy
+  - publish
 
 variables:  # CI_BUILD_ID CI_COMMIT_SHORT_SHA CI_COMMIT_BRANCH
   DOCKER_TLS_CERTDIR: ""
@@ -21,15 +21,14 @@ build:
   script:
     - docker-compose --project-directory docker -f docker/docker-compose.yml build
 
-deploy:
-  stage: deploy
+publish:
+  stage: publish
   tags:
     - ssh
   environment: $CI_BRANCH_ENV
   dependencies:
     - build
   script:
-    - echo "Enviando a imagem para $DEPLOY_URL"
     - echo $DEPLOY_PASS | docker login -u "$DEPLOY_USER" --password-stdin "$DEPLOY_URL"
     - docker tag weby:latest $DEPLOY_URL/weby/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $DEPLOY_URL/weby/$CI_PROJECT_ENV:$CI_VERSION_ENV
