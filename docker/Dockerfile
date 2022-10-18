@@ -64,7 +64,7 @@ RUN mv config/email.rb config/initializers/
 FROM ruby:2.7.5-slim-bullseye
 
 RUN apt-get clean && apt-get update && apt-get upgrade -y
-RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate
+RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs
 
 WORKDIR /opt/weby
 
