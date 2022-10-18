@@ -25,7 +25,6 @@ spec:
         name: weby
         ports:
         - containerPort: 3000
-          #name: 3000tcp30509
           protocol: TCP
         resources: {}
         terminationMessagePath: /dev/termination-log
