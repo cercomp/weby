@@ -4,7 +4,7 @@ FROM ruby:2.7.5 AS builder
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
 RUN apt-get clean && apt-get update && apt-get upgrade -y
-RUN apt-get install -y git imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils
+RUN apt-get install -y git imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils nodejs
 
 ARG CI_BRANCH_ENV
 ARG RAILS_ENV
