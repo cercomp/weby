@@ -20,7 +20,7 @@ spec:
         - secretRef:
             name: weby
             optional: false
-        image: dh.cercomp.ufg.br/weby/weby-develop:1.4
+        image: dh.cercomp.ufg.br/weby/weby_develop:1.4
         imagePullPolicy: Always
         name: weby
         ports:
