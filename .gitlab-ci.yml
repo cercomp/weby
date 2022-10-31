@@ -19,7 +19,7 @@ build:
   tags:
     - ssh
   script:
-    - docker-compose --project-directory docker -f docker/docker-compose.yml build --no-cache
+    - docker-compose --project-directory docker -f docker/docker-compose.yml build
 
 publish:
   stage: publish
@@ -30,6 +30,6 @@ publish:
     - build
   script:
     - echo $DEPLOY_PASS | docker login -u "$DEPLOY_USER" --password-stdin "$DEPLOY_URL"
-    - docker tag weby:latest $DEPLOY_URL/weby/$CI_PROJECT_ENV:$CI_VERSION_ENV
+    - docker tag ${CI_PROJECT_NAME}_${CI_BRANCH_ENV}:latest $DEPLOY_URL/weby/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $DEPLOY_URL/weby/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
