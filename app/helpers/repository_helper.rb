@@ -242,11 +242,23 @@ module RepositoryHelper
     end
   end
 
-  def render_user_content str
-    if ENV['STORAGE_HOST'].present?
-      str = str.to_s.gsub(/="\/up\//, "=\"//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}/up/")
+  def render_user_content str_or_object, options={}
+    case str_or_object
+    when String
+      if ENV['STORAGE_HOST'].present?
+        str_or_object = str_or_object.to_s.gsub(/="\/up\//, "=\"//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}/up/")
+      end
+      str_or_object.html_safe
+    when Journal::News, Page
+      field = str_or_object.send(options[:field])
+      if str_or_object.text_type == 'markdown'
+        markdown_renderer.render(field).html_safe
+      else
+        render_user_content(field)
+      end
+    else
+      ''
     end
-    str.html_safe
   end
 
   def externalize_links(text, url)

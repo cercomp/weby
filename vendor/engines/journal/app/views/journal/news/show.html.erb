@@ -23,9 +23,9 @@
     </span>
   </div>
   <%= yield :social_code if current_site.news_social_share_pos == 'middle' %>
-  <%= content_tag :summary, render_user_content(@news.summary), class: translate_class(@news) %>
+  <%= content_tag :summary, render_user_content(@news, field: :summary), class: translate_class(@news) %>
   <div class="body">
-    <%= content_tag :div, render_user_content(@news.text), class: translate_class(@news) %>
+    <%= content_tag :div, render_user_content(@news, field: :text), class: translate_class(@news) %>
     <% if @news.related_files.any? %>
       <% if !@news.text.match(/\<audio/) %>
         <% @news.related_files.each do |file| %>
