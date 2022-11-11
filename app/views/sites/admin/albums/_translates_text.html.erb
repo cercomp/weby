@@ -1,0 +1,9 @@
+<%= each_i18n_tab available_locales(@album) do |locale| %>
+  <%= f.i18ns_fields_for(locale) do |g| %>
+    <%= g.input :_destroy, wrapper: :checkbox, as: :boolean if g.object.try(:id) %>
+    <%= g.input :text,
+      input_html: {class: "mceAdvance", style: " height: 280px;"},
+      as: :text %>
+  <% end %>
+<% end %>
+<%= target_dialog %>

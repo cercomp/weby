@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_08_193922) do
+ActiveRecord::Schema.define(version: 2022_10_21_203930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,48 @@ ActiveRecord::Schema.define(version: 2022_03_08_193922) do
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_activity_records_on_site_id"
     t.index ["user_id"], name: "index_activity_records_on_user_id"
+  end
+
+  create_table "album_i18ns", force: :cascade do |t|
+    t.bigint "album_id"
+    t.bigint "locale_id"
+    t.string "title"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_album_i18ns_on_album_id"
+    t.index ["locale_id"], name: "index_album_i18ns_on_locale_id"
+  end
+
+  create_table "album_photos", force: :cascade do |t|
+    t.bigint "album_id"
+    t.bigint "user_id"
+    t.boolean "is_cover", default: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.string "image_updated_at"
+    t.string "image_fingerprint"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_album_photos_on_album_id"
+    t.index ["user_id"], name: "index_album_photos_on_user_id"
+  end
+
+  create_table "albums", force: :cascade do |t|
+    t.bigint "site_id"
+    t.bigint "user_id"
+    t.boolean "publish"
+    t.integer "view_count"
+    t.integer "photos_count"
+    t.string "slug"
+    t.string "source"
+    t.string "video_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_albums_on_site_id"
+    t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
   create_table "apps", force: :cascade do |t|
@@ -76,6 +118,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_193922) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "slug"
+    t.string "text_type"
     t.index ["repository_id"], name: "index_calendar_events_on_repository_id"
     t.index ["site_id"], name: "index_calendar_events_on_site_id"
     t.index ["user_id"], name: "index_calendar_events_on_user_id"
@@ -164,6 +207,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_193922) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.string "slug"
+    t.string "text_type"
     t.index ["repository_id"], name: "index_journal_news_on_repository_id"
     t.index ["site_id"], name: "index_journal_news_on_site_id"
     t.index ["user_id"], name: "index_journal_news_on_user_id"
@@ -291,6 +335,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_193922) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "slug"
+    t.string "text_type"
     t.index ["site_id"], name: "index_pages_on_site_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end

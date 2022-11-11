@@ -1,0 +1,47 @@
+<%= simple_form_for [:site_admin, @album] do |f| %>
+  <%= f.show_errors %>
+
+  <%= render('translates_title', f: f) %>
+  <%= f.input :slug, wrapper: :append do %>
+    <div class="input-group-addon">
+      <%= "#{site_url}#{get_route_path(:site_album)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>
+    </div>
+    <%= f.input_field :slug, as: :string, data: {check_slug: '', id: @album.id, url: check_slug_site_albums_path}, pattern: '^[a-z](-?[a-z])*$' %>
+  <% end %>
+  <span class="help-block"><%= t('slug_hint') %></span>
+
+  <%= f.input :publish, wrapper_html: { class: "side" },
+    as: :boolean,
+    input_html: { class: "check-button" },
+    wrapper: :checkbox %>
+
+  <%= f.input :category_list, hint: t(".page_categories_help"), input_html: {value: f.object.category_list.to_s, class: 'input-xlarge input-category', data: {taglist: Album.uniq_category_counts.map{|t| t.name }}} %>
+
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <div class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <%= t 'advanced_options' %>
+          </a>
+        </div>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+          <%= f.input :video_url %>
+
+          <%= render('translates_text', f: f) %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<% content_for :javascripts, javascript_include_tag("albums.form") %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

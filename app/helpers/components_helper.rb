@@ -90,6 +90,7 @@ module ComponentsHelper
       components['Templates Weby'] = sort_components(theme_templates).transform_keys{|k| "components_template|#{k}" }
     end
 
+    puts "->>>>>, #{current_site.active_extensions}"
     current_site.active_extensions.each do |extension|
       extension_components = sort_components(Weby::Components.components(extension.name.to_sym))
       components[t("extensions.#{extension.name}.name")] = extension_components if extension_components.any?

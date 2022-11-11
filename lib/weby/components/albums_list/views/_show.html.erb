@@ -1,0 +1,63 @@
+<% unless @site.repositories.nil? %>
+  <% height  = component.height %>
+  <% width   = component.width %>
+  <% imagens = component.generate_vector_images %>
+  <% speed   = component.timer.to_i * 1000 %>
+
+  <%= content_tag :section, class: "photo_slider_component", style: " width: #{width}px;" do  %>
+    <%= content_tag :h3, component.title, class: "photo_slider_title" %>
+    <% if component.flex_slider_style? %>
+
+      <% include_component_javascript :javascripts, 'photo_slider' %>
+      <div class="flex-container">
+        <div id="slider" class="flexslider" data-slideshowspeed="<%= speed %>" data-controls="<%= component.show_controls? %>">
+          <ul class="slides">
+            <% imagens.each do |image| %>
+              <%=content_tag :li do  %>
+                <%= image_tag image.archive.url,
+                  alt: image.description,
+                  title: image.description,
+                  style: "width: #{width}px; height: #{height}px;" %>
+                <% if component.show_description? %>
+                  <%= content_tag :p,
+                    class: "flex-caption" do %>
+                    <%= image.description %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+    <% else  %>
+
+      <% include_component_javascript :javascripts, 'lightbox-photo_slider' %>
+      <%= content_tag :div, class: "gallery", style:"width: #{width}px; height: #{height}px;" do  %>
+        <%= content_tag :ul, style:"width: #{width}px; height: #{height}px;" do  %>
+          <% imagens.each do |image| %>
+            <%= content_tag :li do %>
+              <% if component.show_description? %>
+                <%= link_to image.archive.url, title: image.description, rel:"lightbox[roadtrip#{component.id}]" do %>
+                  <%= image_tag image.archive.url,
+                    alt: image.description,
+                    title: image.description,
+                    style: "width: #{width}px; height: #{height}px;" %>
+                <% end %>
+              <% else %>
+                <%= link_to image.archive.url, rel:"lightbox" do %>
+                  <%= image_tag image.archive.url,
+                    alt: image.description,
+                    title: image.description,
+                    style: "width: #{width}px; height: #{height}px;" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+<% end %>
+

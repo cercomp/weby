@@ -17,7 +17,7 @@ module Weby
       if match
         config[:group] = match[1].to_sym
       else
-        config[:group] = :weby
+        config[:group] ||= :weby
       end
 
       @components[comp_name.to_sym] = config
