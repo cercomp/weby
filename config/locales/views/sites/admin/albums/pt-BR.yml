@@ -1,0 +1,51 @@
+pt-BR:
+  sites:
+    admin:
+      albums:
+        new:
+          title:                " Novo Álbum "
+          albums:               " Álbuns "
+        edit:
+          title:                " Editar Álbum "
+          albums:               " Álbuns "
+        index:
+          albums:               " Álbuns "
+          search:               " Buscar "
+          new_album:            " Novo Álbum "
+          none_album:           " Nenhum Álbum "
+          filter_begin:         " Filtro por data (inicial) "
+          filter_end:           " data final "
+        show:
+          pages:                " Páginas "
+          event:                " Evento "
+          period_event:         " Período do Evento "
+          period_page:          " Período de publicação "
+          list_all:             " Listar todas "
+          categories:           " Categorias "
+          source:               " Fonte "
+          size:                 " Tamanho "
+          authored:             " Criada por %{author} em %{created_at} "
+          updated_at:           " Atualizada em %{updated_at} "
+          archive_fingerprint:  " Assinatura digital do arquivo "
+          related_files:        " Arquivos Relacionados "
+        list:
+          cover:                " Capa "
+          title:                " Título "
+          author:               " Autor "
+          tag:                  " Tag "
+          categories:           " Categorias "
+          created_at:           " Criado em "
+          publish:              " Publicar "
+          views:                " Views "
+          photos:               " Fotos "
+          type:                 " Tipo "
+        form:
+          image:                " Imagem da página "
+          date_begin_hint:      " A página será listada no site somente a partir desta data "
+          date_end_hint:        " A página deixará de ser listada como capa a partir desta data "
+          related_files:        " Arquivos relacionados "
+          album_categories_help: " Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Inauguração, Vestibular "
+          album_tags_help:      " Tags funcionam como agrupamentos de álbuns e são separadas por vírgula. Ex: Colação, Evento "
+          list_categories:      " Listar Categorias "
+          categories:           " Categorias "
+          save:                 " Salvar "

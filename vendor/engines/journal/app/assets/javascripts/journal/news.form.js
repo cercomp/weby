@@ -113,4 +113,15 @@ $(document).ready(function(){
     return false;
   });
 
+  $('#news_text_type').change(function(){
+    switchEditor($(this).is(':checked'));
+  });
+  switchEditor($('#news_text_type').is(':checked'));
+
+  $('#news_text_type').closest('form').submit(submitEditorValues);
+
+  $('.md-editor').each(function(){
+    initMarkdownEditor(this)
+  });
+
 });

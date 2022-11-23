@@ -1,0 +1,47 @@
+<% title ".albums"%>
+<% breadcrumb :albums_photos, @album %>
+
+<%= simple_form_for [:site_admin, @album, @album_photo] do |f| %>
+  <div class="form-group file optional album_photos_image">
+    <%= f.input :image, as: :file, label: t('.add_archives'), required: false, input_html: {multiple: true} %>
+  </div>
+  <div id="upload-preview" class="row">
+    <div class="col-sm-6 col-md-3 col-lg-2 repo-template closeable" style="display: none;">
+      <div class="album-photo">
+        <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
+        <%= f.text_field :image, disabled: true, value: "" %>
+        <div class="caption">
+          <h5 class="file-name"></h5>
+          <%= f.input :description, as: :text, required: false %>
+          <div class="status"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%# link_to t("back"), :back, class: "btn btn-default" %>
+  </div>
+<% end %>
+<div class="row">
+  <% @album.album_photos.each do |photo| %>
+    <div class="col-sm-6 col-md-3 col-lg-2 closeable repo-item">
+      <%= simple_form_for [:site_admin, @album, photo], remote: true do |f| %>
+        <div class="album-photo">
+          <button type="button" class="close" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
+          <%= image_tag photo.image.url(:t) %>
+          <div class="caption">
+            <h5 class="file-name"><%= photo.image_file_name %></h5>
+            <%= f.input :description, as: :text, required: false %>
+          </div>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+          <%= link_to t('delete'), site_admin_album_album_photo_path(@album, photo), class: 'btn btn-danger', method: :delete, remote: true %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :javascripts, javascript_include_tag("albums.form") %>

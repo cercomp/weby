@@ -1,0 +1,19 @@
+en:
+  activerecord:
+    models:
+      album: "Álbum"
+    attributes:
+      album:
+        image_content_type: ""
+        image_file_name:    ""
+        image_file_size:    ""
+        image_updated_at:   ""
+        image:              " Foto "
+        slug:               'Slug'
+        created_at:           " Criado em "
+        site_id:              " Id do site "
+        updated_at:           " Atualizado em "
+      "album/i18ns":
+        text:            "Text"
+        title:           "Title"
+        _destroy:        "Remove"
