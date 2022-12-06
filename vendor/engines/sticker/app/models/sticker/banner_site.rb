@@ -1,6 +1,6 @@
 module Sticker
   class BannerSite < Sticker::ApplicationRecord
-    includes HasCategories
+    include HasCategories
 
     belongs_to :site
     belongs_to :banner, class_name: "::Sticker::Banner", foreign_key: :sticker_banner_id

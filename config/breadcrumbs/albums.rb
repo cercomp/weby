@@ -13,7 +13,7 @@ crumb :albums_edit do |album|
   parent :albums
 end
 
-crumb :albums_show do |albuu|
+crumb :albums_show do |album|
   link "#{album.title}", site_admin_album_path
   parent :albums
 end
@@ -23,3 +23,7 @@ crumb :albums_search do |search|
   parent :albums
 end
 
+crumb :albums_photos do |album|
+  link t('breadcrumbs.album_photos')
+  parent :albums_edit, album
+end

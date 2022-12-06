@@ -19,6 +19,11 @@
             new_site_admin_album_path,
             class: "btn btn-success" %>
         <% end %>
+        <% if check_permission(Sites::Admin::AlbumTagsController, [:index]) %>
+          <%= link_to t(".album_tags"),
+            site_admin_album_tags_path,
+            class: "btn btn-default" %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -9,9 +9,19 @@ class Album < ApplicationRecord
   has_one :cover_photo, -> { AlbumPhoto.cover }, class_name: 'AlbumPhoto'
 
   has_many :album_photos
+  has_and_belongs_to_many :album_tags
 
   scope :published, -> { where(publish: true) }
   scope :by_user, ->(id) { where(user_id: id) }
+
+  def real_updated_at
+    i18n_updated = i18ns.sort_by{|i18n| i18n.updated_at }.last.updated_at
+    updated_at > i18n_updated ? updated_at : i18n_updated
+  end
+
+  def refresh_photos_count!
+    update_column(:photos_count, album_photos.count)
+  end
 
   # tipos de busca
   # 0 = "termo1 termo2"

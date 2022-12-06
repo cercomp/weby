@@ -31,6 +31,7 @@ class Site < ApplicationRecord
   has_many :events, class_name: 'Calendar::Event', dependent: :destroy
   has_many :skins, dependent: :destroy
   has_many :albums
+  has_many :album_tags
   #has_many :components, through: :skins
   has_many :styles, through: :skins
   has_many :follower_styles, through: :styles, source: :styles

@@ -1,0 +1,35 @@
+<%= info_page @albums %>
+<div class="search-results">
+<% if @albums.each do |album| %>
+  <div class="item-search-result">
+    <article>
+      <header class="<%= translate_class(page) %>"><%= link_to page.title, site_page_path(page) %></header>
+      <div class="page-details details">
+        <% if page.publish %>
+          <% if @site.show_pages_author %>
+            <span class="author"><%= t("posted_by") %><%= page.user.name_or_login %></span>
+          <% end %>
+          <% if @site.show_pages_created_at %>
+            <span class="date"><%= t("posted_on") %><%= localize page.created_at, format: :short %></span>
+          <% end %>
+          <%# if @site.show_pages_updated_at %>
+            <%# <span class="date"><%= t("updated_on") %><%#= localize page.real_updated_at, format: :short %><%# </span> %>
+          <%# end %>
+        <% end %>
+
+        <%= link_to "Ver Página", site_page_path(page), class: "btn btn-inverse default-hidden" %>
+      </div>
+    </article>
+  </div>
+<% end.empty? %>
+  <div class="empty-result"><%= t(".no_albums") %></div>
+<% end %>
+</div>
+<%= per_page_links @albums, true, :sm %>
+<%= paginate @albums, remote: true, page_links: true %>
+
+<style>
+.default-hidden {
+  display: none;
+}
+</style>

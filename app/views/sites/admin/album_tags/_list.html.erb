@@ -1,0 +1,32 @@
+<% if @album_tags.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_album_tag") %>
+  </div>
+<% else %>
+
+  <table class="table table-striped align-middle">
+    <thead>
+      <th><%= t(".name") %></th>
+      <th><%= t(".description") %></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @album_tags.each do |album_tag| %>
+        <tr>
+          <td>
+              <%= link_to album_tag.name, edit_site_admin_album_tag_path(album_tag) %>
+            </td>
+          <td>
+            <%= album_tag.description %>
+          </td>
+          <td class="actions text-right">
+            <%= render_dropdown_menu do %>
+              <%= raw make_menu(album_tag) %>
+            <% end %>
+         </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>

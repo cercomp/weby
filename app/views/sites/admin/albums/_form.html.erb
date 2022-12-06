@@ -15,7 +15,9 @@
     input_html: { class: "check-button" },
     wrapper: :checkbox %>
 
-  <%= f.input :category_list, hint: t(".page_categories_help"), input_html: {value: f.object.category_list.to_s, class: 'input-xlarge input-category', data: {taglist: Album.uniq_category_counts.map{|t| t.name }}} %>
+  <%= f.input :category_list, hint: t(".album_categories_help"), input_html: {value: f.object.category_list.to_s, class: 'input-xlarge input-category', data: {taglist: Album.uniq_category_counts.map{|t| t.name }}} %>
+
+  <%= f.input :album_tag_ids, collection: current_site.album_tags.map{|t| [t.name, t.id] }, hint: t(".album_tags_help"), input_html: {class: 'input-xlarge input-tags', multiple: true} %>
 
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
@@ -29,13 +31,15 @@
       <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
         <div class="panel-body">
           <%= f.input :video_url %>
-
           <%= render('translates_text', f: f) %>
         </div>
       </div>
     </div>
   </div>
 
+  <% if @album.persisted? %>
+    <%= link_to t('.photos'), photos_site_admin_album_path(@album), class: 'btn btn-info' %>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>

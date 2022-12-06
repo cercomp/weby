@@ -376,6 +376,39 @@ body.modal-open {
   background-color: #F5F5F5;
 }
 
+.album-photo {
+  position: relative;
+  margin: 20px 0;
+  img.preview {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid #333;
+  }
+  .form-group {
+    padding-right: 0;
+  }
+  .close {
+    border-radius: 50%;
+    color: #333;
+    background: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    right: 0;
+    top: 0;
+    float: none;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    opacity: 1;
+    text-shadow: none;
+    text-align: center;
+    &:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
 #theme-tabs {
   margin-bottom: 15px;
   margin-top: 10px;

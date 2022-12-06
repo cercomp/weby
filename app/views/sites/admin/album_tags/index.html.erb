@@ -1,0 +1,19 @@
+<% title ".album_tags" %>
+<% breadcrumb :album_tags %>
+<div class="pull-right">
+  <% if check_permission(Sites::Admin::AlbumTagsController, 'new') %>
+    <%= link_to t(".new_album_tag"),
+      new_site_admin_album_tag_path,
+      class: "btn btn-success" %>
+  <% end %>
+  <% if check_permission(Sites::Admin::AlbumsController, 'index') %>
+    <%= link_to t(".albums"),
+      site_admin_albums_path,
+      class: "btn btn-default" %>
+  <% end %>
+</div>
+<div class="clearfix form-group"></div>
+
+<div id="list">
+  <%= render :partial => 'list' %>
+</div>

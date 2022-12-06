@@ -11,10 +11,10 @@ class Sites::AlbumsController < ApplicationController
 
   def index
     # desc_default_direction
-    # @pages = Page.get_pages current_site, params.merge(sort_column: sort_column, sort_direction: sort_direction)
-    # respond_with(@pages) do |format|
-    #   format.json { render json: @pages, root: 'pages', meta: { total: @pages.total_count } }
-    # end
+    @albums = current_site.albums.order(created_at: :desc).page(params[:page]).per(10)
+    respond_with(@albums) do |format|
+      format.json { render json: @albums, root: 'albums', meta: { total: @albums.total_count } }
+    end
   end
 
   def show

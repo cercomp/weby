@@ -126,16 +126,23 @@ Rails.application.routes.draw do
     namespace :admin, module: 'sites/admin', as: :site_admin do
       get 'gallery', to: 'albums#index'
       resources :albums do
-        resources :album_photos, only: [:create, :destroy]
+        resources :album_photos, only: [:create, :update, :destroy]
         member do
           put :toggle
+          get :photos
         end
         collection do
           delete :destroy_many
         end
       end
+      resources :album_tags do
+        collection do
+          delete :destroy_many
+        end
+      end
     end
-    resources :albums, as: :site_albums, controller: 'sites/albums', path: 'a', only: [:show, :index], concerns: :slug_check
+    resources :albums, as: :site_albums, controller: 'sites/albums', path: 'a', only: [:show], concerns: :slug_check
+    get :albums, to: 'sites/albums#index', as: :site_albums
 
     Weby.extensions.each do |name, extension|
       if !extension.settings.include?(:from_core)

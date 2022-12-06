@@ -2,17 +2,9 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
   before_action :require_user
   before_action :check_authorization
   before_action :find_album
+  before_action :find_album_photo, only: [:update, :destroy]
 
   respond_to :html, :js, :json, :rss
-
-  def index
-    # respond_with(:site_admin, @albums) do |format|
-    #   if params[:template]
-    #     format.js { render "#{params[:template]}" }
-    #     format.html { render partial: "#{params[:template]}", layout: false }
-    #   end
-    # end
-  end
 
   # def get_pages
   #   case params[:template]
@@ -44,7 +36,7 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
   def create
     @album_photo = @album.album_photos.new(album_photo_params)
     @album_photo.user = current_user
-    respond_with(:site_admin, @album_photo) do |format|
+    respond_with(:site_admin, @album, @album_photo) do |format|
       if @album_photo.save
         format.json do
           render json: { photo_album: @album_photo,
@@ -52,7 +44,7 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
                          message: t('successfully_created')},
                  content_type: check_accept_json
         end
-        record_activity('uploaded_album_photo', @album_photo)
+        #record_activity('uploaded_album_photo', @album_photo)
       else
         format.json do
           render json: { errors: @album_photo.errors.full_messages }, status: 412,
@@ -65,29 +57,32 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.json
   def update
-    @album.update(album_params)
-    record_activity('updated_album', @album)
-    respond_with(:site_admin, @album)
+    @album_photo.assign_attributes(album_photo_params)
+      if @album_photo.save
+        record_activity('updated_album_photo', @album_photo)
+        render json: { photo_album: @album_photo,
+                      archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
+                      message: t('successfully_updated')},
+          content_type: check_accept_json
+      else
+        render json: { photo_album: @album_photo,
+                       errors: @album_photo.errors.full_messages }, status: 412,
+          content_type: check_accept_json
+      end
   end
 
-  # # DELETE /pages/1
-  # # DELETE /pages/1.json
-  # def destroy
-  #   @page = current_site.pages.unscoped.find(params[:id])
-  #   if @page.trash
-  #     if @page.persisted?
-  #       record_activity('moved_page_to_recycle_bin', @page)
-  #       flash[:success] = t('moved_page_to_recycle_bin')
-  #     else
-  #       record_activity('destroyed_page', @page)
-  #       flash[:success] = t('successfully_deleted')
-  #     end
-  #   else
-  #     flash[:error] = @page.errors.full_messages.join(', ')
-  #   end
-
-  #   redirect_to @page.persisted? ? site_admin_pages_path : recycle_bin_site_admin_pages_path
-  # end
+  def destroy
+    if @album_photo.destroy
+      record_activity('deleted_album_photo', @album_photo)
+      render json: { photo_album: @album_photo,
+                    archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
+                    message: t('successfully_destroyed')},
+            content_type: check_accept_json
+    else
+      render json: { errors: @album_photo.errors.full_messages }, status: 412,
+            content_type: check_accept_json
+    end
+  end
 
   # def recover
   #   @page = current_site.pages.trashed.find(params[:id])
@@ -117,6 +112,10 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
   # end
 
   private
+
+  def find_album_photo
+    @album_photo = @album.album_photos.find_by id: params[:id]
+  end
 
   def sort_column
     params[:sort] || 'album_photos.id'

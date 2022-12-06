@@ -22,6 +22,9 @@ class AlbumPhoto < ApplicationRecord
   belongs_to :album
   belongs_to :user
 
+  after_save :refresh_photos_count
+  after_destroy :refresh_photos_count
+
   def parent
     album
   end
@@ -33,4 +36,10 @@ class AlbumPhoto < ApplicationRecord
                                 on: :create
 
   do_not_validate_attachment_file_type :image
+
+  private
+
+  def refresh_photos_count
+    album&.refresh_photos_count!
+  end
 end

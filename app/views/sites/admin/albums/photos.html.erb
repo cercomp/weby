@@ -1,9 +1,9 @@
 <% title ".albums"%>
 <% breadcrumb :albums_photos, @album %>
-
+<h4><%= @album.title %></h4>
 <%= simple_form_for [:site_admin, @album, @album_photo] do |f| %>
   <div class="form-group file optional album_photos_image">
-    <%= f.input :image, as: :file, label: t('.add_archives'), required: false, input_html: {multiple: true} %>
+    <%= f.input :image, as: :file, label: t('.add_photos'), required: false, input_html: {multiple: true} %>
   </div>
   <div id="upload-preview" class="row">
     <div class="col-sm-6 col-md-3 col-lg-2 repo-template closeable" style="display: none;">
@@ -12,36 +12,36 @@
         <%= f.text_field :image, disabled: true, value: "" %>
         <div class="caption">
           <h5 class="file-name"></h5>
-          <%= f.input :description, as: :text, required: false %>
+          <%= f.input :description, as: :text, required: false, label: false, placeholder: t('activerecord.attributes.album_photo.description') %>
           <div class="status"></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+  <div class="form-actions hide">
+    <%= f.button :submit, class: 'btn btn-primary', value: t('.upload'), disable_with: t("please_wait") %>
     <%# link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>
-<div class="row">
+<div id="current-photos" class="row">
   <% @album.album_photos.each do |photo| %>
     <div class="col-sm-6 col-md-3 col-lg-2 closeable repo-item">
       <%= simple_form_for [:site_admin, @album, photo], remote: true do |f| %>
         <div class="album-photo">
-          <button type="button" class="close" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
-          <%= image_tag photo.image.url(:t) %>
+          <%= link_to '&times;'.html_safe, site_admin_album_album_photo_path(@album, photo), title: t("destroy"), class: 'close', method: :delete, remote: true, data: {confirm: t('are_you_sure_del_item', item: photo.screen_name)} %>
+          <%= image_tag photo.image.url(:t), class: 'preview' %>
           <div class="caption">
             <h5 class="file-name"><%= photo.image_file_name %></h5>
-            <%= f.input :description, as: :text, required: false %>
+            <%= f.input :description, as: :text, required: false, label: false, placeholder: t('activerecord.attributes.album_photo.description') %>
+            <div class="status"></div>
           </div>
         </div>
-        <div class="form-actions">
-          <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-          <%= link_to t('delete'), site_admin_album_album_photo_path(@album, photo), class: 'btn btn-danger', method: :delete, remote: true %>
+        <div class="save-btn hide">
+          <%= f.button :submit, class: '', value: t('save'), disable_with: t("please_wait") %>
         </div>
       <% end %>
     </div>
   <% end %>
 </div>
 
-<% content_for :javascripts, javascript_include_tag("albums.form") %>
+<% content_for :javascripts, javascript_include_tag("albums.photos") %>

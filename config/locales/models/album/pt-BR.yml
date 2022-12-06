@@ -4,10 +4,6 @@ pt-BR:
       album: "Álbum"
     attributes:
       album:
-        image_content_type: ""
-        image_file_name:    ""
-        image_file_size:    ""
-        image_updated_at:   ""
         image:              " Foto "
         slug:               'Slug'
         publish:         "Publicado"
@@ -16,6 +12,7 @@ pt-BR:
         created_at:           " Criado em "
         legend:               " Legenda "
         site_id:              " Id do site "
+        video_url:           "URL do video"
         updated_at:           " Atualizado em "
       "album/i18ns":
         text:            "Texto"

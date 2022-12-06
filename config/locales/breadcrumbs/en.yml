@@ -17,6 +17,9 @@ en:
     edit_theme: " Edit Theme "
     choose_theme: " Choose theme "
 
+    albums: 'Álbums'
+    new_album: 'New Album'
+
     #component
     components:  " Components "
     choose_component:  " Choose component "

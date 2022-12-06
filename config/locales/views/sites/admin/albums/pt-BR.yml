@@ -28,6 +28,10 @@ pt-BR:
           updated_at:           " Atualizada em %{updated_at} "
           archive_fingerprint:  " Assinatura digital do arquivo "
           related_files:        " Arquivos Relacionados "
+        photos:
+          albums:               " Álbuns "
+          add_photos:           ' Adicionar fotos'
+          upload:               ' Fazer upload '
         list:
           cover:                " Capa "
           title:                " Título "
@@ -48,4 +52,5 @@ pt-BR:
           album_tags_help:      " Tags funcionam como agrupamentos de álbuns e são separadas por vírgula. Ex: Colação, Evento "
           list_categories:      " Listar Categorias "
           categories:           " Categorias "
+          photos:               " Fotos do Álbum"
           save:                 " Salvar "

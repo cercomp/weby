@@ -3,7 +3,7 @@ class Sites::Admin::AlbumsController < ApplicationController
 
   before_action :require_user
   before_action :check_authorization
-  before_action :find_album, only: [:show, :edit, :update]
+  before_action :find_album, only: [:show, :edit, :update, :photos]
 
   helper_method :sort_column
 
@@ -51,6 +51,9 @@ class Sites::Admin::AlbumsController < ApplicationController
   end
 
   def edit
+  end
+
+  def photos
     @album_photo = AlbumPhoto.new
   end
 
@@ -59,7 +62,7 @@ class Sites::Admin::AlbumsController < ApplicationController
     @album.user = current_user
     @album.save
     record_activity('created_album', @album)
-    respond_with(:edit_site_admin, @album)
+    respond_with(:photos, :site_admin, @album)
   end
 
   # PUT /pages/1
