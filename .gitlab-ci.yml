@@ -19,7 +19,7 @@ build:
   tags:
     - ssh
   script:
-    - docker-compose --project-directory docker -f docker/docker-compose.yml build
+    - docker-compose --project-directory docker -f docker/docker-compose.yml build --no-cache
 
 deploy:
   stage: deploy
