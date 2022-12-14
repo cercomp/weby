@@ -63,7 +63,7 @@ gem 'bootstrap-daterangepicker-rails', '~> 3.0.4'
 # error tracking
 gem 'rollbar'
 
-gem 'rails-html-sanitizer', '~> 1.3.0'
+gem 'rails-html-sanitizer', '~> 1.4.4'
 
 # rails assets org
 source 'https://rails-assets.org' do
