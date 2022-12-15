@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
   include HasCategories
+  include HasSlug
 
   weby_content_i18n :title, :text, required: :title
 
@@ -10,6 +11,10 @@ class Album < ApplicationRecord
 
   has_many :album_photos
   has_and_belongs_to_many :album_tags
+
+  before_create :generate_slug
+
+  accepts_nested_attributes_for :cover_photo
 
   scope :published, -> { where(publish: true) }
   scope :by_user, ->(id) { where(user_id: id) }

@@ -48,9 +48,11 @@ class Sites::Admin::AlbumsController < ApplicationController
 
   def new
     @album = current_site.albums.new(publish: true)
+    @album.build_cover_photo
   end
 
   def edit
+    @album.build_cover_photo if !@album.cover_photo
   end
 
   def photos
@@ -60,7 +62,7 @@ class Sites::Admin::AlbumsController < ApplicationController
   def create
     @album = current_site.albums.new(album_params)
     @album.user = current_user
-    @album.save
+    @album.save!
     record_activity('created_album', @album)
     respond_with(:photos, :site_admin, @album)
   end
@@ -126,7 +128,7 @@ class Sites::Admin::AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:publish, :slug,
-                                 { i18ns_attributes: [:id, :locale_id, :title, :text, :_destroy]})
+    params.require(:album).permit(:publish, :slug, :category_list, :video_url,
+                                 { i18ns_attributes: [:id, :locale_id, :title, :text, :_destroy], album_tag_ids: [], cover_photo_attributes: [:id, :image]})
   end
 end

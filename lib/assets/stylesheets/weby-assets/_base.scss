@@ -28,6 +28,16 @@ img.flag {
   }
 }
 
+.photo-frame {
+  float: left;
+  margin: 8px;
+  max-width: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+
 .wtsp-share {
   a {
     height: 28px;

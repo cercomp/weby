@@ -3,21 +3,14 @@
 <% if @albums.each do |album| %>
   <div class="item-search-result">
     <article>
-      <header class="<%= translate_class(page) %>"><%= link_to page.title, site_page_path(page) %></header>
+      <header class="<%= translate_class(album) %>"><%= link_to album.title, site_album_path(album) %></header>
       <div class="page-details details">
-        <% if page.publish %>
-          <% if @site.show_pages_author %>
-            <span class="author"><%= t("posted_by") %><%= page.user.name_or_login %></span>
-          <% end %>
-          <% if @site.show_pages_created_at %>
-            <span class="date"><%= t("posted_on") %><%= localize page.created_at, format: :short %></span>
-          <% end %>
-          <%# if @site.show_pages_updated_at %>
-            <%# <span class="date"><%= t("updated_on") %><%#= localize page.real_updated_at, format: :short %><%# </span> %>
-          <%# end %>
+        <% if album.publish %>
+          <span class="author"><%= t("posted_by") %><%= album.user.name_or_login %></span>
+          <span class="date"><%= t("posted_on") %><%= localize album.created_at, format: :short %></span>
         <% end %>
 
-        <%= link_to "Ver Página", site_page_path(page), class: "btn btn-inverse default-hidden" %>
+        <%= link_to "Ver Álbum", site_album_path(album), class: "btn btn-inverse default-hidden" %>
       </div>
     </article>
   </div>

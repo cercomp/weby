@@ -19,6 +19,7 @@ class Sites::AlbumsController < ApplicationController
 
   def show
     raise ActiveRecord::RecordNotFound if !@album.publish && @album.user != current_user
+    @photos = @album.album_photos.page(params[:page]).per(50)
     if request.path != site_album_path(@album)
       redirect_to site_album_path(@album), status: :moved_permanently
       return

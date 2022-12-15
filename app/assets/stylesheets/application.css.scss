@@ -388,23 +388,41 @@ body.modal-open {
   .form-group {
     padding-right: 0;
   }
+  .file-name {
+    word-wrap: break-word;
+  }
+  .cover-label {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 14px;
+  }
+  .make-cover {
+    display: none;
+  }
+  &:hover {
+    .make-cover {
+      display: inline-block;
+    }
+  }
   .close {
     border-radius: 50%;
     color: #333;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.85);
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 1px;
+    top: 1px;
     float: none;
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     line-height: 30px;
     opacity: 1;
     text-shadow: none;
     text-align: center;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
     &:hover {
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.95);
     }
   }
 }

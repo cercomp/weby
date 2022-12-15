@@ -2,7 +2,7 @@
   <%= f.i18ns_fields_for(locale) do |g| %>
     <%= g.input :_destroy, wrapper: :checkbox, as: :boolean if g.object.try(:id) %>
     <%= g.input :text,
-      input_html: {class: "mceAdvance", style: " height: 280px;"},
+      input_html: {class: "mceSimple", style: " height: 180px;"},
       as: :text %>
   <% end %>
 <% end %>

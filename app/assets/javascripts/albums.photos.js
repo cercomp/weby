@@ -27,8 +27,19 @@ $(function () {
     console.log(error);
   });
 
-  $('[name="album_photo[description]"]').keyup(function(e){
-    $(this).closest('form').find('.save-btn').removeClass('hide');
+  $('#current-photos').on('keyup', '[name="album_photo[description]"]', function(e){
+    var form = $(this).closest('form')
+    form.find('.save-btn').removeClass('hide');
+    form.find('.status').text(null)
+  });
+
+  $('#current-photos').on('click', '.make-cover', function(e){
+    $form = $(this).closest('form');
+    $.post($form.attr('action'), {make_cover: true, _method: 'patch'}, function(data){
+      $('.is-cover').remove()
+      $form.replaceWith(data.html);
+    }, 'json');
+    return false;
   });
 
   function switch_disable_text(disable){
@@ -47,10 +58,11 @@ $(function () {
 
   ////Não envia o submit do form principal, e chama o data.submit de cada arquivo incluido
   $('form.new_album_photo').submit(function(){
-    if($('.repo-item').length == 0){
+    $this = $(this);
+    if($this.find('.repo-item').length == 0){
       return false;
     }
-    $('.repo-item').each(function(){
+    $this.find('.repo-item').each(function(){
       //alert($(this).text());
       $(this).find('.status').html('<img src="'+assetPath('loading-bar.gif')+'"/>').addClass('loading');
       var $data = $(this).data('dataobj');
@@ -71,7 +83,6 @@ $(function () {
       ////Validação se o arquivo já foi incluído
       var included = false;
       $(".repo-item .file-name").each(function(){
-        console.log($(this).text().trim(), data.files[0].name)
         if($(this).text().trim() == data.files[0].name){
           included = true;
         }
@@ -114,11 +125,12 @@ $(function () {
            handleFail(data.context, data.result.errors);
         }else{
           var $repoItem = data.context;
-
-          $repoItem.find('.status').html('<span class="label label-success">'+data.result.message+'</span>');
-          $repoItem.removeClass('repo-item');
-          $repoItem.find('#album_photo_description').prop('disabled', true);
-          //$repoItem.find('img.preview').wrap($('<a href="'+data.result.repository.archive_url+'" target="_blank"></a>'));
+          $repoItem.remove();
+          var html = $(data.result.html)
+          html.find('.status').html('<span class="label label-success">'+data.result.message+'</span>');
+          container = $('<div class="'+ $('.repo-template')[0].className +'"></div>')
+          container.removeClass('repo-template').addClass('repo-item')
+          $('#current-photos').append(container.html(html));
         }
      },
 

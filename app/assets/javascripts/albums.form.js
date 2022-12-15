@@ -22,4 +22,16 @@ $(document).ready(function(){
   });
 
   $('.input-tags').select2();
+
+  $('#album_cover_photo_attributes_image').change(function(ev){
+    $item = $('.album-photo');
+    $item.find('.file-name').text(this.files[0].name);
+    if ((/image/i).test(this.files[0].type)) {
+      var img = document.createElement('img');
+      img.src = URL.createObjectURL(this.files[0]);
+      $(img).addClass('preview');
+      $item.find('.cover-preview').html(img);
+    }
+  });
+
 });

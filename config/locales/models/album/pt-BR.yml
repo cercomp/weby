@@ -8,6 +8,7 @@ pt-BR:
         slug:               'Slug'
         publish:         "Publicado"
         category_list:   "Categorias"
+        album_tag_ids:     'Tags'
         tag_list:          "Tags"
         created_at:           " Criado em "
         legend:               " Legenda "

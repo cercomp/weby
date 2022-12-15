@@ -1,14 +1,17 @@
 en:
   activerecord:
     models:
-      album: "Álbum"
+      album: "Album"
     attributes:
       album:
-        image:              " Foto "
+        image:              " Photo "
         slug:               'Slug'
-        created_at:           " Criado em "
-        site_id:              " Id do site "
-        updated_at:           " Atualizado em "
+        publish:         "Published"
+        created_at:           " Created at "
+        category_list:   "Categories"
+        album_tag_ids:     'Tags'
+        site_id:              " Site id "
+        updated_at:           " Updated at "
       "album/i18ns":
         text:            "Text"
         title:           "Title"

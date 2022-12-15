@@ -1,0 +1,12 @@
+<div class="pages_list_container">
+  <h2>
+    <%= @album.title %>
+  </h2>
+
+  <div id="album" class="photos-list">
+    <%= render 'photos' %>
+  </div>
+</div>
+
+<%# content_for :javascripts, javascript_include_tag("pages.index") %>
+<% content_for :stylesheets, stylesheet_link_tag("search_results") %>

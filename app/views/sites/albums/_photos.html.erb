@@ -1,0 +1,18 @@
+<div class="album-photos">
+  <% if @photos.each do |photo| %>
+    <div class="photo-frame">
+      <%= image_tag photo.image.url(:f) %>
+    </div>
+  <% end.empty? %>
+    <div class="empty-result"><%= t(".no_photos") %></div>
+  <% end %>
+</div>
+<div class="clearfix"></div>
+<%= per_page_links @photos, true, :sm %>
+<%= paginate @photos, remote: true, page_links: true %>
+
+<style>
+.default-hidden {
+  display: none;
+}
+</style>

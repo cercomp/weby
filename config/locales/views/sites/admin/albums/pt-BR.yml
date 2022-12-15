@@ -32,6 +32,9 @@ pt-BR:
           albums:               " Álbuns "
           add_photos:           ' Adicionar fotos'
           upload:               ' Fazer upload '
+        photo_card:
+          cover:                " Capa "
+          make_cover:           ' Tornar capa '
         list:
           cover:                " Capa "
           title:                " Título "
@@ -52,5 +55,7 @@ pt-BR:
           album_tags_help:      " Tags funcionam como agrupamentos de álbuns e são separadas por vírgula. Ex: Colação, Evento "
           list_categories:      " Listar Categorias "
           categories:           " Categorias "
-          photos:               " Fotos do Álbum"
+          edit_photos:          " Fotos do Álbum"
+          photos:               " fotos "
+          cover:                " Capa "
           save:                 " Salvar "

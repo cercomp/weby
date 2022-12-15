@@ -6,9 +6,9 @@
       <%= search_input params[:search] %>
     </div>
     <div class="col-md-3">
-      <%= select_tag "tag",
-          [],
-          include_blank: false,
+      <%= select_tag "tag_filter",
+          options_for_select(current_site.album_tags.map{|t| [t.name, t.id] }, params[:tag_filter]),
+          include_blank: true,
           style: 'vertical-align: top;',
           class: 'select2 search-filter form-control' %>
     </div>
@@ -49,5 +49,6 @@
     <%= render partial: 'list' %>
   </div>
 <% end %>
-<%# content_for :javascripts, javascript_include_tag('albums.admin.index') %>
+
+<% content_for :javascripts, javascript_include_tag("pages.admin.index") %>
 <%# content_for :stylesheets, stylesheet_link_tag("datetime") %>

@@ -1,6 +1,21 @@
 <%= simple_form_for [:site_admin, @album] do |f| %>
   <%= f.show_errors %>
 
+  <%= f.simple_fields_for(:cover_photo) do |g| %>
+    <%= g.input :id, as: :hidden %>
+    <%= g.input :image, as: :file, label: t('.cover'), input_html: {accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
+
+    <div class="album-photo" style="width: 150px">
+      <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label') %>
+      <%# link_to icon(:trash), site_admin_album_album_photo_path(@album, photo), title: t("destroy"), class: 'close', method: :delete, remote: true, data: {confirm: t('are_you_sure_del_item', item: photo.screen_name)} %>
+      <div class="cover-preview"><%= image_tag @album.cover_photo.image.url(:t), class: 'preview' if @album.cover_photo.image.present? %></div>
+      <div class="caption">
+        <h5 class="file-name"><%= @album.cover_photo.image_file_name %></h5>
+        <div class="status"></div>
+      </div>
+    </div>
+  <% end %>
+
   <%= render('translates_title', f: f) %>
   <%= f.input :slug, wrapper: :append do %>
     <div class="input-group-addon">
@@ -38,7 +53,8 @@
   </div>
 
   <% if @album.persisted? %>
-    <%= link_to t('.photos'), photos_site_admin_album_path(@album), class: 'btn btn-info' %>
+    <%= link_to t('.edit_photos'), photos_site_admin_album_path(@album), class: 'btn btn-info' %>
+    <%= @album.album_photos.size %> <%= t('.photos') %>
   <% end %>
 
   <div class="form-actions">

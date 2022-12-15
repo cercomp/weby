@@ -21,9 +21,9 @@
     </thead>
     <tbody>
       <% @albums.each do |album| %>
-        <tr>
+        <tr id="<%= album.id %>"<%= ' class="deactivated"'.html_safe unless album.publish? %>>
           <td class="center sel-item"><%= check_box_tag :select_item, album.id, false %></td>
-          <td><%= image_tag album.cover_photo.image, style: 'width: 64px; height: 64px;' if album.cover_photo %></td>
+          <td><%= image_tag album.cover_photo.image.url(:t), style: 'width: 64px; height: 64px;' if album.cover_photo %></td>
           <td>
             <% if check_permission(Sites::Admin::AlbumsController, [:edit]) %>
               <%= link_to "#{album.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_site_admin_album_path(album) %>
@@ -32,12 +32,12 @@
             <% end %>
           </td>
           <td><%= album.user.first_name %></td>
-          <td><% raw categories_links(album.categories) %></td>
-          <td><%# raw categories_links(album.categories) %></td>
+          <td><%= raw categories_links(album.categories) %></td>
+          <td><%= album.album_tags.map(&:name).join(', ') %></td>
           <td><%= l(album.created_at, :format => :short) %></td>
           <% with_permission(action: :show) do %>
             <td class="publish">
-              <%#= publication_status_page(album, remote: true) %></td>
+              <%= publication_status_page(album, remote: true) %></td>
           <% end %>
           <td width="5%" style="text-align:center;"><%= album.view_count.to_i %></td>
           <td width="5%" style="text-align:center;"><%= album.photos_count.to_i %></td>

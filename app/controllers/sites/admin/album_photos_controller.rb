@@ -36,39 +36,34 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
   def create
     @album_photo = @album.album_photos.new(album_photo_params)
     @album_photo.user = current_user
-    respond_with(:site_admin, @album, @album_photo) do |format|
-      if @album_photo.save
-        format.json do
-          render json: { photo_album: @album_photo,
-                         archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
-                         message: t('successfully_created')},
-                 content_type: check_accept_json
-        end
-        #record_activity('uploaded_album_photo', @album_photo)
-      else
-        format.json do
-          render json: { errors: @album_photo.errors.full_messages }, status: 412,
-                 content_type: check_accept_json
-        end
-      end
+    if @album_photo.save
+      render json: { photo_album: @album_photo,
+                      archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
+                      html: render_to_string(partial: '/sites/admin/albums/photo_card', formats: [:html], locals: {photo: @album_photo}),
+                      message: t('successfully_created')},
+              content_type: check_accept_json
+      #record_activity('uploaded_album_photo', @album_photo)
+    else
+      render json: { errors: @album_photo.errors.full_messages }, status: 412,
+              content_type: check_accept_json
     end
   end
 
   # PUT /pages/1
   # PUT /pages/1.json
   def update
-    @album_photo.assign_attributes(album_photo_params)
-      if @album_photo.save
-        record_activity('updated_album_photo', @album_photo)
-        render json: { photo_album: @album_photo,
-                      archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
-                      message: t('successfully_updated')},
-          content_type: check_accept_json
-      else
-        render json: { photo_album: @album_photo,
-                       errors: @album_photo.errors.full_messages }, status: 412,
-          content_type: check_accept_json
-      end
+    if (params[:make_cover] ? @album_photo.make_cover! : @album_photo.update(album_photo_params))
+      record_activity('updated_album_photo', @album_photo)
+      render json: { photo_album: @album_photo,
+                    html: render_to_string(partial: '/sites/admin/albums/photo_card', formats: [:html], locals: {photo: @album_photo}),
+                    archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
+                    message: t('successfully_updated')},
+        content_type: check_accept_json
+    else
+      render json: { photo_album: @album_photo,
+                      errors: @album_photo.errors.full_messages }, status: 412,
+        content_type: check_accept_json
+    end
   end
 
   def destroy
