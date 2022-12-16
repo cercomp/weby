@@ -18,8 +18,8 @@
   <div class="empty-result"><%= t(".no_albums") %></div>
 <% end %>
 </div>
-<%= per_page_links @albums, true, :sm %>
-<%= paginate @albums, remote: true, page_links: true %>
+<%= per_page_links @albums, false %>
+<%= paginate @albums, page_links: true %>
 
 <style>
 .default-hidden {
