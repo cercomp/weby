@@ -29,12 +29,7 @@ publish:
   dependencies:
     - build
   script:
-    - echo $CI_REGISTRY
-    - echo $CI_REGISTRY_USER
-    - echo $CI_REGISTRY_PASSWORD
-    - echo $CI_REGISTRY_IMAGE
-    - echo "---------"
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker tag ${CI_PROJECT_NAME}_${CI_BRANCH_ENV}:$CI_VERSION_ENV $CI_REGISTRY/weby/$CI_PROJECT_ENV:$CI_VERSION_ENV
-    - docker push $CI_REGISTRY/weby/$CI_PROJECT_ENV:$CI_VERSION_ENV
-  when: manual
+    #- docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker tag ${CI_PROJECT_NAME}_${CI_BRANCH_ENV}:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
