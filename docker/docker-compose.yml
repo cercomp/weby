@@ -9,13 +9,13 @@ services:
       dockerfile: Dockerfile
       args:
         CI_BRANCH_ENV: ${CI_BRANCH_ENV}
+        CI_REPOSITORY_URL: ${CI_REPOSITORY_URL}
         RAILS_ENV: ${RAILS_ENV}
         SECRET_KEY_BASE: ${SECRET_KEY_BASE}
         STORAGE_BUCKET: ${STORAGE_BUCKET}
         STORAGE_ACCESS_KEY: ${STORAGE_ACCESS_KEY}
         STORAGE_ACCESS_SECRET: ${STORAGE_ACCESS_SECRET}
         STORAGE_HOST: ${STORAGE_HOST}
-        CI_REPOSITORY_URL: ${CI_REPOSITORY_URL}
     ports:
       - 3000:3000
     env_file:
