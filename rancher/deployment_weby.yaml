@@ -20,7 +20,7 @@ spec:
         - secretRef:
             name: weby
             optional: false
-        image: dh.cercomp.ufg.br/weby/weby_develop:1.4
+        image: registry.cercomp.ufg.br/sysadmin/weby/weby_develop:1.4.1
         imagePullPolicy: Always
         name: weby
         ports:
@@ -29,3 +29,5 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+      imagePullSecrets:
+      - name: registry-gitlab-cercomp
