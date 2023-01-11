@@ -29,7 +29,8 @@ ENV GITLAB_URO $GITLAB_URO
 ENV GITLAB_UROP $GITLAB_UROP
 
 # --depth 1 skip downloading all the history up to that revision.
-RUN git clone --depth 1 --branch $CI_BRANCH_ENV https://$GITLAB_URO:$GITLAB_UROP@git.cercomp.ufg.br/sysadmin/weby.git /opt/weby
+#RUN git clone --depth 1 --branch $CI_BRANCH_ENV https://$GITLAB_URO:$GITLAB_UROP@git.cercomp.ufg.br/sysadmin/weby.git /opt/weby
+RUN git clone --depth 1 --branch $CI_BRANCH_ENV $CI_REPOSITORY_URL /opt/weby
 
 WORKDIR /opt/weby
 
