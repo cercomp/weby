@@ -17,6 +17,7 @@ services:
         STORAGE_HOST: ${STORAGE_HOST}
         GITLAB_URO: ${GITLAB_URO}
         GITLAB_UROP: ${GITLAB_UROP}
+        CI_REPOSITORY_URL: ${CI_REPOSITORY_URL}
     ports:
       - 3000:3000
     env_file:
