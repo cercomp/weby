@@ -18,6 +18,9 @@ build:
     - docker:dind
   tags:
     - ssh
+  only:
+    - master
+    - develop
   script:
     - docker-compose --project-directory docker -f docker/docker-compose.yml build
 
@@ -25,6 +28,9 @@ publish:
   stage: publish
   tags:
     - ssh
+  only:
+    - master
+    - develop
   environment: $CI_BRANCH_ENV
   dependencies:
     - build
