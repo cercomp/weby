@@ -4,9 +4,26 @@ metadata:
   labels:
     app: weby
   name: weby
+  namespace: default
 spec:
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: weby
+      port:
+        number: 3000
   rules:
   - host: weby.ufg.br
+    http:
+      paths:
+      - backend:
+          service:
+            name: weby
+            port:
+              number: 3000
+        path: /
+        pathType: ImplementationSpecific
+  - host: portais.weby.ufg.br
     http:
       paths:
       - backend:

@@ -34,8 +34,8 @@ gem 'omniauth-shibboleth'
 gem 'sprockets', '3.7.2'
 gem 'sprockets-rails', '3.4.2'
 gem 'sassc-rails', '2.1.2'
-gem 'uglifier', '~> 4.2.0'
-gem 'therubyracer', :platforms => :ruby
+gem 'terser', '~> 1.1.12'
+#gem 'therubyracer', platforms: :ruby
 gem 'non-stupid-digest-assets' # Generate assets without digest.
 
 gem 'simple_form', '~> 5.0.2'
