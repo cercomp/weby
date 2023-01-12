@@ -54,7 +54,7 @@
 
   <% if @album.persisted? %>
     <%= link_to t('.edit_photos'), photos_site_admin_album_path(@album), class: 'btn btn-info' %>
-    <%= @album.album_photos.size %> <%= t('.photos') %>
+    <span style="margin-left: 8px"><%= @album.album_photos.size %> <%= t('.photos') %></span>
   <% end %>
 
   <div class="form-actions">

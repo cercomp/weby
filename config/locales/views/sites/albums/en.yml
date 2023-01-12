@@ -1,0 +1,20 @@
+en:
+  sites:
+    pages:
+      index:
+      photos:
+        no_photos: 'No photos in this album'
+      list:
+        photos:
+          one: "1 photo"
+          other: "%{count} photos"
+        views:
+          one: "1 view"
+          other: "%{count} views"
+        read_more:     " Read more "
+        no_albums:      " No albums were found "
+      related_files:
+        related_files: " Related files "
+        size:          " Size "
+      sitemap:
+        sitemap:       " Sitemap "

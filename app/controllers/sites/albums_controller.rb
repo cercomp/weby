@@ -11,7 +11,7 @@ class Sites::AlbumsController < ApplicationController
 
   def index
     # desc_default_direction
-    @albums = current_site.albums.order(created_at: :desc).page(params[:page]).per(10)
+    @albums = current_site.albums.published.order(created_at: :desc).page(params[:page]).per(10)
     respond_with(@albums) do |format|
       format.json { render json: @albums, root: 'albums', meta: { total: @albums.total_count } }
     end

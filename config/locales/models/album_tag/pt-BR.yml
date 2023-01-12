@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      album_tag: "Categoria"
+    attributes:
+      album_tag:
+        name: Nome
+        description: Descrição

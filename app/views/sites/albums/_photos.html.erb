@@ -1,6 +1,8 @@
 <div class="album-photos">
   <% if @photos.present? %>
-    <% include_component_javascript :javascripts, 'banner_list_jquery.flexslider' %>
+    <%
+=begin%>
+ <% include_component_javascript :javascripts, 'banner_list_jquery.flexslider' %>
     <% stylesheet_link_tag 'banner_list_flexslider' %>
     <div class="flexslider" data-slideshowspeed="0" data-controls="true">
       <ul class="slides">
@@ -23,6 +25,20 @@
           <% end %>
         <% end %>
       </ul>
+    </div>
+<%
+=end%>
+    <div class="flex-masonry">
+      <% @photos.each do |photo| %>
+        <div class="small-1 medium-5">
+          <div class="album-photo-tile">
+            <%= link_to site_album_album_photo_path(photo.album), remote: true do %>
+              <%= image_tag photo.image.url(:f) %>
+              <div class="title"><%= photo.description %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   <% else %>
     <div class="empty-result"><%= t(".no_photos") %></div>

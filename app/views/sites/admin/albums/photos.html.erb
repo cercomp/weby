@@ -5,7 +5,7 @@
   <div class="form-group file optional album_photos_image">
     <%= f.input :image, as: :file, label: t('.add_photos'), required: false, input_html: {multiple: true, accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
   </div>
-  <div id="upload-preview" class="row">
+  <div id="upload-preview" class="row flex-wrap">
     <div class="col-sm-6 col-md-3 col-lg-2 repo-template closeable" style="display: none;">
       <div class="album-photo">
         <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
@@ -23,12 +23,15 @@
     <%# link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>
-<div id="current-photos" class="row">
+<div id="current-photos" class="row flex-wrap">
   <% @album.album_photos.each do |photo| %>
     <div class="col-sm-6 col-md-3 col-lg-2 closeable repo-item">
       <%= render '/sites/admin/albums/photo_card', photo: photo %>
     </div>
   <% end %>
+</div>
+<div class="form-actions">
+  <%= link_to t("back"), edit_site_admin_album_path(@album), class: "btn btn-default" %>
 </div>
 
 <% content_for :javascripts, javascript_include_tag("albums.photos") %>

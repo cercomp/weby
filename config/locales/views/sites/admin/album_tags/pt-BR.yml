@@ -1,0 +1,36 @@
+pt-BR:
+  sites:
+    admin:
+      album_tags:
+        new:
+          title:                " Novo Álbum "
+          albums:               " Álbuns "
+        edit:
+          title:                " Editar Álbum "
+          albums:               " Álbuns "
+        index:
+          new_album_tag:        " Nova Categoria "
+          albums:               " Albuns "
+        photos:
+          albums:               " Álbuns "
+          add_photos:           ' Adicionar fotos'
+          upload:               ' Fazer upload '
+        photo_card:
+          cover:                " Capa "
+          make_cover:           ' Tornar capa '
+        list:
+          name:                 " Nome "
+          description:          " Descrição "
+        form:
+          image:                " Imagem da página "
+          date_begin_hint:      " A página será listada no site somente a partir desta data "
+          date_end_hint:        " A página deixará de ser listada como capa a partir desta data "
+          related_files:        " Arquivos relacionados "
+          album_categories_help: " Categorias são separadas por vírgula, a categoria de uma página é relacionada ao seu conteúdo. Ex: Esporte, Inauguração, Vestibular "
+          album_tags_help:      " Tags funcionam como agrupamentos de álbuns e são separadas por vírgula. Ex: Colação, Evento "
+          list_categories:      " Listar Categorias "
+          categories:           " Categorias "
+          edit_photos:          " Fotos do Álbum"
+          photos:               " fotos "
+          cover:                " Capa "
+          save:                 " Salvar "

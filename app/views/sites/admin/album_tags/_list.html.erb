@@ -14,7 +14,7 @@
       <% @album_tags.each do |album_tag| %>
         <tr>
           <td>
-              <%= link_to album_tag.name, edit_site_admin_album_tag_path(album_tag) %>
+              <%= link_to "#{album_tag.name} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_site_admin_album_tag_path(album_tag) %>
             </td>
           <td>
             <%= album_tag.description %>

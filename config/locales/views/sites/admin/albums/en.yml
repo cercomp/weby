@@ -15,6 +15,7 @@ en:
           none_album:           " Nenhum Álbum "
           filter_begin:         " Filtro por data (inicial) "
           filter_end:           " data final "
+          album_tags:           " Categories "
         show:
           pages:                " Páginas "
           event:                " Evento "
@@ -32,7 +33,7 @@ en:
           cover:                " Capa "
           title:                " Título "
           author:               " Autor "
-          tag:                  " Tag "
+          tags:                 " Tags "
           categories:           " Categorias "
           created_at:           " Criado em "
           publish:              " Publicar "

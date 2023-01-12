@@ -68,8 +68,10 @@ class AlbumPhoto < ApplicationRecord
   private
 
   def unique_image_file_name
-    check_filename = album.album_photos.where.not(id: id).find_by(image_file_name: image_file_name)
-    errors.add(:image_file_name, I18n.t('file_already_exists', value: check_filename.image_file_name)) if check_filename.present?
+    if album
+      check_filename = album.album_photos.where.not(id: id).find_by(image_file_name: image_file_name)
+      errors.add(:image_file_name, I18n.t('file_already_exists', value: check_filename.image_file_name)) if check_filename.present?
+    end
   end
 
   def refresh_photos_count

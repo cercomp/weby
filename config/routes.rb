@@ -141,7 +141,9 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :albums, as: :site_albums, controller: 'sites/albums', path: 'a', only: [:show], concerns: :slug_check
+    resources :albums, as: :site_albums, controller: 'sites/albums', path: 'a', only: [:show], concerns: :slug_check do
+      resources :album_photos, only: [:show]
+    end
     get :albums, to: 'sites/albums#index', as: :site_albums
 
     Weby.extensions.each do |name, extension|

@@ -113,6 +113,11 @@ ul.order-list {
   background-color: #953b39;
 }
 
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .person{
   .info.actions {
     a{

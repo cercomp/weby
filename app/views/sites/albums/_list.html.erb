@@ -1,28 +1,28 @@
 <%= info_page @albums %>
-<div class="search-results">
-<% if @albums.each do |album| %>
-  <div class="item-search-result">
-    <article>
-      <header class="<%= translate_class(album) %>"><%= link_to album.title, site_album_path(album) %></header>
-      <div class="page-details details">
-        <% if album.publish %>
-          <span class="author"><%= t("posted_by") %><%= album.user.name_or_login %></span>
-          <span class="date"><%= t("posted_on") %><%= localize album.created_at, format: :short %></span>
-        <% end %>
-
-        <%= link_to "Ver Álbum", site_album_path(album), class: "btn btn-inverse default-hidden" %>
-      </div>
-    </article>
-  </div>
-<% end.empty? %>
-  <div class="empty-result"><%= t(".no_albums") %></div>
-<% end %>
+<div class="albums-results">
+  <% if @albums.present? %>
+    <div class="flex-tiles">
+      <% @albums.each do |album| %>
+        <div class="small-1 medium-5">
+          <div class="album-card" style="background-image: url('<%= album.get_cover_photo&.image&.url(:f) %>')">
+            <%= link_to site_album_path(album) do %>
+              <div class="title"><%= album.title %></div>
+              <div class="info"><%= t('.photos', count: album.photos_count.to_i) %></div>
+              <div class="info"><%= t('.views', count: album.view_count.to_i) %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="empty-result"><%= t(".no_albums") %></div>
+  <% end %>
 </div>
 <%= per_page_links @albums, false %>
 <%= paginate @albums, page_links: true %>
 
 <style>
-.default-hidden {
-  display: none;
-}
+  .default-hidden {
+    display: none;
+  }
 </style>

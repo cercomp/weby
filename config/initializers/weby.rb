@@ -33,7 +33,7 @@ end
 Dir.children(Rails.root.join('lib', 'weby', 'extensions')).each do |file|
   file.gsub!('.rb', '')
   require "weby/extensions/#{file}"
-  ::Weby::register_extension(Weby::Extension.new(file.to_sym, author: 'Cercomp - Equipe Web', menu_position: eval(file.to_s.titleize)::POSITION, settings: [:from_core]))
+  ::Weby::register_extension(Weby::Extension.new(file.to_sym, author: 'Cercomp - Equipe Web', menu_position: eval(file.to_s.titleize)::POSITION, settings: [:from_core, :photos_limit]))
 end
 
 

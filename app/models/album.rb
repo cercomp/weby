@@ -14,7 +14,7 @@ class Album < ApplicationRecord
 
   before_create :generate_slug
 
-  accepts_nested_attributes_for :cover_photo
+  accepts_nested_attributes_for :cover_photo, reject_if: proc { |attributes| attributes["image"].blank? }
 
   scope :published, -> { where(publish: true) }
   scope :by_user, ->(id) { where(user_id: id) }
@@ -26,6 +26,10 @@ class Album < ApplicationRecord
 
   def refresh_photos_count!
     update_column(:photos_count, album_photos.count)
+  end
+
+  def get_cover_photo
+    @_cover_photo ||= cover_photo ? cover_photo : album_photos.first
   end
 
   # tipos de busca

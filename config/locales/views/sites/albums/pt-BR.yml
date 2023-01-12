@@ -1,0 +1,20 @@
+pt-BR:
+  sites:
+    albums:
+      index:
+      photos:
+        no_photos: 'Nenhuma foto neste álbum'
+      list:
+        photos:
+          one: "1 foto"
+          other: "%{count} fotos"
+        views:
+          one: "1 visualização"
+          other: "%{count} visualizações"
+        read_more:     " Leia mais "
+        no_albums:     " Nenhum álbum encontrado "
+      related_files:
+        related_files: " Arquivos relacionados "
+        size:          " Tamanho "
+      sitemap:
+        sitemap:       " Mapa do Site "

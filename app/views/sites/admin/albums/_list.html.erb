@@ -9,7 +9,7 @@
       <th width="10%"><%= sortable 'archive_file_name', t(".cover") %></th>
       <th width="35%"><%= t(".title") %></th>
       <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
-      <th width="20%"><%= sortable 'style.name', t(".tag") %></th>
+      <th width="20%"><%= sortable 'style.name', t(".tags") %></th>
       <th width="20%"><%= sortable 'tags.name', t(".categories") %></th>
       <th width="25%"><%= sortable 'albums.created_at', t(".created_at") %></th>
       <% with_permission(action: :show) do %>
@@ -23,7 +23,7 @@
       <% @albums.each do |album| %>
         <tr id="<%= album.id %>"<%= ' class="deactivated"'.html_safe unless album.publish? %>>
           <td class="center sel-item"><%= check_box_tag :select_item, album.id, false %></td>
-          <td><%= image_tag album.cover_photo.image.url(:t), style: 'width: 64px; height: 64px;' if album.cover_photo %></td>
+          <td><%= image_tag album.get_cover_photo.image.url(:t), style: 'width: 64px; height: 64px;' if album.get_cover_photo.present? %></td>
           <td>
             <% if check_permission(Sites::Admin::AlbumsController, [:edit]) %>
               <%= link_to "#{album.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_site_admin_album_path(album) %>

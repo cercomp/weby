@@ -1,10 +1,21 @@
-<div class="pages_list_container">
-  <h2>
-    <%= @album.title %>
-  </h2>
+<div class="page-show">
+  <div class="album-cover" style="background-image: url('<%= @album.get_cover_photo&.image&.url(:f) %>')">
+    <div class="overlay"></div>
+    <div class="cover-content">
+      <h1><%= @album.title %></h1>
+      <div class="album-desc"><%= @album.text %></div>
+      <div class="info"><%= t('.photos', count: @album.photos_count.to_i) %></div>
+      <div class="info"><%= t('.views', count: @album.view_count.to_i) %></div>
+    </div>
+  </div>
 
   <div id="album" class="photos-list">
     <%= render 'photos' %>
+  </div>
+  <div style="margin-top: 8px;" class="actions">
+    <%= link_to(weby_icon('edit', t("edit")), main_app.edit_site_admin_album_path(@album)) if check_permission(Sites::Admin::AlbumsController, [:edit]) %>
+    <%= link_to weby_icon('list', t("list_all")), site_albums_path %>
+    <%= link_to weby_icon('chevron-left', t("back")), :back %>
   </div>
 </div>
 

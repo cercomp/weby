@@ -5,6 +5,9 @@ Paperclip.interpolates :site_id do |attachment, _style|
     attachment.instance.parent.site_id
   end
 end
+Paperclip.interpolates :album_id do |attachment, _style|
+  attachment.instance.try(:album_id) || '_'
+end
 Paperclip.options[:whiny] = (ENV['PAPERCLIP_WHINY'].to_s == 'true')
 
 Paperclip.options[:content_type_mappings] = {

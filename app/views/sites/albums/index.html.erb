@@ -1,9 +1,7 @@
 <div class="pages_list_container">
-  <h2>
-    <%= t(".albums") %>
-  </h2>
+  <h2><%= t(".albums") %></h2>
 
-  <%= form_tag site_pages_path, method: 'get' do %>
+  <%= form_tag site_albums_path, method: 'get' do %>
     <div class="input-append search-field-button">
         <%= text_field_tag :search, params[:search] %>
         <%= button_tag image_tag("components/icon_search.png"), class: 'btn', title: t("search") %>
