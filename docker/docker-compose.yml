@@ -1,22 +1,22 @@
 version: '3.4'
 services:
   weby:
-    image: weby
-    container_name: weby
+    image: ${CI_PROJECT_ENV}:${CI_VERSION_ENV}
+    container_name: ${CI_PROJECT_ENV}
     restart: always
     build:
       context: .
       dockerfile: Dockerfile
       args:
         CI_BRANCH_ENV: ${CI_BRANCH_ENV}
+        CI_REPOSITORY_URL: ${CI_REPOSITORY_URL}
+        CI_COMMIT_SHORT_SHA: ${CI_COMMIT_SHORT_SHA}
         RAILS_ENV: ${RAILS_ENV}
         SECRET_KEY_BASE: ${SECRET_KEY_BASE}
         STORAGE_BUCKET: ${STORAGE_BUCKET}
         STORAGE_ACCESS_KEY: ${STORAGE_ACCESS_KEY}
         STORAGE_ACCESS_SECRET: ${STORAGE_ACCESS_SECRET}
         STORAGE_HOST: ${STORAGE_HOST}
-        GITLAB_URO: ${GITLAB_URO}
-        GITLAB_UROP: ${GITLAB_UROP}
     ports:
       - 3000:3000
     env_file:
