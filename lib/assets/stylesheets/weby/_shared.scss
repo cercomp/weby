@@ -1,0 +1,118 @@
+.card-team-horizontal{
+    color: black;
+}
+.capa{
+    border-radius: 50%;
+    width: 170px;
+    object-fit: cover;
+    height: 170px;
+}
+.table-horizontal{
+    border-collapse: collapse;
+    width: 100%;
+}
+.td-horizontal-image{
+    width: 15%;
+    height: 170px;
+    padding-right: 5px;
+}
+
+.td-horizontal-text{ 
+    border-left: solid;
+    border-width: 1px;
+    border-color: #333;
+    padding-left: 10px;
+}
+
+.text-element{
+    margin-right: 5px;
+}
+
+
+//Card Vertical
+
+.table-vertical{
+    width: 33%;
+    height:400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: solid;
+    border-right: solid;
+    border-width: 1px;
+
+    
+}
+
+.capa-vertical{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+
+.td-vertical-image{
+  width: 33%;
+  margin-left: auto;
+  margin-right: auto;   
+}
+
+.td-vertical-text{
+    width: 33%; 
+    height: 160px;
+}
+
+.tr-vertical-text{ 
+    height: 160px;
+}
+
+.p-vertical-text{
+    text-align: center;
+}
+
+
+// 2 Cards Vertical
+
+.table-vertical-2{
+    width: 66%;
+    height:400px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    
+}
+.tbody-2{
+    width: 100%;
+}
+
+.tr-vertical-text-2{
+    display: flex;
+    width: auto;
+    justify-content: center;
+}
+
+.td-vertical-image-2{
+    width: 50%;
+    justify-content: center;
+}
+
+.td-vertical-text-2{
+    width: 100%; 
+    height: 210px;
+    text-align: center;
+}
+
+// 3 Cards Vertical
+
+.table-vertical-3{
+    width: 90%;
+    height:400px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    
+}
