@@ -3,7 +3,7 @@
     <div class="overlay"></div>
     <div class="cover-content">
       <h1><%= @album.title %></h1>
-      <div class="album-desc"><%= @album.text %></div>
+      <div class="album-desc"><%= @album.text&.html_safe %></div>
       <div class="info"><%= t('.photos', count: @album.photos_count.to_i) %></div>
       <div class="info"><%= t('.views', count: @album.view_count.to_i) %></div>
     </div>

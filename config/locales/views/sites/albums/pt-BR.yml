@@ -2,6 +2,10 @@ pt-BR:
   sites:
     albums:
       index:
+        advanced:        " Opções Avançadas "
+        match_search:    " Busca exata "
+        and_search:      " Todas as palavras "
+        or_search:       " Qualquer uma das palavras "
       photos:
         no_photos: 'Nenhuma foto neste álbum'
       list:
@@ -13,6 +17,13 @@ pt-BR:
           other: "%{count} visualizações"
         read_more:     " Leia mais "
         no_albums:     " Nenhum álbum encontrado "
+      show:
+        photos:
+          one: "1 foto"
+          other: "%{count} fotos"
+        views:
+          one: "1 visualização"
+          other: "%{count} visualizações"
       related_files:
         related_files: " Arquivos relacionados "
         size:          " Tamanho "

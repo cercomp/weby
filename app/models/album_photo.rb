@@ -42,6 +42,7 @@ class AlbumPhoto < ApplicationRecord
 
   after_save :refresh_photos_count
   after_destroy :refresh_photos_count
+  before_create :set_position
 
   scope :cover, -> { where is_cover: true }
 
@@ -52,6 +53,7 @@ class AlbumPhoto < ApplicationRecord
   #do_not_validate_attachment_file_type :image
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
+  validates :slug, uniqueness: { scope: :album_id, allow_blank: true }
   validate :unique_image_file_name
 
   def parent
@@ -63,6 +65,29 @@ class AlbumPhoto < ApplicationRecord
       parent.album_photos.update_all(is_cover: false)
       self.update!(is_cover: true)
     end
+  end
+
+  def generate_slug
+    if self.slug.blank?
+      key = "#{image_file_name.to_s.parameterize}#{Time.current.to_i.to_s.last(6)}#{rand(255)}"
+      self.slug = Digest::MD5.hexdigest(key).last(24)
+    end
+  end
+
+  # def to_param
+  #   slug.blank? ? id : slug
+  # end
+
+  def set_position
+    self.position ||= album.album_photos.maximum(:position).to_i + 1
+  end
+
+  def prev_photo
+    album.album_photos.order(position: :desc).where('position < ?', position).first
+  end
+
+  def next_photo
+    album.album_photos.order(position: :asc).where('position > ?', position).first
   end
 
   private

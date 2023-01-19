@@ -32,7 +32,7 @@
       <% @photos.each do |photo| %>
         <div class="small-1 medium-5">
           <div class="album-photo-tile">
-            <%= link_to site_album_album_photo_path(photo.album), remote: true do %>
+            <%= link_to site_album_album_photo_path(photo.album, photo), remote: true do %>
               <%= image_tag photo.image.url(:f) %>
               <div class="title"><%= photo.description %></div>
             <% end %>
@@ -43,9 +43,6 @@
   <% else %>
     <div class="empty-result"><%= t(".no_photos") %></div>
   <% end %>
-  <div class="photo-frame">
-    <%#= image_tag photo.image.url(:f) %>
-  </div>
 </div>
 <div class="clearfix"></div>
 <%= per_page_links @photos, true, :sm %>

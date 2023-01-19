@@ -2,6 +2,10 @@ en:
   sites:
     pages:
       index:
+        advanced:      " Advanced Options "
+        match_search:  " Exact sentence "
+        and_search:    " All the words "
+        or_search:     " Any of the words "
       photos:
         no_photos: 'No photos in this album'
       list:

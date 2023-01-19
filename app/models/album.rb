@@ -9,7 +9,7 @@ class Album < ApplicationRecord
 
   has_one :cover_photo, -> { AlbumPhoto.cover }, class_name: 'AlbumPhoto'
 
-  has_many :album_photos
+  has_many :album_photos, dependent: :destroy
   has_and_belongs_to_many :album_tags
 
   before_create :generate_slug
