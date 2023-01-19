@@ -49,6 +49,7 @@ RUN bundle install --without development test --path vendor/bundle --jobs 4 --re
 
 # Move file to not acess db
 RUN mv config/initializers/email.rb config/
+#teste mostrar valor das variáveis de ambiente
 RUN env
 # Assets precompile
 RUN bundle exec rake assets:precompile --trace
