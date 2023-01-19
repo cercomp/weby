@@ -20,6 +20,7 @@ class AlbumPhoto < ApplicationRecord
     }
   }
   if ENV['STORAGE_HOST_ALBUM'].present?
+    region = ENV['STORAGE_REGION'].presence || 'us-east-1'
     is_aws = ENV['STORAGE_HOST_ALBUM'].to_s.include?('aws')
     attach_options.merge!({
       s3_credentials: {
