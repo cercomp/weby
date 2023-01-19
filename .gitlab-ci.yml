@@ -24,7 +24,7 @@ build:
   tags:
     - ssh
   script:
-    - docker-compose --project-directory docker -f docker/docker-compose.yml build --nocache
+    - docker-compose --project-directory docker -f docker/docker-compose.yml build --no-cache
 
 publish:
   stage: publish
