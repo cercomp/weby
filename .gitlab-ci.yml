@@ -25,6 +25,9 @@ build:
     - develop
   script:
     - docker-compose --project-directory docker -f docker/docker-compose.yml build
+  artifacts:
+    paths:
+      - public/assets/.sprockets-manifest-*.json
 
 publish:
   stage: publish
