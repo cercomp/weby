@@ -30,7 +30,7 @@ build:
 
 precompile:
   stage: precompile
-  image: ruby:2.7.5
+  image: registry.cercomp.ufg.br/sysadmin/weby/weby_develop:1.4.1
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
@@ -41,13 +41,13 @@ precompile:
   dependencies:
     - build
   script:
-    # Install bundler, dependency resolver
-    - gem install bundler:1.16.3
-    # Bundle config
-    - bundle config without development:test
-    - bundle config path vendor/bundle
-    # Bundle install
-    - bundle install --without development test --path vendor/bundle --jobs 4 --retry 3
+    ## Install bundler, dependency resolver
+    #- gem install bundler:1.16.3
+    ## Bundle config
+    #- bundle config without development:test
+    #- bundle config path vendor/bundle
+    ## Bundle install
+    #- bundle install --without development test --path vendor/bundle --jobs 4 --retry 3
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
