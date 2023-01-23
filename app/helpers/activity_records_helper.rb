@@ -1,7 +1,6 @@
 module ActivityRecordsHelper
   def build_loggeable_url activity_record
     return nil unless activity_record.is_linkable?
-    puts "->>>>> ", activity_record.inspect, activity_record.loggeable_type, activity_record.loggeable
     case activity_record.loggeable_type
     when 'Journal::News'
       if activity_record.loggeable
