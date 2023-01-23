@@ -16,6 +16,8 @@ build:
   image: docker
   services:
     - docker:dind
+  environment:
+    name: $CI_COMMIT_REF_NAME
   tags:
     - ssh
   only:
@@ -31,7 +33,6 @@ publish:
   only:
     - master
     - develop
-  environment: $CI_BRANCH_ENV
   dependencies:
     - build
   script:
