@@ -60,6 +60,12 @@ WEBY.applyContrast = function(){
   });
 };
 
+WEBY.initAlbumPhoto = function(elem){
+  elem.on('click', '.close', function(ev){
+    elem.remove();
+  });
+}
+
 ////doc ready
 
 $(document).ready(function(){

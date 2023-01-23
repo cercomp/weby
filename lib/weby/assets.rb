@@ -1,13 +1,32 @@
 module Weby
   class Assets
     def self.asset_host_for(source, request)
-      return nil if !request
+      if ENV['STORAGE_HOST'].present?
+        host = if ENV['STORAGE_HOST'].to_s.include?('aws')
+          "//#{ENV['STORAGE_BUCKET']}.#{ENV['STORAGE_HOST']}"
+        else
+          "//#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}"
+        end
+        album_host = if ENV['STORAGE_HOST_ALBUM'].present?
+          if ENV['STORAGE_HOST_ALBUM'].to_s.include?('aws')
+            "//#{ENV['STORAGE_BUCKET_ALBUM']}.#{ENV['STORAGE_HOST_ALBUM']}"
+          else
+            "//#{ENV['STORAGE_HOST_ALBUM']}/#{ENV['STORAGE_BUCKET_ALBUM']}"
+          end
+        else
+          host
+        end
 
-      settings = Weby::Settings::AssetHost
-      return nil if settings.assets_host.blank? && settings.uploads_host.blank?
-      return nil if request.ssl? && settings.disable_on_https
-      return settings.assets_host if source.match(/^\/assets\//) && settings.assets_host.present?
-      return settings.uploads_host if source.match(/^\/up\//) && settings.uploads_host.present?
+        source.to_s.match(/^\/up\/\d+\/albums\/\d+/) ? album_host : host
+      else
+        return nil if !request
+
+        settings = Weby::Settings::AssetHost
+        return nil if settings.assets_host.blank? && settings.uploads_host.blank?
+        return nil if request.ssl? && settings.disable_on_https
+        return settings.assets_host if source.match(/^\/assets\//) && settings.assets_host.present?
+        return settings.uploads_host if source.match(/^\/up\//) && settings.uploads_host.present?
+      end
     end
 
     def self.find_asset path

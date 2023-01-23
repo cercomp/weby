@@ -14,6 +14,10 @@ module Weby
           @template.fields_for(object_name, object, *args, &proc)
         end
       end
+
+      def reset_index
+        @index = nil
+      end
     end
   end
 end

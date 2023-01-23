@@ -122,10 +122,38 @@ Rails.application.routes.draw do
       end
     end
 
+    #Extension from core - routes # TODO maybe spread the routes into extensions folder
+    namespace :admin, module: 'sites/admin', as: :site_admin do
+      get 'gallery', to: 'albums#index'
+      resources :albums do
+        resources :album_photos, only: [:create, :update, :destroy]
+        member do
+          put :toggle
+          get :photos
+        end
+        collection do
+          delete :destroy_many
+        end
+      end
+      resources :album_tags do
+        collection do
+          delete :destroy_many
+        end
+      end
+    end
+    namespace :site, module: 'sites', path: '' do
+      resources :albums, path: 'a', only: [:show], concerns: :slug_check do
+        resources :album_photos, only: [:show]
+      end
+      get :albums, to: 'albums#index'
+    end
+
     Weby.extensions.each do |name, extension|
-      constraints(extension) do
-        require "#{name.to_s}/routes"
-        instance_eval &("#{name.to_s.classify}::Routes".constantize.load)
+      if !extension.settings.include?(:from_core)
+        constraints(extension) do
+          require "#{name.to_s}/routes"
+          instance_eval &("#{name.to_s.classify}::Routes".constantize.load)
+        end
       end
     end
   end

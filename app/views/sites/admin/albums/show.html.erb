@@ -1,0 +1,19 @@
+<% title ".albums" %>
+<% breadcrumb :albums_show, @album %>
+<%= raw available_flags(@album) if @album.locales.many? %>
+<h1><%= @album.title %></h1>
+
+<p class="page-details details">
+  <div class="author"><%= t(".authored", author: @album.user, created_at: l(@album.created_at, format: :short)) %></div>
+  <% if @album.updated_at != @album.created_at %>
+    <div class="date"><%= t(".updated_at", updated_at: l(@album.real_updated_at, format: :short)) %></div>
+  <% end %>
+</p>
+
+<div class="form-actions">
+  <%= link_to icon('eye-open', text: t('show')), site_album_path(@album) if @album.publish || @album.user_id == current_user.id %>
+  <%= make_menu(@album, :except => "show") %>
+  <%= link_to icon('list', text: t(".list_all")), site_admin_albums_path %>
+  <%= link_to icon('chevron-left', text: t("back")), :back %>
+</div>
+

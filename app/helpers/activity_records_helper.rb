@@ -1,7 +1,6 @@
 module ActivityRecordsHelper
   def build_loggeable_url activity_record
     return nil unless activity_record.is_linkable?
-
     case activity_record.loggeable_type
     when 'Journal::News'
       if activity_record.loggeable
@@ -40,6 +39,12 @@ module ActivityRecordsHelper
         main_app.site_admin_skin_style_url(activity_record.loggeable.skin_id, activity_record.loggeable_id, subdomain: activity_record.site)
       else
         main_app.site_admin_skins_url(subdomain: activity_record.site, anchor: 'tab-styles')
+      end
+    when 'AlbumPhoto'
+      if activity_record.loggeable
+        main_app.site_admin_album_album_photo_url(activity_record.loggeable.album_id, activity_record.loggeable_id, subdomain: activity_record.site)
+      else
+        main_app.site_admin_albums_url(subdomain: activity_record.site)
       end
     else
       loggeable_url(activity_record)

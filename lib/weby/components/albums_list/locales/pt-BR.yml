@@ -1,0 +1,22 @@
+pt-BR:
+  components:
+    albums_list:
+      name:                   " Galeria de álbuns "
+  activerecord:
+    attributes:
+      photo_slider_component:
+        photos:               " Fotos "
+        width:                " Largura "
+        height:               " Altura "
+        timer:                " Tempo de transição "
+        description:          " Mostrar descrição? "
+        title:                " Título "
+        style:                " Estilo "
+        show_controls:        " Mostrar controles? "
+  photo_slider:
+    views:
+      show:
+      form:
+        add_photo:            " Adicionar Fotos "
+        timer_hint:           " Em segundos "
+        control_hint:         " Se estiver marcado, links para ir para a próxima foto ou a anterior serão exibidos abaixo do slider "

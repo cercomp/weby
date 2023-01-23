@@ -1,0 +1,79 @@
+/*
+ *= require flexslider-photo_slider
+ *= require lightbox-photo_slider
+ */
+
+/* jQuery Flex Slider plugin*/
+#slider {
+  margin: 10px;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  box-shadow:0px 0px 10px #B3B3B3;
+  -webkit-box-shadow:0px 0px 10px #B3B3B3;
+  -moz-box-shadow:0px 0px 10px #B3B3B3;
+  -o-box-shadow:0px 0px 10px #B3B3B3;
+  -ms-box-shadow:0px 0px 10px #B3B3B3;
+
+  -webkit-border-radius:5.0px;
+  -moz-border-radius:5.0px;
+  -o-border-radius:5.0px;
+  -ms-border-radius:5.0px;
+  border-radius:5.0px;
+}
+#carousel li {margin-right: 2px; width: 100px !important;}
+#carousel img {display: block; opacity: .5; cursor: pointer;}
+#carousel img:hover {opacity: 1;}
+#carousel .flex-active-slide img {opacity: 1; cursor: default;}
+.photo_slider_component {padding-bottom: 10px; margin: 10px}
+.photo_slider_title {
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+}
+ul.flex-direction-nav li a.flex-prev {left: 18px;}
+ul.flex-direction-nav li a.flex-next {right: 18px;}
+
+/* jQuery lightBox plugin - Gallery style */
+.gallery {
+  margin: 10px;
+  padding: 10px;
+  width: 520px;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  box-shadow:0px 0px 10px #B3B3B3;
+  -webkit-box-shadow:0px 0px 10px #B3B3B3;
+  -moz-box-shadow:0px 0px 10px #B3B3B3;
+  -o-box-shadow:0px 0px 10px #B3B3B3;
+  -ms-box-shadow:0px 0px 10px #B3B3B3;
+
+  -webkit-border-radius:5.0px;
+  -moz-border-radius:5.0px;
+  -o-border-radius:5.0px;
+  -ms-border-radius:5.0px;
+  border-radius:5.0px;
+}
+
+.gallery:hover {
+  box-shadow:0px 0px 10px #303030;
+  -webkit-box-shadow:0px 0px 10px #303030;
+  -moz-box-shadow:0px 0px 10px #303030;
+  -o-box-shadow:0px 0px 10px #303030;
+  -ms-box-shadow:0px 0px 10px #303030;
+
+  -webkit-border-radius:5.0px;
+  -moz-border-radius:5.0px;
+  -o-border-radius:5.0px;
+  -ms-border-radius:5.0px;
+  border-radius:5.0px;
+}
+.gallery ul { 
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+}
+.gallery ul li {
+  display: inline;
+  overflow: hidden;
+}
+.gallery ul a:hover { color: #fff; }
+

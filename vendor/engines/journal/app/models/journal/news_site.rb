@@ -3,11 +3,11 @@ module Journal
     if ENV['ELASTICSEARCH_URL'].present?
       include Journal::NewsSiteElastic
     end
+    include HasCategories
 
     belongs_to :site
     belongs_to :news, class_name: "::Journal::News", foreign_key: :journal_news_id
 
-    acts_as_ordered_taggable_on :categories
     acts_as_multisite
 
     validate :validate_position
@@ -48,10 +48,6 @@ module Journal
       end
     }
 
-    def category_list_before_type_cast
-      category_list.to_s
-    end
-
     private
 
     def self.import(attrs, options = {})
@@ -69,18 +65,6 @@ module Journal
     def validate_position
       self.position = last_front_position + 1 if self.position.nil?
 #      self.position = 0 if self.position.nil?
-    end
-
-    def self.uniq_category_counts
-      category_counts.each_with_object(Hash.new) do |j, hash|
-        name = j.name.upcase
-        if hash[name]
-          hash[name].count += j.count
-        else
-          hash[name] = j
-        end
-        hash
-      end.values
     end
 
     def last_front_position

@@ -464,6 +464,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_album
+    _id = params[:album_id] || params[:id]
+    if _id.match(/^\d+\-?/)
+      @album = current_site.albums.find(_id)
+    else
+      @album = current_site.albums.find_by(slug: _id)
+    end
+  end
+
 end
 
 module Import

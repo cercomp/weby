@@ -44,7 +44,8 @@ module AdminMenuHelper
       journal: 'newspaper-o fw',
       calendar: 'calendar fw',
       sticker: 'image fw',
-      feedback: 'at fw'
+      feedback: 'at fw',
+      gallery: 'book fw'
     }
   end
 end

@@ -3,13 +3,12 @@ module Calendar
     include Trashable
     include OwnRepository
     include HasSlug
+    include HasCategories
     if ENV['ELASTICSEARCH_URL'].present?
       include Calendar::EventElastic
     end
 
     EVENT_TYPES = %w(regional national international)
-
-    acts_as_ordered_taggable_on :categories
 
     weby_content_i18n :name, :information, :place, required: [:name, :place]
 
@@ -54,10 +53,6 @@ module Calendar
       name
     end
 
-    def category_list_before_type_cast
-      category_list.to_s
-    end
-
     def same_date?
       if end_at
         begin_at.to_date == end_at.to_date
@@ -88,18 +83,6 @@ module Calendar
       attrs['related_file_ids'] = attrs.delete('related_files').to_a.map {|repo| Import::Application::CONVAR["repository"]["#{repo['id']}"] }
 
       self.create!(attrs)
-    end
-
-    def self.uniq_category_counts
-      category_counts.each_with_object(Hash.new) do |j, hash|
-        name = j.name.upcase
-        if hash[name]
-          hash[name].count += j.count
-        else
-          hash[name] = j
-        end
-        hash
-      end.values
     end
 
     def self.as_fullcalendar_json events, admin_link=false

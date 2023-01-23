@@ -1,0 +1,28 @@
+<%= info_page @albums %>
+<div class="albums-results">
+  <% if @albums.present? %>
+    <div class="flex-tiles">
+      <% @albums.each do |album| %>
+        <div class="small-1 medium-5">
+          <div class="album-card" style="background-image: url('<%= album.get_cover_photo&.image&.url(:f) %>')">
+            <%= link_to site_album_path(album) do %>
+              <div class="title"><%= album.title %></div>
+              <div class="info"><%= t('.photos', count: album.photos_count.to_i) %></div>
+              <div class="info"><%= t('.views', count: album.view_count.to_i) %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="empty-result"><%= t(".no_albums") %></div>
+  <% end %>
+</div>
+<%= per_page_links @albums, false %>
+<%= paginate @albums, page_links: true %>
+
+<style>
+  .default-hidden {
+    display: none;
+  }
+</style>

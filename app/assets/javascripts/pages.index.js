@@ -1,4 +1,4 @@
-$(document).on("click", ".pages-list .pagination a", function(){
+$(document).on("click", ".pages-list .pagination a, .albums-list .pagination a", function(){
     $comp = $(this).parents('.pagination');
     //alert($comp);
     if($comp.css('position')!='absolute') $comp.css('position', 'relative');

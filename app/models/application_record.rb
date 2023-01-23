@@ -12,6 +12,8 @@ class ApplicationRecord < ActiveRecord::Base
       self.email
     elsif is_a?(Component)
       I18n.t("components.#{name}.name")
+    elsif respond_to?(:image_file_name)
+      self.image_file_name
     else
       I18n.t("activerecord.models.#{self.class.name.underscore}")
     end
