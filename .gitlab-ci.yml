@@ -25,8 +25,8 @@ build:
     - master
     - develop
   script:
-    - echo "Como se tivesse rodado! :-D"
-    #- docker-compose --project-directory docker -f docker/docker-compose.yml build
+    #- echo "Como se tivesse rodado! :-D"
+    - docker-compose --project-directory docker -f docker/docker-compose.yml build
 
 precompile:
   stage: precompile
