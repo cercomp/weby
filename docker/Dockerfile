@@ -68,6 +68,14 @@ RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdat
 
 WORKDIR /opt/weby
 
+# Files to logs and tmp
+RUN mkdir tmp
+RUN mkdir log
+RUN touch log/error.log
+RUN touch log/production.log
+RUN ln -sf /dev/stderr log/error.log
+
+# Copy files from first stage
 COPY --from=builder /opt/weby /opt/weby
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
