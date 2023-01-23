@@ -43,6 +43,9 @@ FROM ruby:2.7.5-slim-bullseye
 RUN apt-get clean && apt-get update && apt-get upgrade -y
 RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs
 
+ARG RAILS_ENV
+ENV RAILS_ENV $RAILS_ENV
+
 WORKDIR /opt/weby
 
 # Files to logs and tmp
