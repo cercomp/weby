@@ -53,8 +53,8 @@ precompile:
     #- bundle config path vendor/bundle
     ## Bundle install
     #- bundle install --without development test --path vendor/bundle --jobs 4 --retry 3
-    - ls -al
-    - touch ./log/production.log
+    - mkdir log
+    - touch log/production.log
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
