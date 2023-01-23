@@ -34,7 +34,7 @@ precompile:
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
-    - ssh
+    - docker-ssh
   only:
     - master
     - develop
