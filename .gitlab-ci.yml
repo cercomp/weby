@@ -34,7 +34,7 @@ precompile:
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
-    - weby_236
+    - docker
   only:
     - master
     - develop
