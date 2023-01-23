@@ -30,7 +30,7 @@ build:
 
 precompile:
   stage: precompile
-  image: ruby.2.7.5
+  image: ruby:2.7.5
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
