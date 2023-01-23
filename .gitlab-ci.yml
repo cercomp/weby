@@ -30,8 +30,8 @@ build:
     - master
     - develop
   script:
-    #- echo "Como se tivesse rodado! :-D"
-    - docker-compose --project-directory docker -f docker/docker-compose.yml build
+    - echo "Como se tivesse rodado! :-D"
+    #- docker-compose --project-directory docker -f docker/docker-compose.yml build
 
 precompile:
   stage: precompile
@@ -53,6 +53,7 @@ precompile:
     #- bundle config path vendor/bundle
     ## Bundle install
     #- bundle install --without development test --path vendor/bundle --jobs 4 --retry 3
+    touch log/production.log
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
