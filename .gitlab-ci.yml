@@ -45,7 +45,7 @@ publish-with-precompile:
     - master
     - develop
   dependencies:
-    - build
+    - build-publish
   script:
     # Move file to not acess db
     - mv config/initializers/email.rb config/
