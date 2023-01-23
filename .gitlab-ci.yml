@@ -1,5 +1,6 @@
 stages:
   - build
+  - precompile
   - publish
 
 variables:  # https://docs.gitlab.com/ee/ci/variables/
@@ -24,7 +25,29 @@ build:
     - master
     - develop
   script:
-    - docker-compose --project-directory docker -f docker/docker-compose.yml build
+    - echo "Como se tivesse rodado! :-D"
+    #- docker-compose --project-directory docker -f docker/docker-compose.yml build
+
+precompile:
+  stage: precompile
+  image: ruby.2.7.5
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags:
+    - ssh
+  only:
+    - master
+    - develop
+  dependencies:
+    - build
+  script:
+    # Move file to not acess db
+    - mv config/initializers/email.rb config/
+    # Assets precompile
+    - bundle exec rake assets:precompile --trace
+    - bundle exec rake assets:clean
+    # Init before system up
+    - mv config/email.rb config/initializers/
   artifacts:
     paths:
       - public/assets/.sprockets-manifest-*.json
