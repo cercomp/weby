@@ -41,6 +41,13 @@ precompile:
   dependencies:
     - build
   script:
+    # Install bundler, dependency resolver
+    - gem install bundler:1.16.3
+    # Bundle config
+    - bundle config without development:test
+    - bundle config path vendor/bundle
+    # Bundle install
+    - bundle install --without development test --path vendor/bundle --jobs 4 --retry 3
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
