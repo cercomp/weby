@@ -30,12 +30,12 @@ build:
     - master
     - develop
   script:
-    - echo "Como se tivesse rodado! :-D"
-    #- docker-compose --project-directory docker -f docker/docker-compose.yml build
+    #- echo "Como se tivesse rodado! :-D"
+    - docker-compose --project-directory docker -f docker/docker-compose.yml build
 
 precompile:
   stage: precompile
-  image: registry.cercomp.ufg.br/sysadmin/weby/weby_develop:1.4.1
+  image: $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
@@ -46,15 +46,6 @@ precompile:
   dependencies:
     - build
   script:
-    ## Install bundler, dependency resolver
-    #- gem install bundler:1.16.3
-    ## Bundle config
-    #- bundle config without development:test
-    #- bundle config path vendor/bundle
-    ## Bundle install
-    #- bundle install --without development test --path vendor/bundle --jobs 4 --retry 3
-    - mkdir log
-    - touch log/production.log
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
@@ -63,8 +54,10 @@ precompile:
     # Init before system up
     - mv config/email.rb config/initializers/
   artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     paths:
       - public/assets/.sprockets-manifest-*.json
+  when: manual
 
 publish:
   stage: publish
