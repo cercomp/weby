@@ -50,6 +50,7 @@ publish-with-precompile:
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
+    - mkdir log
     - bundle exec rake assets:precompile --trace
     - bundle exec rake assets:clean
     # Cleanup
