@@ -6,7 +6,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
       args:
         CI_BRANCH_ENV: ${CI_BRANCH_ENV}
         CI_REPOSITORY_URL: ${CI_REPOSITORY_URL}
