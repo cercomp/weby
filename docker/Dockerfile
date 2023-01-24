@@ -30,7 +30,7 @@ RUN bundle config set path 'vendor/bundle'
 RUN bundle install --jobs 4 --retry 3
 
 ## Second stage (precompile)
-FROM base AS precompile
+FROM ruby:2.7.5 AS precompile
 
 COPY . /opt/weby
 WORKDIR /opt/weby
