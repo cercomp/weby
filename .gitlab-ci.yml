@@ -35,12 +35,7 @@ build-publish:
     #- DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile
     #  --build-arg RAILS_ENV=$RAILS_ENV
     #  --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
-    #  --build-arg STORAGE_BUCKET=$STORAGE_BUCKET
-    #  --build-arg STORAGE_ACCESS_KEY=$STORAGE_ACCESS_KEY
-    #  --build-arg STORAGE_ACCESS_SECRET=$STORAGE_ACCESS_SECRET
-    #  --build-arg STORAGE_HOST=$STORAGE_HOST
-    #  --tag $CI_PROJECT_ENV:$CI_VERSION_ENV
-    #  --target simple .
+    #  --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
     #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     #- docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     #- docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
@@ -60,6 +55,9 @@ publish-with-precompile:
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile-precompile
+      --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
+      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
+      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --build-arg STORAGE_BUCKET=$STORAGE_BUCKET
@@ -73,6 +71,6 @@ publish-with-precompile:
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     paths:
-      - public/assets/
-  #dependencies:
-  #  - build-publish
+      - /opt/weby/public/assets/
+  dependencies:
+    - build-publish
