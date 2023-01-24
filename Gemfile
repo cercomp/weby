@@ -25,6 +25,7 @@ gem 'asset_sync'
 
 #elastic
 gem 'searchkick', '~> 4.3.0'
+gem 'elasticsearch', '~> 7.6.0'
 gem 'oj' #boost json parsing
 
 # Ominiauth
@@ -40,7 +41,7 @@ gem 'non-stupid-digest-assets' # Generate assets without digest.
 
 gem 'simple_form', '~> 5.0.2'
 gem 'rails-observers', '~> 0.1.5'
-gem 'devise', '~> 4.7.1'
+gem 'devise', '~> 4.8.1'
 gem 'kaminari', '~> 1.2.0'
 gem 'paperclip', :git => 'http://github.com/leo-souza/paperclip.git'
 gem 'acts-as-taggable-on', '~> 6.5.0'
