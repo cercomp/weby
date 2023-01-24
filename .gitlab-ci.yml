@@ -7,6 +7,8 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   CI_BRANCH_ENV: $CI_COMMIT_BRANCH
   CI_PROJECT_ENV: ${CI_PROJECT_NAME}_${CI_BRANCH_ENV}
   CI_VERSION_ENV: "1.4.1"
+  CI_COMMIT_SHORT_SHA: $CI_COMMIT_SHORT_SHA
+  RAILS_ENV: $RAILS_ENV
   SECRET_KEY_BASE: $SECRET_KEY_BASE
   STORAGE_BUCKET: $STORAGE_BUCKET
   STORAGE_ACCESS_KEY: $STORAGE_ACCESS_KEY
@@ -14,7 +16,7 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   STORAGE_HOST: $STORAGE_HOST
 
 before_script:
-  - touch docker/.env
+  - cp $ENV_FILE docker/.env
 
 build-publish:
   stage: build-publish
@@ -29,8 +31,9 @@ build-publish:
     - master
     - develop
   script:
+    - echo $ENV_FILE
     - echo "OK!"
-    #- docker-compose --project-directory docker -f docker/docker-compose.yml build
+    #- COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose --project-directory docker -f docker/docker-compose.yml build
     #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     #- docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     #- docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
@@ -50,7 +53,16 @@ publish-with-precompile:
   #dependencies:
   #  - build-publish
   script:
-    - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile --target=precompile .
+    - COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1
+      docker-compose --project-directory docker -f docker/docker-compose.yml
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
+      --build-arg RAILS_ENV=$RAILS_ENV
+      --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
+      --build-arg STORAGE_BUCKET=$STORAGE_BUCKET
+      --build-arg STORAGE_ACCESS_KEY=$STORAGE_ACCESS_KEY
+      --build-arg STORAGE_ACCESS_SECRET=$STORAGE_ACCESS_SECRET
+      --build-arg STORAGE_HOST=$STORAGE_HOST
+      build
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
