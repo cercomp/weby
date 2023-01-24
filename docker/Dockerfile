@@ -4,25 +4,18 @@ FROM ruby:2.7.5 AS base
 RUN apt-get clean && apt-get update && apt-get upgrade -y
 RUN apt-get install -y git imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils nodejs
 
-ARG CI_BRANCH_ENV
-ARG CI_REPOSITORY_URL
 ARG CI_COMMIT_SHORT_SHA
 ARG RAILS_ENV
 ARG SECRET_KEY_BASE
 
-ENV CI_BRANCH_ENV $CI_BRANCH_ENV
-ENV CI_REPOSITORY_URL $CI_REPOSITORY_URL
 ENV CI_COMMIT_SHORT_SHA $CI_COMMIT_SHORT_SHA
 ENV RAILS_ENV $RAILS_ENV
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
+RUN ls -al /opt/
 RUN mkdir /opt/weby
 COPY . /opt/weby
-# --depth 1 skip downloading all the history up to that revision.
-#RUN git clone --depth 1 --branch $CI_BRANCH_ENV $CI_REPOSITORY_URL /opt/weby
 WORKDIR /opt/weby
-
-RUN ls -al
 
 # Files to logs and tmp
 RUN mkdir tmp
@@ -41,9 +34,9 @@ RUN bundle install --jobs 4 --retry 3
 ## Second stage (precompile)
 FROM base AS precompile
 
+RUN mkdir /opt/weby
 COPY . /opt/weby
 COPY .env /opt/weby/.env
-
 WORKDIR /opt/weby
 
 ARG RAILS_ENV
