@@ -16,7 +16,7 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   STORAGE_HOST: $STORAGE_HOST
 
 before_script:
-  - cp $ENV_FILE docker/.env
+  - cp $ENV_FILE .env
 
 build-publish:
   stage: build-publish
