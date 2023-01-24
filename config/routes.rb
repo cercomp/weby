@@ -64,6 +64,7 @@ Rails.application.routes.draw do
         end
         collection do
           get :recycle_bin
+          get "template/:template", action: :template
           delete :empty_bin, :destroy_many
         end
       end
