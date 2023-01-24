@@ -33,7 +33,6 @@ RUN bundle install --jobs 4 --retry 3
 FROM base AS precompile
 
 COPY . /opt/weby
-COPY .env /opt/weby/.env
 WORKDIR /opt/weby
 
 ARG RAILS_ENV
@@ -86,7 +85,7 @@ EXPOSE 3000:3000
 CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 
 ## Third stage (publish)
-FROM base AS without
+FROM ruby:2.7.5-slim-bullseye AS simple
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
