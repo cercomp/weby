@@ -31,10 +31,10 @@ RUN ln -sf /dev/stderr log/error.log
 # Install bundler, dependency resolver
 RUN gem install bundler:1.16.3
 # Bundle config
-RUN bundle config without development:test
-RUN bundle config path vendor/bundle
+RUN bundle config set without 'development test'
+RUN bundle config set path 'vendor/bundle'
 # Bundle install
-RUN bundle install --without development test --path vendor/bundle --jobs 4 --retry 3
+RUN bundle install --jobs 4 --retry 3
 
 ## Second stage (precompile)
 FROM base AS precompile
