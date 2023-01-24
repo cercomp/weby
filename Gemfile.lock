@@ -47,7 +47,6 @@ PATH
 
 GEM
   remote: http://rubygems.org/
-  remote: https://rails-assets.org/
   specs:
     actioncable (5.2.4.2)
       actionpack (= 5.2.4.2)
@@ -328,9 +327,6 @@ GEM
       railties (= 5.2.4.2)
       sprockets-rails (>= 2.0.0)
     rails-assets-jquery (3.4.1)
-    rails-assets-select2 (3.5.4)
-      rails-assets-jquery (>= 1.7.1)
-    rails-assets-tinymce (4.8.5)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -426,6 +422,13 @@ GEM
     zip-zip (0.3)
       rubyzip (>= 1.0.0)
 
+GEM
+  remote: https://rails-assets.org/
+  specs:
+    rails-assets-select2 (3.5.4)
+      rails-assets-jquery (>= 1.7.1)
+    rails-assets-tinymce (4.8.5)
+
 PLATFORMS
   ruby
 
@@ -499,4 +502,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   1.16.3
+   2.4.5

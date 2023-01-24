@@ -70,8 +70,7 @@ module Weby
         /^d3(\.min)?\.js/,
         /^select2/,
         /bootstrap/,
-        /^jquery\.ui\./,
-        /^jquery(\.ui\.|\.min\.js|\_ujs\.js)/,
+        /^jquery(\.ui\.|\.min\.js|\_ujs\.js|\-ui)/,
         /^_/
       ]
 
