@@ -1,5 +1,6 @@
 ## Only stage to precompile
-FROM $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+#FROM $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+FROM registry.cercomp.ufg.br/sysadmin/weby/weby_develop:1.4.1
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
