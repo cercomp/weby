@@ -22,12 +22,9 @@ RUN touch log/error.log
 RUN ln -sf /dev/stderr log/error.log
 
 # Install bundler, dependency resolver
-RUN gem install bundler:1.16.3
-# Bundle config
-RUN bundle config set without 'development test'
-RUN bundle config set path 'vendor/bundle'
+RUN gem install bundler
 # Bundle install
-RUN bundle install --jobs 4 --retry 3
+RUN bundle install --deployment --jobs 4 --retry 3
 
 ## Second stage (precompile)
 FROM base AS precompile
@@ -96,7 +93,7 @@ WORKDIR /opt/weby
 
 # Copy files from first stage
 COPY --from=base /opt/weby /opt/weby
-COPY --from=base /usr/local/bundle/ /usr/local/bundle/
+#COPY --from=base /usr/local/bundle/ /usr/local/bundle/
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
