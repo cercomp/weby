@@ -14,7 +14,6 @@ ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
 COPY . /opt/weby
 WORKDIR /opt/weby
-RUN ls -al 
 
 # Files to logs and tmp
 RUN mkdir tmp
@@ -33,7 +32,6 @@ RUN bundle install --jobs 4 --retry 3
 ## Second stage (precompile)
 FROM base AS precompile
 
-RUN mkdir /opt/weby
 COPY . /opt/weby
 COPY .env /opt/weby/.env
 WORKDIR /opt/weby
@@ -78,7 +76,7 @@ WORKDIR /opt/weby
 # Copy files from first stage
 COPY --from=base /opt/weby /opt/weby
 COPY --from=base /usr/local/bundle/ /usr/local/bundle/
-COPY --from=precompile public/assets/.sprockets-manifest-*.json public/assets/
+COPY --from=precompile /opt/weby/public/assets/.sprockets-manifest-*.json public/assets/
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH

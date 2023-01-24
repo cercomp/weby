@@ -8,8 +8,6 @@ services:
       context: .
       dockerfile: docker/Dockerfile
       args:
-        CI_BRANCH_ENV: ${CI_BRANCH_ENV}
-        CI_REPOSITORY_URL: ${CI_REPOSITORY_URL}
         CI_COMMIT_SHORT_SHA: ${CI_COMMIT_SHORT_SHA}
         RAILS_ENV: ${RAILS_ENV}
         SECRET_KEY_BASE: ${SECRET_KEY_BASE}
