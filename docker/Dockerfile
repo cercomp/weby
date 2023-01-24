@@ -40,6 +40,7 @@ RUN bundle install --without development test --path vendor/bundle --jobs 4 --re
 FROM base AS precompile
 
 COPY . /opt/weby
+COPY .env /opt/weby/.env
 
 WORKDIR /opt/weby
 
