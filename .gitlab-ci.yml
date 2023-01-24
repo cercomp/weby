@@ -31,7 +31,7 @@ build-publish:
     - master
     - develop
   script:
-    - echo $ENV_FILE
+    - cat docker/.env
     - echo "OK!"
     #- COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose --project-directory docker -f docker/docker-compose.yml build
     #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
