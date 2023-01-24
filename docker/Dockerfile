@@ -16,7 +16,9 @@ ENV CI_COMMIT_SHORT_SHA $CI_COMMIT_SHORT_SHA
 ENV RAILS_ENV $RAILS_ENV
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
+RUN mkdir /opt/weby
 COPY . /opt/weby
+RUN ls -al
 # --depth 1 skip downloading all the history up to that revision.
 #RUN git clone --depth 1 --branch $CI_BRANCH_ENV $CI_REPOSITORY_URL /opt/weby
 
