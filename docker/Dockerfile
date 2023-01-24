@@ -64,7 +64,7 @@ RUN cp .sprockets-manifest-*.json public/assets/
 RUN mv config/email.rb config/initializers/
 
 ## Third stage (publish)
-FROM ruby:2.7.5-slim-bullseye AS final
+FROM base AS final
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
