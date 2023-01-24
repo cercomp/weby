@@ -12,10 +12,9 @@ ENV CI_COMMIT_SHORT_SHA $CI_COMMIT_SHORT_SHA
 ENV RAILS_ENV $RAILS_ENV
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
-RUN ls -al /opt/
-RUN mkdir /opt/weby
 COPY . /opt/weby
 WORKDIR /opt/weby
+RUN ls -al 
 
 # Files to logs and tmp
 RUN mkdir tmp
