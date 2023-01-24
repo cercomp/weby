@@ -58,7 +58,8 @@ publish-with-precompile:
       --build-arg STORAGE_ACCESS_KEY=$STORAGE_ACCESS_KEY
       --build-arg STORAGE_ACCESS_SECRET=$STORAGE_ACCESS_SECRET
       --build-arg STORAGE_HOST=$STORAGE_HOST
-       --target precompile .
+      .
+      # --target precompile .
     #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     #- docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     #- docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV

@@ -76,7 +76,7 @@ WORKDIR /opt/weby
 # Copy files from first stage
 COPY --from=base /opt/weby /opt/weby
 COPY --from=base /usr/local/bundle/ /usr/local/bundle/
-COPY --from=precompile /opt/weby/public/assets/.sprockets-manifest-*.json public/assets/
+COPY --from=precompile /opt/weby/public/assets/.sprockets-manifest-*.json ./public/assets/
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
