@@ -30,6 +30,7 @@ build-publish:
     - develop
   script:
     - echo "OK"
+    # COMPOSE_DOCKER_CLI_BUILD=1 
     #- docker compose --project-directory . -f docker/docker-compose.yml --env-file .env build
     #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     #- docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
@@ -50,7 +51,7 @@ publish-with-precompile:
   #dependencies:
   #  - build-publish
   script:
-    - COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose --project-directory . -f docker/docker-compose.yml --env-file .env build
+    - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile --env-file .env --target precompile .
     #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     #- docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     #- docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
