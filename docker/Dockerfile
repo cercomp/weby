@@ -76,7 +76,28 @@ WORKDIR /opt/weby
 # Copy files from first stage
 COPY --from=base /opt/weby /opt/weby
 COPY --from=base /usr/local/bundle/ /usr/local/bundle/
-COPY --from=precompile /opt/weby/public/assets/.sprockets-manifest-*.json ./public/assets/
+COPY --from=precompile /opt/weby/public/assets/.sprockets-manifest-*.json /opt/weby/public/assets/
+
+# Env to system
+ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
+
+EXPOSE 3000:3000
+
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+
+## Third stage (publish)
+FROM ruby:2.7.5-slim-bullseye AS without
+
+MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
+
+RUN apt-get clean && apt-get update && apt-get upgrade -y
+RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs
+
+WORKDIR /opt/weby
+
+# Copy files from first stage
+COPY --from=base /opt/weby /opt/weby
+COPY --from=base /usr/local/bundle/ /usr/local/bundle/
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
