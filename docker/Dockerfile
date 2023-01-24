@@ -64,7 +64,7 @@ RUN cp .sprockets-manifest-*.json public/assets/
 RUN mv config/email.rb config/initializers/
 
 ## Third stage (publish)
-FROM base AS final
+FROM ruby:2.7.5-slim-bullseye AS final
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
@@ -86,7 +86,7 @@ EXPOSE 3000:3000
 CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 
 ## Third stage (publish)
-FROM ruby:2.7.5-slim-bullseye AS without
+FROM base AS without
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
