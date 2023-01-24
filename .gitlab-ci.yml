@@ -24,7 +24,7 @@ build-publish:
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
-    - ssh
+    - docker
   only:
     - master
     - develop
