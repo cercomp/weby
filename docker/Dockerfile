@@ -18,11 +18,11 @@ ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
 RUN mkdir /opt/weby
 COPY . /opt/weby
-RUN ls -al
 # --depth 1 skip downloading all the history up to that revision.
 #RUN git clone --depth 1 --branch $CI_BRANCH_ENV $CI_REPOSITORY_URL /opt/weby
-
 WORKDIR /opt/weby
+
+RUN ls -al
 
 # Files to logs and tmp
 RUN mkdir tmp
