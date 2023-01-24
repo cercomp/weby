@@ -97,6 +97,8 @@ COPY --from=base /opt/weby /opt/weby
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
+ENV GEM_HOME=/opt/weby/vendor/bundle
+ENV GEM_PATH=$GEM_HOME:$GEM_PATH
 
 EXPOSE 3000:3000
 
