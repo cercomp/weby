@@ -7,11 +7,11 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   CI_BRANCH_ENV: $CI_COMMIT_BRANCH
   CI_PROJECT_ENV: ${CI_PROJECT_NAME}_${CI_BRANCH_ENV}
   CI_VERSION_ENV: "1.4.1"
-  SECRET_KEY_BASE: ${SECRET_KEY_BASE}
-  STORAGE_BUCKET: ${STORAGE_BUCKET}
-  STORAGE_ACCESS_KEY: ${STORAGE_ACCESS_KEY}
-  STORAGE_ACCESS_SECRET: ${STORAGE_ACCESS_SECRET}
-  STORAGE_HOST: ${STORAGE_HOST}
+  SECRET_KEY_BASE: $SECRET_KEY_BASE
+  STORAGE_BUCKET: $STORAGE_BUCKET
+  STORAGE_ACCESS_KEY: $STORAGE_ACCESS_KEY
+  STORAGE_ACCESS_SECRET: $STORAGE_ACCESS_SECRET
+  STORAGE_HOST: $STORAGE_HOST
 
 before_script:
   - touch docker/.env
@@ -37,32 +37,20 @@ build-publish:
 
 publish-with-precompile:
   stage: publish-with-precompile
-  image: $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+  image: docker
   services:
     - docker:dind
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
-    - docker
+    - ssh
   only:
     - master
     - develop
   #dependencies:
   #  - build-publish
   script:
-    # Move file to not acess db
-    - mv config/initializers/email.rb config/
-    # Assets precompile
-    - mkdir log
-    - bundle exec rake assets:precompile --trace
-    - bundle exec rake assets:clean
-    # Cleanup
-    - cp public/assets/.sprockets-manifest-*.json .
-    - bundle exec rake assets:clobber
-    - mkdir public/assets
-    - cp .sprockets-manifest-*.json public/assets/
-    # Init before system up
-    - mv config/email.rb config/initializers/
+    - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile --target=precompile .
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
