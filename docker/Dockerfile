@@ -60,7 +60,6 @@ ENV STORAGE_HOST $STORAGE_HOST
 # Move file to not acess db
 RUN mv config/initializers/email.rb config/
 # Assets precompile
-RUN mkdir log
 RUN bundle exec rake assets:precompile --trace
 RUN bundle exec rake assets:clean
 # Cleanup
