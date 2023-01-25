@@ -52,7 +52,6 @@ publish-with-precompile:
     - master
     - develop
   script:
-    - echo $CI_PROJECT_DIR
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile-precompile
       --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
@@ -67,10 +66,6 @@ publish-with-precompile:
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-  when: manual
-  artifacts:
-    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
-    paths:
-      - ./*.json
   dependencies:
     - build-publish
+  when: manual

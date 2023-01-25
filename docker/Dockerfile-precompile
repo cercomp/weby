@@ -38,6 +38,20 @@ RUN cp .sprockets-manifest-*.json public/assets/
 # Init before system up
 RUN mv config/email.rb config/initializers/
 
+## Second stage (publish)
+FROM ruby:2.7.5-slim-bullseye
+
+MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
+
+RUN apt-get clean && apt-get update && apt-get upgrade -y
+RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs
+
+WORKDIR /opt/weby
+
+# Copy files from first stage
+COPY --from=base /opt/weby /opt/weby
+COPY --from=base /usr/local/bundle/ /usr/local/bundle/
+
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
 
