@@ -49,8 +49,10 @@ RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdat
 WORKDIR /opt/weby
 
 # Copy files from first stage
-COPY --from=base /opt/weby /opt/weby
+#COPY --from=base /opt/weby /opt/weby
+COPY . /opt/weby
 COPY --from=base /usr/local/bundle/ /usr/local/bundle/
+COPY --from=base /opt/weby/public/assets/ /opt/weby/public/assets/
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH

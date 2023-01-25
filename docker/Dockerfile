@@ -37,7 +37,8 @@ RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdat
 WORKDIR /opt/weby
 
 # Copy files from first stage
-COPY --from=base /opt/weby /opt/weby
+#COPY --from=base /opt/weby /opt/weby
+COPY . /opt/weby
 COPY --from=base /usr/local/bundle/ /usr/local/bundle/
 
 # Env to system

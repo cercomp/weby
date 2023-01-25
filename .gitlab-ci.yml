@@ -29,9 +29,9 @@ build-publish:
     - master
     - develop
   script:
-    ## COMPOSE_DOCKER_CLI_BUILD=1 
+    ## DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 
     ##- docker compose --project-directory . -f docker/docker-compose.yml --env-file .env build
-    - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile
+    - docker build -f docker/Dockerfile
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
@@ -53,7 +53,7 @@ publish-with-precompile:
     - develop
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile-precompile
+    - docker build -f docker/Dockerfile-precompile
       --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
       --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
