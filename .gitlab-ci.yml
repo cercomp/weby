@@ -6,6 +6,7 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   DOCKER_TLS_CERTDIR: ""
   CI_PROJECT_ENV: ${CI_PROJECT_NAME}_${CI_COMMIT_BRANCH}
   CI_VERSION_ENV: "1.4.1"
+  CI_COMMIT_SHORT_SHA: $CI_COMMIT_SHORT_SHA
   RAILS_ENV: $RAILS_ENV
   SECRET_KEY_BASE: $SECRET_KEY_BASE
   STORAGE_BUCKET: $STORAGE_BUCKET
@@ -32,6 +33,9 @@ build-publish:
     ## DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 
     ##- docker compose --project-directory . -f docker/docker-compose.yml --env-file .env build
     - docker build -f docker/Dockerfile
+      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
+      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_VERSION_ENV
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
@@ -58,6 +62,7 @@ publish-with-precompile:
       --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
       --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_VERSION_ENV
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --build-arg STORAGE_BUCKET=$STORAGE_BUCKET
