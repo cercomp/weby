@@ -54,6 +54,7 @@ publish-with-precompile:
     - develop
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - echo $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile-precompile
       --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
