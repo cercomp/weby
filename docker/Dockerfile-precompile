@@ -4,7 +4,7 @@ ARG CI_PROJECT_ENV
 ARG CI_VERSION_ENV
 
 ## Only stage to precompile
-FROM ${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}
+FROM ${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV} as base
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
