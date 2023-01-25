@@ -35,7 +35,7 @@ build-publish:
     - docker build -f docker/Dockerfile
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
       --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
-      --build-arg CI_COMMIT_SHORT_SHA=$CI_VERSION_ENV
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
@@ -62,7 +62,7 @@ publish-with-precompile:
       --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
       --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
-      --build-arg CI_COMMIT_SHORT_SHA=$CI_VERSION_ENV
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --build-arg STORAGE_BUCKET=$STORAGE_BUCKET
