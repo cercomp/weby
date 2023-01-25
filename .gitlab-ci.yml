@@ -29,16 +29,15 @@ build-publish:
     - master
     - develop
   script:
-    - echo "OK"
     ## COMPOSE_DOCKER_CLI_BUILD=1 
     ##- docker compose --project-directory . -f docker/docker-compose.yml --env-file .env build
-    #- DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile
-    #  --build-arg RAILS_ENV=$RAILS_ENV
-    #  --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
-    #  --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
-    #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    #- docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-    #- docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+    - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile
+      --build-arg RAILS_ENV=$RAILS_ENV
+      --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
+      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
 
 publish-with-precompile:
   stage: publish-with-precompile
@@ -53,8 +52,8 @@ publish-with-precompile:
     - master
     - develop
   script:
+    - echo $CI_PROJECT_DIR
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - echo $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile-precompile
       --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
@@ -72,6 +71,6 @@ publish-with-precompile:
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     paths:
-      - /opt/weby/public/assets/
+      - ./*.json
   dependencies:
     - build-publish
