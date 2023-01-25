@@ -91,6 +91,9 @@
         <%= link_to(t(".help"), current_settings.help_site, target: '_blank') if current_settings.help_site %>
         <%= link_to t(".about"), 'http://weby.cercomp.ufg.br/pages/67630-sobre', target: '_blank' %>
       </p>
+      <% if current_user.is_admin? %>
+        <div class="menu-footnote"><%= "#{ENV['CI_PROJECT_ENV']}:#{ENV['CI_VERSION_ENV']} - #{ENV['CI_COMMIT_SHORT_SHA']}" %></div>
+      <% end %>
     </div>
     <%# NOTE: review here %>
     <%= yield :body_end %>
