@@ -38,6 +38,7 @@ build-publish:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+  when: manual
 
 publish-with-precompile:
   stage: publish-with-precompile
@@ -66,6 +67,4 @@ publish-with-precompile:
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-  dependencies:
-    - build-publish
   when: manual

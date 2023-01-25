@@ -43,7 +43,6 @@ RUN touch log/error.log
 RUN ln -sf /dev/stderr log/error.log
 
 # Copy files from first stage
-#COPY --from=base /opt/weby /opt/weby
 COPY . /opt/weby
 COPY --from=base /usr/local/bundle/ /usr/local/bundle/
 
