@@ -84,9 +84,9 @@ redeploy-rancher:
     - master
     - develop
   script:
-    - curl -u "c-m-gzh7mr9c:p-bxrnt" \
-      -X POST \
-      -H 'Accept: application/json' \
-      -H 'Content-Type: application/json' \
+    - curl -u "c-m-gzh7mr9c:p-bxrnt"
+      -X POST
+      -H 'Accept: application/json'
+      -H 'Content-Type: application/json'
       'https://rancher.cercomp.ufg.br/v3/project/c-m-gzh7mr9c:p-bxrnt/workloads/deployment:default:weby?action=redeploy'
   when: manual
