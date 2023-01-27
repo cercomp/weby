@@ -78,15 +78,15 @@ publish-with-precompile:
 redeploy-rancher:
   stage: redeploy-rancher
   image: docker
+  environment:
+    name: $CI_COMMIT_REF_NAME
   tags:
     - ssh
   only:
     - master
     - develop
   script:
-    - 'curl -u "c-m-gzh7mr9c:p-bxrnt"
-      -X POST
-      -H "Accept: application/json"
-      -H "Content-Type: application/json"
+    - 'curl -X POST -H "Content-Type: application/json"
+      --user "token-qcldd:wgh7c8nq6dd57hcsxp2w7t2cvw9hjswgnxqp47v4czcksbkdstpldl"
       "https://rancher.cercomp.ufg.br/v3/project/c-m-gzh7mr9c:p-bxrnt/workloads/deployment:default:weby?action=redeploy"'
   when: manual
