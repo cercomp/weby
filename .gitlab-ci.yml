@@ -15,8 +15,8 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   STORAGE_ACCESS_SECRET: $STORAGE_ACCESS_SECRET
   STORAGE_HOST: $STORAGE_HOST
 
-before_script:
-  - cp $ENV_FILE .env
+#before_script:
+  #- cp $ENV_FILE .env
 
 build-publish:
   stage: build-publish
