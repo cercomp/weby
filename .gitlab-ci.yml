@@ -87,7 +87,5 @@ redeploy-rancher:
     - develop
   script:
     - |
-    curl -X POST -H 'Content-Type: application/json' \
-    --user 'token-qcldd:wgh7c8nq6dd57hcsxp2w7t2cvw9hjswgnxqp47v4czcksbkdstpldl' \
-    'https://rancher.cercomp.ufg.br/v3/project/c-m-gzh7mr9c:p-bxrnt/workloads/deployment:default:weby?action=redeploy'
+    curl -X POST -H 'Content-Type: application/json' --user 'token-qcldd:wgh7c8nq6dd57hcsxp2w7t2cvw9hjswgnxqp47v4czcksbkdstpldl' 'https://rancher.cercomp.ufg.br/v3/project/c-m-gzh7mr9c:p-bxrnt/workloads/deployment:default:weby?action=redeploy'
   when: manual
