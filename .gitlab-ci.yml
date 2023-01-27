@@ -1,6 +1,7 @@
 stages:
   - build-publish
   - publish-with-precompile
+  - redeploy-rancher
 
 variables:  # https://docs.gitlab.com/ee/ci/variables/
   DOCKER_TLS_CERTDIR: ""
@@ -72,4 +73,20 @@ publish-with-precompile:
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+  when: manual
+
+redeploy-rancher:
+  stage: redeploy-rancher
+  image: docker
+  tags:
+    - ssh
+  only:
+    - master
+    - develop
+  script:
+    - curl -u "c-m-gzh7mr9c:p-bxrnt" \
+      -X POST \
+      -H 'Accept: application/json' \
+      -H 'Content-Type: application/json' \
+      'https://rancher.cercomp.ufg.br/v3/project/c-m-gzh7mr9c:p-bxrnt/workloads/deployment:default:weby?action=redeploy'
   when: manual
