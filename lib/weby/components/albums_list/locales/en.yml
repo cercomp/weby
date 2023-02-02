@@ -1,22 +1,21 @@
 en:
   components:
     albums_list:
-      name:                   " Albums gallery "
+      name:                   " Albums List "
   activerecord:
     attributes:
-      photo_slider_component:
-        photos:               " Photos "
-        width:                " Width "
-        height:               " Height "
-        timer:                " Transition time "
-        description:          " Show description? "
-        title:                " Title "
-        style:                " Style "
-        show_controls:        " Show controls? "
-  photo_slider:
+      albums_list_component:
+        quant:                " Number of albums "
+        label:                " Label "
+        tag_as_label:         " Tag as Label "
+        category_filter:      " Select albums with only these categories "
+        type_filter:          " Filter by album type "
+        html_class:           " HTML Class "
+        order_by:             " Order by "
+  albums_list:
     views:
       show:
       form:
-        add_photo:            " Add Photos "
-        timer_hint:           " In seconds "
-        control_hint:         " If this is checked, links for the next or previous photo will be visible under the slider "
+        position:             " Manual "
+        created_at:           " Date of creation "
+        updated_at:           " Date of update "

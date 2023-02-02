@@ -3,9 +3,9 @@
     <button type="button" class="close">✕</button>
   </div>
   <div class="photo-viewer-content">
-    <div class="ctrl ctrl-prev"><%= link_to('〈', site_album_album_photo_path(@photo.album, @photo.prev_photo), remote: true) if @photo.prev_photo %></div>
-    <div class="photo-viewer-photo"><%= image_tag @photo.image.url(:o) %></div>
-    <div class="ctrl ctrl-prev"><%= link_to('〉', site_album_album_photo_path(@photo.album, @photo.next_photo), remote: true) if @photo.next_photo %></div>
+    <div class="ctrl ctrl-prev"><%= link_to('〈', site_album_album_photo_path(@album_photo.album, @album_photo.prev_photo), remote: true) if @album_photo.prev_photo %></div>
+    <div class="photo-viewer-photo"><%= image_tag @album_photo.image.url(:o) %></div>
+    <div class="ctrl ctrl-prev"><%= link_to('〉', site_album_album_photo_path(@album_photo.album, @album_photo.next_photo), remote: true) if @album_photo.next_photo %></div>
   </div>
   <div class="photo-viewer-footer"></div>
 </div>

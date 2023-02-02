@@ -15,7 +15,7 @@ en:
           none_album:           " Nenhum Álbum "
           filter_begin:         " Filtro por data (inicial) "
           filter_end:           " data final "
-          album_tags:           " Categories "
+          album_tags:           " Album Types "
         show:
           pages:                " Páginas "
           event:                " Evento "
@@ -33,7 +33,7 @@ en:
           cover:                " Capa "
           title:                " Título "
           author:               " Autor "
-          tags:                 " Tags "
+          tags:                 " Types "
           categories:           " Categorias "
           created_at:           " Criado em "
           publish:              " Publicar "
@@ -43,6 +43,7 @@ en:
         form:
           image:                " Imagem da página "
           album_categories_help: " Categorias são separadas por vírgula, a categoria de um álbum é relacionada ao seu conteúdo. Ex: Esporte, Eventos, Inauguração "
+          album_tags_help:      " Types work like grouping of albums. Example: Graduation, Event "
           list_categories:      " Listar Categorias "
           categories:           " Categorias "
           save:                 " Salvar "

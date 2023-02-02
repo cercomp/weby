@@ -8,14 +8,24 @@ pt-BR:
         slug:               'Slug'
         publish:         "Publicado"
         category_list:   "Categorias"
-        album_tag_ids:     'Tags'
-        tag_list:          "Tags"
+        album_tag_ids:     'Tipos'
+        tag_list:          "Tipos"
         created_at:           " Criado em "
         legend:               " Legenda "
         site_id:              " Id do site "
         video_url:           "URL do video"
         updated_at:           " Atualizado em "
+        album_photos:  "Fotos"
       "album/i18ns":
         text:            "Texto"
         title:           "Título"
         _destroy:        "Remover"
+      extension:
+        show_author:     " Mostrar o autor da notícia "
+        show_created_at: " Mostrar a data de criação da notícia "
+    errors:
+      models:
+        album:
+          attributes:
+            album_photos:
+              too_long: " acima do limite (não é possível adicionar mais de %{count} fotos) "

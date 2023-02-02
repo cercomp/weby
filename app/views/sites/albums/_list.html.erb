@@ -7,6 +7,9 @@
           <div class="album-card" style="background-image: url('<%= album.get_cover_photo&.image&.url(:f) %>')">
             <%= link_to site_album_path(album) do %>
               <div class="title"><%= album.title %></div>
+              <% if @extension.show_author %>
+                <div class="info"><span class="author"><%= t("posted_by") %><%= album.user.name_or_login %></span></div>
+              <% end %>
               <div class="info"><%= t('.photos', count: album.photos_count.to_i) %></div>
               <div class="info"><%= t('.views', count: album.view_count.to_i) %></div>
             <% end %>
@@ -18,7 +21,7 @@
     <div class="empty-result"><%= t(".no_albums") %></div>
   <% end %>
 </div>
-<%= per_page_links @albums, false %>
+<%#= per_page_links @albums, false %>
 <%= paginate @albums, page_links: true %>
 
 <style>

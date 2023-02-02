@@ -187,6 +187,8 @@ class ApplicationController < ActionController::Base
 #                                user_agent: request.user_agent,
 #                                session_hash: request.session_options[:id])
       Page.increment_counter :view_count, @page.id if @page
+      Album.increment_counter :view_count, @album.id if @album
+      AlbumPhoto.increment_counter :view_count, @album_photo.id if @album_photo
       Site.increment_counter :view_count, current_site.id
       Journal::News.increment_counter :view_count, @news.id if @news && @news.is_a?(Journal::News)
       Calendar::Event.increment_counter :view_count, @event.id if @event

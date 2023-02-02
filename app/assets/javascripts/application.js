@@ -302,6 +302,7 @@ $(document).ready(function() {
       let t = e.target;
       t.value = t.value.replace(' ', '-');
       let badValues = /[^a-z-]/g;
+      if ($this.data('include-num')) badValues = /[^a-z0-9-]/g;
       t.value = t.value.replace(badValues, '');
     });
   });

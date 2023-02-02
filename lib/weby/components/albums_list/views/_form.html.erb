@@ -1,12 +1,18 @@
+<% include_component_javascript :javascripts, 'albums_list' %>
 <%= each_i18n_tab do |locale| %>
-  <%= f.component_i18n_input locale, :title, :as => :string %>
+  <%= f.component_i18n_input locale, :label, :as => :string %>
 <% end %>
-<%= f.input :style, :include_blank => false, :priority => [ ["FlexSlider",1] ], :collection => [ ["FlexSlider",1], ["LightBox",2]] %>
-<%= f.input :width %>
-<%= f.input :height %>
-<%= f.input :timer, as: :integer, hint: t(".timer_hint") %>
-<% f.input :description, wrapper: :checkbox, as: :boolean %>
-<%= f.input :show_controls, wrapper: :checkbox, as: :boolean, hint: t(".control_hint") %>
-<%= repository_search t(".add_photo"),
-  "photo_ids", "photo_slider_component[photo_ids][]", component.generate_vector_images,
-  multiple: true, file_types: 'image' %>
+
+<%= f.input :quant, as: :integer %>
+
+<%= f.input :category_filter, input_html: {id: 'categories-list', class: 'input-xlarge', data: {taglist: current_site.albums.uniq_category_counts.map{|t| t.name }}} %>
+
+<%= f.input :tag_as_label, wrapper: :checkbox, as: :boolean %>
+
+<%= f.input :type_filter, collection: current_site.album_tags.map{|t| [t.name, t.to_param] }, include_blank: true %>
+
+<%= f.input :order_by, collection: component.order_types.map{|order| [t(".#{order}"),order] },
+  priority: component.order_by,
+  include_blank: false %>
+
+<%= f.input :html_class, :input_html => {:pattern => '^[A-Za-z0-9_\-]*$'} %>

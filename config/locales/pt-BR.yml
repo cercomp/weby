@@ -157,6 +157,7 @@ pt-BR:
   slug_taken:                           " URL já existe "
   slug_ok:                              " URL disponível "
   slug_hint:                            " Utilize apenas letras minúsculas e hífen - "
+  slug_hint_num:                        " Utilize apenas letras minúsculas, números e hífen - "
 #---T---#
   theme_already_installed:              " Tema já adicionado "
 #---U---#

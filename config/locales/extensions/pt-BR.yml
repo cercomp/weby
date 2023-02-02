@@ -2,3 +2,16 @@ pt-BR:
   extensions:
     gallery:
       name: "Galeria de fotos"
+      admin:
+        form:
+          show_author: Mostrar autor do álbum
+          show_created_at: Mostrar data de criação do álbum
+          limit_photo_size: Limitar tamanho das fotos em 1MB
+          photos_limit: Limite de fotos por álbum
+          photos_limit_hint: Deixe em branco ou '0' para não definir um limite
+        target_pages:
+          title: Título
+          description: Descrição
+          albums: Álbuns
+          albums_desc: Listagem de todos os álbuns do site
+          albums_type: 'Álbuns do Tipo: %{type}'

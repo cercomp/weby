@@ -185,7 +185,7 @@
 }
 
 .news-show, .western {
-  iframe {
+  iframe:not(.instagram-media) {
     width: 100%;
     max-width: 560px;
     height: 314px;
@@ -358,7 +358,7 @@ ufg-eventos {
   font-family: 'Lato';
   background-color: var(--bg);
 
-  .news_list_container {
+  .news_list_container, .albums_list_container {
     width: 940px;
     margin: 0 auto;
     padding-bottom: 20px;
@@ -528,7 +528,7 @@ ufg-eventos {
       border-radius: 50%;
     }
 
-    .news-list, .events-list {
+    .news-list, .events-list, .albums-list {
       position: relative;
       margin-top: 20px;
 
@@ -848,7 +848,7 @@ ufg-eventos {
   margin: 0 auto;
 
   h2 {
-    width: 168px;
+    width: auto;
     height: 58px;
     font-family: Lato;
     font-size: 2.4em;

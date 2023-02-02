@@ -40,6 +40,7 @@ class AlbumPhoto < ApplicationRecord
 
   belongs_to :album
   belongs_to :user
+  has_one :site, through: :album
 
   after_save :refresh_photos_count
   after_destroy :refresh_photos_count
@@ -47,6 +48,7 @@ class AlbumPhoto < ApplicationRecord
 
   scope :cover, -> { where is_cover: true }
 
+  validates_attachment_size :image, less_than: proc {|item| item.get_current_file_size_limit }
   validates_attachment_presence :image,
                                 message: I18n.t('activerecord.errors.messages.attachment_presence'),
                                 on: :create
@@ -89,6 +91,15 @@ class AlbumPhoto < ApplicationRecord
 
   def next_photo
     album.album_photos.order(position: :asc).where('position > ?', position).first
+  end
+
+  def get_current_file_size_limit
+    lim = 107374182400
+    if album && album.site
+      _extension = album.site.extensions.find_by(name: 'gallery')
+      lim = 1048576 if _extension.limit_photo_size.to_i == 1
+    end
+    lim
   end
 
   private

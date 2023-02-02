@@ -1,57 +1,34 @@
 class AlbumsListComponent < Component
-  component_settings :photo_ids, :width, :height, :timer, :description, :style, :show_controls, :title
+  component_settings :quant, :tag_as_label, :which_date, :category_filter, :label,
+                     :type_filter, :show_tags, :order_by, :html_class
 
-  i18n_settings :title
+  i18n_settings :label
 
-  alias_method :_photo_ids, :photo_ids
-  def photo_ids
-    _photo_ids.blank? ? [] : _photo_ids
+  validates :quant, presence: true, numericality: { greater_than: 0 }
+  validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
+
+  def get_albums(site, page_param)
+    category_filter.blank? ? news(site, page_param) : news(site, page_param).tagged_with(category_filter.mb_chars.downcase.to_s, any: true)
   end
 
-  alias_method :_width, :width
-  def width
-    _width.blank? ? '400' : _width
+  def news(site, page_param)
+    direction = 'desc'
+    site.news_sites.available_fronts.published.joins(news: :site).where(sites: {status: 'active'})
+      .order("journal_news_sites.#{order_by} #{direction}").page(page_param).per(quant)
+  end
+  private :news
+
+  alias_method :_quant, :quant
+  def quant
+    _quant.blank? ? 5 : (_quant.to_i == 0 ? 1 : _quant.to_i)
   end
 
-  alias_method :_height, :height
-  def  height
-    _height.blank? ? '300' : _height
+  alias_method :_order_by, :order_by
+  def order_by
+    _order_by.blank? ? order_types[0].to_s : _order_by
   end
 
-  alias_method :_timer, :timer
-  def timer
-    _timer.blank? ? '7' : _timer
-  end
-
-  alias_method :_description, :description
-  def description
-    _description.nil? ? '1' : _description
-  end
-
-  def show_controls?
-    show_controls.blank? ? false : show_controls == '1'
-  end
-
-  alias_method :_style, :style
-  def style
-    _style.blank? ? '1' : _style
-  end
-
-  def generate_vector_images
-    [].tap do |images|
-      photo_ids.each do |image|
-        images << Repository.find_by(id: image)
-      end
-      images.compact!
-    end
-  end
-
-  def show_description?
-    _description.eql?('1')
-  end
-
-  def flex_slider_style?
-    flex_slider = '1'
-    _style.eql?(flex_slider)
+  def order_types
+    [:created_at, :updated_at] #:position, 
   end
 end

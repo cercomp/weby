@@ -15,7 +15,7 @@
             <li><a data-toggle="tab" href="#tab-weby"><%= t("target_dialog.common_pages") %></a></li>
             <% if extensions.any? %>
               <% extensions.each do |extension| %>
-                <% next if !lookup_context.exists?("target_pages", ["#{extension.name}/admin"], true) %>
+                <% next if !lookup_context.exists?("target_pages", ["#{extension.name}/admin", "extensions/#{extension.name}/admin"], true) %>
                 <li>
                   <a href="#tab-<%= extension.name %>" data-toggle="tab">
                     <%= t("extensions.#{extension.name}.name") %>
@@ -23,7 +23,7 @@
                 </li>
                 <% content_for :target_dialog_extensions do %>
                   <div class="tab-pane" id="tab-<%= extension.name %>">
-                    <%= render "#{extension.name}/admin/target_pages" %>
+                    <%= render_target_page extension.name %>
                   </div>
                 <% end %>
               <% end %>
