@@ -153,6 +153,7 @@ es:
   slug_taken:                           " URL ya existe "
   slug_ok:                              " URL disponible "
   slug_hint:                            " Use solo letras minúsculas y guión - "
+  slug_hint_num:                        " Use solo letras minúsculas, numerales y guión - "
 #---T---#
   theme_already_installed:              " Tema já adicionado "
 #---U---#

@@ -156,6 +156,7 @@ en:
   slug_taken:                           " URL already exists "
   slug_ok:                              " URL available "
   slug_hint:                            " Use only lowercase letters and dash - "
+  slug_hint_num:                        " Use only lowercase letters, numbers and dash - "
 #---T---#
   theme_already_installed:              " Theme already installed "
 #---U---#

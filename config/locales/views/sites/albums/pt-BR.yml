@@ -2,6 +2,7 @@ pt-BR:
   sites:
     albums:
       index:
+        albums: 'Álbuns'
         advanced:        " Opções Avançadas "
         match_search:    " Busca exata "
         and_search:      " Todas as palavras "

@@ -10,7 +10,19 @@ class Sites::Admin::AlbumsController < ApplicationController
   respond_to :html, :js, :json, :rss
 
   def index
-    @albums = current_site.albums.page(params[:page]).per(params[:per_page])
+    @albums = (params[:tag_filter].present? ? current_site.album_tags.find(params[:tag_filter]) : current_site).albums.
+      with_search(params[:search], 1).
+      order(sort_column + ' ' + sort_direction).
+      page(params[:page]).per(params[:per_page])
+
+    if params[:begin_at].present? || params[:end_at].present?
+      begin_at = Time.zone.parse(params[:begin_at].present? ? params[:begin_at] : '2000-01-01')
+      end_at = params[:end_at].present? ? Time.zone.parse(params[:end_at]) : Time.current
+      @albums = @albums.where("albums.created_at BETWEEN ? AND ?",
+        begin_at.beginning_of_day,
+        end_at.end_of_day)
+    end
+
     respond_with(:site_admin, @albums) do |format|
       if params[:template]
         format.js { render "#{params[:template]}" }

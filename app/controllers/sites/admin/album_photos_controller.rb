@@ -36,15 +36,16 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
   def create
     @album_photo = @album.album_photos.new(album_photo_params)
     @album_photo.user = current_user
-    if @album_photo.save
+    if @album.valid? && @album_photo.save
       render json: { photo_album: @album_photo,
-                      archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
+                      archive_errors: @album_photo.errors.messages, #.merge(@album_photo.image.errors)
                       html: render_to_string(partial: '/sites/admin/albums/photo_card', formats: [:html], locals: {photo: @album_photo}),
                       message: t('successfully_created')},
               content_type: check_accept_json
       #record_activity('uploaded_album_photo', @album_photo)
     else
-      render json: { errors: @album_photo.errors.full_messages }, status: 412,
+      _msg = (@album.valid? ? @album_photo : @album).errors.full_messages
+      render json: { errors:  _msg}, status: 412,
               content_type: check_accept_json
     end
   end
@@ -56,7 +57,7 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
       record_activity('updated_album_photo', @album_photo)
       render json: { photo_album: @album_photo,
                     html: render_to_string(partial: '/sites/admin/albums/photo_card', formats: [:html], locals: {photo: @album_photo}),
-                    archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
+                    archive_errors: @album_photo.errors.messages, #.merge(@album_photo.image.errors)
                     message: t('successfully_updated')},
         content_type: check_accept_json
     else
@@ -70,7 +71,7 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
     if @album_photo.destroy
       record_activity('deleted_album_photo', @album_photo)
       render json: { photo_album: @album_photo,
-                    archive_errors: @album_photo.errors.messages.merge(@album_photo.image.errors),
+                    archive_errors: @album_photo.errors.messages, #.merge(@album_photo.image.errors)
                     message: t('successfully_destroyed')},
             content_type: check_accept_json
     else

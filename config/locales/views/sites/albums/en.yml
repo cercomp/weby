@@ -2,6 +2,7 @@ en:
   sites:
     pages:
       index:
+        albums: Albums
         advanced:      " Advanced Options "
         match_search:  " Exact sentence "
         and_search:    " All the words "

@@ -14,7 +14,7 @@ class Sites::Admin::AlbumTagsController < ::ApplicationController
     @album_tag =  current_site.album_tags.find(params[:id])
     if @album_tag.update(album_tag_params)
       redirect_to(site_admin_album_tags_path,
-                  flash: { success: t('successfully_updated_param', param: t('album_tag')) })
+                  flash: { success: t('successfully_updated_param', param: @album_tag.name) })
     else
       render action: 'edit'
     end
@@ -26,6 +26,7 @@ class Sites::Admin::AlbumTagsController < ::ApplicationController
 
   def create
     @album_tag = current_site.album_tags.new(album_tag_params)
+    @album_tag.user = current_user
     if @album_tag.save
       redirect_to site_admin_album_tags_path
     else

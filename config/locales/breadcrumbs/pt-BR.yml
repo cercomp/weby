@@ -18,9 +18,9 @@ pt-BR:
     choose_theme: " Selecionar Tema "
 
     albums: 'Álbuns'
-    album_tags: 'Categorias'
+    album_tags: 'Tipos de Álbum'
     new_album: 'Novo Álbum'
-    new_album_tag: 'Nova Categoria'
+    new_album_tag: 'Novo Tipo de Álbum'
 
     #component
     components:  " Componentes "

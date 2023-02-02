@@ -1,0 +1,19 @@
+<table class="list table table-striped">
+  <thead>
+    <tr><th><%= t('.title') %></th>
+    <th><%= t('.description') %></th>
+  </tr></thead>
+  <tbody>
+    <tr data-title="root" data-url="<%= site_albums_path %>" class="cursor highlight target-item">
+    <td><%= t('.albums') %></td>
+    <td><%= t('.albums_desc') %></td>
+    </tr>
+    <% current_site.album_tags.each do |album_tag| %>
+      <tr data-title="root" data-url="<%= site_albums_path(tag_filter: album_tag) %>" class="cursor highlight target-item">
+      <td><%= t('.albums_type', type: album_tag.name) %></td>
+      <td><%= album_tag.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

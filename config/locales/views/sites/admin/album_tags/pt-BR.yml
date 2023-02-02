@@ -9,8 +9,8 @@ pt-BR:
           title:                " Editar Álbum "
           albums:               " Álbuns "
         index:
-          new_album_tag:        " Nova Categoria "
-          albums:               " Albuns "
+          new_album_tag:        " Novo Tipo de Álbum "
+          albums:               " Álbuns "
         photos:
           albums:               " Álbuns "
           add_photos:           ' Adicionar fotos'
@@ -21,6 +21,7 @@ pt-BR:
         list:
           name:                 " Nome "
           description:          " Descrição "
+          none_album_tag:       " Nenhum Tipo de álbum cadastrado"
         form:
           image:                " Imagem da página "
           date_begin_hint:      " A página será listada no site somente a partir desta data "

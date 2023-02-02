@@ -9,7 +9,7 @@ en:
         publish:         "Published"
         created_at:           " Created at "
         category_list:   "Categories"
-        album_tag_ids:     'Tags'
+        album_tag_ids:     'Types'
         site_id:              " Site id "
         updated_at:           " Updated at "
       "album/i18ns":

@@ -4,7 +4,7 @@ class Sites::AlbumsController < ApplicationController
   layout :choose_layout
 
   helper_method :sort_column
-  before_action :check_current_site
+  before_action :check_current_site, :load_extension
   before_action :find_album, only: :show
 
   respond_to :html, :js, :json
@@ -39,6 +39,10 @@ class Sites::AlbumsController < ApplicationController
       with_search(params[:search], params.fetch(:search_type, 1).to_i).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
+  end
+
+  def load_extension
+    @extension = current_site.extensions.find_by(name: 'gallery')
   end
 
   def check_current_site

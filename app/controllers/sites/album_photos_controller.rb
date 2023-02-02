@@ -7,7 +7,7 @@ class Sites::AlbumPhotosController < ApplicationController
 
   def show
     raise ActiveRecord::RecordNotFound if !@album.publish && @album.user != current_user
-    @photo = @album.album_photos.find(params[:id])
+    @album_photo = @album.album_photos.find(params[:id])
   end
 
 end

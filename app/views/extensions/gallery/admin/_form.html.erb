@@ -1,6 +1,9 @@
 <%= simple_form_for [:site_admin, @extension], html: {class: 'form-horizontal'} do |f| %>
 
-  <%= f.input :photos_limit, as: :integer %>
+  <%= f.input :show_author, wrapper: :checkbox, as: :boolean, label: t('.show_author') %>
+  <%= f.input :show_created_at, wrapper: :checkbox, as: :boolean, label: t('.show_created_at') %>
+  <%= f.input :limit_photo_size, wrapper: :checkbox, as: :boolean, label: t('.limit_photo_size') %>
+  <%= f.input :photos_limit, as: :integer, label: t('.photos_limit'), hint: t('.photos_limit_hint') %>
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>

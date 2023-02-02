@@ -3,6 +3,16 @@
     <div class="overlay"></div>
     <div class="cover-content">
       <h1><%= @album.title %></h1>
+      <% if @extension.show_author || @extension.show_created_at %>
+        <div class="info">
+          <% if @extension.show_author %>
+            <span class="author"><%= t("posted_by") %><%= @album.user.name_or_login %></span>
+          <% end %>
+          <% if @extension.show_created_at %>
+            <span class="date"><%= t("posted_on") %><%= localize @album.created_at, format: :short %></span>
+          <% end %>
+        </div>
+      <% end %>
       <div class="album-desc"><%= @album.text&.html_safe %></div>
       <div class="info"><%= t('.photos', count: @album.photos_count.to_i) %></div>
       <div class="info"><%= t('.views', count: @album.view_count.to_i) %></div>

@@ -14,6 +14,8 @@ class Album < ApplicationRecord
 
   before_create :generate_slug
 
+  validates :album_photos, length: {maximum: :max_photos}
+
   accepts_nested_attributes_for :cover_photo, reject_if: proc { |attributes| attributes["image"].blank? }
 
   scope :published, -> { where(publish: true) }
@@ -60,4 +62,16 @@ class Album < ApplicationRecord
       .references(:user, :i18ns)
     end
   }
+
+  private
+
+  def max_photos
+    if site
+      _extension = site.extensions.find_by(name: 'gallery')
+      _limit = _extension&.photos_limit&.to_i
+      _limit > 0 ? _limit : 999999999
+    else
+      999999999
+    end
+  end
 end

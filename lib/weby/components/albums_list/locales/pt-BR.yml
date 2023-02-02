@@ -1,22 +1,21 @@
 pt-BR:
   components:
     albums_list:
-      name:                   " Galeria de álbuns "
+      name:                   " Lista de Álbuns "
   activerecord:
     attributes:
-      photo_slider_component:
-        photos:               " Fotos "
-        width:                " Largura "
-        height:               " Altura "
-        timer:                " Tempo de transição "
-        description:          " Mostrar descrição? "
-        title:                " Título "
-        style:                " Estilo "
-        show_controls:        " Mostrar controles? "
-  photo_slider:
+      albums_list_component:
+        quant:              " Quantidade de álbuns exibidos "
+        label:                " Título "
+        category_filter:      " Selecionar apenas álbuns com as categorias "
+        tag_as_label:         " Exibir primeira categoria como título "
+        type_filter:          " Filtrar por tipo de álbum "
+        order_by:             " Ordenação "
+        html_class:           " Classe HTML "
+  albums_list:
     views:
       show:
       form:
-        add_photo:            " Adicionar Fotos "
-        timer_hint:           " Em segundos "
-        control_hint:         " Se estiver marcado, links para ir para a próxima foto ou a anterior serão exibidos abaixo do slider "
+        position:             " Manual "
+        created_at:           " Data de criação "
+        updated_at:           " Data de atualização "

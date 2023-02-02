@@ -14,6 +14,7 @@ en:
         list:
           name:                 " Name "
           description:          " Description "
+          none_album_tag:       " No Album Type found"
         form:
           image:                " Imagem da página "
           album_categories_help: " Categorias são separadas por vírgula, a categoria de um álbum é relacionada ao seu conteúdo. Ex: Esporte, Eventos, Inauguração "

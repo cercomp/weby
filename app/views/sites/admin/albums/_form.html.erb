@@ -3,7 +3,7 @@
 
   <%= f.simple_fields_for(:cover_photo) do |g| %>
     <%= g.input :id, as: :hidden %>
-    <%= g.input :image, as: :file, label: t('.cover'), input_html: {accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
+    <%= g.input :image, as: :file, label: "<abbr title=\"obrigatório\">*</abbr> #{t('.cover')}".html_safe, label_html: {class: 'required'}, input_html: {accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
 
     <div class="album-photo" style="width: 150px">
       <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label') %>
@@ -21,18 +21,18 @@
     <div class="input-group-addon">
       <%= "#{site_url}#{get_route_path(:site_album)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>
     </div>
-    <%= f.input_field :slug, as: :string, data: {check_slug: '', id: @album.id, url: check_slug_site_albums_path}, pattern: '^[a-z](-?[a-z])*$' %>
+    <%= f.input_field :slug, as: :string, data: {check_slug: '', include_num: true, id: @album.id, url: check_slug_site_albums_path}, pattern: '^[a-z](-?[a-z0-9])*$' %>
   <% end %>
-  <span class="help-block"><%= t('slug_hint') %></span>
+  <span class="help-block"><%= t('slug_hint_num') %></span>
 
   <%= f.input :publish, wrapper_html: { class: "side" },
     as: :boolean,
     input_html: { class: "check-button" },
     wrapper: :checkbox %>
 
-  <%= f.input :category_list, hint: t(".album_categories_help"), input_html: {value: f.object.category_list.to_s, class: 'input-xlarge input-category', data: {taglist: Album.uniq_category_counts.map{|t| t.name }}} %>
+  <%= f.input :album_tag_ids, collection: current_site.album_tags.map{|t| [t.name, t.id] }, input_html: {class: 'input-xlarge input-tags', multiple: true} %>
 
-  <%= f.input :album_tag_ids, collection: current_site.album_tags.map{|t| [t.name, t.id] }, hint: t(".album_tags_help"), input_html: {class: 'input-xlarge input-tags', multiple: true} %>
+  <%= f.input :category_list, hint: t(".album_categories_help"), input_html: {value: f.object.category_list.to_s, class: 'input-xlarge input-category', data: {taglist: Album.uniq_category_counts.map{|t| t.name }}} %>
 
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
