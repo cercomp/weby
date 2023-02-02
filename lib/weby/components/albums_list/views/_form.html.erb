@@ -1,3 +1,4 @@
+<% include_component_javascript :javascripts, 'albums_list' %>
 <%= each_i18n_tab do |locale| %>
   <%= f.component_i18n_input locale, :label, :as => :string %>
 <% end %>
@@ -8,7 +9,7 @@
 
 <%= f.input :tag_as_label, wrapper: :checkbox, as: :boolean %>
 
-<%= f.input :type_filter, input_html: {id: 'tags-list', class: 'input-xlarge', data: {taglist: current_site.album_tags.map{|t| [t.name, t.id] }}} %>
+<%= f.input :type_filter, collection: current_site.album_tags.map{|t| [t.name, t.to_param] }, include_blank: true %>
 
 <%= f.input :order_by, collection: component.order_types.map{|order| [t(".#{order}"),order] },
   priority: component.order_by,

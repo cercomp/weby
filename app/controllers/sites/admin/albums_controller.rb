@@ -10,7 +10,7 @@ class Sites::Admin::AlbumsController < ApplicationController
   respond_to :html, :js, :json, :rss
 
   def index
-    @albums = (params[:tag_filter].present? ? current_site.album_tags.find(params[:tag_filter]) : current_site).albums.
+    @albums = (params[:album_tag].present? ? current_site.album_tags.find(params[:album_tag]) : current_site).albums.
       with_search(params[:search], 1).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])

@@ -8,7 +8,7 @@ class AlbumsListComponent < Component
   validates :html_class, format: { with: /\A[A-Za-z0-9_\-]*\z/ }
 
   def get_albums(site, page_param)
-    filter_by.blank? ? news(site, page_param) : news(site, page_param).tagged_with(filter_by.mb_chars.downcase.to_s, any: true)
+    category_filter.blank? ? news(site, page_param) : news(site, page_param).tagged_with(category_filter.mb_chars.downcase.to_s, any: true)
   end
 
   def news(site, page_param)

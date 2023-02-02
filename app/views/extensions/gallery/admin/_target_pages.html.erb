@@ -9,7 +9,7 @@
     <td><%= t('.albums_desc') %></td>
     </tr>
     <% current_site.album_tags.each do |album_tag| %>
-      <tr data-title="root" data-url="<%= site_albums_path(tag_filter: album_tag) %>" class="cursor highlight target-item">
+      <tr data-title="root" data-url="<%= site_albums_path(album_tag: album_tag) %>" class="cursor highlight target-item">
       <td><%= t('.albums_type', type: album_tag.name) %></td>
       <td><%= album_tag.description %></td>
       </tr>

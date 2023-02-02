@@ -6,8 +6,8 @@
       <%= search_input params[:search] %>
     </div>
     <div class="col-md-3">
-      <%= select_tag "tag_filter",
-          options_for_select(current_site.album_tags.map{|t| [t.name, t.id] }, params[:tag_filter]),
+      <%= select_tag "album_tag",
+          options_for_select(current_site.album_tags.map{|t| [t.name, t.id] }, params[:album_tag]),
           include_blank: true,
           style: 'vertical-align: top;',
           class: 'select2 search-filter form-control' %>

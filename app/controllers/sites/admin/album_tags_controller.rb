@@ -1,17 +1,16 @@
 class Sites::Admin::AlbumTagsController < ::ApplicationController
   before_action :require_user
   before_action :check_authorization
+  before_action :find_album_tag, only: [:edit, :update, :destroy, :show]
 
   def index
     @album_tags = current_site.album_tags
   end
 
   def edit
-    @album_tag =  current_site.album_tags.find(params[:id])
   end
 
   def update
-    @album_tag =  current_site.album_tags.find(params[:id])
     if @album_tag.update(album_tag_params)
       redirect_to(site_admin_album_tags_path,
                   flash: { success: t('successfully_updated_param', param: @album_tag.name) })
@@ -35,12 +34,20 @@ class Sites::Admin::AlbumTagsController < ::ApplicationController
   end
 
   def destroy
-    current_site.album_tags.find(params[:id]).destroy
+    @album_tag.destroy
 
     redirect_to site_admin_album_tags_path
   end
 
   private
+
+  def find_album_tag
+    @album_tag = if params[:id].match(/^\d+$/)
+      current_site.album_tags.find(params[:id])
+    else
+      current_site.album_tags.find_by(slug: params[:id])
+    end
+  end
 
   def album_tag_params
     params.require(:album_tag).permit(:name, :description)
