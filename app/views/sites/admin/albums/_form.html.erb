@@ -1,3 +1,14 @@
+<ul class="nav nav-tabs" id="album-form-tab">
+  <li class="active">
+    <%= link_to t('.album_info'), '#' %>
+  </li>
+  <li class="<%= 'disabled' if !@album.persisted? %>" title="<%= t('.save_first') if !@album.persisted? %>">
+    <%= link_to (@album.persisted? ? photos_site_admin_album_path(@album): '#'), disabled: !@album.persisted? do %>
+      <span><%= "#{t('.edit_photos')}#{" [#{@album.album_photos.size}]" if @album.persisted?}" %></span>
+    <% end %>
+  </li>
+</ul>
+
 <%= simple_form_for [:site_admin, @album] do |f| %>
   <%= f.show_errors %>
 
@@ -52,13 +63,8 @@
     </div>
   </div>
 
-  <% if @album.persisted? %>
-    <%= link_to t('.edit_photos'), photos_site_admin_album_path(@album), class: 'btn btn-info' %>
-    <span style="margin-left: 8px"><%= @album.album_photos.size %> <%= t('.photos') %></span>
-  <% end %>
-
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
+    <%= f.button :submit, @album.persisted? ? t('save') :  t('next'), class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>

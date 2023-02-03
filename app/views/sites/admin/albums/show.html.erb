@@ -2,17 +2,37 @@
 <% breadcrumb :albums_show, @album %>
 <%= raw available_flags(@album) if @album.locales.many? %>
 <h1><%= @album.title %></h1>
-
+<div class="album-photo" style="width: 150px">
+  <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label') %>
+  <div class="cover-preview"><%= image_tag @album.cover_photo.image.url(:t), class: 'preview' if @album.cover_photo.image.present? %></div>
+</div>
+<p>
+  <%= @album.album_tags.map(&:name).join(', ') %>
+</p>
 <p class="page-details details">
   <div class="author"><%= t(".authored", author: @album.user, created_at: l(@album.created_at, format: :short)) %></div>
   <% if @album.updated_at != @album.created_at %>
     <div class="date"><%= t(".updated_at", updated_at: l(@album.real_updated_at, format: :short)) %></div>
   <% end %>
 </p>
+<p>
+  <% @album.category_list.each do |category| %>
+    <span class="label label-info"><%= category %></span>
+  <% end %>
+</p>
+<p>
+  <b> <%= t(".publish") %>: </b> <%= t(@album.publish ? 'yes' : 'no') %>
+</p>
+<p>
+  <b><%= @album.view_count.to_i %></b> views
+</p>
+<p>
+  <b><%= @album.photos_count.to_i %></b> fotos
+</p>
 
 <div class="form-actions">
   <%= link_to icon('eye-open', text: t('show')), site_album_path(@album) if @album.publish || @album.user_id == current_user.id %>
-  <%= make_menu(@album, :except => "show") %>
+  <%= make_menu(@album, :except => "show", delete_confirm: t('sites.admin.albums.list.confirm_destroy', album: @album.screen_name)) %>
   <%= link_to icon('list', text: t(".list_all")), site_admin_albums_path %>
   <%= link_to icon('chevron-left', text: t("back")), :back %>
 </div>

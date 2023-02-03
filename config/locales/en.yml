@@ -107,6 +107,7 @@ en:
   need_login:                           " You need to be logged in to access this page. "
   need_at_least_one_i18n:               " Needs content in at least one language "
   none_user:                            " None User "
+  next:                                 Next
 #---O---#
   ok:                                   " OK "
   of:                                   " of "
