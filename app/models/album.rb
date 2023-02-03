@@ -68,7 +68,7 @@ class Album < ApplicationRecord
   def max_photos
     if site
       _extension = site.extensions.find_by(name: 'gallery')
-      _limit = _extension&.photos_limit&.to_i
+      _limit = _extension&.photos_limit.to_i
       _limit > 0 ? _limit : 999999999
     else
       999999999

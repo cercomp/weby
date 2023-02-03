@@ -29,10 +29,15 @@ pt-BR:
           updated_at:           " Atualizada em %{updated_at} "
           archive_fingerprint:  " Assinatura digital do arquivo "
           related_files:        " Arquivos Relacionados "
+          cover:                ' Capa '
+          publish:              Publicado
         photos:
           albums:               " Álbuns "
           add_photos:           ' Adicionar fotos'
           upload:               ' Fazer upload '
+          edit_photos:          " Fotos "
+          album_info:           " Informações do álbum"
+          finish:               " Concluir "
         photo_card:
           cover:                " Capa "
           make_cover:           ' Tornar capa '
@@ -47,6 +52,7 @@ pt-BR:
           views:                " Views "
           photos:               " Fotos "
           type:                 " Tipo "
+          confirm_destroy:      " Tem certeza que deseja excluir o álbum '%{album}'? Todas as fotos serão removidas e essa ação não pode ser desfeita"
         form:
           image:                " Imagem da página "
           date_begin_hint:      " A página será listada no site somente a partir desta data "
@@ -56,7 +62,9 @@ pt-BR:
           album_tags_help:      " Tipos funcionam como agrupamentos de álbuns. Ex: Colação, Evento "
           list_categories:      " Listar Categorias "
           categories:           " Categorias "
-          edit_photos:          " Fotos do Álbum"
+          edit_photos:          " Fotos "
           photos:               " fotos "
           cover:                " Capa "
           save:                 " Salvar "
+          album_info:           " Informações do álbum"
+          save_first:           " Preencha as informações do álbum "
