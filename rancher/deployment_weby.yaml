@@ -20,7 +20,7 @@ spec:
         - secretRef:
             name: weby
             optional: false
-        image: registry.cercomp.ufg.br/sysadmin/weby/weby_develop:1.4.2
+        image: registry.cercomp.ufg.br/sysadmin/weby/weby_develop:latest
         imagePullPolicy: Always
         name: weby
         ports:
