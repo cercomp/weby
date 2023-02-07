@@ -18,6 +18,14 @@ en:
           other: "%{count} views"
         read_more:     " Read more "
         no_albums:      " No albums were found "
+      show:
+        photos:
+          one: "1 photo"
+          other: "%{count} photos"
+        views:
+          one: "1 view"
+          other: "%{count} views"
+        show_more: Show more
       related_files:
         related_files: " Related files "
         size:          " Size "

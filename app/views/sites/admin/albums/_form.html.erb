@@ -45,27 +45,26 @@
 
   <%= f.input :category_list, hint: t(".album_categories_help"), input_html: {value: f.object.category_list.to_s, class: 'input-xlarge input-category', data: {taglist: Album.uniq_category_counts.map{|t| t.name }}} %>
 
+  <% is_expanded = @album.video_url.present? || @album.text.present? %>
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingOne">
         <div class="panel-title">
-          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <%= t 'advanced_options' %>
-          </a>
+          <%= link_to t('advanced_options'), '#collapseTwo', role: :button, class: ('collapsed' if !is_expanded), data: {toggle: 'collapse', parent: '#accordion'}, aria: {expanded: is_expanded, controls: 'collapseTwo'} %>
         </div>
       </div>
-      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <%= content_tag :div, id: 'collapseTwo', class: ['panel-collapse', 'collapse', ('in' if is_expanded)], role: 'tabpanel', aria: {labelledby: 'headingTwo', expanded: is_expanded} do %>
         <div class="panel-body">
           <%= f.input :video_url %>
           <%= render('translates_text', f: f) %>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, @album.persisted? ? t('save') :  t('next'), class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("back"), :back, class: "btn btn-default" %>
+    <%= link_to t("back"), site_admin_albums_path, class: "btn btn-default" %>
   </div>
 <% end %>
 

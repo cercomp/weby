@@ -152,6 +152,30 @@ img.flag {
 
   .cover-content {
     z-index: 1;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .album-desc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .show-more-link {
+    text-decoration: none;
+    color: #898989;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 18px;
+    &:hover {
+      color: #f9f9f9;
+      text-decoration: underline;
+    }
+  }
+
+  .embed-ifr {
+    max-width: 100%;
   }
 }
 

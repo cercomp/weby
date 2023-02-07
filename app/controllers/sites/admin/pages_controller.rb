@@ -64,8 +64,9 @@ class Sites::Admin::PagesController < ApplicationController
   def create
     @page = current_site.pages.new(page_params)
     @page.user = current_user
-    @page.save
-    record_activity('created_page', @page)
+    if @page.save
+      record_activity('created_page', @page)
+    end
     respond_with(:site_admin, @page)
   end
 
@@ -73,8 +74,9 @@ class Sites::Admin::PagesController < ApplicationController
   # PUT /pages/1.json
   def update
     params[:page][:related_file_ids] ||= []
-    @page.update(page_params)
-    record_activity('updated_page', @page)
+    if @page.update(page_params)
+      record_activity('updated_page', @page)
+    end
     respond_with(:site_admin, @page)
   end
 
