@@ -1,34 +1,42 @@
-## First stage (base)
-FROM ruby:2.7.5 AS base
-
-RUN apt-get clean && apt-get update && apt-get upgrade -y
-RUN apt-get install -y git imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils nodejs
-
+## Variables
+ARG CI_REGISTRY_IMAGE
 ARG CI_PROJECT_ENV
 ARG CI_VERSION_ENV
-ARG CI_COMMIT_SHORT_SHA
-ARG RAILS_ENV
-ARG SECRET_KEY_BASE
 
-ENV CI_PROJECT_ENV $CI_PROJECT_ENV
-ENV CI_VERSION_ENV $CI_VERSION_ENV
-ENV CI_COMMIT_SHORT_SHA $CI_COMMIT_SHORT_SHA
-ENV RAILS_ENV $RAILS_ENV
-ENV SECRET_KEY_BASE $SECRET_KEY_BASE
+## Only stage to precompile
+FROM ${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV} as base
+
+MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
 COPY . /opt/weby
 WORKDIR /opt/weby
 
-# Files to logs and tmp
-RUN mkdir tmp
-RUN mkdir log
-RUN touch log/error.log
-RUN ln -sf /dev/stderr log/error.log
+ARG RAILS_ENV
+ARG SECRET_KEY_BASE
+ARG STORAGE_BUCKET
+ARG STORAGE_ACCESS_KEY
+ARG STORAGE_ACCESS_SECRET
+ARG STORAGE_HOST
 
-# Install bundler, dependency resolver
-RUN gem install bundler
-# Bundle install
-RUN bundle install --jobs 4 --retry 3
+ENV RAILS_ENV $RAILS_ENV
+ENV SECRET_KEY_BASE $SECRET_KEY_BASE
+ENV STORAGE_BUCKET $STORAGE_BUCKET
+ENV STORAGE_ACCESS_KEY $STORAGE_ACCESS_KEY
+ENV STORAGE_ACCESS_SECRET $STORAGE_ACCESS_SECRET
+ENV STORAGE_HOST $STORAGE_HOST
+
+# Move file to not acess db
+RUN mv config/initializers/email.rb config/
+# Assets precompile
+RUN bundle exec rake assets:precompile --trace
+RUN bundle exec rake assets:clean
+# Cleanup
+RUN cp public/assets/.sprockets-manifest-*.json .
+RUN bundle exec rake assets:clobber
+RUN mkdir public/assets
+RUN cp .sprockets-manifest-*.json public/assets/
+# Init before system up
+RUN mv config/email.rb config/initializers/
 
 ## Second stage (publish)
 FROM ruby:2.7.5-slim-bullseye
@@ -61,6 +69,7 @@ RUN ln -sf /dev/stderr log/error.log
 # Copy files from first stage
 COPY . /opt/weby
 COPY --from=base /usr/local/bundle/ /usr/local/bundle/
+COPY --from=base /opt/weby/public/assets/ /opt/weby/public/assets/
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
