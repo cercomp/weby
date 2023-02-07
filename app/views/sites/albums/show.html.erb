@@ -3,6 +3,14 @@
     <div class="overlay"></div>
     <div class="cover-content">
       <h1><%= @album.title %></h1>
+      <div class="album-desc">
+        <%= render_user_content(strip_tags(@album.text.to_s)[0..255]) %>
+      </div>
+      <div><%= link_to t('.show_more'), '#', class: 'show-more-link' %></div>
+      <% if @album.video_url.present? %>
+        <iframe class="embed-ifr" width="640" height="360" src="<%= @album.embed_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <% end %>
+      <div class="info"><%= t('.photos', count: @album.photos_count.to_i) %> · <%= t('.views', count: @album.view_count.to_i) %></div>
       <% if @extension.show_author || @extension.show_created_at %>
         <div class="info">
           <% if @extension.show_author %>
@@ -13,9 +21,6 @@
           <% end %>
         </div>
       <% end %>
-      <div class="album-desc"><%= @album.text&.html_safe %></div>
-      <div class="info"><%= t('.photos', count: @album.photos_count.to_i) %></div>
-      <div class="info"><%= t('.views', count: @album.view_count.to_i) %></div>
     </div>
   </div>
 

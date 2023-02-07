@@ -50,8 +50,6 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
     end
   end
 
-  # PUT /pages/1
-  # PUT /pages/1.json
   def update
     if (params[:make_cover] ? @album_photo.make_cover! : @album_photo.update(album_photo_params))
       record_activity('updated_album_photo', @album_photo)

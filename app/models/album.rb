@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
   include HasCategories
+  include HasYoutubeUrl
   include HasSlug
 
   weby_content_i18n :title, :text, required: :title

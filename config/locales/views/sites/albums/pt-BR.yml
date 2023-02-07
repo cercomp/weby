@@ -25,6 +25,7 @@ pt-BR:
         views:
           one: "1 visualização"
           other: "%{count} visualizações"
+        show_more: Mostrar mais
       related_files:
         related_files: " Arquivos relacionados "
         size:          " Tamanho "
