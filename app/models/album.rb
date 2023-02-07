@@ -8,7 +8,7 @@ class Album < ApplicationRecord
   belongs_to :site
   belongs_to :user
 
-  has_one :cover_photo, -> { AlbumPhoto.cover }, class_name: 'AlbumPhoto'
+  has_one :cover_photo, -> { AlbumPhoto.cover }, class_name: 'AlbumPhoto', inverse_of: :album
 
   has_many :album_photos, dependent: :destroy
   has_and_belongs_to_many :album_tags
