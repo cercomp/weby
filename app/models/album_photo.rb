@@ -38,7 +38,7 @@ class AlbumPhoto < ApplicationRecord
 
   has_attached_file :image, attach_options
 
-  belongs_to :album
+  belongs_to :album, inverse_of: :cover_photo
   belongs_to :user
   has_one :site, through: :album
 
