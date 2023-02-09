@@ -10,6 +10,6 @@ data:
 kind: ConfigMap
 metadata:
   labels:
-    app: weby
-  name: weby
+    app: weby_develop
+  name: weby_develop
   namespace: default

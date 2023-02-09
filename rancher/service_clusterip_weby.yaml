@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: weby
+  name: weby_develop
   namespace: default
 spec:
   ipFamilies:
@@ -12,5 +12,5 @@ spec:
     protocol: TCP
     targetPort: 3000
   selector:
-    app: weby
+    app: weby_develop
   type: ClusterIP
