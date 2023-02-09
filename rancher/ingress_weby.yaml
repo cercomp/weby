@@ -2,14 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app: weby_develop
-  name: weby_develop
+    app: weby-develop
+  name: weby-develop
   namespace: default
 spec:
   ingressClassName: nginx
   defaultBackend:
     service:
-      name: weby_develop
+      name: weby-develop
       port:
         number: 3000
   rules:
@@ -18,7 +18,7 @@ spec:
       paths:
       - backend:
           service:
-            name: weby_develop
+            name: weby-develop
             port:
               number: 3000
         path: /
@@ -28,7 +28,7 @@ spec:
       paths:
       - backend:
           service:
-            name: weby_develop
+            name: weby-develop
             port:
               number: 3000
         path: /
