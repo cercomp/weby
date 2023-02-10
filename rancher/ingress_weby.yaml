@@ -37,3 +37,13 @@ spec:
               number: 3000
         path: /
         pathType: ImplementationSpecific
+  - host: '*.weby.ufg.br'
+    http:
+      paths:
+      - backend:
+          service:
+            name: weby-develop
+            port:
+              number: 3000
+        path: /
+        pathType: ImplementationSpecific
