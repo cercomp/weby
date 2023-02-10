@@ -16,6 +16,7 @@ en:
           covers:               " Covers "
           newsletter:           " Newsletter "
           settings:             " Settings "
+          filter_placeholder:   " Filter by status "
         show:
           news:                 " News "
           period_page:          " Published period "

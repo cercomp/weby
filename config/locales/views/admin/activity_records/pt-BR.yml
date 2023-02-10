@@ -85,6 +85,12 @@ pt-BR:
         theme_applied:              " aplicou um tema "
         theme_reseted:              " restaurou o tema "
         layout_settings_updated:    " atualizou configurações do tema "
+# album
+        updated_album_photo:        " atualizou uma foto do álbum "
+        deleted_album_photo:        " excluiu uma foto do álbum "
+        created_album:              " criou um álbum "
+        updated_album:              " atualizou um álbum "
+        destroyed_album:            " excluiu um álbum "
       show:
         id:                         " ID "
         user:                       " Usuário "

@@ -27,7 +27,8 @@
           options_for_select(@status_types, params[:status_filter]),
           include_blank: true,
           style: 'vertical-align: top;',
-          class: 'select2 search-filter form-control' %>
+          class: 'select2 search-filter form-control',
+          placeholder: t('.filter_placeholder') %>
     </div>
     <div class="col-md-5">
       <div class="pull-right">

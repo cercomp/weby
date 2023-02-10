@@ -76,8 +76,9 @@ img.flag {
   //width: 280px;
   height: 280px;
   position: relative;
+  overflow: hidden;
 
-  a {
+  a.album-link {
     display: flex;
     /* align-items: flex-end; */
     flex-direction: column;
@@ -112,8 +113,37 @@ img.flag {
     }
   }
 
+  .download-link {
+    color: #F4F4F4;
+    font-size: 26px;
+    display: inline-block;
+  }
+
   .info {
     font-size: 15px;
+  }
+
+  .title, .info {
+    position: relative;
+    transition: .3s;
+    top: 0;
+  }
+
+  .interaction-bar {
+    transition: .2s;
+    text-align: center;
+    position: relative;
+    padding: 6px;
+    top: 0;
+  }
+
+  &:hover {
+    .interaction-bar {
+      top: -50px;
+    }
+    .title, .info {
+      top: -35px
+    }
   }
 }
 
@@ -176,6 +206,13 @@ img.flag {
 
   .embed-ifr {
     max-width: 100%;
+  }
+
+  .download-link {
+    color: inherit;
+    font-size: 32px;
+    margin-top: 12px;
+    display: inline-block;
   }
 }
 
