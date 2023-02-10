@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/client-max-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-max-temp-file-size: "0"
+  labels:
+    app: weby-master
+  name: weby-master
+  namespace: default
+spec:
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: weby-master
+      port:
+        number: 3000
+  rules:
+  - host: ufg.br
+    http:
+      paths:
+      - backend:
+          service:
+            name: weby-master
+            port:
+              number: 3000
+        path: /
+        pathType: ImplementationSpecific
+  - host: portais.ufg.br
+    http:
+      paths:
+      - backend:
+          service:
+            name: weby-master
+            port:
+              number: 3000
+        path: /
+        pathType: ImplementationSpecific
+  - host: '*.ufg.br'
+    http:
+      paths:
+      - backend:
+          service:
+            name: weby-master
+            port:
+              number: 3000
+        path: /
+        pathType: ImplementationSpecific
