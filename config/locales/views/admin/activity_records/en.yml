@@ -83,6 +83,12 @@ en:
         theme_applied:              " applied a theme "
         theme_reseted:              " reseted a theme "
         layout_settings_updated:    " updated layout settings "
+# album
+        updated_album_photo:        " updated an album photo "
+        deleted_album_photo:        " deleted an album photo "
+        created_album:              " created an album "
+        updated_album:              " updated an album "
+        destroyed_album:            " deleted an album "
       show:
         id:                 " ID "
         user:               " User "

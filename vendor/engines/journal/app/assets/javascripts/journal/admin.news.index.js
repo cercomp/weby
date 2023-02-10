@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('.search-filter').select2({
-    placeholder: "Filtrar por status",
+    placeholder: $('.search-filter').attr('placeholder'),
     width: 'resolve',
     minimumResultsForSearch: -1,
     allowClear: true

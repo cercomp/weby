@@ -16,6 +16,7 @@ en:
           filter_begin:         " Filtro por data (inicial) "
           filter_end:           " data final "
           album_tags:           " Album Types "
+          filter_placeholder:   " Filter by Album Type "
         show:
           pages:                " Páginas "
           event:                " Evento "

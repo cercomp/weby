@@ -5,7 +5,7 @@
       <% @albums.each do |album| %>
         <div class="small-1 medium-5">
           <div class="album-card" style="background-image: url('<%= album.get_cover_photo&.image&.url(:f) %>')">
-            <%= link_to site_album_path(album) do %>
+            <%= link_to site_album_path(album), class: 'album-link' do %>
               <div class="title"><%= album.title %></div>
               <% if @extension.show_author %>
                 <div class="info"><span class="author"><%= t("posted_by") %><%= album.user.name_or_login %></span></div>
@@ -13,6 +13,9 @@
               <div class="info"><%= t('.photos', count: album.photos_count.to_i) %></div>
               <div class="info"><%= t('.views', count: album.view_count.to_i) %></div>
             <% end %>
+            <div class="interaction-bar">
+              <%= link_to fa_icon('download'), generate_site_album_path(album), class: 'download-link' %>
+            </div>
           </div>
         </div>
       <% end %>

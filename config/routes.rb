@@ -145,6 +145,9 @@ Rails.application.routes.draw do
     namespace :site, module: 'sites', path: '' do
       resources :albums, path: 'a', only: [:show], concerns: :slug_check do
         resources :album_photos, only: [:show]
+        member do
+          get :generate
+        end
       end
       get :albums, to: 'albums#index'
     end

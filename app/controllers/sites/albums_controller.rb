@@ -5,7 +5,7 @@ class Sites::AlbumsController < ApplicationController
 
   helper_method :sort_column
   before_action :check_current_site, :load_extension
-  before_action :find_album, only: :show
+  before_action :find_album, only: [:show, :generate]
 
   respond_to :html, :js, :json
 
@@ -24,6 +24,37 @@ class Sites::AlbumsController < ApplicationController
       redirect_to site_album_path(@album), status: :moved_permanently
       return
     end
+  end
+
+  def generate
+    require 'zip/zip'
+    require 'find'
+    require 'fileutils'
+
+    dir = "tmp/#{@album.id}"
+    Dir.mkdir("#{dir}") unless Dir.exist?("#{dir}")
+
+    FileUtils.rm_r Dir.glob("#{dir}/*")
+
+    zipname = "album_#{@album.title}_#{Time.now.strftime('%d-%m-%Y')}.zip"
+    zip_dir = Rails.root.join(dir, zipname)
+    Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE) do |zipfile|
+      read_files_for_zip(current_site).each do |file, entry_path|
+        begin
+          if file.is_a?(String)
+            zipfile.add(entry_path, file) if entry_path
+          elsif file.is_a?(Aws::S3::Object)
+            zipfile.get_output_stream(entry_path) do |f|
+              f.write(file.get.body.read)
+            end
+          end
+        rescue Zip::ZipEntryExistsError
+        end
+      end
+    end
+
+    zip_data = File.read("#{dir}/#{zipname}")
+    send_data(zip_data, type: 'application/zip', filename: zipname)
   end
 
   private
@@ -48,6 +79,43 @@ class Sites::AlbumsController < ApplicationController
         current_site.album_tags.find(params[:album_tag])
       else
         current_site.album_tags.find_by(slug: params[:album_tag])
+      end
+    end
+  end
+
+  def read_files_for_zip site
+    if ENV['STORAGE_HOST_ALBUM'].present?
+      s3 = Aws::S3::Resource.new(
+        credentials: Aws::Credentials.new(ENV['STORAGE_ACCESS_KEY_ALBUM'], ENV['STORAGE_ACCESS_SECRET_ALBUM']),
+        region: 'us-east-1',
+        endpoint: "https://#{ENV['STORAGE_HOST_ALBUM']}",
+        force_path_style: true
+      )
+      bucket = s3.bucket(ENV['STORAGE_BUCKET_ALBUM'])
+      prefix = "up/#{site.id}/albums/#{@album.id}/o"
+      bucket.objects(prefix: prefix).map do |obj|
+        file = bucket.object(obj.key)
+        [file, obj.key.gsub(prefix, 'album/')]
+      end
+    elsif ENV['STORAGE_HOST'].present?
+      s3 = Aws::S3::Resource.new(
+        credentials: Aws::Credentials.new(ENV['STORAGE_ACCESS_KEY'], ENV['STORAGE_ACCESS_SECRET']),
+        region: 'us-east-1',
+        endpoint: "https://#{ENV['STORAGE_HOST']}",
+        force_path_style: true
+      )
+      bucket = s3.bucket(ENV['STORAGE_BUCKET'])
+      prefix = "up/#{site.id}/albums/#{@album.id}/o"
+      bucket.objects(prefix: prefix).map do |obj|
+        file = bucket.object(obj.key)
+        [file, obj.key.gsub(prefix, 'album/')]
+      end
+    else
+      repository = "public/up/#{site.id}/albums/#{@album.id}/o"
+      Find.find(repository).map do |path|
+        Find.prune if File.basename(path)[0] == '.'
+        dest = /#{repository}\/(\w.*)/.match(path)
+        [path, dest ? "album/#{dest[1]}" : nil]
       end
     end
   end

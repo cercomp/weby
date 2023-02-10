@@ -16,6 +16,7 @@ pt-BR:
           covers:               " Capas "
           newsletter:           " Newsletter "
           settings:             " Configurações "
+          filter_placeholder:   " Filtrar por status "
         show:
           news:                 " Notícias "
           period_page:          " Período de publicação "

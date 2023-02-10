@@ -16,6 +16,7 @@ pt-BR:
           filter_begin:         " Filtro por data (inicial) "
           filter_end:           " data final "
           album_tags:           " Tipos de Álbum "
+          filter_placeholder:   " Filtrar por tipo de álbum "
         show:
           pages:                " Páginas "
           event:                " Evento "
