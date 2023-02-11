@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: weby-master
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: weby-master
