@@ -6,7 +6,17 @@
       <div class="album-desc">
         <%= render_user_content(strip_tags(@album.text.to_s)[0..255]) %>
       </div>
-      <div><%= link_to t('.show_more'), '#', class: 'show-more-link' %></div>
+      <% content_for :javascripts do %>
+        <div class="full-modal">
+          <div class="content">
+            <div class="pull-right">
+              <button type="button" class="close close-full-modal">✕</button>
+            </div>
+            <%= render_user_content(@album.text.to_s) %>
+          </div>
+        </div>
+      <% end %>
+      <div><%= link_to t('.show_more'), '#', class: 'open-full-modal' %></div>
       <% if @album.video_url.present? %>
         <iframe class="embed-ifr" width="640" height="360" src="<%= @album.embed_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <% end %>

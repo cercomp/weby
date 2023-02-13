@@ -109,4 +109,19 @@ $(document).ready(function(){
     });
   });
 
+  $('.open-full-modal').click(function(){
+    if ($('.full-modal').is('.open')) {
+      $('.full-modal').removeClass('open')
+      $('body').css({overflow: null})
+    } else {
+      $('.full-modal').addClass('open')
+      $('body').css({overflow: 'hidden'})
+    }
+  })
+  $('.close-full-modal, .full-modal').click(function(ev){
+    if ($(ev.target).hasClass('close-full-modal') || $(ev.target).hasClass('full-modal')){
+      $('.full-modal').removeClass('open')
+      $('body').css({overflow: ''})
+    }
+  })
 });
