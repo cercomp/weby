@@ -16,34 +16,3 @@ spec:
       name: weby-master
       port:
         number: 3000
-  rules:
-  - host: ufg.br
-    http:
-      paths:
-      - backend:
-          service:
-            name: weby-master
-            port:
-              number: 3000
-        path: /
-        pathType: ImplementationSpecific
-  - host: portais.ufg.br
-    http:
-      paths:
-      - backend:
-          service:
-            name: weby-master
-            port:
-              number: 3000
-        path: /
-        pathType: ImplementationSpecific
-  - host: '*.ufg.br'
-    http:
-      paths:
-      - backend:
-          service:
-            name: weby-master
-            port:
-              number: 3000
-        path: /
-        pathType: ImplementationSpecific
