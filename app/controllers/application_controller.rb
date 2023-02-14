@@ -468,10 +468,10 @@ class ApplicationController < ActionController::Base
 
   def find_album
     _id = params[:album_id] || params[:id]
-    if _id.match(/^\d+\-?/)
-      @album = current_site.albums.find(_id)
-    else
+    if _id.match(Album::SLUG_PATTERN)
       @album = current_site.albums.find_by(slug: _id)
+    else
+      @album = current_site.albums.find(_id)
     end
   end
 

@@ -3,6 +3,8 @@ class Album < ApplicationRecord
   include HasYoutubeUrl
   include HasSlug
 
+  SLUG_PATTERN = '^[a-z0-9-]*[a-z]+[a-z0-9-]*$'
+
   weby_content_i18n :title, :text, required: :title
 
   belongs_to :site
