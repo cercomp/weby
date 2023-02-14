@@ -124,6 +124,10 @@ class Sites::Admin::PagesController < ApplicationController
     redirect_to main_app.recycle_bin_site_admin_pages_path
   end
 
+  def template
+    render "sites/admin/pages/templates/#{params[:template]}", layout: false
+  end
+
   private
 
   def page_params
