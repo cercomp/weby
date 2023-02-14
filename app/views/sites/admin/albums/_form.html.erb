@@ -32,7 +32,7 @@
     <div class="input-group-addon">
       <%= "#{site_url}#{get_route_path(:site_album)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>
     </div>
-    <%= f.input_field :slug, as: :string, data: {check_slug: '', include_num: true, id: @album.id, url: check_slug_site_albums_path}, pattern: '^[a-z](-?[a-z0-9])*$' %>
+    <%= f.input_field :slug, as: :string, data: {check_slug: '', include_num: true, id: @album.id, url: check_slug_site_albums_path}, pattern: Album::SLUG_PATTERN %>
   <% end %>
   <span class="help-block"><%= t('slug_hint_num') %></span>
 

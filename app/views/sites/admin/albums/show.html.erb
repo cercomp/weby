@@ -2,10 +2,12 @@
 <% breadcrumb :albums_show, @album %>
 <%= raw available_flags(@album) if @album.locales.many? %>
 <h1><%= @album.title %></h1>
-<div class="album-photo" style="width: 150px">
-  <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label') %>
-  <div class="cover-preview"><%= image_tag @album.cover_photo.image.url(:t), class: 'preview' if @album.cover_photo.image.present? %></div>
-</div>
+<% if @album.cover_photo %>
+  <div class="album-photo" style="width: 150px">
+    <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label') %>
+    <div class="cover-preview"><%= image_tag @album.cover_photo.image.url(:t), class: 'preview' if @album.cover_photo.image.present? %></div>
+  </div>
+<% end %>
 <p>
   <%= @album.album_tags.map(&:name).join(', ') %>
 </p>
