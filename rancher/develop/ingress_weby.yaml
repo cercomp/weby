@@ -11,11 +11,6 @@ metadata:
   namespace: default
 spec:
   ingressClassName: nginx
-  defaultBackend:
-    service:
-      name: weby-develop
-      port:
-        number: 3000
   rules:
   - host: weby.ufg.br
     http:
