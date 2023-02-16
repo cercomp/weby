@@ -900,6 +900,97 @@ summary em, summary em * {
   }
 }
 
+
+.albums-section {
+  background-color: #5933d8;
+  padding: 80px 0 100px;
+  background-image: asset-url('ufg2/img-grid.png');
+  background-position: left bottom;
+  background-repeat: repeat-x;
+
+  .albums-grid {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .text_component {
+    font-family: Lato;
+    font-size: 2.4em;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: var(--white);
+    margin-bottom: 80px;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .image_component {
+    flex: 0 0 220px;
+    height: 94px;
+    margin-top: 40px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+    border-radius: 20px 20px 2px 2px;
+    position: relative;
+
+    a {
+      position: static;
+      width: auto;
+      height: auto;
+    }
+
+    > a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      background-color: #E9E9E9;
+      border-radius: 80px;
+      object-fit: contain;
+      box-sizing: border-box;
+      // box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    }
+
+    h3 {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Lato;
+      font-size: 1.2em;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.25;
+      height: 36px;
+      letter-spacing: normal;
+      text-align: center;
+      color: #444444;
+      position: absolute;
+      bottom: 12px;
+    }
+
+    &:hover {
+      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+
 .social-cards {
   background-color: var(--yellow);
   padding: 80px 0 100px;

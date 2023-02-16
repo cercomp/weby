@@ -11,6 +11,7 @@ $(function () {
   $('#upload-preview').on('click', '.close', function(){
     $(this).parents('.closeable').fadeOut(function(){
       $(this).remove();
+      check_uploads();
     })
   });
 
@@ -41,6 +42,14 @@ $(function () {
     }, 'json');
     return false;
   });
+
+  function check_uploads() {
+    if ($('#upload-preview .repo-item').length) {
+      $('form.new_album_photo .form-actions').removeClass('hide');
+    } else {
+      $('form.new_album_photo .form-actions').addClass('hide');
+    }
+  }
 
   function switch_disable_text(disable){
     var $submit = $('.send-files');
@@ -91,8 +100,6 @@ $(function () {
         return;
       }
 
-      $('form.new_album_photo .form-actions').removeClass('hide');
-
       var $repoItem = $('.repo-template').clone(true);
 
       $repoItem.removeClass('repo-template').addClass('repo-item').show();
@@ -110,14 +117,16 @@ $(function () {
       $repoItem.data('dataobj', data);
 
       data.context = $repoItem;
+      check_uploads();
     },
     /////Evento de retorno do processamento, executado para cada envio, executando tanto success ou failure
     always: function (e, data) {
-        var $msg = data.context.find('.status');
-        $msg.removeClass('loading');
-        if($('.status.loading').length == 0){
-          switch_disable_text(false);
-        }
+      var $msg = data.context.find('.status');
+      $msg.removeClass('loading');
+      if($('.status.loading').length == 0){
+        switch_disable_text(false);
+      }
+      check_uploads();
     },
     done: function (e, data) {
        ///No IE, mesmo com erro, ele dispara a função done, vindo do iframe

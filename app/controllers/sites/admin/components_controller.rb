@@ -43,7 +43,7 @@ class Sites::Admin::ComponentsController < ApplicationController
   def edit
     @component = Weby::Components.factory(@component)
     unless component_is_available(@component.name)
-      flash[:warning] = t('.disabled_component')
+      flash[:warning] = t('disabled_component')
       redirect_to site_admin_skin_path(@skin, anchor: 'tab-layout')
     end
   end

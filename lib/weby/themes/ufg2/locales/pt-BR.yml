@@ -7,3 +7,6 @@ pt-BR:
         home:               " Página Inicial "
         top:                " Cabeçalho "
         bottom:             " Inferior "
+  components:
+    photo_albums:
+      name: Galeria de Fotos

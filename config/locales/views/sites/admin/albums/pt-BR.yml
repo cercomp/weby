@@ -13,7 +13,7 @@ pt-BR:
           search:               " Buscar "
           new_album:            " Novo Álbum "
           none_album:           " Nenhum Álbum "
-          filter_begin:         " Filtro por data (inicial) "
+          filter_begin:         " Filtrar por data (inicial) "
           filter_end:           " data final "
           album_tags:           " Tipos de Álbum "
           filter_placeholder:   " Filtrar por tipo de álbum "
