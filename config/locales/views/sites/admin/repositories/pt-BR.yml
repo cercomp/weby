@@ -7,7 +7,7 @@ pt-BR:
           search:               " Buscar "
           new_archive:          " Novo Arquivo "
           none_archive:         " Nenhum Arquivo "
-          filter_begin:         " Filtro por data (inicial) "
+          filter_begin:         " Filtrar por data (inicial) "
           filter_end:           " data final "
         view_picker:
           repository_as_thumbs: " Exibir repositório como miniaturas "

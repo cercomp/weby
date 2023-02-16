@@ -102,9 +102,9 @@
   }
   .event-lists {
     padding-bottom: 180px;
-  }
-  .event-lists .container {
-    display: block;
+    .container {
+      display: block;
+    }
   }
   .event_list_component #events li {
     max-width: 50%;
@@ -161,8 +161,13 @@
   .subsite_front_news_component .list {
     grid-template-columns: 220px 220px;
   }
-  .social-cards .text_component {
+  .social-cards .text_component, .albums-section .text_component {
     text-align: center;
+  }
+  .albums-section .albums-grid {
+    > *:not(:last-child) {
+      margin-bottom: 40px;
+    }
   }
   .social-cards .social-icons {
     grid-template-columns: 220px 220px;
