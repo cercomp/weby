@@ -131,7 +131,7 @@ attach-to-image:
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
   needs:
-  - job: build-gitlab
+  - job: bundle-and-precompile
     artifacts: true
   when: manual
 
