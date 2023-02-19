@@ -79,6 +79,8 @@ publish-with-precompile:
 gitlab-precompile:
   stage: gitlab-precompile
   image: ruby:2.7.5
+  environment:
+    name: $CI_COMMIT_REF_NAME
   tags:
     - docker
   only:
