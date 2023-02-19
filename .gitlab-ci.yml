@@ -91,6 +91,7 @@ gitlab-precompile:
     - apt-get install -y nodejs
     - gem install bundler
     - bundle install --jobs 4 --retry 3
+    - mkdir log
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
