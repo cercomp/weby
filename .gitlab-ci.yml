@@ -130,29 +130,12 @@ attach-to-image:
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
-  needs:
-  - job: bundle-and-precompile
-    artifacts: true
-  when: manual
-
-publish-on-registry:
-  stage: all-on-gitlab
-  image: docker
-  services:
-    - docker:dind
-  environment:
-    name: $CI_COMMIT_REF_NAME
-  tags:
-    - docker
-  only:
-    - master
-    - develop
-  script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-  dependencies:
-    - attach-to-image
+  needs:
+  - job: bundle-and-precompile
+    artifacts: true
   when: manual
 
 redeploy-rancher:
