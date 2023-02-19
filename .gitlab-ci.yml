@@ -1,7 +1,6 @@
 stages:
   - all-on-gitlab
   - build
-  - precompile
   - deploy
 
 variables:  # https://docs.gitlab.com/ee/ci/variables/
@@ -42,6 +41,36 @@ build-publish:
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+  when: manual
+
+publish-with-precompile:
+  stage: build
+  image: docker
+  services:
+    - docker:dind
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags:
+    - docker
+  only:
+    - master
+    - develop
+  script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker build -f docker/Dockerfile-precompile
+      --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
+      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
+      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
+      --build-arg RAILS_ENV=$RAILS_ENV
+      --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
+      --build-arg STORAGE_BUCKET=$STORAGE_BUCKET
+      --build-arg STORAGE_ACCESS_KEY=$STORAGE_ACCESS_KEY
+      --build-arg STORAGE_ACCESS_SECRET=$STORAGE_ACCESS_SECRET
+      --build-arg STORAGE_HOST=$STORAGE_HOST
+      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
@@ -120,36 +149,6 @@ publish-all-on-gitlab:
     - develop
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-  when: manual
-
-publish-with-precompile:
-  stage: precompile
-  image: docker
-  services:
-    - docker:dind
-  environment:
-    name: $CI_COMMIT_REF_NAME
-  tags:
-    - docker
-  only:
-    - master
-    - develop
-  script:
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker build -f docker/Dockerfile-precompile
-      --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
-      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
-      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
-      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
-      --build-arg RAILS_ENV=$RAILS_ENV
-      --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
-      --build-arg STORAGE_BUCKET=$STORAGE_BUCKET
-      --build-arg STORAGE_ACCESS_KEY=$STORAGE_ACCESS_KEY
-      --build-arg STORAGE_ACCESS_SECRET=$STORAGE_ACCESS_SECRET
-      --build-arg STORAGE_HOST=$STORAGE_HOST
-      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
-    - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
 
