@@ -59,6 +59,22 @@ build-gitlab:
     - gem install bundler
     - bundle config set --local path 'vendor/bundle'
     - bundle install --jobs 4 --retry 3
+  artifacts:
+    paths:
+      - vendor/bundle/
+  when: manual
+
+build-gitlab-docker:
+  stage: build
+  image: docker
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags:
+    - docker
+  only:
+    - master
+    - develop
+  script:
     - docker build -f docker/Dockerfile-gitlab
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
       --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
@@ -66,9 +82,9 @@ build-gitlab:
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
-  artifacts:
-    paths:
-      - vendor/bundle/
+  needs:
+  - job: build-gitlab
+    artifacts: true
   when: manual
 
 publish-with-precompile:
