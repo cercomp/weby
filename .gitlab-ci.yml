@@ -86,8 +86,6 @@ precompile:
     - master
     - develop
   script:
-    - ls -al 
-    - ls -al log
     ## Move file to not acess db
     - mv config/initializers/email.rb config/
     ## Assets precompile
