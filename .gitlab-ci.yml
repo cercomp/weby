@@ -1,6 +1,7 @@
 stages:
   - build-publish
   - publish-with-precompile
+  - gitlab-precompile
   - redeploy-rancher
 
 variables:  # https://docs.gitlab.com/ee/ci/variables/
@@ -74,6 +75,31 @@ publish-with-precompile:
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
+
+gitlab-precompile:
+  stage: gitlab-precompile
+  image: ruby:2.7.5
+  tags:
+    - ssh
+  only:
+    - master
+    - develop
+  script:
+    # Move file to not acess db
+    - RUN mv config/initializers/email.rb config/
+    # Assets precompile
+    - RUN bundle exec rake assets:precompile --trace
+    - RUN bundle exec rake assets:clean
+    ## Cleanup
+    #- RUN cp public/assets/.sprockets-manifest-*.json .
+    #- RUN bundle exec rake assets:clobber
+    #- RUN mkdir public/assets
+    #- RUN cp .sprockets-manifest-*.json public/assets/
+    ## Init before system up
+    - RUN mv config/email.rb config/initializers/
+  artifacts:
+    paths:
+      - public/assets/.sprockets-manifest-*.json
 
 redeploy-rancher:
   stage: redeploy-rancher
