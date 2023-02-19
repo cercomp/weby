@@ -26,7 +26,7 @@ RUN touch log/error.log
 RUN ln -sf /dev/stderr log/error.log
 
 # Copy files from first stage
-COPY ./vendor/bundle /usr/local/bundle
+COPY ./vendor/bundle/ruby/2.7.0 /usr/local/bundle
 COPY ./public/assets /opt/weby/public/assets
 COPY . /opt/weby
 
