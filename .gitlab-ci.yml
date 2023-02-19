@@ -57,7 +57,8 @@ build-gitlab:
     - develop
   script:
     - gem install bundler
-    - bundle install --jobs 4 --retry 3 --path=vendor/bundle
+    - bundle config set --local path 'vendor/bundle'
+    - bundle install --jobs 4 --retry 3
   artifacts:
     paths:
       - vendor/bundle
