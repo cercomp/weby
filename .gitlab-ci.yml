@@ -18,7 +18,7 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
 #before_script:
   #- cp $ENV_FILE .env
 
-build-publish:
+bundle-and-publish:
   stage: build
   image: docker
   services:
@@ -45,7 +45,7 @@ build-publish:
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
 
-publish-with-precompile:
+precompile-and-publish:
   stage: build
   image: docker
   services:
@@ -75,7 +75,7 @@ publish-with-precompile:
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
 
-build-gitlab:
+bundle-and-precompile:
   stage: all-on-gitlab
   image: ruby:2.7.5
   environment:
@@ -110,7 +110,7 @@ build-gitlab:
       - public/assets/
   when: manual
 
-build-gitlab-docker:
+attach-to-image:
   stage: all-on-gitlab
   image: docker
   services:
@@ -135,7 +135,7 @@ build-gitlab-docker:
     artifacts: true
   when: manual
 
-publish-all-on-gitlab:
+publish-on-registry:
   stage: all-on-gitlab
   image: docker
   services:
