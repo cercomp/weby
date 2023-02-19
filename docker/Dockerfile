@@ -43,6 +43,7 @@ WORKDIR /opt/weby
 RUN mkdir tmp
 RUN mkdir log
 RUN touch log/error.log
+RUN touch log/production.log
 RUN ln -sf /dev/stderr log/error.log
 
 # Copy files from first stage
