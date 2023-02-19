@@ -79,6 +79,8 @@ publish-with-precompile:
 gitlab-precompile:
   stage: gitlab-precompile
   image: ruby:2.7.5
+  tags:
+    - docker
   only:
     - master
     - develop
