@@ -7,13 +7,6 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   DOCKER_TLS_CERTDIR: ""
   CI_PROJECT_ENV: ${CI_PROJECT_NAME}_${CI_COMMIT_BRANCH}
   CI_VERSION_ENV: "latest"
-  CI_COMMIT_SHORT_SHA: $CI_COMMIT_SHORT_SHA
-  RAILS_ENV: $RAILS_ENV
-  SECRET_KEY_BASE: $SECRET_KEY_BASE
-  STORAGE_BUCKET: $STORAGE_BUCKET
-  STORAGE_ACCESS_KEY: $STORAGE_ACCESS_KEY
-  STORAGE_ACCESS_SECRET: $STORAGE_ACCESS_SECRET
-  STORAGE_HOST: $STORAGE_HOST
 
 #before_script:
   #- cp $ENV_FILE .env
@@ -31,44 +24,13 @@ base:
     - master
     - develop
   script:
-    ## DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 
-    ##- docker compose --project-directory . -f docker/docker-compose.yml --env-file .env build
+    ## - DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker compose --project-directory . -f docker/docker-compose.yml --env-file .env build
     - docker build -f docker/Dockerfile
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
       --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
       --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
       --build-arg RAILS_ENV=$RAILS_ENV
       --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
-      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-  when: manual
-
-precompile-and-publish:
-  stage: build
-  image: docker
-  services:
-    - docker:dind
-  environment:
-    name: $CI_COMMIT_REF_NAME
-  tags:
-    - docker
-  only:
-    - master
-    - develop
-  script:
-    - docker build -f docker/Dockerfile-precompile
-      --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
-      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
-      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
-      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
-      --build-arg RAILS_ENV=$RAILS_ENV
-      --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
-      --build-arg STORAGE_BUCKET=$STORAGE_BUCKET
-      --build-arg STORAGE_ACCESS_KEY=$STORAGE_ACCESS_KEY
-      --build-arg STORAGE_ACCESS_SECRET=$STORAGE_ACCESS_SECRET
-      --build-arg STORAGE_HOST=$STORAGE_HOST
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
@@ -123,8 +85,8 @@ attach-assets:
       --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
       --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   needs:
