@@ -86,6 +86,7 @@ gitlab-precompile:
     - develop
   script:
     - gem install bundler
+    - bundle install --jobs 4 --retry 3
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
