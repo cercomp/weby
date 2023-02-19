@@ -86,6 +86,7 @@ precompile:
     - master
     - develop
   script:
+    - touch log/production.log
     ## Move file to not acess db
     - mv config/initializers/email.rb config/
     ## Assets precompile
@@ -101,6 +102,32 @@ precompile:
   artifacts:
     paths:
       - public/assets/
+  when: manual
+
+attach-assets:
+  stage: build
+  image: docker
+  services:
+    - docker:dind
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags:
+    - docker
+  only:
+    - master
+    - develop
+  script:
+    - docker build -f docker/Dockerfile-gitlab
+      --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
+      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
+      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+  needs:
+    - job: precompile
+      artifacts: true
   when: manual
 
 redeploy-rancher:
