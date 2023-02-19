@@ -85,6 +85,7 @@ gitlab-precompile:
     - master
     - develop
   script:
+    - apt-get clean && apt-get update #&& apt-get upgrade -y
     - apt-get install -y nodejs
     - gem install bundler
     - bundle install --jobs 4 --retry 3
