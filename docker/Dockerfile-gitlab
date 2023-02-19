@@ -17,6 +17,10 @@ ENV CI_COMMIT_SHORT_SHA $CI_COMMIT_SHORT_SHA
 ENV RAILS_ENV $RAILS_ENV
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
+# Copy files from first stage
+COPY ./vendor/bundle /usr/local/bundle
+COPY . /opt/weby
+
 WORKDIR /opt/weby
 
 # Files to logs and tmp
@@ -24,10 +28,6 @@ RUN mkdir tmp
 RUN mkdir log
 RUN touch log/error.log
 RUN ln -sf /dev/stderr log/error.log
-
-# Copy files from first stage
-COPY ./vendor/bundle /usr/local/bundle
-COPY . /opt/weby
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
