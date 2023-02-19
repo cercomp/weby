@@ -106,7 +106,7 @@ precompile:
   when: manual
 
 attach-assets:
-  stage: build
+  stage: precompile
   image: docker
   services:
     - docker:dind
