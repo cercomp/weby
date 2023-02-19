@@ -27,7 +27,7 @@ RUN ln -sf /dev/stderr log/error.log
 
 # Copy files from first stage
 COPY . /opt/weby
-COPY /usr/local/bundle/ /usr/local/bundle/
+COPY .vendor/bundle/ /usr/local/bundle/
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH

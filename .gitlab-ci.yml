@@ -57,10 +57,10 @@ build-gitlab:
     - develop
   script:
     - gem install bundler
-    - bundle install --jobs 4 --retry 3
+    - bundle install --jobs 4 --retry 3 --path=vendor/bundle
   artifacts:
     paths:
-      - /usr/local/bundle/
+      - vendor/bundle
   when: manual
 
 build-gitlab-docker:
