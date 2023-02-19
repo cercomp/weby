@@ -1,8 +1,7 @@
 stages:
-  - build-publish
-  - publish-with-precompile
-  - gitlab-precompile
-  - redeploy-rancher
+  - build
+  - precompile
+  - deploy
 
 variables:  # https://docs.gitlab.com/ee/ci/variables/
   DOCKER_TLS_CERTDIR: ""
@@ -20,7 +19,7 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   #- cp $ENV_FILE .env
 
 build-publish:
-  stage: build-publish
+  stage: build
   image: docker
   services:
     - docker:dind
@@ -46,8 +45,50 @@ build-publish:
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
 
+build-gitlab:
+  stage: build
+  image: ruby:2.7.5
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags:
+    - docker
+  only:
+    - master
+    - develop
+  script:
+    - gem install bundler
+    - bundle install --jobs 4 --retry 3
+  artifacts:
+    paths:
+      - /usr/local/bundle/
+  when: manual
+
+build-gitlab-docker:
+  stage: build
+  image: docker
+  services:
+    - docker:dind
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags:
+    - docker
+  only:
+    - master
+    - develop
+  script:
+    - docker build -f docker/Dockerfile-gitlab
+      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
+      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
+      --build-arg RAILS_ENV=$RAILS_ENV
+      --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
+      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
+  when: manual
+  dependencies:
+    - build-gitlab
+
 publish-with-precompile:
-  stage: publish-with-precompile
+  stage: precompile
   image: docker
   services:
     - docker:dind
@@ -76,8 +117,8 @@ publish-with-precompile:
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
 
-gitlab-precompile:
-  stage: gitlab-precompile
+precompile-gitlab:
+  stage: precompile
   image: ruby:2.7.5
   environment:
     name: $CI_COMMIT_REF_NAME
@@ -110,7 +151,7 @@ gitlab-precompile:
   when: manual
 
 redeploy-rancher:
-  stage: redeploy-rancher
+  stage: deploy
   image: docker
   environment:
     name: $CI_COMMIT_REF_NAME
