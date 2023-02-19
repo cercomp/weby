@@ -107,6 +107,8 @@ precompile:
 attach-assets:
   stage: precompile
   image: docker
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   services:
     - docker:dind
   environment:
