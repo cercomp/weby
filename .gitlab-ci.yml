@@ -40,6 +40,8 @@ base:
 precompile:
   stage: precompile
   image: $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+  services:
+    - docker:dind
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
@@ -61,6 +63,15 @@ precompile:
     - cp .sprockets-manifest-*.json public/assets/
     ## Init before system up
     - mv config/email.rb config/initializers/
+    - docker build -f docker/Dockerfile-gitlab
+      --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
+      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
+      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
+      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   artifacts:
     paths:
       - public/assets/
