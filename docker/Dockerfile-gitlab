@@ -18,7 +18,7 @@ ENV RAILS_ENV $RAILS_ENV
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
 # Copy files from first stage
-COPY ./vendor/bundle /usr/local/bundle
+COPY /opt/weby/vendor/bundle /usr/local/bundle
 COPY . /opt/weby
 
 WORKDIR /opt/weby
