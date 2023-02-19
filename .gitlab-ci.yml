@@ -92,7 +92,6 @@ attach-assets:
   needs:
     - job: precompile
       artifacts: true
-  when: manual
 
 redeploy-rancher:
   stage: deploy
