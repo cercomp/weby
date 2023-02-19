@@ -1,4 +1,5 @@
 stages:
+  - all-on-gitlab
   - build
   - precompile
   - deploy
@@ -46,7 +47,7 @@ build-publish:
   when: manual
 
 build-gitlab:
-  stage: build
+  stage: all-on-gitlab
   image: ruby:2.7.5
   environment:
     name: $CI_COMMIT_REF_NAME
@@ -59,13 +60,29 @@ build-gitlab:
     - gem install bundler
     - bundle config set --local path 'vendor/bundle'
     - bundle install --jobs 4 --retry 3
+    - apt-get clean && apt-get update
+    - apt-get install -y nodejs
+    - mkdir log
+    # Move file to not acess db
+    - mv config/initializers/email.rb config/
+    # Assets precompile
+    - bundle exec rake assets:precompile --trace
+    - bundle exec rake assets:clean
+    # Cleanup
+    - cp public/assets/.sprockets-manifest-*.json .
+    - bundle exec rake assets:clobber
+    - mkdir public/assets
+    - cp .sprockets-manifest-*.json public/assets/
+    # Init before system up
+    - mv config/email.rb config/initializers/
   artifacts:
     paths:
       - vendor/bundle/
+      - public/assets/
   when: manual
 
 build-gitlab-docker:
-  stage: build
+  stage: all-on-gitlab
   image: docker
   services:
     - docker:dind
@@ -87,6 +104,23 @@ build-gitlab-docker:
   needs:
   - job: build-gitlab
     artifacts: true
+  when: manual
+
+publish-all-on-gitlab:
+  stage: all-on-gitlab
+  image: docker
+  services:
+    - docker:dind
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  tags:
+    - docker
+  only:
+    - master
+    - develop
+  script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
 
 publish-with-precompile:
@@ -117,39 +151,6 @@ publish-with-precompile:
       --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
     - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
     - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-  when: manual
-
-precompile-gitlab:
-  stage: precompile
-  image: ruby:2.7.5
-  environment:
-    name: $CI_COMMIT_REF_NAME
-  tags:
-    - docker
-  only:
-    - master
-    - develop
-  script:
-    - apt-get clean && apt-get update #&& apt-get upgrade -y
-    - apt-get install -y nodejs
-    - gem install bundler
-    - bundle install --jobs 4 --retry 3
-    - mkdir log
-    # Move file to not acess db
-    - mv config/initializers/email.rb config/
-    # Assets precompile
-    - bundle exec rake assets:precompile --trace
-    - bundle exec rake assets:clean
-    ## Cleanup
-    #- cp public/assets/.sprockets-manifest-*.json .
-    #- bundle exec rake assets:clobber
-    #- mkdir public/assets
-    #- cp .sprockets-manifest-*.json public/assets/
-    ## Init before system up
-    - mv config/email.rb config/initializers/
-  artifacts:
-    paths:
-      - public/assets/.sprockets-manifest-*.json
   when: manual
 
 redeploy-rancher:

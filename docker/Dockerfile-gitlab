@@ -27,6 +27,7 @@ RUN ln -sf /dev/stderr log/error.log
 
 # Copy files from first stage
 COPY ./vendor/bundle /usr/local/bundle
+COPY ./public/assets /opt/weby/public/assets
 COPY . /opt/weby
 
 # Env to system
