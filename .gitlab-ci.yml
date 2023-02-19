@@ -61,7 +61,7 @@ build-gitlab:
     - bundle install --jobs 4 --retry 3
   artifacts:
     paths:
-      - vendor/bundle
+      - vendor/bundle/
   when: manual
 
 build-gitlab-docker:
