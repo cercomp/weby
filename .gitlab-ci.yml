@@ -79,8 +79,6 @@ publish-with-precompile:
 gitlab-precompile:
   stage: gitlab-precompile
   image: ruby:2.7.5
-  tags:
-    - ssh
   only:
     - master
     - develop
