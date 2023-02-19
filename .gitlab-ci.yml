@@ -67,6 +67,8 @@ build-gitlab:
 build-gitlab-docker:
   stage: build
   image: docker
+  services:
+    - docker:dind
   environment:
     name: $CI_COMMIT_REF_NAME
   tags:
