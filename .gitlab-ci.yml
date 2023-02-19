@@ -86,20 +86,21 @@ gitlab-precompile:
     - develop
   script:
     # Move file to not acess db
-    - RUN mv config/initializers/email.rb config/
+    - mv config/initializers/email.rb config/
     # Assets precompile
-    - RUN bundle exec rake assets:precompile --trace
-    - RUN bundle exec rake assets:clean
+    - bundle exec rake assets:precompile --trace
+    - bundle exec rake assets:clean
     ## Cleanup
-    #- RUN cp public/assets/.sprockets-manifest-*.json .
-    #- RUN bundle exec rake assets:clobber
-    #- RUN mkdir public/assets
-    #- RUN cp .sprockets-manifest-*.json public/assets/
+    #- cp public/assets/.sprockets-manifest-*.json .
+    #- bundle exec rake assets:clobber
+    #- mkdir public/assets
+    #- cp .sprockets-manifest-*.json public/assets/
     ## Init before system up
-    - RUN mv config/email.rb config/initializers/
+    - mv config/email.rb config/initializers/
   artifacts:
     paths:
       - public/assets/.sprockets-manifest-*.json
+  when: manual
 
 redeploy-rancher:
   stage: redeploy-rancher
