@@ -85,6 +85,7 @@ gitlab-precompile:
     - master
     - develop
   script:
+    - gem install bundler
     # Move file to not acess db
     - mv config/initializers/email.rb config/
     # Assets precompile
