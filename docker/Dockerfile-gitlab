@@ -3,7 +3,7 @@ FROM ruby:2.7.5-slim-bullseye
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
 RUN apt-get clean && apt-get update && apt-get upgrade -y
-RUN apt-get install -y git imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs
+RUN apt-get install -y imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs
 
 ARG CI_PROJECT_ENV
 ARG CI_VERSION_ENV
@@ -17,10 +17,6 @@ ENV CI_COMMIT_SHORT_SHA $CI_COMMIT_SHORT_SHA
 ENV RAILS_ENV $RAILS_ENV
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
-# Copy files from first stage
-COPY /opt/weby/vendor/bundle /usr/local/bundle
-COPY . /opt/weby
-
 WORKDIR /opt/weby
 
 # Files to logs and tmp
@@ -28,6 +24,10 @@ RUN mkdir tmp
 RUN mkdir log
 RUN touch log/error.log
 RUN ln -sf /dev/stderr log/error.log
+
+# Copy files from first stage
+COPY ./vendor/bundle /usr/local/bundle
+COPY . /opt/weby
 
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH

@@ -77,7 +77,7 @@ build-gitlab-docker:
     - master
     - develop
   script:
-    - docker build -f docker/Dockerfile-gitlab
+    - DOCKER_BUILDKIT=1 docker build -f docker/Dockerfile-gitlab
       --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
       --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
       --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
