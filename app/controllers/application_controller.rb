@@ -173,10 +173,14 @@ class ApplicationController < ActionController::Base
 
   def count_view
     #TODO This is only counting the global counter on each model, Stats are off for now
-    return if is_in_admin_context? ||
-              request.format != 'html' ||
-              response.status != 200 ||
-              Weby::Bots.is_a_bot?(request.user_agent)
+    return if is_in_admin_context?
+    return if response.status != 200
+    return if Weby::Bots.is_a_bot?(request.user_agent)
+    # ajax requests are only counted in some cases
+    if request.format != 'html'
+      return unless @album_photo.present?
+    end
+
     if(current_site)
 #      current_site.views.create(viewable: @page,
 #                                ip_address: request.remote_ip,

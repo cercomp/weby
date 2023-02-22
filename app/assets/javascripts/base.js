@@ -63,6 +63,7 @@ WEBY.applyContrast = function(){
 WEBY.initAlbumPhoto = function(elem){
   elem.on('click', '.close', function(ev){
     elem.remove();
+    $('body').css({overflow: ''})
   });
 }
 
@@ -112,7 +113,7 @@ $(document).ready(function(){
   $('.open-full-modal').click(function(){
     if ($('.full-modal').is('.open')) {
       $('.full-modal').removeClass('open')
-      $('body').css({overflow: null})
+      $('body').css({overflow: ''})
     } else {
       $('.full-modal').addClass('open')
       $('body').css({overflow: 'hidden'})

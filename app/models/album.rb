@@ -15,9 +15,11 @@ class Album < ApplicationRecord
   has_many :album_photos, dependent: :destroy
   has_and_belongs_to_many :album_tags
 
-  before_create :generate_slug
+  before_validation :generate_slug
 
   validates :album_photos, length: {maximum: :max_photos}
+  validates :slug, format: { with: Regexp.new(SLUG_PATTERN.gsub(/^\^/, '\A').gsub(/\$$/, '\z')) }
+  validates :cover_photo, presence: true
 
   accepts_nested_attributes_for :cover_photo, reject_if: proc { |attributes| attributes["image"].blank? }
 
@@ -27,6 +29,10 @@ class Album < ApplicationRecord
   def real_updated_at
     i18n_updated = i18ns.sort_by{|i18n| i18n.updated_at }.last.updated_at
     updated_at > i18n_updated ? updated_at : i18n_updated
+  end
+
+  def to_param
+    id.to_s
   end
 
   def refresh_photos_count!
