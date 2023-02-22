@@ -12,6 +12,7 @@ en:
         album_tag_ids:     'Types'
         site_id:              " Site id "
         updated_at:           " Updated at "
+        cover_photo:   " Cover photo "
       "album/i18ns":
         text:            "Text"
         title:           "Title"

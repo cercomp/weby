@@ -43,7 +43,7 @@
           <td width="5%" style="text-align:center;"><%= album.photos_count.to_i %></td>
           <td class="actions">
             <%= render_dropdown_menu do %>
-              <%= link_to icon('eye-open', text: t('show')), site_album_path(album), target: :_blank %>
+              <%= link_to icon('eye-open', text: t('show')), site_album_path(album.slug), target: :_blank %>
               <%= make_menu(album, :except => "show", :with_text => true, delete_confirm: t('.confirm_destroy', album: album.screen_name)) %>
               <%= link_to icon('picture', text: t('.photos')), photos_site_admin_album_path(album) %>
             <% end %>

@@ -32,7 +32,7 @@
       <% @photos.each do |photo| %>
         <div class="small-1 medium-5">
           <div class="album-photo-tile">
-            <%= link_to site_album_album_photo_path(photo.album, photo), remote: true do %>
+            <%= link_to site_album_album_photo_path(photo.album.slug, photo), remote: true do %>
               <%= image_tag photo.image.url(:f) %>
               <div class="title"><%= photo.description %></div>
             <% end %>

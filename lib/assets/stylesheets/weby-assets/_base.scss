@@ -281,9 +281,15 @@ img.flag {
   height: 100%;
   background-color: rgba(0, 0, 0, .85);
   z-index: 20;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  .photo-viewer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100vh;
+  }
 
   .close {
     position: absolute;
@@ -307,7 +313,7 @@ img.flag {
 
 .photo-viewer-content {
   display: flex;
-  width: 100vw;
+  width: 100%;
   justify-content: space-between;
   flex: 1;
   overflow: hidden;
@@ -334,8 +340,14 @@ img.flag {
 }
 
 .photo-viewer-footer {
-  height: 50px;
-  flex: 0 0 50px;
+  height: 78px;
+  flex: 0 0 78px;
+}
+
+.photo-viewer-expand {
+  margin-top: -35px;
+  padding: 20px;
+  background-color: #FFF;
 }
 
 .wtsp-share {

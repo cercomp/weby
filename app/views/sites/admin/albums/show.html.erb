@@ -33,7 +33,7 @@
 </p>
 
 <div class="form-actions">
-  <%= link_to icon('eye-open', text: t('show')), site_album_path(@album) if @album.publish || @album.user_id == current_user.id %>
+  <%= link_to icon('eye-open', text: t('show')), site_album_path(@album.slug) if @album.publish || @album.user_id == current_user.id %>
   <%= make_menu(@album, :except => "show", delete_confirm: t('sites.admin.albums.list.confirm_destroy', album: @album.screen_name)) %>
   <%= link_to icon('list', text: t(".list_all")), site_admin_albums_path %>
   <%= link_to icon('chevron-left', text: t("back")), :back %>

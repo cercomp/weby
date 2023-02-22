@@ -16,6 +16,7 @@ pt-BR:
         video_url:           "URL do video"
         updated_at:           " Atualizado em "
         album_photos:  "Fotos"
+        cover_photo:   " Capa "
       "album/i18ns":
         text:            "Texto"
         title:           "Título"
