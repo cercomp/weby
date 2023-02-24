@@ -155,4 +155,12 @@ $(function () {
         handleFail(data.context, errors)
      }
   });
+
+  $('.trigger-form').click(function(){
+    $('#current-photos .save-btn:not(.hide)').each(function(){
+      $(this).find('[type=submit]').click();
+    });
+    $('form.edit_album [type=submit]').click();
+    return false;
+  });
 });

@@ -129,7 +129,6 @@ Rails.application.routes.draw do
         resources :album_photos, only: [:create, :update, :destroy]
         member do
           put :toggle
-          get :photos
         end
         collection do
           delete :destroy_many

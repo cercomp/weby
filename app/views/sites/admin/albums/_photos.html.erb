@@ -1,15 +1,7 @@
 <% title ".albums"%>
 <% breadcrumb :albums_photos, @album %>
-<ul class="nav nav-tabs" id="album-form-tab">
-  <li>
-    <%= link_to t('.album_info'), edit_site_admin_album_path(@album) %>
-  </li>
-  <li class="active">
-    <%= link_to "#{t('.edit_photos')}", '#' %>
-  </li>
-</ul>
-<h4><%= @album.title %></h4>
-<%= simple_form_for [:site_admin, @album, @album_photo], remote: true do |f| %>
+<h4><%#= @album.title %></h4>
+<%= simple_form_for [:site_admin, @album, AlbumPhoto.new], remote: true do |f| %>
   <div class="form-group file optional album_photos_image">
     <%= f.input :image, as: :file, label: t('.add_photos'), required: false, input_html: {multiple: true, accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
   </div>
@@ -39,8 +31,8 @@
   <% end %>
 </div>
 <div class="form-actions">
-  <%= link_to t(".finish"), site_admin_albums_path, class: "btn btn-primary" %>
-  <%= link_to t("back"), edit_site_admin_album_path(@album), class: "btn btn-default" %>
+  <%= link_to t("save"), '#', class: "btn btn-primary trigger-form" %>
+  <%= link_to t("cancel"), site_admin_albums_path, class: "btn btn-default" %>
 </div>
 
 <% content_for :javascripts, javascript_include_tag("albums.photos") %>
