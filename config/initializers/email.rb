@@ -1,10 +1,10 @@
 check_database = begin
-  ActiveRecord::Base.connection
-rescue ActiveRecord::NoDatabaseError
-  false
-else
-  true
-end
+    ActiveRecord::Base.connection
+  rescue => err #ActiveRecord::NoDatabaseError, PG::ConnectionBad
+    false
+  else
+    true
+  end
 
 if Rails.env.production? && check_database && Setting.table_exists?
   if Weby::Settings::Email.smtp_address.present?
