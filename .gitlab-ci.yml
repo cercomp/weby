@@ -49,8 +49,6 @@ precompile:
     - develop
   script:
     - mkdir log
-    ## Move file to not acess db
-    - mv config/initializers/email.rb config/
     ## Assets precompile
     - bundle exec rake assets:precompile --trace
     - bundle exec rake assets:clean
@@ -59,8 +57,6 @@ precompile:
     - bundle exec rake assets:clobber
     - mkdir public/assets
     - cp .sprockets-manifest-*.json public/assets/
-    ## Init before system up
-    - mv config/email.rb config/initializers/
   artifacts:
     paths:
       - public/assets/
