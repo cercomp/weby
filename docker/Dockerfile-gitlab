@@ -6,13 +6,16 @@ ARG CI_VERSION_ENV
 ## Only stage to precompile
 FROM ${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV} as base
 
+MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
+
 ARG CI_COMMIT_SHORT_SHA
 ENV CI_COMMIT_SHORT_SHA $CI_COMMIT_SHORT_SHA
 
-MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
-
 # Copy files from first stage
+COPY . /opt/weby
 COPY ./public/assets /opt/weby/public/assets
+
+WORKDIR /opt/weby
 
 EXPOSE 3000:3000
 

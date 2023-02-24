@@ -17,7 +17,7 @@ base:
   services:
     - docker:dind
   environment:
-    name: $CI_COMMIT_REF_NAME
+    name: $CI_COMMIT_BRANCH
   tags:
     - docker
   only:
@@ -41,7 +41,7 @@ precompile:
   stage: precompile
   image: $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   environment:
-    name: $CI_COMMIT_REF_NAME
+    name: $CI_COMMIT_BRANCH
   tags:
     - docker
   only:
@@ -70,7 +70,7 @@ attach-assets:
   services:
     - docker:dind
   environment:
-    name: $CI_COMMIT_REF_NAME
+    name: $CI_COMMIT_BRANCH
   tags:
     - docker
   only:
@@ -93,7 +93,7 @@ redeploy-rancher:
   stage: deploy
   image: docker
   environment:
-    name: $CI_COMMIT_REF_NAME
+    name: $CI_COMMIT_BRANCH
   tags:
     - ssh
   only:
