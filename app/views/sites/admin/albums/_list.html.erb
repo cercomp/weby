@@ -6,14 +6,14 @@
   <table class='table table-striped table-condensed align-middle nowrap'>
     <thead>
       <th class="center sel-all" width="1%"><%= check_box_tag :select_all, 1, false %></th>
-      <th width="10%"><%= sortable 'archive_file_name', t(".cover") %></th>
-      <th width="35%"><%= t(".title") %></th>
+      <th width="10%"><%= t(".cover") %></th>
+      <th width="35%"><%= sortable 'album_i18ns.title', t(".title") %></th>
       <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
       <th width="20%"><%= sortable 'tags.name', t(".categories") %></th>
-      <th width="20%"><%= sortable 'tags.name', t(".tags") %></th>
+      <th width="20%"><%= sortable 'album_tags.name', t(".tags") %></th>
       <th width="25%"><%= sortable 'albums.created_at', t(".created_at") %></th>
       <% with_permission(action: :show) do %>
-        <th width="5%"><%= sortable 'pages.publish', t(".publish") %></th>
+        <th width="5%"><%= sortable 'albums.publish', t(".publish") %></th>
       <% end %>
       <th width="5%" class="center"><%= sortable 'albums.view_count', t(".views") %></th>
       <th width="5%" class="center"><%= sortable 'albums.photos_count', t(".photos") %></th>
@@ -45,7 +45,7 @@
             <%= render_dropdown_menu do %>
               <%= link_to icon('eye-open', text: t('show')), site_album_path(album.slug), target: :_blank %>
               <%= make_menu(album, :except => "show", :with_text => true, delete_confirm: t('.confirm_destroy', album: album.screen_name)) %>
-              <%= link_to icon('picture', text: t('.photos')), photos_site_admin_album_path(album) %>
+              <%= link_to icon('picture', text: t('.photos')), edit_site_admin_album_path(album, anchor: 'tab-photos') %>
             <% end %>
           </td>
         </tr>

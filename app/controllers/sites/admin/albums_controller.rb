@@ -3,15 +3,18 @@ class Sites::Admin::AlbumsController < ApplicationController
 
   before_action :require_user
   before_action :check_authorization
-  before_action :find_album, only: [:show, :edit, :update, :destroy, :photos]
+  before_action :find_album, only: [:show, :edit, :update, :destroy]
 
   helper_method :sort_column
 
   respond_to :html, :js, :json, :rss
 
   def index
+    params[:direction] ||= 'desc'
+
     @albums = (params[:album_tag].present? ? current_site.album_tags.find(params[:album_tag]) : current_site).albums.
       with_search(params[:search], 1).
+      includes(:user, :site, :categories, :album_tags, i18ns: :locale).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
 
@@ -32,7 +35,7 @@ class Sites::Admin::AlbumsController < ApplicationController
   end
 
   def sort_column
-    params[:sort] || 'pages.id'
+    params[:sort] || 'albums.id'
   end
   private :sort_column
 
@@ -49,19 +52,15 @@ class Sites::Admin::AlbumsController < ApplicationController
     @album.build_cover_photo if !@album.cover_photo
   end
 
-  def photos
-    @album_photo = AlbumPhoto.new
-  end
-
   def create
     @album = current_site.albums.new(album_params)
     @album.user = current_user
     @album.cover_photo.user = current_user if @album.cover_photo.present?
     if @album.save
       record_activity('created_album', @album)
-      respond_with(:photos, :site_admin, @album)
+      redirect_to edit_site_admin_album_path(@album, anchor: 'tab-photos')
     else
-      @album.build_cover_photo
+      @album.build_cover_photo if !@album.cover_photo
       respond_with(:site_admin, @album)
     end
   end
@@ -69,6 +68,8 @@ class Sites::Admin::AlbumsController < ApplicationController
   def update
     if @album.update(album_params)
       record_activity('updated_album', @album)
+    else
+      @album.build_cover_photo if !@album.cover_photo
     end
     respond_with(:site_admin, @album)
   end
