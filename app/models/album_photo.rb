@@ -23,6 +23,14 @@ class AlbumPhoto < ApplicationRecord
     region = ENV['STORAGE_REGION'].presence || 'us-east-1'
     is_aws = ENV['STORAGE_HOST_ALBUM'].to_s.include?('aws')
     attach_options.merge!({
+      storage: :s3,
+      s3_protocol: :https,
+      s3_permissions: 'private',
+      s3_region: region,
+      s3_headers: {
+        'Cache-Control' => 'public, s-maxage=31536000, maxage=15552000',
+        'Expires' => 1.year.from_now.to_formatted_s(:rfc822).to_s
+      },
       s3_credentials: {
         bucket: ENV['STORAGE_BUCKET_ALBUM'],
         access_key_id: ENV['STORAGE_ACCESS_KEY_ALBUM'],
