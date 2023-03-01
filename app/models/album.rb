@@ -23,6 +23,8 @@ class Album < ApplicationRecord
 
   accepts_nested_attributes_for :cover_photo, reject_if: proc { |attributes| attributes["image"].blank? }
 
+  after_save :refresh_photos_count!
+
   scope :published, -> { where(publish: true) }
   scope :by_user, ->(id) { where(user_id: id) }
 
