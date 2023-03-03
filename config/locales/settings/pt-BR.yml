@@ -12,6 +12,7 @@ pt-BR:
     tld_length:         "Tamanho do domínio onde o Weby está rodando Ex: 'weby.com.br' tld_length=2, 'weby.br' tld_length=1(padrão)"
     sites_index:        'site_id para mostrar a listagem dos sites, se não existir essa propriedade será a raiz do domínio'
     login_protocol:     "Protocolo da página de login (opções 'http' e 'https', padrão=http)"
+    restrict_albums_to_sites: 'Disponibilizar a extensão de galeria de fotos apenas para sites listados neste campo'
     domain:             'Domínio padrão do Weby'
     root_site:          'Site principal, acessível na raiz do domínio'
     maintenance_mode:   'Modo de Manutenção. True faz com que apenas admins possam logar.'

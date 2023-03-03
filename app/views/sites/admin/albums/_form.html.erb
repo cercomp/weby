@@ -14,7 +14,7 @@
 
         <%= f.simple_fields_for(:cover_photo) do |g| %>
           <%= g.input :id, as: :hidden %>
-          <%= g.input :image, as: :file, label: "<abbr title=\"obrigatório\">*</abbr> #{t('.cover')}".html_safe, label_html: {class: 'required'}, input_html: {accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
+          <%= g.input :image, as: :file, required: @album.new_record?, label: ("<abbr title=\"obrigatório\">*</abbr> #{t('.cover')}".html_safe unless @album.new_record?), label_html: {class: 'required'}, input_html: {accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
 
           <div class="album-photo" style="width: 150px">
             <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label') %>

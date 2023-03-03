@@ -12,3 +12,4 @@ en:
     maintenance_mode:   'Maintenance Mode. True makes it so only admin users can log in.'
     max_file_size:      'Maximum file size warning.'
     accessibility_text: "Accessibility component's default text"
+    restrict_albums_to_sites: 'Make the photo gallery extension available only to sites listed in this field'
