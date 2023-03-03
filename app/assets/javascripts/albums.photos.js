@@ -160,7 +160,7 @@ $(function () {
     $('#current-photos .save-btn:not(.hide)').each(function(){
       $(this).find('[type=submit]').click();
     });
-    $('form.edit_album [type=submit]').click();
+    $('form.edit_album').submit();
     return false;
   });
 });

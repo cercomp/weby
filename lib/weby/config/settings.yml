@@ -24,6 +24,8 @@ settings:
       value: '20'
     accessibility_text:
       value:
+    restrict_albums_to_sites:
+      value:
   ldap:
     host:
       value:

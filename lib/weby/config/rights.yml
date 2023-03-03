@@ -57,6 +57,69 @@ rights:
         en: Restore Page
         pt-BR: Restaurar página
       action: recycle_bin recover
+  albums:
+    index:
+      name:
+        en: List Albums
+        pt-BR: Listar Álbums de Fotos
+      action: index
+    show:
+      name:
+        en: View Album
+        pt-BR: Ver Álbum de Fotos
+      action: show
+    edit:
+      name:
+        en: Edit Album
+        pt-BR:  Editar Álbum de Fotos
+      action: edit update toggle
+    destroy:
+      name:
+        en: Destroy Album
+        pt-BR: Excluir Áblum de Fotos
+      action: destroy destroy_many
+    new:
+      name:
+        en: Create Album
+        pt-BR: Criar Álbum de Fotos
+      action: new create
+  album_tags:
+    index:
+      name:
+        en: List Album Types
+        pt-BR: Listar Tipos de Álbum
+      action: index
+    edit:
+      name:
+        en: Edit Album Types
+        pt-BR:  Editar Tipos de Álbum
+      action: edit update toggle
+    destroy:
+      name:
+        en: Destroy Album Type
+        pt-BR: Excluir Tipos de Álbum
+      action: destroy destroy_many
+    new:
+      name:
+        en: Create Album Type
+        pt-BR: Criar Tipos de Álbum
+      action: new create
+  album_photos:
+    edit:
+      name:
+        en: Edit Album Photos
+        pt-BR:  Editar Fotos do Álbum
+      action: edit update
+    destroy:
+      name:
+        en: Destroy Album Photos
+        pt-BR: Excluir Fotos do Álbum
+      action: destroy destroy_many
+    new:
+      name:
+        en: Create Album Photo
+        pt-BR: Enviar Fotos do Álbum
+      action: new create
   menus:
     index:
       name:

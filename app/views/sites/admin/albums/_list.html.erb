@@ -12,7 +12,7 @@
       <th width="20%"><%= sortable 'tags.name', t(".categories") %></th>
       <th width="20%"><%= sortable 'album_tags.name', t(".tags") %></th>
       <th width="25%"><%= sortable 'albums.created_at', t(".created_at") %></th>
-      <% with_permission(action: :show) do %>
+      <% with_permission(action: :edit) do %>
         <th width="5%"><%= sortable 'albums.publish', t(".publish") %></th>
       <% end %>
       <th width="5%" class="center"><%= sortable 'albums.view_count', t(".views") %></th>
@@ -35,7 +35,7 @@
           <td><%= raw categories_links(album.categories) %></td>
           <td><%= album.album_tags.map(&:name).join(', ') %></td>
           <td><%= l(album.created_at, :format => :short) %></td>
-          <% with_permission(action: :show) do %>
+          <% with_permission(action: :edit) do %>
             <td class="publish">
               <%= publication_status_page(album, remote: true) %></td>
           <% end %>
@@ -45,7 +45,9 @@
             <%= render_dropdown_menu do %>
               <%= link_to icon('eye-open', text: t('show')), site_album_path(album.slug), target: :_blank %>
               <%= make_menu(album, :except => "show", :with_text => true, delete_confirm: t('.confirm_destroy', album: album.screen_name)) %>
-              <%= link_to icon('picture', text: t('.photos')), edit_site_admin_album_path(album, anchor: 'tab-photos') %>
+              <% with_permission(action: :edit) do %>
+                <%= link_to icon('picture', text: t('.photos')), edit_site_admin_album_path(album, anchor: 'tab-photos') %>
+              <% end %>
             <% end %>
           </td>
         </tr>
