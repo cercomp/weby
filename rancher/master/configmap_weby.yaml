@@ -12,4 +12,4 @@ metadata:
   labels:
     app: weby-master
   name: weby-master
-  namespace: default
+  namespace: sites
