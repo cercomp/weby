@@ -5,3 +5,6 @@ metadata:
     #field.cattle.io/projectId: p-bxrnt
     kubernetes.io/metadata.name: sites
   name: sites
+spec:
+  finalizers:
+  - kubernetes
