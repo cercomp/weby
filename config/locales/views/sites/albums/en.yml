@@ -1,6 +1,6 @@
 en:
   sites:
-    pages:
+    albums:
       index:
         albums: Albums
         advanced:      " Advanced Options "
@@ -31,3 +31,9 @@ en:
         size:          " Size "
       sitemap:
         sitemap:       " Sitemap "
+    album_photos:
+      album_photo:
+        categories: 'Categories'
+        views:
+          one: '1 view'
+          other: '%{count} views'

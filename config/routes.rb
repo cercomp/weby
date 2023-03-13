@@ -143,7 +143,11 @@ Rails.application.routes.draw do
     end
     namespace :site, module: 'sites', path: '' do
       resources :albums, path: 'a', only: [:show], concerns: :slug_check do
-        resources :album_photos, only: [:show]
+        resources :album_photos, only: [:show] do
+          member do
+            get :download
+          end
+        end
         member do
           get :generate
         end

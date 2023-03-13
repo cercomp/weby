@@ -34,7 +34,6 @@
           <div class="album-photo-tile">
             <%= link_to site_album_album_photo_path(photo.album.slug, photo), remote: true do %>
               <%= image_tag photo.image.url(:f) %>
-              <div class="title"><%= photo.description %></div>
             <% end %>
           </div>
         </div>

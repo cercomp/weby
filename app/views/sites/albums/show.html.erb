@@ -21,7 +21,7 @@
         <iframe class="embed-ifr" width="640" height="360" src="<%= @album.embed_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <% end %>
       <div class="info"><%= t('.photos', count: @album.photos_count.to_i) %> · <%= t('.views', count: @album.view_count.to_i) %></div>
-      <% if @extension.show_author? || @extension.show_created_at? %>
+      <% if @extension && (@extension.show_author? || @extension.show_created_at?) %>
         <div class="info">
           <% if @extension.show_author? %>
             <span class="author"><%= t("posted_by") %><%= @album.user.name_or_login %></span>
