@@ -16,7 +16,12 @@
     <div class="info">
       <%= @album_photo.description %>
     </div>
-    <%= @album.category_list %>
-    <div><%= @album_photo.view_count.to_i %> views</div>
+    <p>
+      <b><%= t('.categories') %>:</b>
+      <% @album.category_list.each do |category| %>
+        <span class="cat-label"><%= category %></span>
+      <% end %>
+    </p>
+    <div><%= link_to fa_icon('download'), download_site_album_album_photo_path(@album.slug, @album_photo), class: 'download-link' %> <%= t('.views', count: @album_photo.view_count.to_i) %></div>
   </div>
 </div>

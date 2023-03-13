@@ -106,6 +106,7 @@ en:
   none_page:                            " None Page "
   need_login:                           " You need to be logged in to access this page. "
   need_at_least_one_i18n:               " Needs content in at least one language "
+  need_at_least_field_i18n:             " Needs %{field} in at least one language "
   none_user:                            " None User "
   next:                                 Next
 #---O---#

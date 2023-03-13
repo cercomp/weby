@@ -103,6 +103,7 @@ es:
   none_page:                            " Nenhuma Página "
   need_login:                           " Debes estar registrado para acceder a esta página. "
   need_at_least_one_i18n:               " Necessita de conteúdo en pelo menos um idioma "
+  need_at_least_field_i18n:             " Necessita de %{field} en pelo menos um idioma "
   none_user:                            " Nenhum Usuário "
   next:                                 Avance
 #---O---#

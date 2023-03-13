@@ -31,3 +31,9 @@ pt-BR:
         size:          " Tamanho "
       sitemap:
         sitemap:       " Mapa do Site "
+    album_photos:
+      album_photo:
+        categories: 'Categorias'
+        views:
+          one: '1 visualização'
+          other: '%{count} visualizações'
