@@ -26,7 +26,8 @@ module Weby
           def validate_i18ns
             if active_i18ns.none?
               if self.class.required_i18n_fields.present?
-                errors.add(:base, I18n.t('need_at_least_field_i18n', field: I18n.t("activerecord.attributes.#{self.class.name.downcase}/i18ns.#{self.class.required_i18n_fields.first}")))
+                _fields = self.class.required_i18n_fields.map{|_f| I18n.t("activerecord.attributes.#{self.class.name.downcase}/i18ns.#{_f}") }
+                errors.add(:base, I18n.t('need_at_least_field_i18n', field: _fields.join(', ')))
               else
                 errors.add(:base, I18n.t('need_at_least_one_i18n'))
               end
