@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: Namespace
 metadata:
+  annotations:
+    field.cattle.io/containerDefaultResourceLimit: '{"limitsCpu":"8000m","limitsMemory":"4096Mi","requestsCpu":"4000m","requestsMemory":"2048Mi"}'
   labels:
     #field.cattle.io/projectId: p-bxrnt
     kubernetes.io/metadata.name: sites
