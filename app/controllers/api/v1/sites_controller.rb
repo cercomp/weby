@@ -47,7 +47,7 @@ module API
           site.errors.add(:base, 'Nenhum tema informado')   && raise(ActiveRecord::Rollback) if params[:theme].blank?
           theme = ::Weby::Themes.theme(params[:theme])
           site.errors.add(:base, 'Tema não encontrado')     && raise(ActiveRecord::Rollback) if theme.blank?
-          site.errors.add(:base, t('only_admin'))           && raise(ActiveRecord::Rollback) if theme.is_private
+          #site.errors.add(:base, t('only_admin'))           && raise(ActiveRecord::Rollback) if theme.is_private
           #
           site.save!
           # Assign site admins
