@@ -129,10 +129,7 @@ class ApplicationController < ActionController::Base
     if current_site && request.domain
       if current_site.domain.present? && request.domain.match(current_site.domain)        
         request.session_options[:domain] = '.' + current_site.domain
-        tld_length = current_site.domain.split('.').length - 1
-        cookie_name = request.domain.parameterize(separator: '_')
-        request.session_options[:tld_length] = tld_length
-        Rails.application.config.session_store :cookie_store, key: "_#{cookie_name}_sess", domain: :all, tld_length: tld_length
+        request.session_options[:tld_length] = current_site.domain.split('.').length - 1
       elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
       end
