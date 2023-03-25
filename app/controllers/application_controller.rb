@@ -128,7 +128,7 @@ class ApplicationController < ActionController::Base
   def set_tld_length
     if current_site && request.domain
       if current_site.domain.present? && request.domain.match(current_site.domain)
-        request.session_options[:tld_length] = current_site.domain.split('.').length + 1
+        request.session_options[:tld_length] = current_site.domain.split('.').length
         request.session_options[:domain] = request.domain
       elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
