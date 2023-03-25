@@ -127,9 +127,12 @@ class ApplicationController < ActionController::Base
 
   def set_tld_length
     if current_site && request.domain
-      if current_site.domain.present? && request.domain.match(current_site.domain)
-        request.session_options[:tld_length] = current_site.domain.split('.').length
+      if current_site.domain.present? && request.domain.match(current_site.domain)        
         request.session_options[:domain] = request.domain
+        tld_length = current_site.domain.split('.').length
+        cookie_name = check_database && Setting.table_exists? && Weby::Settings::Weby.domain.present? ? Weby::Settings::Weby.domain.parameterize(separator: '_') : 'weby3'
+        request.session_options[:tld_length] = tld_length
+        Rails.application.config.session_store :cookie_store, key: "_#{cookie_name}_sess", domain: :all, tld_length: tld_length
       elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
       end
