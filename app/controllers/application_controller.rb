@@ -129,7 +129,7 @@ class ApplicationController < ActionController::Base
     if current_site && request.domain
       if current_site.domain.present? && request.domain.match(current_site.domain)        
         request.session_options[:key] = "_#{request.domain}_sess"
-        request.session_options[:domain] = '.' + 'go.gov.br'
+        request.session_options[:domain] = '.' + '.perm.go.gov.br'
         request.session_options[:tld_length] = 2
       elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
