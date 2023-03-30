@@ -7,7 +7,9 @@ module API
                       users: api_v1_find_user_path,
                       locales: api_v1_locales_path,
                       groupings: api_v1_groupings_path,
-                      themes: api_v1_themes_path}, status: 200
+                      themes: api_v1_themes_path,
+                      menus: api_v1_menus_path,
+                      menu_items: api_v1_menu_items_path}, status: 200
       end
 
       protected
