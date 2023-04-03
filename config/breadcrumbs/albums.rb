@@ -1,5 +1,6 @@
 # albums
 crumb :albums do
+  link t('extensions.gallery.name'), site_admin_albums_path
   link t('breadcrumbs.albums'), site_admin_albums_path
 end
 

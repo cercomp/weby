@@ -63,7 +63,7 @@ class Sites::AlbumsController < ApplicationController
     params[:direction] ||= 'desc'
 
     find_album_tag
-    (@album_tag || current_site).albums.
+    (@album_tag || current_site).albums.published.
       with_search(params[:search], params.fetch(:search_type, 1).to_i).
       order(sort_column + ' ' + sort_direction).
       page(params[:page]).per(params[:per_page])
