@@ -35,10 +35,11 @@ $(function () {
   });
 
   $('#current-photos').on('click', '.make-cover', function(e){
-    $form = $(this).closest('form');
+    $item = $(this).closest('.album-photo');
+    $form = $item.find('form');
     $.post($form.attr('action'), {make_cover: true, _method: 'patch'}, function(data){
       $('.is-cover').remove()
-      $form.replaceWith(data.html);
+      $item.replaceWith(data.html);
     }, 'json');
     return false;
   });

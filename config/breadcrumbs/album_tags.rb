@@ -1,5 +1,6 @@
 # album tags
 crumb :album_tags do
+  link t('extensions.gallery.name'), site_admin_albums_path
   link t('breadcrumbs.album_tags'), site_admin_album_tags_path
 end
 
