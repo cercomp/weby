@@ -218,6 +218,9 @@ Rails.application.routes.draw do
         resources :locales, only: [:index]
         resources :themes, only: [:index]
         resources :groupings, only: [:index]
+        resources :menus, only: [:index]
+        resources :menu_items, only: [:index, :create]
+        resources :pages, only: [:index, :create]
         get '/users/find' => 'users#find', as: :find_user
         #post '/login' => 'sessions#create'
         #delete '/logout' => 'sessions#destroy'

@@ -9,7 +9,8 @@ module API
                       groupings: api_v1_groupings_path,
                       themes: api_v1_themes_path,
                       menus: api_v1_menus_path,
-                      menu_items: api_v1_menu_items_path}, status: 200
+                      menu_items: api_v1_menu_items_path,
+                      pages: api_v1_pages_path}, status: 200
       end
 
       protected
