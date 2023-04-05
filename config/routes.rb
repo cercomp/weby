@@ -219,8 +219,8 @@ Rails.application.routes.draw do
         resources :themes, only: [:index]
         resources :groupings, only: [:index]
         resources :menus, only: [:index]
-        resources :menu_items, only: [:index, :create]
-        resources :pages, only: [:index, :create]
+        resources :menu_items, only: [:index, :create, :update]
+        resources :pages, only: [:index, :create, :update, :show]
         get '/users/find' => 'users#find', as: :find_user
         #post '/login' => 'sessions#create'
         #delete '/logout' => 'sessions#destroy'

@@ -15,24 +15,29 @@ module API
       def create
         @menu_item = MenuItem.new(menu_items_params)
         puts @menu_item
-        if create_menu_items(@menu_item)          
+        if create_menu_items(@menu_item)
           render json: @menu_item, root: 'data'
         else
           render json: {error: t('api.menu_items_not_created'), message: @menu_item.errors.full_messages}, status: 403
         end
       end
 
+      def update
+        params[:page] ||= 1
+        @menu_item = MenuItem.find_by id: params[:id]
+        return not_found :menu_item, params[:id] if !@menu_item
+
+        if @menu_item.update(menu_items_params)
+          render json: @menu_item, root: 'data'
+        else
+          render json: {error: t('api.menu_items_not_updated'), message: @menu_item.errors.full_messages}, status: 403
+        end
+      end
+
       def create_menu_items menu_item
         ActiveRecord::Base.transaction do
           # Validations
-          #site.errors.add(:base, 'Nenhum gestor informado') && raise(ActiveRecord::Rollback) if params[:managers].blank?
-          #managers = User.where(id: params[:managers])
-          #site.errors.add(:base, 'Gestor não encontrado')   && raise(ActiveRecord::Rollback) if managers.blank?
-          #site.errors.add(:base, 'Nenhum tema informado')   && raise(ActiveRecord::Rollback) if params[:theme].blank?
-          #theme = ::Weby::Themes.theme(params[:theme])
-          #site.errors.add(:base, 'Tema não encontrado')     && raise(ActiveRecord::Rollback) if theme.blank?
-          #site.errors.add(:base, t('only_admin'))           && raise(ActiveRecord::Rollback) if theme.is_private
-          #
+          
           menu_item.save!
         end
       rescue ActiveRecord::RecordInvalid

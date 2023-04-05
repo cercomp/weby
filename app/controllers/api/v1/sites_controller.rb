@@ -7,7 +7,7 @@ module API
       def index
         params[:page] ||= 1
         sites = Site.active.name_equal(params[:search])
-        render json: sites, root: 'sites', meta: build_meta(sites)
+        render json: sites.to_json(include: :active_skin), root: 'sites', meta: build_meta(sites)
       end
 
       def show
