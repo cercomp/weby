@@ -39,13 +39,18 @@ img.flag {
 
 .flex-masonry {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap;
   margin-right: -10px;
 
   > * {
     height: 245px;
     margin: 0 10px 10px 0;
     flex: 1 0 auto;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   // .small-1 {
