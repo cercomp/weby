@@ -44,11 +44,5 @@
   <% end %>
 </div>
 <div class="clearfix"></div>
-<%= per_page_links @photos, true, :sm %>
+<%#= per_page_links @photos, true, :sm %>
 <%= paginate @photos, remote: true, page_links: true %>
-
-<style>
-.default-hidden {
-  display: none;
-}
-</style>
