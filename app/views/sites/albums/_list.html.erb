@@ -24,11 +24,5 @@
     <div class="empty-result"><%= t(".no_albums") %></div>
   <% end %>
 </div>
-<%#= per_page_links @albums, false %>
+<%= per_page_links @albums, true, :sm %>
 <%= paginate @albums, page_links: true %>
-
-<style>
-  .default-hidden {
-    display: none;
-  }
-</style>

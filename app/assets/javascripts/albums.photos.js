@@ -16,9 +16,16 @@ $(function () {
   });
 
   $('#current-photos').on('ajax:success', '.close', function(e, data, status, xhr) {
+    data = JSON.parse(data);
     $(this).parents('.closeable').fadeOut(function(){
       $(this).remove();
     })
+    if (data.photo_album.is_cover) {
+      $('#album_cover_photo_attributes_id').val(null);
+      $('.cover-preview img').attr('href', '');
+      $('.cover-preview-cont').addClass('hide');
+      $('.cover-preview-cont .file-name').text('');
+    }
   }).on('ajax:error', '.close', function(e, xhr, status, error) {
     console.log(error);
 
@@ -35,10 +42,15 @@ $(function () {
   });
 
   $('#current-photos').on('click', '.make-cover', function(e){
-    $form = $(this).closest('form');
+    $item = $(this).closest('.album-photo');
+    $form = $item.find('form');
     $.post($form.attr('action'), {make_cover: true, _method: 'patch'}, function(data){
       $('.is-cover').remove()
-      $form.replaceWith(data.html);
+      $item.replaceWith(data.html);
+      $('#album_cover_photo_attributes_id').val(data.photo_album.id);
+      $('.cover-preview img').attr('src', $(data.html).find('img.preview').attr('src'));
+      $('.cover-preview-cont').removeClass('hide');
+      $('.cover-preview-cont .file-name').text(data.photo_album.image_file_name);
     }, 'json');
     return false;
   });
@@ -106,9 +118,14 @@ $(function () {
       $repoItem.find('#album_photo_image').val(data.files[0].name);
       $repoItem.find('.file-name').text(data.files[0].name);
       /////Geração do thumbnail de preview (Se o browser tiver o FileReader)
-      if ((/image/i).test(data.files[0].type)) {
+      if (typeof FileReader !== "undefined" && (/image/i).test(data.files[0].type)) {
         var img = document.createElement('img');
-        img.src = URL.createObjectURL(data.files[0]);
+        //img.src = URL.createObjectURL(data.files[0]);
+        var reader = new FileReader();
+        reader.onload = function(evt){
+          img.src = evt.target.result;
+        };
+        reader.readAsDataURL(data.files[0]);
         $(img).addClass('preview');
         $repoItem.find('#album_photo_image').hide().after(img);
       }

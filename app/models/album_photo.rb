@@ -3,8 +3,8 @@ class AlbumPhoto < ApplicationRecord
   attach_options = {
     styles: {
       o: "original",
-      t: "160x160#",
-      f: "400x300"
+      t: "200x200#",
+      f: "600x450"
     },
     original_style: :o,
     path: proc {
