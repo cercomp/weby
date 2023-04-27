@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   constraints(Weby::Subdomain) do
 
     concern :slug_check do
@@ -221,6 +223,7 @@ Rails.application.routes.draw do
         resources :menus, only: [:index]
         resources :menu_items, only: [:index, :create, :update]
         resources :pages, only: [:index, :create, :update, :show]
+        resources :components, only: [:index]
         get '/users/find' => 'users#find', as: :find_user
         #post '/login' => 'sessions#create'
         #delete '/logout' => 'sessions#destroy'

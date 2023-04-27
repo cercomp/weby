@@ -1,0 +1,163 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/components":
+    get:
+      summary: list components
+      responses:
+        '200':
+          description: successful
+  "/api/v1/groupings":
+    get:
+      summary: list groupings
+      responses:
+        '200':
+          description: successful
+  "/api/v1/locales":
+    get:
+      summary: list locales
+      responses:
+        '200':
+          description: successful
+  "/api/v1/menu_items":
+    get:
+      summary: list menu_items
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create menu_item
+      responses:
+        '200':
+          description: successful
+  "/api/v1/menu_items/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update menu_item
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update menu_item
+      responses:
+        '200':
+          description: successful
+  "/api/v1/menus":
+    get:
+      summary: list menus
+      responses:
+        '200':
+          description: successful
+  "/api/v1/pages":
+    get:
+      summary: list pages
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create page
+      responses:
+        '200':
+          description: successful
+  "/api/v1/pages/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show page
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update page
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update page
+      responses:
+        '200':
+          description: successful
+  "/api/v1/sites":
+    get:
+      summary: list sites
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create site
+      responses:
+        '200':
+          description: successful
+  "/api/v1/sites/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show site
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update site
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update site
+      responses:
+        '200':
+          description: successful
+  "/api/v1/themes":
+    get:
+      summary: list themes
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/find":
+    get:
+      summary: find user
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://lvh.me:3000
+  variables:
+    defaultHost:
+      default: lvh.me:3000
+- url: https://portais.weby.ufg.br
+  variables:
+    defaultHost:
+      default: portais.weby.ufg.br
+components:
+  securitySchemes:
+    weby-app-code:
+      description: Código do Sistema
+      type: apiKey
+      name: weby-app-code
+      in: header
+    weby-api-token:
+      description: Token do sistema
+      type: apiKey
+      name: weby-api-token
+      in: header
+security:
+- weby-app-code: []
+  weby-api-token: []

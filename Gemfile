@@ -79,6 +79,9 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'dotenv-rails', '~>2.7.5'
+  gem 'rswag'
+  gem 'rswag-specs'
+  gem 'bigdecimal', '1.4.2'
 end
 
 group :development do
