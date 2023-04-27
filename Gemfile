@@ -79,9 +79,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'dotenv-rails', '~>2.7.5'
-  gem 'rswag'
-  gem 'rswag-specs'
-  gem 'bigdecimal', '1.4.2'
 end
 
 group :development do
@@ -90,6 +87,9 @@ group :development do
   gem 'meta_request', '~> 0.7.0'
   gem 'letter_opener', '~> 1.2.0'
   gem 'bullet'
+  gem 'rswag'
+  gem 'rswag-specs'
+  gem 'bigdecimal', '1.4.2'
 end
 
 group :test do
