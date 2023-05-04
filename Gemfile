@@ -11,7 +11,7 @@ gem 'pg', '~> 1.2.3'
 gem 'bootsnap', '~> 1.4.6', require: false
 
 # js and css frameworks
-gem 'jquery-rails', '4.3.5'
+gem 'jquery-rails', '4.5.1'
 gem 'jquery-ui-rails', '~> 6.0.1'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'cropper-rails', '~> 2.3.2.1'
