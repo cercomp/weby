@@ -5,6 +5,7 @@ module API
 
       def index
         params[:page] ||= 1
+        puts params[:id]
         site = Site.find_by id: params[:id]
         return not_found :site, params[:id] if !site
         puts site

@@ -6,7 +6,13 @@ info:
 paths:
   "/api/v1/components":
     get:
-      summary: list components
+      summary: Lista de componente de um site
+      parameters:
+      - name: id
+        in: query
+        description: ID do site
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
@@ -24,15 +30,60 @@ paths:
           description: successful
   "/api/v1/menu_items":
     get:
-      summary: list menu_items
+      summary: Lista de items de menu
+      parameters:
+      - name: id
+        in: query
+        description: ID do menu a qual pertence
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
     post:
-      summary: create menu_item
+      summary: Cria menu item
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                menu_id:
+                  type: integer
+                  description: ID do menu pertencente
+                new_tab:
+                  type: boolean
+                  description: Campo para abrir a url do item de menu em uma nova
+                    aba
+                publish:
+                  type: boolean
+                  description: Campo para publicar o item de menu
+                parent_id:
+                  type: integer
+                  description: ID do item de menu pai (Se houver)
+                url:
+                  type: string
+                  description: URL do item de menu
+                i18ns_attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: Título do item de menu
+                    description:
+                      type: string
+                      description: Descrição do menu pertencente
+                    locale_id:
+                      type: integer
+                      description: ID do idioma do site
+              required:
+              - publish
+              - parent_id
+              - url
   "/api/v1/menu_items/{id}":
     parameters:
     - name: id
@@ -42,32 +93,112 @@ paths:
       schema:
         type: string
     patch:
-      summary: update menu_item
+      summary: Atualiza item de menu por atributo do objeto
       responses:
         '200':
           description: successful
     put:
-      summary: update menu_item
+      summary: Atualiza item de menu pelo objeto
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                menu_id:
+                  type: integer
+                  description: ID do menu pertencente
+                new_tab:
+                  type: boolean
+                  description: Campo para abrir a url do item de menu em uma nova
+                    aba
+                publish:
+                  type: boolean
+                  description: Campo para publicar o item de menu
+                parent_id:
+                  type: integer
+                  description: ID do item de menu pai (Se houver)
+                url:
+                  type: string
+                  description: URL do item de menu
+                i18ns_attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: Título do item de menu
+                    description:
+                      type: string
+                      description: Descrição do menu pertencente
+                    locale_id:
+                      type: integer
+                      description: ID do idioma do site
+              required:
+              - publish
+              - parent_id
+              - url
   "/api/v1/menus":
     get:
-      summary: list menus
+      summary: Lista de menus
+      parameters:
+      - name: id
+        in: query
+        description: ID do site
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
   "/api/v1/pages":
     get:
-      summary: list pages
+      summary: Lista paginas de um site
+      parameters:
+      - name: id_site
+        in: query
+        description: ID do site
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
     post:
-      summary: create page
+      summary: Cria página
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site pertencente
+                user:
+                  type: boolean
+                  description: ID do usuário criador do site
+                i18ns_attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: Título do item de menu
+                    description:
+                      type: string
+                      description: Descrição do menu pertencente
+                    locale_id:
+                      type: integer
+                      description: ID do idioma do site
+              required:
+              - site_id
+              - user
+              - i18ns_attributes
   "/api/v1/pages/{id}":
     parameters:
     - name: id
@@ -87,21 +218,77 @@ paths:
         '200':
           description: successful
     put:
-      summary: update page
+      summary: Atualiza pagina
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site pertencente
+                user:
+                  type: boolean
+                  description: ID do usuário criador do site
+                i18ns_attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: Título do item de menu
+                    description:
+                      type: string
+                      description: Descrição do menu pertencente
+                    locale_id:
+                      type: integer
+                      description: ID do idioma do site
+              required:
+              - site_id
+              - user
+              - i18ns_attributes
   "/api/v1/sites":
     get:
-      summary: list sites
+      summary: Lista de sites
+      parameters:
+      - name: search
+        in: query
+        description: Nome do site
+        schema:
+          type: string
       responses:
         '200':
           description: successful
     post:
-      summary: create site
+      summary: Cria site
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site
+                managers:
+                  type: array
+                  items:
+                    type: integer
+                  description: IDs dos gerenciadores do site
+                theme:
+                  type: string
+                  description: Nome do tema
+              required:
+              - managers
+              - theme
   "/api/v1/sites/{id}":
     parameters:
     - name: id
@@ -121,19 +308,51 @@ paths:
         '200':
           description: successful
     put:
-      summary: update site
+      summary: Atualiza site
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site
+                managers:
+                  type: array
+                  items:
+                    type: integer
+                  description: IDs dos gerenciadores do site
+                theme:
+                  type: string
+                  description: Nome do tema
+              required:
+              - managers
+              - theme
   "/api/v1/themes":
     get:
-      summary: list themes
+      summary: Lista todos os temas
       responses:
         '200':
           description: successful
   "/api/v1/users/find":
     get:
       summary: find user
+      parameters:
+      - name: email
+        in: query
+        description: E-mail do usuário
+        schema:
+          type: string
+      - name: login
+        in: query
+        description: Login do usuário
+        schema:
+          type: string
       responses:
         '200':
           description: successful

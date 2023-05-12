@@ -4,7 +4,8 @@ RSpec.describe 'api/v1/sites', type: :request do
 
   path '/api/v1/sites' do
 
-    get('list sites') do
+    get('Lista de sites') do
+      parameter name: :search, in: :query, type: :string, description: 'Nome do site'
       response(200, 'successful') do
 
         after do |example|
@@ -18,7 +19,17 @@ RSpec.describe 'api/v1/sites', type: :request do
       end
     end
 
-    post('create site') do
+    post('Cria site') do
+      consumes 'application/json'
+      parameter name: :site, in: :body, schema: {
+        type: :object,
+        properties: {
+          site_id: { type: :integer, description: 'ID do site' },
+          managers: { type: :array, items: {type: :integer}, description: 'IDs dos gerenciadores do site' },
+          theme: { type: :string, description: 'Nome do tema' }
+        },
+        required: [ 'managers', 'theme' ]
+      }
       response(200, 'successful') do
 
         after do |example|
@@ -67,7 +78,17 @@ RSpec.describe 'api/v1/sites', type: :request do
       end
     end
 
-    put('update site') do
+    put('Atualiza site') do
+      consumes 'application/json'
+      parameter name: :site, in: :body, schema: {
+        type: :object,
+        properties: {
+          site_id: { type: :integer, description: 'ID do site' },
+          managers: { type: :array, items: {type: :integer},  description: 'IDs dos gerenciadores do site' },
+          theme: { type: :string, description: 'Nome do tema' }
+        },
+        required: [ 'managers', 'theme' ]
+      }
       response(200, 'successful') do
         let(:id) { '123' }
 
