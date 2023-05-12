@@ -4,7 +4,7 @@ RSpec.describe 'api/v1/themes', type: :request do
 
   path '/api/v1/themes' do
 
-    get('list themes') do
+    get('Lista todos os temas') do
       response(200, 'successful') do
 
         after do |example|

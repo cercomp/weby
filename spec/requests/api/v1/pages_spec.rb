@@ -4,7 +4,8 @@ RSpec.describe 'api/v1/pages', type: :request do
 
   path '/api/v1/pages' do
 
-    get('list pages') do
+    get('Lista paginas de um site') do
+      parameter name: :id_site, in: :query, type: :integer, description: 'ID do site'
       response(200, 'successful') do
 
         after do |example|
@@ -18,7 +19,24 @@ RSpec.describe 'api/v1/pages', type: :request do
       end
     end
 
-    post('create page') do
+    post('Cria página') do
+      consumes 'application/json'
+      parameter name: :menu_item, in: :body, schema: {
+        type: :object,
+        properties: {
+          site_id: { type: :integer, description: 'ID do site pertencente' },
+          user: { type: :boolean, description: 'ID do usuário criador do site' },
+          i18ns_attributes: { 
+            type: :object, 
+            properties: {
+              title: { type: :string, description: 'Título do item de menu' },
+              description: { type: :string, description: 'Descrição do menu pertencente' },
+              locale_id: { type: :integer, description: 'ID do idioma do site' }
+            }
+          }
+        },
+        required: [ 'site_id', 'user', 'i18ns_attributes' ]
+      }
       response(200, 'successful') do
 
         after do |example|
@@ -67,7 +85,24 @@ RSpec.describe 'api/v1/pages', type: :request do
       end
     end
 
-    put('update page') do
+    put('Atualiza pagina') do
+      consumes 'application/json'
+      parameter name: :menu_item, in: :body, schema: {
+        type: :object,
+        properties: {
+          site_id: { type: :integer, description: 'ID do site pertencente' },
+          user: { type: :boolean, description: 'ID do usuário criador do site' },
+          i18ns_attributes: { 
+            type: :object, 
+            properties: {
+              title: { type: :string, description: 'Título do item de menu' },
+              description: { type: :string, description: 'Descrição do menu pertencente' },
+              locale_id: { type: :integer, description: 'ID do idioma do site' }
+            }
+          }
+        },
+        required: [ 'site_id', 'user', 'i18ns_attributes' ]
+      }
       response(200, 'successful') do
         let(:id) { '123' }
 
