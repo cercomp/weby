@@ -35,4 +35,20 @@ $(document).ready(function(){
     }
   });
 
+  $("input[type=submit]").on("click", function() {
+    let data = true;
+    let msgs = [];
+
+    $("input[data-required=true]").each(function(){
+      var input = $(this);
+      if (!input.val()) {
+        data = false;
+        let msg = input.attr('data-msg');
+        if (msg) msgs.push(msg);
+        else msgs.push(`${input.attr('id')} é campo obrigatório`);
+      }
+    });
+    FlashMsg.error(msgs);
+    return data;
+  });
 });

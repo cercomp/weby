@@ -61,6 +61,21 @@ FlashMsg = {
         $('#'+id).remove();
       }, 2000)
     }, 4000);
+  },
+  error: function(textErrors) {
+    $('form #error_box').remove();
+    $('form').prepend('<div class="alert alert-error" id="error_box"></div>');
+    if (Array.isArray(textErrors)) {
+      $('#error_box').append(`<b>${textErrors.length} Erros impedem que você prossiga</b>`);
+      let listMsg = '';
+      textErrors.forEach(element => {
+        listMsg = listMsg.concat(`<li>${element}</li>`)
+      });
+      $('#error_box').append(`<ul>${listMsg}</ul>`);
+    } else {
+      $('#error_box').append(`<b>Um erro impede que você prossiga</b>`);
+      $('#error_box').append(`<ul><li>${textErrors}</li></ul>`);
+    }
   }
 }
 

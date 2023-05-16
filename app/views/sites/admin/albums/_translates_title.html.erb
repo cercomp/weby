@@ -1,7 +1,7 @@
 <%= each_i18n_tab available_locales(@album) do |locale| %>
   <%= f.i18ns_fields_for(locale) do |g| %>
     <%= g.input :_destroy, wrapper: :checkbox, as: :boolean if g.object.try(:id) %>
-    <%= g.input :title, label: "<abbr title=\"obrigatório\">*</abbr> #{t('activerecord.attributes.album/i18ns.title')}".html_safe, label_html: {class: 'required'} %>
+    <%= g.input :title, label: "<abbr title=\"obrigatório\">*</abbr> #{t('activerecord.attributes.album/i18ns.title')}".html_safe, label_html: {class: 'required'}, input_html: {:data => {required: 'true', msg: 'Título é um campo obrigatório'}} %>
   <% end %>
 <% end %>
 <% f.reset_index %>
