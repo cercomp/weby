@@ -30,11 +30,14 @@ RSpec.describe 'api/v1/menu_items', type: :request do
           parent_id: { type: :integer, description: 'ID do item de menu pai (Se houver)' },
           url: { type: :string, description: 'URL do item de menu' },
           i18ns_attributes: { 
-            type: :object, 
-            properties: {
-              title: { type: :string, description: 'Título do item de menu' },
-              description: { type: :string, description: 'Descrição do menu pertencente' },
-              locale_id: { type: :integer, description: 'ID do idioma do site' }
+            type: :array,
+            items: {
+              type: :object,
+              properties: {
+                title: { type: :string, description: 'Título do item de menu' },
+                description: { type: :string, description: 'Descrição do menu pertencente' },
+                locale_id: { type: :integer, description: 'ID do idioma do site' }
+              }
             }
           }
         },
@@ -59,6 +62,14 @@ RSpec.describe 'api/v1/menu_items', type: :request do
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     patch('Atualiza item de menu por atributo do objeto') do
+      consumes 'application/json'
+      parameter name: :menu_item, in: :body, schema: {
+        type: :object,
+        properties: {
+          publish: { type: :boolean, description: 'Campo para publicar o item de menu' }
+        },
+        required: [ 'publish' ]
+      }
       response(200, 'successful') do
         let(:id) { '123' }
 

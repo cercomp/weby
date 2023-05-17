@@ -25,13 +25,17 @@ RSpec.describe 'api/v1/pages', type: :request do
         type: :object,
         properties: {
           site_id: { type: :integer, description: 'ID do site pertencente' },
-          user: { type: :boolean, description: 'ID do usuário criador do site' },
+          user: { type: :integer, description: 'ID do usuário criador do site' },
+          publish: { type: :boolean, description: 'Define se a página será publicada' },
           i18ns_attributes: { 
-            type: :object, 
-            properties: {
-              title: { type: :string, description: 'Título do item de menu' },
-              description: { type: :string, description: 'Descrição do menu pertencente' },
-              locale_id: { type: :integer, description: 'ID do idioma do site' }
+            type: :array,
+            items: {
+              type: :object,
+              properties: {
+                title: { type: :string, description: 'Título do item de menu' },
+                description: { type: :string, description: 'Descrição do menu pertencente' },
+                locale_id: { type: :integer, description: 'ID do idioma do site' }
+              }
             }
           }
         },
