@@ -69,17 +69,19 @@ paths:
                   type: string
                   description: URL do item de menu
                 i18ns_attributes:
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                      description: Título do item de menu
-                    description:
-                      type: string
-                      description: Descrição do menu pertencente
-                    locale_id:
-                      type: integer
-                      description: ID do idioma do site
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        description: Título do item de menu
+                      description:
+                        type: string
+                        description: Descrição do menu pertencente
+                      locale_id:
+                        type: integer
+                        description: ID do idioma do site
               required:
               - publish
               - parent_id
@@ -94,9 +96,21 @@ paths:
         type: string
     patch:
       summary: Atualiza item de menu por atributo do objeto
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publish:
+                  type: boolean
+                  description: Campo para publicar o item de menu
+              required:
+              - publish
     put:
       summary: Atualiza item de menu pelo objeto
       parameters: []
@@ -181,20 +195,25 @@ paths:
                   type: integer
                   description: ID do site pertencente
                 user:
-                  type: boolean
+                  type: integer
                   description: ID do usuário criador do site
+                publish:
+                  type: boolean
+                  description: Define se a página será publicada
                 i18ns_attributes:
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                      description: Título do item de menu
-                    description:
-                      type: string
-                      description: Descrição do menu pertencente
-                    locale_id:
-                      type: integer
-                      description: ID do idioma do site
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        description: Título do item de menu
+                      description:
+                        type: string
+                        description: Descrição do menu pertencente
+                      locale_id:
+                        type: integer
+                        description: ID do idioma do site
               required:
               - site_id
               - user
