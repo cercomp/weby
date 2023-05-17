@@ -14,7 +14,7 @@
 
         <%= f.simple_fields_for(:cover_photo) do |g| %>
           <%= g.input :id, as: :hidden %>
-          <%= g.input :image, as: :file, required: @album.new_record?, label: ("<abbr title=\"obrigatório\">*</abbr> #{t('.cover')}".html_safe unless @album.new_record?), label_html: {class: 'required'}, input_html: {accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
+          <%= g.input :image, as: :file, required: @album.new_record?, label: ("<abbr title=\"obrigatório\">*</abbr> #{t('.cover')}".html_safe unless @album.new_record?), label_html: {class: 'required'}, input_html: {accept: 'image/png, image/gif, image/jpeg, image/jpg', :data => {required: 'true', msg: 'Foto é um campo obrigatório'}} %>
 
           <div class="album-photo cover-preview-cont <%= 'hide' if !@album.cover_photo.image.present? %>" style="width: 150px">
             <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label') %>
@@ -32,7 +32,7 @@
           <div class="input-group-addon">
             <%= "#{site_url}#{get_route_path(:site_album)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>
           </div>
-          <%= f.input_field :slug, as: :string, data: {check_slug: '', include_num: true, id: @album.id, url: check_slug_site_albums_path}, pattern: Album::SLUG_PATTERN %>
+          <%= f.input_field :slug, as: :string,data: {check_slug: '', include_num: true, id: @album.id, url: check_slug_site_albums_path, required: 'true', msg: 'Slug é um campo obrigatório'}, pattern: Album::SLUG_PATTERN %>
         <% end %>
         <span class="help-block"><%= t('slug_hint_num') %></span>
 
