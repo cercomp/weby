@@ -36,6 +36,18 @@ module API
         end
       end
 
+      def destroy
+        site = Site.find_by id: params[:id]
+        return not_found :site, params[:id] if !site
+        
+        begin
+          site.unscoped_destroy!
+          render json: {msg: t('successfully_deleted')}, status: 200
+        rescue ActiveRecord::RecordNotDestroyed => error
+          render json: {error: t('api.error_destroying_object'), message: @site.errors.full_messages}, status: 400
+        end
+      end
+
       private
 
       def create_site site

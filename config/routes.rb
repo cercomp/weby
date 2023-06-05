@@ -216,7 +216,7 @@ Rails.application.routes.draw do
     namespace :api, defaults: {format: :json} do
       namespace :v1 do
         get '/' => 'base#root'
-        resources :sites, only: [:index, :create, :show, :update]
+        resources :sites, only: [:index, :create, :show, :update, :destroy]
         resources :locales, only: [:index]
         resources :themes, only: [:index]
         resources :groupings, only: [:index]

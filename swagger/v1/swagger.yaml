@@ -363,6 +363,11 @@ paths:
               required:
               - managers
               - theme
+    delete:
+      summary: deleta site
+      responses:
+        '200':
+          description: successful
   "/api/v1/themes":
     get:
       summary: Lista todos os temas
