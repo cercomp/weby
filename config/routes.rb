@@ -223,7 +223,7 @@ Rails.application.routes.draw do
         resources :menus, only: [:index]
         resources :menu_items, only: [:index, :create, :update]
         resources :pages, only: [:index, :create, :update, :show]
-        resources :components, only: [:index]
+        resources :components, only: [:index, :update]
         get '/users/find' => 'users#find', as: :find_user
         #post '/login' => 'sessions#create'
         #delete '/logout' => 'sessions#destroy'

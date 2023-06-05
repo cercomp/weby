@@ -16,6 +16,31 @@ paths:
       responses:
         '200':
           description: successful
+  "/api/v1/components/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    put:
+      summary: Atualiza componente
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publish:
+                  type: boolean
+                  description: ID do componente
+              required:
+              - publish
   "/api/v1/groupings":
     get:
       summary: list groupings
