@@ -13,7 +13,7 @@ module API
       def show
         site = Site.find_by id: params[:id]
         return not_found :site, params[:id] if !site
-        render json: site, root: 'site'
+        render json: site.to_json(include: [:admin_users, :users], except: :theme), root: 'site'
       end
 
       def create
