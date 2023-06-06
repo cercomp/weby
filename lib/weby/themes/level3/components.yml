@@ -1,26 +1,3 @@
-first_place:
-- settings: '{:background=>"#7F7F7F"}'
-  name: gov_bar
-  position: 1
-  publish: true
-  alias: Barra do Governo Federal
-- settings: '{:html_class=>"accessibility-bar"}'
-  name: components_group
-  position: 2
-  publish: true
-  alias: Barra de acessibilidade
-  children:
-  - settings: '{:contrast=>"1", :font_size=>"1", :extended_accessibility=>"0", :label_contrast=>{"pt-BR"=>"",
-      "en"=>""}, :label_font_size=>{"pt-BR"=>"", "en"=>""}, :additional_information=>{"pt-BR"=>"",
-      "en"=>""}, :template=>"bar", :content_anchor=>"content", :menu_anchor=>"component_47382",
-      :search_anchor=>"search"}'
-    name: menu_accessibility
-    position: 1
-    publish: true
-  - settings: '{:dropdown=>"1", :template=>"flag_name", :use_translator=>"1"}'
-    name: menu_i18n
-    position: 2
-    publish: true
 top:
 - settings: '{:html_class=>"container"}'
   name: components_group
@@ -42,7 +19,8 @@ top:
       alias: Logo
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"0", :html_class=>"ufg-logo",
-        :default_image=>"level3/marca-ufg.svg", :default_image_alt=>"Logo da UFG", :contrast_default_image=>"level3/marca-ufg-white.svg"}'
+        :default_image=>"level3/marca-ufg.svg", :default_image_alt=>"Logo da UFG",
+        :contrast_default_image=>"level3/marca-ufg-white.svg"}'
       name: image
       position: 2
       publish: true
@@ -71,7 +49,8 @@ top:
         position: 3
         publish: true
       - settings: '{:html_class=>"search-toggle", :put_at_end=>"0", :body=>{"pt-BR"=>"<button
-          type=\"button\" title=\"Abrir formulário de pesquisa\" data-alt-title=\"Fechar formulário de pesquisa\"></button>", "en"=>"", "es"=>""}}'
+          type=\"button\" title=\"Abrir formulário de pesquisa\" data-alt-title=\"Fechar
+          formulário de pesquisa\"></button>", "en"=>"", "es"=>""}}'
         name: blank
         position: 4
         publish: true
@@ -91,28 +70,32 @@ top:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://twitter.com",
         :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-        :default_image=>"level3/ic-twitter.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
+        :default_image=>"level3/ic-twitter.svg", :title=>{"pt-BR"=>"", "en"=>""},
+        :hide_for_sr=>"1"}'
       name: image
       position: 1
       publish: true
       alias: twitter
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.facebook.com",
         :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-        :default_image=>"level3/ic-facebook.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
+        :default_image=>"level3/ic-facebook.svg", :title=>{"pt-BR"=>"", "en"=>""},
+        :hide_for_sr=>"1"}'
       name: image
       position: 2
       publish: true
       alias: facebook
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://www.youtube.com",
         :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-        :default_image=>"level3/ic-youtube.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
+        :default_image=>"level3/ic-youtube.svg", :title=>{"pt-BR"=>"", "en"=>""},
+        :hide_for_sr=>"1"}'
       name: image
       position: 3
       publish: true
       alias: Youtube
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"http://instagram.com",
         :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"social-icon",
-        :default_image=>"level3/ic-instagram.svg", :title=>{"pt-BR"=>"", "en"=>""}, :hide_for_sr=>"1"}'
+        :default_image=>"level3/ic-instagram.svg", :title=>{"pt-BR"=>"", "en"=>""},
+        :hide_for_sr=>"1"}'
       name: image
       position: 4
       publish: true
@@ -135,174 +118,6 @@ top:
   name: breadcrumb
   position: 2
   publish: true
-home:
-- settings: '{:category=>"Slider", :orientation=>"slider", :timer=>"7", :description=>"1",
-    :show_controls=>"1", :show_title=>"0", :show_description=>"0", :filter_by=>"Slider",
-    :html_class=>""}'
-  name: banner_list
-  position: 1
-  publish: true
-  alias: Slider
-- settings: '{:quant=>"6", :max_char=>"", :filter_by=>"", :image_size=>"m",
-    :avatar_width=>"300", :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1",
-    :show_author=>"0", :show_date=>"1", :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Notícias",
-    "en"=>"", "es"=>""}, :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>"", "es"=>""},
-    :date_format=>"short", :show_tags=>"1", :hide_filtered_tags=>"0", :html_class=>""}'
-  name: front_news
-  position: 2
-  publish: true
-  alias: Notícias capa
-- settings: '{:quant=>"3", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"300",
-    :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1", :show_author=>"0", :show_date=>"1",
-    :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Outras Notícias", "en"=>""},
-    :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>""}, :date_format=>"short", :show_tags=>"1",
-    :hide_filtered_tags=>"0"}'
-  name: front_news
-  position: 3
-  publish: true
-  alias: Outras Notícias
-- settings: '{:quant=>"6", :max_char=>"", :filter_by=>"", :image_size=>"m",
-    :avatar_width=>"300", :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1",
-    :show_author=>"0", :show_date=>"1", :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Outras Notícias",
-    "en"=>"", "es"=>""}, :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>"", "es"=>""},
-    :date_format=>"short", :show_tags=>"1", :hide_filtered_tags=>"0", :html_class=>""}'
-  name: front_news
-  position: 4
-  publish: true
-  alias: Outras Notícias
-- settings: '{:html_class=>"fixed-menus"}'
-  name: components_group
-  position: 5
-  publish: true
-  alias: Serviços
-  children:
-  - settings: '{:html_class=>"container"}'
-    name: components_group
-    position: 1
-    publish: true
-    alias: Container
-    children:
-    - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"1", :html_class=>"",
-        :title=>{"pt-BR"=>"Serviços", "en"=>"", "es"=>""}}'
-      name: menu
-      position: 1
-      publish: true
-      menu:
-        name: Serviços
-- settings: '{:html_class=>"event-lists"}'
-  name: components_group
-  position: 6
-  publish: true
-  alias: Eventos
-  children:
-  - settings: '{:html_class=>"container"}'
-    name: components_group
-    position: 1
-    publish: true
-    alias: Container
-    children:
-    - settings: '{:template=>"front", :date_format=>"two_dates", :quant=>"9", :max_char=>"",
-        :filter_by=>"", :image_size=>"i", :avatar_width=>"", :avatar_height=>"", :read_more=>"0",
-        :label=>{"pt-BR"=>"Eventos", "en"=>""}, :link_to_all=>{"pt-BR"=>"Ver todos",
-        "en"=>""}, :group_by=>"0", :html_class=>"", :source=>"own", :sel_site=>""}'
-      name: event_list
-      position: 1
-      publish: true
-- settings: '{:html_class=>"boxes-section"}'
-  name: components_group
-  position: 7
-  publish: true
-  alias: Destaques
-  children:
-  - settings: '{:html_class=>"container"}'
-    name: components_group
-    position: 1
-    publish: true
-    alias: Container
-    children:
-    - settings: '{:html_class=>"box-container"}'
-      name: components_group
-      position: 1
-      publish: true
-      alias: Container Box1
-      children:
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
-          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level3/box-1.jpg",
-          :title=>{"pt-BR"=>"Box 1", "en"=>""}}'
-        name: image
-        position: 1
-        publish: true
-        alias: Imagem Box 1
-    - settings: '{:html_class=>"box-container"}'
-      name: components_group
-      position: 2
-      publish: true
-      alias: Container Box2
-      children:
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
-          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level3/box-2.jpg",
-          :title=>{"pt-BR"=>"Box 2", "en"=>""}}'
-        name: image
-        position: 1
-        publish: true
-        alias: Imagem Box 2
-    - settings: '{:html_class=>"box-container"}'
-      name: components_group
-      position: 3
-      publish: true
-      alias: Container Box3
-      children:
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
-          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level3/box-3.jpg",
-          :title=>{"pt-BR"=>"Box 3", "en"=>""}}'
-        name: image
-        position: 1
-        publish: true
-        alias: Imagem Box 3
-- settings: '{:html_class=>"main-links"}'
-  name: components_group
-  position: 8
-  publish: true
-  alias: Links Úteis
-  children:
-  - settings: '{:html_class=>"container"}'
-    name: components_group
-    position: 1
-    publish: true
-    alias: Container
-    children:
-    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>Link Úteis</p>", "en"=>""}}'
-      name: text
-      position: 1
-      publish: true
-      alias: Título
-    - settings: '{:html_class=>"links"}'
-      name: components_group
-      position: 2
-      publish: true
-      alias: Links
-      children:
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
-          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"",
-          :title=>{"pt-BR"=>"CAPES", "en"=>""}}'
-        name: image
-        position: 1
-        publish: true
-        alias: CAPES
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
-          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"",
-          :title=>{"pt-BR"=>"CNPq", "en"=>""}}'
-        name: image
-        position: 2
-        publish: true
-        alias: CNPq
-      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://google.com/",
-          :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"",
-          :title=>{"pt-BR"=>"FAPEG", "en"=>""}}'
-        name: image
-        position: 3
-        publish: true
-        alias: FAPEG
 bottom:
 - settings: '{:html_class=>"footer"}'
   name: components_group
@@ -317,8 +132,8 @@ bottom:
     alias: Container
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/", :target_id=>"", :target_type=>"",
-        :new_tab=>"0", :html_class=>"logo", :default_image=>"",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
+        :new_tab=>"0", :html_class=>"logo", :default_image=>"", :title=>{"pt-BR"=>"",
+        "en"=>""}}'
       name: image
       position: 1
       publish: true
@@ -349,7 +164,7 @@ bottom:
       position: 2
       publish: true
       menu:
-        name: Rodapé
+        name: Principal
   - settings: '{:html_class=>"bottom"}'
     name: components_group
     position: 3
@@ -358,7 +173,8 @@ bottom:
     children:
     - settings: '{:size=>"", :width=>"", :height=>"", :url=>"https://sic.ufg.br",
         :target_id=>"", :target_type=>"", :new_tab=>"1", :html_class=>"", :default_image=>"level3/marca-ai.png",
-        :contrast_default_image=>"level3/marca-ai-white.png", :hide_for_sr=>"1", :title=>{"pt-BR"=>"", "en"=>""}, :default_image_alt=>"Acesso à Informação"}'
+        :contrast_default_image=>"level3/marca-ai-white.png", :hide_for_sr=>"1", :title=>{"pt-BR"=>"",
+        "en"=>""}, :default_image_alt=>"Acesso à Informação"}'
       name: image
       position: 1
       publish: true
@@ -382,3 +198,60 @@ bottom:
   position: 3
   publish: true
   alias: Voltar Topo - JS
+- settings: '{:html_class=>"", :put_at_end=>"1", :body=>{"pt-BR"=>"<script type=\"text/javascript\">\r\n\r\n  $(document).ready(function(){\r\n    \r\n    const
+    redirecionar = function(urlRedirect) {\r\n    \tsetTimeout(function(){ window.location.href
+    = urlRedirect; }, 3000);\r\n    }\r\n    \r\n    let $urlRedirect = $(''#url-redirect'').text();\r\n    \r\n    if($urlRedirect)
+    {\r\n      redirecionar($urlRedirect);\r\n    }\r\n  }); \r\n</script>"}}'
+  name: blank
+  position: 4
+  publish: true
+  alias: Redirecionar para Sistema
+home:
+- settings: '{:category=>"banner-principal", :orientation=>"slider", :timer=>"7",
+    :description=>"1", :show_controls=>"1", :show_title=>"0", :show_description=>"0",
+    :filter_by=>"Slider", :html_class=>""}'
+  name: banner_list
+  position: 1
+  publish: true
+  alias: Slider
+- settings: '{:quant=>"6", :max_char=>"", :filter_by=>"", :image_size=>"m", :avatar_width=>"300",
+    :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1", :show_author=>"0", :show_date=>"1",
+    :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Notícias", "en"=>"",
+    "es"=>""}, :link_to_all=>{"pt-BR"=>"Ver todas", "en"=>"", "es"=>""}, :date_format=>"short",
+    :show_tags=>"1", :hide_filtered_tags=>"0", :html_class=>""}'
+  name: front_news
+  position: 2
+  publish: true
+  alias: Notícias capa
+- settings: '{:quant=>"3", :max_char=>"", :filter_by=>"diferente", :image_size=>"m",
+    :avatar_width=>"300", :avatar_height=>"", :tag_as_label=>"0", :read_more=>"1",
+    :show_author=>"0", :show_date=>"1", :order_by=>"position", :new_tab=>"1", :label=>{"pt-BR"=>"Outras
+    Notícias"}, :link_to_all=>{"pt-BR"=>"Ver todas"}, :date_format=>"short", :show_tags=>"1",
+    :hide_filtered_tags=>"0", :which_date=>"updated_at", :html_class=>""}'
+  name: front_news
+  position: 3
+  publish: true
+  alias: Outras Notícias
+first_place:
+- settings: '{:background=>"#7F7F7F"}'
+  name: gov_bar
+  position: 1
+  publish: true
+  alias: Barra do Governo Federal
+- settings: '{:html_class=>"accessibility-bar"}'
+  name: components_group
+  position: 2
+  publish: true
+  alias: Barra de acessibilidade
+  children:
+  - settings: '{:contrast=>"1", :font_size=>"1", :extended_accessibility=>"0", :label_contrast=>{"pt-BR"=>"",
+      "en"=>""}, :label_font_size=>{"pt-BR"=>"", "en"=>""}, :additional_information=>{"pt-BR"=>"",
+      "en"=>""}, :template=>"bar", :content_anchor=>"content", :menu_anchor=>"component_47382",
+      :search_anchor=>"search"}'
+    name: menu_accessibility
+    position: 1
+    publish: true
+  - settings: '{:dropdown=>"1", :template=>"flag_name", :use_translator=>"1"}'
+    name: menu_i18n
+    position: 2
+    publish: true
