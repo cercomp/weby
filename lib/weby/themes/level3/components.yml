@@ -158,13 +158,6 @@ bottom:
       name: text
       position: 1
       publish: true
-    - settings: '{:menu_id=>"%{menu_id}", :style=>"menu", :dropdown=>"1", :html_class=>"",
-        :title=>{"pt-BR"=>"", "en"=>""}}'
-      name: menu
-      position: 2
-      publish: true
-      menu:
-        name: Principal
   - settings: '{:html_class=>"bottom"}'
     name: components_group
     position: 3
