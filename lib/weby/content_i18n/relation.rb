@@ -24,7 +24,14 @@ module Weby
 
           # FIXME: Refatorar local das internacionalizações das msg de erro
           def validate_i18ns
-            errors.add(:base, I18n.t('need_at_least_one_i18n')) if active_i18ns.none?
+            if active_i18ns.none?
+              if self.class.required_i18n_fields.present?
+                _fields = self.class.required_i18n_fields.map{|_f| I18n.t("activerecord.attributes.#{self.class.name.downcase}/i18ns.#{_f}") }
+                errors.add(:base, I18n.t('need_at_least_field_i18n', field: _fields.join(', ')))
+              else
+                errors.add(:base, I18n.t('need_at_least_one_i18n'))
+              end
+            end
 
             errors.add(:base, I18n.t('cant_have_i18ns_with_same_locale')) if has_duplicated_locales?
 

@@ -1,0 +1,80 @@
+<div class="tabbable">
+  <ul class="nav nav-tabs" id="album-form-tab">
+    <li class="active">
+      <%= link_to t('.album_info'), '#tab-form', data: {toggle: 'tab'} %>
+    </li>
+    <li class="<%= 'disabled' if !@album.persisted? %>" title="<%= t('.save_first') if !@album.persisted? %>">
+      <%= link_to t('.edit_photos'), '#tab-photos', disabled: !@album.persisted?, data: {toggle: ('tab' if @album.persisted?)} %>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab-form">
+      <%= simple_form_for [:site_admin, @album] do |f| %>
+        <%= f.show_errors %>
+
+        <%= f.simple_fields_for(:cover_photo) do |g| %>
+          <%= g.input :id, as: :hidden %>
+          <%= g.input :image, as: :file, required: @album.new_record?, label: ("<abbr title=\"obrigatório\">*</abbr> #{t('.cover')}".html_safe unless @album.new_record?), label_html: {class: 'required'}, input_html: {accept: 'image/png, image/gif, image/jpeg, image/jpg', :data => {required: @album.new_record?, msg: 'Foto é um campo obrigatório'}} %>
+
+          <div class="album-photo cover-preview-cont <%= 'hide' if !@album.cover_photo.image.present? %>" style="width: 150px">
+            <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label') %>
+            <%# link_to icon(:trash), site_admin_album_album_photo_path(@album, photo), title: t("destroy"), class: 'close', method: :delete, remote: true, data: {confirm: t('are_you_sure_del_item', item: photo.screen_name)} %>
+            <div class="cover-preview"><%= image_tag (@album.cover_photo.image.present? ? @album.cover_photo.image.url(:t) : ''), class: 'preview' %></div>
+            <div class="caption">
+              <h5 class="file-name"><%= @album.cover_photo.image_file_name if @album.cover_photo.image.present?%></h5>
+              <div class="status"></div>
+            </div>
+          </div>
+        <% end %>
+
+        <%= render('translates_title', f: f) %>
+        <%= f.input :slug, wrapper: :append do %>
+          <div class="input-group-addon">
+            <%= "#{site_url}#{get_route_path(:site_album)}".gsub(':id(.:format)', '').gsub(/^https?:\/\//, '') %>
+          </div>
+          <%= f.input_field :slug, as: :string,data: {check_slug: '', include_num: true, id: @album.id, url: check_slug_site_albums_path, msg: 'Slug é um campo obrigatório'}, pattern: Album::SLUG_PATTERN %>
+        <% end %>
+        <span class="help-block"><%= t('slug_hint_num') %></span>
+
+        <%= f.input :publish, wrapper_html: { class: "side" },
+          as: :boolean,
+          input_html: { class: "check-button" },
+          wrapper: :checkbox %>
+
+        <%= f.input :album_tag_ids, collection: current_site.album_tags.map{|t| [t.name, t.id] }, input_html: {class: 'input-xlarge input-tags', multiple: true} %>
+
+        <%= f.input :category_list, hint: t(".album_categories_help"), input_html: {value: f.object.category_list.to_s, class: 'input-xlarge input-category', data: {taglist: Album.uniq_category_counts.map{|t| t.name }}} %>
+
+        <% is_expanded = @album.video_url.present? || @album.text.present? %>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <div class="panel-title">
+                <%= link_to t('advanced_options'), '#collapseTwo', role: :button, class: ('collapsed' if !is_expanded), data: {toggle: 'collapse', parent: '#accordion'}, aria: {expanded: is_expanded, controls: 'collapseTwo'} %>
+              </div>
+            </div>
+            <%= content_tag :div, id: 'collapseTwo', class: ['panel-collapse', 'collapse', ('in' if is_expanded)], role: 'tabpanel', aria: {labelledby: 'headingTwo', expanded: is_expanded} do %>
+              <div class="panel-body">
+                <%= f.input :video_url %>
+                <%= render('translates_text', f: f) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, @album.persisted? ? t('save') :  t('next'), class: 'btn btn-primary', disable_with: t("please_wait") %>
+          <%= link_to t("cancel"), site_admin_albums_path, class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+    <% if @album.persisted? %>
+      <div class="tab-pane" id="tab-photos">
+        <%= render 'photos' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :javascripts, javascript_include_tag("albums.form") %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

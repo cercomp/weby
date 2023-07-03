@@ -29,5 +29,12 @@ end
 Dir.glob(File.join('vendor', 'engines', '*', 'init.rb')) do |rb_file|
   load rb_file
 end
+# extensions from core
+Dir.children(Rails.root.join('lib', 'weby', 'extensions')).each do |file|
+  file.gsub!('.rb', '')
+  require "weby/extensions/#{file}"
+  ::Weby::register_extension(Weby::Extension.new(file.to_sym, author: 'Cercomp - Equipe Web', menu_position: eval(file.to_s.titleize)::POSITION, settings: [:from_core, :photos_limit, :show_author, :show_created_at, :limit_photo_size]))
+end
+
 
 Weby::Bots.load_list

@@ -106,7 +106,9 @@ en:
   none_page:                            " None Page "
   need_login:                           " You need to be logged in to access this page. "
   need_at_least_one_i18n:               " Needs content in at least one language "
+  need_at_least_field_i18n:             " Needs %{field} in at least one language "
   none_user:                            " None User "
+  next:                                 Next
 #---O---#
   ok:                                   " OK "
   of:                                   " of "
@@ -156,6 +158,7 @@ en:
   slug_taken:                           " URL already exists "
   slug_ok:                              " URL available "
   slug_hint:                            " Use only lowercase letters and dash - "
+  slug_hint_num:                        " Use only lowercase letters, numbers and dash - "
 #---T---#
   theme_already_installed:              " Theme already installed "
 #---U---#

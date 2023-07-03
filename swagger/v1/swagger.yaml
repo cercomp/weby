@@ -1,0 +1,442 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/components":
+    get:
+      summary: Lista de componente de um site
+      parameters:
+      - name: id
+        in: query
+        description: ID do site
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+  "/api/v1/components/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    put:
+      summary: Atualiza componente
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publish:
+                  type: boolean
+                  description: ID do componente
+              required:
+              - publish
+  "/api/v1/groupings":
+    get:
+      summary: list groupings
+      responses:
+        '200':
+          description: successful
+  "/api/v1/locales":
+    get:
+      summary: list locales
+      responses:
+        '200':
+          description: successful
+  "/api/v1/menu_items":
+    get:
+      summary: Lista de items de menu
+      parameters:
+      - name: id
+        in: query
+        description: ID do menu a qual pertence
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Cria menu item
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                menu_id:
+                  type: integer
+                  description: ID do menu pertencente
+                new_tab:
+                  type: boolean
+                  description: Campo para abrir a url do item de menu em uma nova
+                    aba
+                publish:
+                  type: boolean
+                  description: Campo para publicar o item de menu
+                parent_id:
+                  type: integer
+                  description: ID do item de menu pai (Se houver)
+                url:
+                  type: string
+                  description: URL do item de menu
+                i18ns_attributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        description: Título do item de menu
+                      description:
+                        type: string
+                        description: Descrição do menu pertencente
+                      locale_id:
+                        type: integer
+                        description: ID do idioma do site
+              required:
+              - publish
+              - parent_id
+              - url
+  "/api/v1/menu_items/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: Atualiza item de menu por atributo do objeto
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publish:
+                  type: boolean
+                  description: Campo para publicar o item de menu
+              required:
+              - publish
+    put:
+      summary: Atualiza item de menu pelo objeto
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                menu_id:
+                  type: integer
+                  description: ID do menu pertencente
+                new_tab:
+                  type: boolean
+                  description: Campo para abrir a url do item de menu em uma nova
+                    aba
+                publish:
+                  type: boolean
+                  description: Campo para publicar o item de menu
+                parent_id:
+                  type: integer
+                  description: ID do item de menu pai (Se houver)
+                url:
+                  type: string
+                  description: URL do item de menu
+                i18ns_attributes:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: Título do item de menu
+                    description:
+                      type: string
+                      description: Descrição do menu pertencente
+                    locale_id:
+                      type: integer
+                      description: ID do idioma do site
+              required:
+              - publish
+              - parent_id
+              - url
+  "/api/v1/menus":
+    get:
+      summary: Lista de menus
+      parameters:
+      - name: id
+        in: query
+        description: ID do site
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+  "/api/v1/pages":
+    get:
+      summary: Lista paginas de um site
+      parameters:
+      - name: id_site
+        in: query
+        description: ID do site
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Cria página
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site pertencente
+                user:
+                  type: integer
+                  description: ID do usuário criador do site
+                publish:
+                  type: boolean
+                  description: Define se a página será publicada
+                i18ns_attributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        description: Título do item de menu
+                      text:
+                        type: string
+                        description: Texto da página
+                      description:
+                        type: string
+                        description: Descrição do menu pertencente
+                      locale_id:
+                        type: integer
+                        description: ID do idioma do site
+              required:
+              - site_id
+              - user
+              - i18ns_attributes
+  "/api/v1/pages/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show page
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update page
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: Atualiza pagina
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site pertencente
+                user:
+                  type: integer
+                  description: ID do usuário criador do site
+                i18ns_attributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: ID do i18n
+                      title:
+                        type: string
+                        description: Título do item de menu
+                      text:
+                        type: string
+                        description: Texto da página
+                      description:
+                        type: string
+                        description: Descrição do menu pertencente
+                      locale_id:
+                        type: integer
+                        description: ID do idioma do site
+              required:
+              - site_id
+              - user
+              - i18ns_attributes
+  "/api/v1/sites":
+    get:
+      summary: Lista de sites
+      parameters:
+      - name: search
+        in: query
+        description: Nome do site
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: Cria site
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site
+                managers:
+                  type: array
+                  items:
+                    type: integer
+                  description: IDs dos gerenciadores do site
+                theme:
+                  type: string
+                  description: Nome do tema
+              required:
+              - managers
+              - theme
+  "/api/v1/sites/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show site
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update site
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: Atualiza site
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site
+                managers:
+                  type: array
+                  items:
+                    type: integer
+                  description: IDs dos gerenciadores do site
+                theme:
+                  type: string
+                  description: Nome do tema
+              required:
+              - managers
+              - theme
+    delete:
+      summary: deleta site
+      responses:
+        '200':
+          description: successful
+  "/api/v1/themes":
+    get:
+      summary: Lista todos os temas
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/find":
+    get:
+      summary: find user
+      parameters:
+      - name: email
+        in: query
+        description: E-mail do usuário
+        schema:
+          type: string
+      - name: login
+        in: query
+        description: Login do usuário
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://lvh.me:3000
+  variables:
+    defaultHost:
+      default: lvh.me:3000
+- url: https://portais.weby.ufg.br
+  variables:
+    defaultHost:
+      default: portais.weby.ufg.br
+components:
+  securitySchemes:
+    weby-app-code:
+      description: Código do Sistema
+      type: apiKey
+      name: weby-app-code
+      in: header
+    weby-api-token:
+      description: Token do sistema
+      type: apiKey
+      name: weby-api-token
+      in: header
+security:
+- weby-app-code: []
+  weby-api-token: []

@@ -1,0 +1,49 @@
+<div class="page-show album-show">
+  <div class="album-cover" style="background-image: url('<%= @album.get_cover_photo&.image&.url(:f) %>')">
+    <div class="overlay"></div>
+    <div class="cover-content">
+      <h1><%= @album.title %></h1>
+      <div class="album-desc">
+        <%= render_user_content(strip_tags(@album.text.to_s)[0..255]) %>
+      </div>
+      <% content_for :javascripts do %>
+        <div class="full-modal">
+          <div class="content">
+            <div class="pull-right">
+              <button type="button" class="close close-full-modal">✕</button>
+            </div>
+            <%= render_user_content(@album.text.to_s) %>
+          </div>
+        </div>
+      <% end %>
+      <div><%= link_to t('.show_more'), '#', class: 'open-full-modal' %></div>
+      <% if @album.video_url.present? %>
+        <iframe class="embed-ifr" width="640" height="360" src="<%= @album.embed_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <% end %>
+      <div class="info"><%= t('.photos', count: @album.photos_count.to_i) %> · <%= t('.views', count: @album.view_count.to_i) %></div>
+      <% if @extension && (@extension.show_author? || @extension.show_created_at?) %>
+        <div class="info">
+          <% if @extension.show_author? %>
+            <span class="author"><%= t("posted_by") %><%= @album.user.name_or_login %></span>
+          <% end %>
+          <% if @extension.show_created_at? %>
+            <span class="date"><%= t("posted_on") %><%= localize @album.created_at, format: :short %></span>
+          <% end %>
+        </div>
+      <% end %>
+      <%= link_to fa_icon('download'), generate_site_album_path(@album.slug), class: 'download-link' %>
+    </div>
+  </div>
+
+  <div id="album" class="photos-list">
+    <%= render 'photos' %>
+  </div>
+  <div style="margin-top: 8px;" class="actions">
+    <%= link_to(weby_icon('edit', t("edit")), main_app.edit_site_admin_album_path(@album)) if check_permission(Sites::Admin::AlbumsController, [:edit]) %>
+    <%= link_to weby_icon('list', t("list_all")), site_albums_path %>
+    <%= link_to weby_icon('chevron-left', t("back")), :back %>
+  </div>
+</div>
+
+<%# content_for :javascripts, javascript_include_tag("pages.index") %>
+<% content_for :stylesheets, stylesheet_link_tag("search_results") %>

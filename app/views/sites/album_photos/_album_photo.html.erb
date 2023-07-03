@@ -1,0 +1,27 @@
+<div class="photo-viewer-overlay">
+  <div class="photo-viewer">
+    <div class="photo-viewer-header">
+      <button type="button" class="close">✕</button>
+    </div>
+    <div class="photo-viewer-content">
+      <div class="ctrl ctrl-prev"><%= link_to('〈', site_album_album_photo_path(@album_photo.album.slug, @album_photo.prev_photo), remote: true) if @album_photo.prev_photo %></div>
+      <div class="photo-viewer-photo">
+        <%= image_tag @album_photo.image.url(:o) %>
+      </div>
+      <div class="ctrl ctrl-prev"><%= link_to('〉', site_album_album_photo_path(@album_photo.album.slug, @album_photo.next_photo), remote: true) if @album_photo.next_photo %></div>
+    </div>
+    <div class="photo-viewer-footer"></div>
+  </div>
+  <div class="photo-viewer-expand">
+    <div class="info">
+      <%= @album_photo.description %>
+    </div>
+    <p>
+      <b><%= t('.categories') %>:</b>
+      <% @album.category_list.each do |category| %>
+        <span class="cat-label"><%= category %></span>
+      <% end %>
+    </p>
+    <div><%= link_to fa_icon('download'), download_site_album_album_photo_path(@album.slug, @album_photo), class: 'download-link' %> <%= t('.views', count: @album_photo.view_count.to_i) %></div>
+  </div>
+</div>

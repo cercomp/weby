@@ -7,3 +7,6 @@ en:
         home:               " Home Page "
         top:                " Header "
         bottom:             " Bottom "
+  components:
+    photo_albums:
+      name: Photos Gallery

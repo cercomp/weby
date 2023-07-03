@@ -67,6 +67,11 @@ gem 'rollbar'
 
 gem 'rails-html-sanitizer', '~> 1.3.0'
 
+#rswag
+gem 'rswag'
+gem 'rswag-specs'
+gem 'bigdecimal', '1.4.2'
+
 # rails assets org
 source 'https://rails-assets.org' do
   gem 'rails-assets-tinymce', '~> 4.8.5'

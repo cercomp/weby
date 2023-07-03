@@ -1,0 +1,21 @@
+en:
+  components:
+    albums_list:
+      name:                   " Albums List "
+  activerecord:
+    attributes:
+      albums_list_component:
+        quant:                " Number of albums "
+        label:                " Label "
+        tag_as_label:         " Tag as Label "
+        category_filter:      " Select albums with only these categories "
+        type_filter:          " Filter by album type "
+        html_class:           " HTML Class "
+        order_by:             " Order by "
+  albums_list:
+    views:
+      show:
+      form:
+        position:             " Manual "
+        created_at:           " Date of creation "
+        updated_at:           " Date of update "

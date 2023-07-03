@@ -34,8 +34,11 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'lvh.me:3000' }
-  config.action_mailer.asset_host = 'http://lvh.me:3000'
+  #config.action_mailer.asset_host = 'http://lvh.me:3000'
   config.action_mailer.delivery_method = :letter_opener
+  asset_host = proc {|*args| Weby::Assets.asset_host_for(args[0], args[1] || nil) }
+  config.action_controller.asset_host = asset_host
+  config.action_mailer.asset_host = asset_host
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

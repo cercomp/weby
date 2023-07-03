@@ -177,10 +177,14 @@ class ApplicationController < ActionController::Base
 
   def count_view
     #TODO This is only counting the global counter on each model, Stats are off for now
-    return if is_in_admin_context? ||
-              request.format != 'html' ||
-              response.status != 200 ||
-              Weby::Bots.is_a_bot?(request.user_agent)
+    return if is_in_admin_context?
+    return if response.status != 200
+    return if Weby::Bots.is_a_bot?(request.user_agent)
+    # ajax requests are only counted in some cases
+    if request.format != 'html'
+      return unless @album_photo.present?
+    end
+
     if(current_site)
 #      current_site.views.create(viewable: @page,
 #                                ip_address: request.remote_ip,
@@ -191,6 +195,8 @@ class ApplicationController < ActionController::Base
 #                                user_agent: request.user_agent,
 #                                session_hash: request.session_options[:id])
       Page.increment_counter :view_count, @page.id if @page
+      Album.increment_counter :view_count, @album.id if @album
+      AlbumPhoto.increment_counter :view_count, @album_photo.id if @album_photo
       Site.increment_counter :view_count, current_site.id
       Journal::News.increment_counter :view_count, @news.id if @news && @news.is_a?(Journal::News)
       Calendar::Event.increment_counter :view_count, @event.id if @event
@@ -465,6 +471,15 @@ class ApplicationController < ActionController::Base
       @page = current_site.pages.find(params[:id])
     else
       @page = current_site.pages.find_by(slug: params[:id])
+    end
+  end
+
+  def find_album
+    _id = params[:album_id] || params[:id]
+    if _id.match(Album::SLUG_PATTERN)
+      @album = current_site.albums.find_by(slug: _id)
+    else
+      @album = current_site.albums.find(_id)
     end
   end
 

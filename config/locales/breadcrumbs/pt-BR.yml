@@ -17,6 +17,11 @@ pt-BR:
     edit_theme: " Configurar Tema "
     choose_theme: " Selecionar Tema "
 
+    albums: 'Álbuns'
+    album_tags: 'Tipos de Álbum'
+    new_album: 'Novo Álbum'
+    new_album_tag: 'Novo Tipo de Álbum'
+
     #component
     components:  " Componentes "
     choose_component:  " Escolher componente "

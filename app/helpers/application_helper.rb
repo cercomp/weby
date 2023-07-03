@@ -262,6 +262,7 @@ module ApplicationHelper
     end
     # Destroy
     if methods.include?(:destroy) && test_permission(ctrl, :destroy)
+      confirm_destroy_text = args.delete(:delete_confirm) || t('are_you_sure_del_item', item: obj.screen_name)
       menus << link_to(
         icon('trash', text: args[:with_text] ? t('destroy') : ''),
         {
@@ -269,7 +270,7 @@ module ApplicationHelper
           action: 'destroy',
           id: obj.id
         }.merge(args.fetch(:params, {})),
-        data: { confirm: t('are_you_sure_del_item', item: obj.screen_name) },
+        data: {confirm:  confirm_destroy_text},
         method: :delete,
         alt: t('destroy'),
         title: t('destroy'),

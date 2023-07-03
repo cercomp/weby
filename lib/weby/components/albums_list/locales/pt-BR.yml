@@ -1,0 +1,21 @@
+pt-BR:
+  components:
+    albums_list:
+      name:                   " Lista de Álbuns "
+  activerecord:
+    attributes:
+      albums_list_component:
+        quant:              " Quantidade de álbuns exibidos "
+        label:                " Título "
+        category_filter:      " Selecionar apenas álbuns com as categorias "
+        tag_as_label:         " Exibir primeira categoria como título "
+        type_filter:          " Filtrar por tipo de álbum "
+        order_by:             " Ordenação "
+        html_class:           " Classe HTML "
+  albums_list:
+    views:
+      show:
+      form:
+        position:             " Manual "
+        created_at:           " Data de criação "
+        updated_at:           " Data de atualização "

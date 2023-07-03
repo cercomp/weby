@@ -60,6 +60,13 @@ WEBY.applyContrast = function(){
   });
 };
 
+WEBY.initAlbumPhoto = function(elem){
+  elem.on('click', '.close', function(ev){
+    elem.remove();
+    $('body').css({overflow: ''})
+  });
+}
+
 ////doc ready
 
 $(document).ready(function(){
@@ -103,4 +110,19 @@ $(document).ready(function(){
     });
   });
 
+  $('.open-full-modal').click(function(){
+    if ($('.full-modal').is('.open')) {
+      $('.full-modal').removeClass('open')
+      $('body').css({overflow: ''})
+    } else {
+      $('.full-modal').addClass('open')
+      $('body').css({overflow: 'hidden'})
+    }
+  })
+  $('.close-full-modal, .full-modal').click(function(ev){
+    if ($(ev.target).hasClass('close-full-modal') || $(ev.target).hasClass('full-modal')){
+      $('.full-modal').removeClass('open')
+      $('body').css({overflow: ''})
+    }
+  })
 });

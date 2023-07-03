@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   constraints(Weby::Subdomain) do
 
     concern :slug_check do
@@ -123,10 +125,44 @@ Rails.application.routes.draw do
       end
     end
 
+    #Extension from core - routes # TODO maybe spread the routes into extensions folder
+    namespace :admin, module: 'sites/admin', as: :site_admin do
+      get 'gallery', to: 'albums#index'
+      resources :albums do
+        resources :album_photos, only: [:create, :update, :destroy]
+        member do
+          put :toggle
+        end
+        collection do
+          delete :destroy_many
+        end
+      end
+      resources :album_tags do
+        collection do
+          delete :destroy_many
+        end
+      end
+    end
+    namespace :site, module: 'sites', path: '' do
+      resources :albums, path: 'a', only: [:show], concerns: :slug_check do
+        resources :album_photos, only: [:show] do
+          member do
+            get :download
+          end
+        end
+        member do
+          get :generate
+        end
+      end
+      get :albums, to: 'albums#index'
+    end
+
     Weby.extensions.each do |name, extension|
-      constraints(extension) do
-        require "#{name.to_s}/routes"
-        instance_eval &("#{name.to_s.classify}::Routes".constantize.load)
+      if !extension.settings.include?(:from_core)
+        constraints(extension) do
+          require "#{name.to_s}/routes"
+          instance_eval &("#{name.to_s.classify}::Routes".constantize.load)
+        end
       end
     end
   end
@@ -180,10 +216,14 @@ Rails.application.routes.draw do
     namespace :api, defaults: {format: :json} do
       namespace :v1 do
         get '/' => 'base#root'
-        resources :sites, only: [:index, :create, :show, :update]
+        resources :sites, only: [:index, :create, :show, :update, :destroy]
         resources :locales, only: [:index]
         resources :themes, only: [:index]
         resources :groupings, only: [:index]
+        resources :menus, only: [:index]
+        resources :menu_items, only: [:index, :create, :update]
+        resources :pages, only: [:index, :create, :update, :show]
+        resources :components, only: [:index, :update]
         get '/users/find' => 'users#find', as: :find_user
         #post '/login' => 'sessions#create'
         #delete '/logout' => 'sessions#destroy'

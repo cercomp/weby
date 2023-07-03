@@ -133,29 +133,4 @@ class Sites::Admin::BackupsController < ApplicationController
     end
   end
 
-  private
-
-  def read_files_for_zip site
-    if ENV['STORAGE_BUCKET'].present?
-      s3 = Aws::S3::Resource.new(
-        credentials: Aws::Credentials.new(ENV['STORAGE_ACCESS_KEY'], ENV['STORAGE_ACCESS_SECRET']),
-        region: 'us-east-1',
-        endpoint: "https://#{ENV['STORAGE_HOST']}",
-        force_path_style: true
-      )
-      bucket = s3.bucket(ENV['STORAGE_BUCKET'])
-      prefix = "up/#{site.id}/"
-      bucket.objects(prefix: "up/#{site.id}/").map do |obj|
-        file = bucket.object(obj.key)
-        [file, obj.key.gsub(prefix, 'repository/')]
-      end
-    else
-      repository = "public/up/#{site.id}"
-      Find.find(repository).map do |path|
-        Find.prune if File.basename(path)[0] == '.'
-        dest = /#{repository}\/(\w.*)/.match(path)
-        [path, dest ? "repository/#{dest[1]}" : nil]
-      end
-    end
-  end
 end

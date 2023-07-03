@@ -1,0 +1,28 @@
+<%= info_page @albums %>
+<div class="albums-results">
+  <% if @albums.present? %>
+    <div class="flex-tiles">
+      <% @albums.each do |album| %>
+        <div class="small-1 medium-5">
+          <div class="album-card" style="background-image: url('<%= album.get_cover_photo&.image&.url(:f) %>')">
+            <%= link_to site_album_path(album.slug), class: 'album-link' do %>
+              <div class="title"><%= album.title %></div>
+              <% if @extension && @extension.show_author? %>
+                <div class="info"><span class="author"><%= t("posted_by") %><%= album.user.name_or_login %></span></div>
+              <% end %>
+              <div class="info"><%= t('.photos', count: album.photos_count.to_i) %></div>
+              <div class="info"><%= t('.views', count: album.view_count.to_i) %></div>
+            <% end %>
+            <div class="interaction-bar">
+              <%= link_to fa_icon('download'), generate_site_album_path(album.slug), class: 'download-link' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="empty-result"><%= t(".no_albums") %></div>
+  <% end %>
+</div>
+<%= per_page_links @albums, true, :sm %>
+<%= paginate @albums, page_links: true %>

@@ -1,0 +1,63 @@
+en:
+  sites:
+    admin:
+      albums:
+        new:
+          title:                " Nova Página "
+          pages:                " Páginas "
+        edit:
+          title:                " Editar Página "
+          pages:                " Páginas "
+        index:
+          albums:               " Álbuns "
+          search:               " Buscar "
+          new_album:            " Novo Álbum "
+          none_album:           " Nenhum Álbum "
+          filter_begin:         " Filtrar por data (inicial) "
+          filter_end:           " data final "
+          album_tags:           " Album Types "
+          filter_placeholder:   " Filter by Album Type "
+        show:
+          pages:                " Páginas "
+          event:                " Evento "
+          period_event:         " Período do Evento "
+          period_page:          " Período de publicação "
+          list_all:             " Listar todas "
+          categories:           " Categorias "
+          source:               " Fonte "
+          size:                 " Tamanho "
+          authored:             " Criada por %{author} em %{created_at} "
+          updated_at:           " Atualizada em %{updated_at} "
+          archive_fingerprint:  " Assinatura digital do arquivo "
+          related_files:        " Arquivos Relacionados "
+          cover:                ' Cover '
+          publish:              Published
+        photos:
+          albums:               " Albums "
+          add_photos:           ' Add photos'
+          upload:               ' Start upload '
+          edit_photos:          " Photos "
+          album_info:           " Album Info"
+          finish:               " Done "
+        list:
+          cover:                " Capa "
+          title:                " Título "
+          author:               " Autor "
+          tags:                 " Types "
+          categories:           " Categorias "
+          created_at:           " Criado em "
+          publish:              " Publicar "
+          views:                " Views "
+          photos:               " Fotos "
+          type:                 " Tipo "
+          confirm_destroy:      " Are you sure you want to delete the album '%{album}'? All photos will be removed and this action cannot be undone"
+        form:
+          image:                " Imagem da página "
+          album_categories_help: " Categorias são separadas por vírgula, a categoria de um álbum é relacionada ao seu conteúdo. Ex: Esporte, Eventos, Inauguração "
+          album_tags_help:      " Types work like grouping of albums. Example: Graduation, Event "
+          list_categories:      " Listar Categorias "
+          categories:           " Categorias "
+          edit_photos:          " Photos "
+          save:                 " Salvar "
+          album_info:           " Album Info"
+          save_first:           " Fill album info first "

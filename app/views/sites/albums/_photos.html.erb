@@ -1,0 +1,48 @@
+<div class="album-photos">
+  <% if @photos.present? %>
+    <%
+=begin%>
+ <% include_component_javascript :javascripts, 'banner_list_jquery.flexslider' %>
+    <% stylesheet_link_tag 'banner_list_flexslider' %>
+    <div class="flexslider" data-slideshowspeed="0" data-controls="true">
+      <ul class="slides">
+        <% @photos.each do |photo| %>
+          <% if photo.image.present? %>
+            <li>
+              <%= image_tag photo.image.url(:f) %>
+              <% if false %>
+                <div class="flex-caption">
+                  <p class="flex-caption-inner"><%= '' %></p>
+                </div>
+              <% end %>
+              <% if photo.description %>
+                <div class="flex-description">
+                  <p class="flex-description-inner"><%= photo.description %></p>
+                </div>
+              <% end %>
+              <%#= link_to image_tag('banner_list/banner_share.png', class: 'share-icon', aria: {hidden: true}), '#', class: 'share-banner', title: t('.share_banner'), data: {link: share_modal_admin_banner_path(banner)} if current_user && banner.shareable? %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+<%
+=end%>
+    <div class="flex-masonry">
+      <% @photos.each do |photo| %>
+        <div class="small-1 medium-5">
+          <div class="album-photo-tile">
+            <%= link_to site_album_album_photo_path(photo.album.slug, photo), remote: true do %>
+              <%= image_tag photo.image.url(:f) %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="empty-result"><%= t(".no_photos") %></div>
+  <% end %>
+</div>
+<div class="clearfix"></div>
+<%#= per_page_links @photos, true, :sm %>
+<%= paginate @photos, remote: true, page_links: true %>

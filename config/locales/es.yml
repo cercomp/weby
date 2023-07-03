@@ -103,7 +103,9 @@ es:
   none_page:                            " Nenhuma Página "
   need_login:                           " Debes estar registrado para acceder a esta página. "
   need_at_least_one_i18n:               " Necessita de conteúdo en pelo menos um idioma "
+  need_at_least_field_i18n:             " Necessita de %{field} en pelo menos um idioma "
   none_user:                            " Nenhum Usuário "
+  next:                                 Avance
 #---O---#
   ok:                                   " OK "
   of:                                   " de "
@@ -153,6 +155,7 @@ es:
   slug_taken:                           " URL ya existe "
   slug_ok:                              " URL disponible "
   slug_hint:                            " Use solo letras minúsculas y guión - "
+  slug_hint_num:                        " Use solo letras minúsculas, numerales y guión - "
 #---T---#
   theme_already_installed:              " Tema já adicionado "
 #---U---#

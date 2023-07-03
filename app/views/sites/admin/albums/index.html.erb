@@ -1,0 +1,55 @@
+<% title ".albums" %>
+<% breadcrumb params[:search].present? ? :albums_search : :albums, params[:search] %>
+<%= form_tag site_admin_albums_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+  <div class="row">
+    <div class="col-md-5">
+      <%= search_input params[:search] %>
+    </div>
+    <div class="col-md-3">
+      <%= select_tag "album_tag",
+          options_for_select(current_site.album_tags.map{|t| [t.name, t.id] }, params[:album_tag]),
+          include_blank: true,
+          style: 'vertical-align: top;',
+          class: 'select2 search-filter form-control',
+          placeholder: t('.filter_placeholder') %>
+    </div>
+    <div class="col-md-4">
+      <div class="pull-right">
+        <% with_permission(action: :new) do %>
+          <%= link_to t(".new_album"),
+            new_site_admin_album_path,
+            class: "btn btn-success" %>
+        <% end %>
+        <% if check_permission(Sites::Admin::AlbumTagsController, [:index]) %>
+          <%= link_to t(".album_tags"),
+            site_admin_album_tags_path,
+            class: "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="flex-row center-align form-group">
+    <div class="cell-20">
+        <%= text_field_tag :begin_at, params[:begin_at], placeholder: t(".filter_begin"), class: 'datepicker form-control', autocomplete: 'off' %>
+    </div>
+    <div class="cell">
+      <b>-</b>
+    </div>
+    <div class="cell-20">
+        <%= text_field_tag :end_at, params[:end_at], placeholder: t(".filter_end"), class: 'datepicker form-control', autocomplete: 'off' %>
+    </div>
+  </div>
+<% end %>
+
+<% if @albums.empty? %>
+  <div class="alert alert-warning">
+    <%= t(".none_album") %>
+  </div>
+<% else %>
+  <div id="album_list">
+    <%= render partial: 'list' %>
+  </div>
+<% end %>
+
+<% content_for :javascripts, javascript_include_tag("pages.admin.index") %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

@@ -1,0 +1,23 @@
+en:
+  sites:
+    admin:
+      album_tags:
+        new:
+          title:                " Nova Página "
+          pages:                " Páginas "
+        edit:
+          title:                " Editar Página "
+          pages:                " Páginas "
+        index:
+          new_album_tag:        " New Category "
+          albums:               " Albums "
+        list:
+          name:                 " Name "
+          description:          " Description "
+          none_album_tag:       " No Album Type found"
+        form:
+          image:                " Imagem da página "
+          album_categories_help: " Categorias são separadas por vírgula, a categoria de um álbum é relacionada ao seu conteúdo. Ex: Esporte, Eventos, Inauguração "
+          list_categories:      " Listar Categorias "
+          categories:           " Categorias "
+          save:                 " Salvar "

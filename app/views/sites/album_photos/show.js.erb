@@ -1,0 +1,8 @@
+var photoEl = $('<%= escape_javascript render(@album_photo) %>');
+WEBY.initAlbumPhoto(photoEl);
+if ($('.photo-viewer-overlay').length) {
+  $('.photo-viewer-overlay').replaceWith(photoEl);
+} else {
+  $('body').append(photoEl);
+}
+$('body').css({overflow: 'hidden'})

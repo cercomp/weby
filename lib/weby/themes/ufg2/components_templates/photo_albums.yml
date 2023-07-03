@@ -1,0 +1,36 @@
+- settings: '{:html_class=>"albums-section"}'
+  name: components_group
+  publish: true
+  alias: Galeria de Fotos
+  children:
+  - settings: '{:html_class=>"container"}'
+    name: components_group
+    position: 1
+    publish: true
+    alias: Container
+    children:
+    - settings: '{:html_class=>"", :body=>{"pt-BR"=>"<p>Galeria de Fotos</p>", "en"=>"<p>Photo Gallery</p>"}}'
+      name: text
+      position: 1
+      publish: true
+      alias: Título
+    - settings: '{:html_class=>"albums-grid"}'
+      name: components_group
+      position: 2
+      publish: true
+      alias: Álbuns
+      children:
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/albums",
+          :target_id=>"", :target_type=>"", :html_class=>"", :default_image=>"ufg2/ic-view-module.svg",
+          :title=>{"pt-BR"=>"Formatura", "en"=>""}, :hide_for_sr=>"1"}'
+        name: image
+        position: 1
+        publish: true
+        alias: Formatura
+      - settings: '{:size=>"", :width=>"", :height=>"", :url=>"/albums",
+          :target_id=>"", :target_type=>"", :html_class=>"", :default_image=>"ufg2/ic-view-module.svg",
+          :title=>{"pt-BR"=>"Eventos", "en"=>""}, :hide_for_sr=>"1"}'
+        name: image
+        position: 2
+        publish: true
+        alias: Eventos

@@ -185,7 +185,7 @@
 }
 
 .news-show, .western {
-  iframe {
+  iframe:not(.instagram-media) {
     width: 100%;
     max-width: 560px;
     height: 314px;
@@ -353,12 +353,93 @@ ufg-eventos {
   transition: all 0.2s ease-in-out;
 }
 
+.album-show {
+  ul.pagination {
+    text-align: center;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    li.page {
+      display: inline-block;
+      list-style: none;
+      margin: 0 8px;
+      margin: 15px 8px;
+
+      a {
+        width: 11px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #66aad5;
+        padding: 9px 15px;
+        color: var(--white);
+        text-decoration: none;
+        font-size: 0.9em;
+        letter-spacing: normal;
+      }
+
+      a:HOVER {
+        background-color: var(--blue);
+      }
+    }
+
+    li.first {
+      display: none;
+    }
+
+    li.next {
+      display: none;
+    }
+
+    li.prev {
+      a {
+        font-size: 0;
+        background: asset-url('ufg2/expand-more-white.png') no-repeat var(--blue) center;
+        transform: rotate(90deg);
+        display: inline-block;
+      }
+      position: relative;
+      display: inherit;
+    }
+
+    li.next:after {
+      content: '';
+      height: 16px;
+      width: 1px;
+      background: #fff;
+      position: absolute;
+      right: -1px;
+      top: 23px;
+    }
+
+    li.last {
+      a {
+        font-size: 0;
+        background: asset-url('ufg2/expand-more-white.png') no-repeat var(--blue) center;
+        transform: rotate(-90deg);
+        display: inline-block;
+      }
+      a:before {
+        content: '>';
+      }
+      display: inherit;
+    }
+
+    li.page.active {
+      a {
+        background-color: var(--blue);
+      }
+    }
+  }
+}
+
 /* NEW */
 #content {
   font-family: 'Lato';
   background-color: var(--bg);
 
-  .news_list_container {
+  .news_list_container, .albums_list_container {
     width: 940px;
     margin: 0 auto;
     padding-bottom: 20px;
@@ -528,7 +609,7 @@ ufg-eventos {
       border-radius: 50%;
     }
 
-    .news-list, .events-list {
+    .news-list, .events-list, .albums-list {
       position: relative;
       margin-top: 20px;
 
@@ -848,7 +929,7 @@ ufg-eventos {
   margin: 0 auto;
 
   h2 {
-    width: 168px;
+    width: auto;
     height: 58px;
     font-family: Lato;
     font-size: 2.4em;

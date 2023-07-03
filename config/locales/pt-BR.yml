@@ -107,7 +107,9 @@ pt-BR:
   none_page:                            " Nenhuma Página "
   need_login:                           " Você deve estar logado para acessar essa página. "
   need_at_least_one_i18n:               " Necessita de conteúdo em pelo menos um idioma "
+  need_at_least_field_i18n:             " Necessita de %{field} em pelo menos um idioma "
   none_user:                            " Nenhum Usuário "
+  next:                                 Avançar
 #---O---#
   ok:                                   " OK "
   of:                                   " de "
@@ -157,6 +159,7 @@ pt-BR:
   slug_taken:                           " URL já existe "
   slug_ok:                              " URL disponível "
   slug_hint:                            " Utilize apenas letras minúsculas e hífen - "
+  slug_hint_num:                        " Utilize apenas letras minúsculas, números e hífen - "
 #---T---#
   theme_already_installed:              " Tema já adicionado "
 #---U---#

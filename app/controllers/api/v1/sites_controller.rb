@@ -7,13 +7,13 @@ module API
       def index
         params[:page] ||= 1
         sites = Site.active.name_equal(params[:search])
-        render json: sites, root: 'sites', meta: build_meta(sites)
+        render json: sites.to_json(include: :active_skin), root: 'sites', meta: build_meta(sites)
       end
 
       def show
         site = Site.find_by id: params[:id]
         return not_found :site, params[:id] if !site
-        render json: site, root: 'site'
+        render json: site.to_json(include: [:admin_users, :users], except: :theme), root: 'site'
       end
 
       def create
@@ -36,6 +36,18 @@ module API
         end
       end
 
+      def destroy
+        site = Site.find_by id: params[:id]
+        return not_found :site, params[:id] if !site
+        
+        begin
+          site.unscoped_destroy!
+          render json: {msg: t('successfully_deleted')}, status: 200
+        rescue ActiveRecord::RecordNotDestroyed => error
+          render json: {error: t('api.error_destroying_object'), message: @site.errors.full_messages}, status: 400
+        end
+      end
+
       private
 
       def create_site site
@@ -47,7 +59,7 @@ module API
           site.errors.add(:base, 'Nenhum tema informado')   && raise(ActiveRecord::Rollback) if params[:theme].blank?
           theme = ::Weby::Themes.theme(params[:theme])
           site.errors.add(:base, 'Tema não encontrado')     && raise(ActiveRecord::Rollback) if theme.blank?
-          site.errors.add(:base, t('only_admin'))           && raise(ActiveRecord::Rollback) if theme.is_private
+          #site.errors.add(:base, t('only_admin'))           && raise(ActiveRecord::Rollback) if theme.is_private
           #
           site.save!
           # Assign site admins

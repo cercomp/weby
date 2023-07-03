@@ -1,0 +1,39 @@
+<% title ".albums"%>
+<% breadcrumb :albums_photos, @album %>
+<% if check_permission(Sites::Admin::AlbumPhotosController, [:new]) %>
+  <%= simple_form_for [:site_admin, @album, AlbumPhoto.new], remote: true do |f| %>
+    <div class="form-group file optional album_photos_image">
+      <%= f.input :image, as: :file, label: t('.add_photos'), required: false, input_html: {multiple: true, accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
+    </div>
+    <div id="upload-preview" class="row flex-wrap">
+      <div class="col-sm-6 col-md-3 col-lg-2 repo-template closeable" style="display: none;">
+        <div class="album-photo">
+          <button type="button" class="close" data-dismiss="repo-item" tabindex="-1" title="<%= t("destroy") %>">&times;</button>
+          <%= f.text_field :image, disabled: true, value: "" %>
+          <div class="caption">
+            <h5 class="file-name"></h5>
+            <%= f.input :description, as: :text, required: false, label: false, placeholder: t('activerecord.attributes.album_photo.description') %>
+            <div class="status"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions hide">
+      <%= f.button :submit, class: 'btn btn-primary', value: t('.upload'), disable_with: t("please_wait") %>
+      <%# link_to t("back"), :back, class: "btn btn-default" %>
+    </div>
+  <% end %>
+<% end %>
+<div id="current-photos" class="row flex-wrap">
+  <% @album.album_photos.each do |photo| %>
+    <div class="col-sm-6 col-md-3 col-lg-2 closeable repo-item">
+      <%= render '/sites/admin/albums/photo_card', photo: photo %>
+    </div>
+  <% end %>
+</div>
+<div class="form-actions">
+  <%= link_to t("save"), '#', class: "btn btn-primary trigger-form" %>
+  <%= link_to t("cancel"), site_admin_albums_path, class: "btn btn-default" %>
+</div>
+
+<% content_for :javascripts, javascript_include_tag("albums.photos") %>

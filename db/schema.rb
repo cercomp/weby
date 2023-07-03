@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_13_193824) do
+ActiveRecord::Schema.define(version: 2023_01_27_180921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,70 @@ ActiveRecord::Schema.define(version: 2022_09_13_193824) do
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_activity_records_on_site_id"
     t.index ["user_id"], name: "index_activity_records_on_user_id"
+  end
+
+  create_table "album_i18ns", force: :cascade do |t|
+    t.bigint "album_id"
+    t.bigint "locale_id"
+    t.string "title"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_album_i18ns_on_album_id"
+    t.index ["locale_id"], name: "index_album_i18ns_on_locale_id"
+  end
+
+  create_table "album_photos", force: :cascade do |t|
+    t.bigint "album_id"
+    t.bigint "user_id"
+    t.boolean "is_cover", default: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.string "image_updated_at"
+    t.string "image_fingerprint"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position"
+    t.string "slug"
+    t.integer "view_count"
+    t.integer "image_file_size"
+    t.index ["album_id"], name: "index_album_photos_on_album_id"
+    t.index ["user_id"], name: "index_album_photos_on_user_id"
+  end
+
+  create_table "album_tags", force: :cascade do |t|
+    t.bigint "site_id"
+    t.bigint "user_id"
+    t.string "name"
+    t.string "slug"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_album_tags_on_site_id"
+    t.index ["user_id"], name: "index_album_tags_on_user_id"
+  end
+
+  create_table "album_tags_albums", id: false, force: :cascade do |t|
+    t.bigint "album_tag_id", null: false
+    t.bigint "album_id", null: false
+    t.index ["album_id", "album_tag_id"], name: "index_album_tags_albums_on_album_id_and_album_tag_id"
+  end
+
+  create_table "albums", force: :cascade do |t|
+    t.bigint "site_id"
+    t.bigint "user_id"
+    t.boolean "publish"
+    t.integer "view_count"
+    t.integer "photos_count"
+    t.string "slug"
+    t.string "source"
+    t.string "video_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_albums_on_site_id"
+    t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
   create_table "apps", force: :cascade do |t|
@@ -538,6 +602,8 @@ ActiveRecord::Schema.define(version: 2022_09_13_193824) do
 
   add_foreign_key "activity_records", "sites", name: "activity_records_site_id_fk"
   add_foreign_key "activity_records", "users", name: "activity_records_user_id_fk"
+  add_foreign_key "album_tags", "sites"
+  add_foreign_key "album_tags", "users"
   add_foreign_key "calendar_event_i18ns", "calendar_events", name: "calendar_event_i18ns_calendar_event_id_fk"
   add_foreign_key "calendar_event_i18ns", "locales", name: "calendar_event_i18ns_locale_id_fk"
   add_foreign_key "calendar_events", "repositories", name: "calendar_events_repository_id_fk"
