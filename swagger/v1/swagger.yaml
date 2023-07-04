@@ -338,9 +338,6 @@ paths:
                 theme:
                   type: string
                   description: Nome do tema
-                parent_id:
-                  type: integer
-                  description: ID do site pai
                 site:
                   type: object
                   properties:
@@ -355,6 +352,9 @@ paths:
                       items:
                         type: integer
                       description: ID do idioma do site
+                    parent_id:
+                      type: integer
+                      description: ID do site pai
               required:
               - managers
               - theme

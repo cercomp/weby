@@ -26,13 +26,13 @@ RSpec.describe 'api/v1/sites', type: :request do
         properties: {
           managers: { type: :array, items: {type: :integer}, description: 'IDs dos gerenciadores do site' },
           theme: { type: :string, description: 'Nome do tema' },
-          parent_id: { type: :integer, description: 'ID do site pai' },
           site: {
             type: :object,
             properties: {
               name: { type: :string, description: 'Nome do site' },
               title: { type: :string, description: 'Título do site' },
-              locale_id: { type: :array, items: {type: :integer}, description: 'ID do idioma do site' }
+              locale_id: { type: :array, items: {type: :integer}, description: 'ID do idioma do site' },
+              parent_id: { type: :integer, description: 'ID do site pai' },
             }
           }
         },
