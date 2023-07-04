@@ -330,9 +330,6 @@ paths:
             schema:
               type: object
               properties:
-                site_id:
-                  type: integer
-                  description: ID do site
                 managers:
                   type: array
                   items:
@@ -341,6 +338,23 @@ paths:
                 theme:
                   type: string
                   description: Nome do tema
+                parent_id:
+                  type: integer
+                  description: ID do site pai
+                site:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Nome do site
+                    title:
+                      type: string
+                      description: Título do site
+                    locale_id:
+                      type: array
+                      items:
+                        type: integer
+                      description: ID do idioma do site
               required:
               - managers
               - theme
@@ -425,6 +439,10 @@ servers:
   variables:
     defaultHost:
       default: portais.weby.ufg.br
+- url: https://portais.ufg.br/
+  variables:
+    defaultHost:
+      default: portais.ufg.br
 components:
   securitySchemes:
     weby-app-code:
