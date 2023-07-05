@@ -45,6 +45,7 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
       #record_activity('uploaded_album_photo', @album_photo)
     else
       _msg = (@album.valid? ? @album_photo : @album).errors.full_messages
+      _msg = _msg + (@album_photo.invalid? ? @album_photo.errors.full_messages : '')
       render json: { errors:  _msg}, status: 412,
               content_type: check_accept_json
     end
