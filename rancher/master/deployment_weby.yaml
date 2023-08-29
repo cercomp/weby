@@ -22,7 +22,7 @@ spec:
             name: weby-master
             optional: false
         image: registry.cercomp.ufg.br/sysadmin/weby/weby_master:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: weby-master
         ports:
         - containerPort: 3000
