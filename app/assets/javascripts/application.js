@@ -63,6 +63,9 @@ FlashMsg = {
     }, 4000);
   },
   error: function(textErrors, append_elem) {
+    if (append_elem == undefined) append_elem = '';
+
+    $(`${append_elem} form #error_explanation`).remove();
     $(`${append_elem} form #error_box`).remove();
     $(`${append_elem} form`).prepend('<div class="alert alert-error" id="error_box"></div>');
     if (Array.isArray(textErrors)) {
