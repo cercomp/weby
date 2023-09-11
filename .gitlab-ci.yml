@@ -10,12 +10,14 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
 
 before_script:
   #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-  - docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
+  #- docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
   #- cp $ENV_FILE .env
 
 base:
   stage: build
   image: docker
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   services:
     - docker:dind
   environment:
@@ -41,6 +43,8 @@ base:
 precompile:
   stage: precompile
   image: $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   environment:
     name: $CI_COMMIT_BRANCH
   tags:
@@ -66,6 +70,8 @@ precompile:
 attach-assets:
   stage: precompile
   image: docker
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   services:
     - docker:dind
   environment:
