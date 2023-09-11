@@ -9,7 +9,6 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   CI_VERSION_ENV: "latest"
 
 before_script:
-  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   #- cp $ENV_FILE .env
 
 base:
@@ -40,6 +39,8 @@ base:
 
 precompile:
   stage: precompile
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   image: $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   environment:
     name: $CI_COMMIT_BRANCH
