@@ -45,6 +45,8 @@ precompile:
   image: $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   environment:
     name: $CI_COMMIT_BRANCH
+  services:
+    - docker:dind
   tags:
     - docker
   only:
