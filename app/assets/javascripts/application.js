@@ -62,11 +62,14 @@ FlashMsg = {
       }, 2000)
     }, 4000);
   },
-  error: function(textErrors) {
-    $('form #error_box').remove();
-    $('form').prepend('<div class="alert alert-error" id="error_box"></div>');
+  error: function(textErrors, append_elem) {
+    if (append_elem == undefined) append_elem = '';
+
+    $(`${append_elem} form #error_explanation`).remove();
+    $(`${append_elem} form #error_box`).remove();
+    $(`${append_elem} form`).prepend('<div class="alert alert-error" id="error_box"></div>');
     if (Array.isArray(textErrors)) {
-      $('#error_box').append(`<b>${textErrors.length} Erros impedem que você prossiga</b>`);
+      $(`${append_elem} form #error_box`).append(`<b>${textErrors.length} Erros impedem que você prossiga</b>`);
       let listMsg = '';
       textErrors.forEach(element => {
         listMsg = listMsg.concat(`<li>${element}</li>`)
@@ -76,6 +79,9 @@ FlashMsg = {
       $('#error_box').append(`<b>Um erro impede que você prossiga</b>`);
       $('#error_box').append(`<ul><li>${textErrors}</li></ul>`);
     }
+  },
+  clear: function() {
+    $(`form #error_box`).remove();
   }
 }
 

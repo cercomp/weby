@@ -38,6 +38,14 @@ RSpec.configure do |config|
               default: 'portais.weby.ufg.br'
             }
           }
+        },
+        {
+          url: 'https://portais.ufg.br/',
+          variables: {
+            defaultHost: {
+              default: 'portais.ufg.br'
+            }
+          }
         }
       ],
       components: {

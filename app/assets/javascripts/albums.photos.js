@@ -92,6 +92,7 @@ $(function () {
       $data.submit();
     });
     switch_disable_text(true);
+    FlashMsg.clear();
     return false;
   });
 
@@ -179,5 +180,28 @@ $(function () {
     });
     $('form.edit_album').submit();
     return false;
+  });
+
+  const input = document.querySelector('#album_photo_image');
+
+  // Listen for files selection
+  input.addEventListener('change', (e) => {
+      // Retrieve all files
+      const files = input.files;
+
+      // Check files count
+      if (files.length > 100) {
+        FlashMsg.error([`O limite de envio de arquivos é de 100`], '#tab-photos');
+        return;
+      }
+
+      // TODO: continue uploading on server
+  });
+
+  $("input[type='submit']").click(function(){
+    if ($('#upload-preview .repo-item').length > 100) {
+      FlashMsg.error([`O limite de envio de arquivos é de 100`], '#tab-photos');
+      return false;
+    }
   });
 });

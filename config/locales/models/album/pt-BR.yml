@@ -15,7 +15,7 @@ pt-BR:
         site_id:              " Id do site "
         video_url:           "URL do video"
         updated_at:           " Atualizado em "
-        album_photos:  "Fotos"
+        album_photos:  "Foto"
         cover_photo:   " Capa "
       "album/i18ns":
         text:            "Texto"
@@ -30,3 +30,4 @@ pt-BR:
           attributes:
             album_photos:
               too_long: " acima do limite (não é possível adicionar mais de %{count} fotos) "
+              invalid: " inválida "

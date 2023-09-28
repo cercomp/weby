@@ -2,9 +2,7 @@
 <% breadcrumb :albums_photos, @album %>
 <% if check_permission(Sites::Admin::AlbumPhotosController, [:new]) %>
   <%= simple_form_for [:site_admin, @album, AlbumPhoto.new], remote: true do |f| %>
-    <div class="form-group file optional album_photos_image">
-      <%= f.input :image, as: :file, label: t('.add_photos'), required: false, input_html: {multiple: true, accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
-    </div>
+    
     <div id="upload-preview" class="row flex-wrap">
       <div class="col-sm-6 col-md-3 col-lg-2 repo-template closeable" style="display: none;">
         <div class="album-photo">
@@ -17,6 +15,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="form-group file optional album_photos_image">
+      <%= f.input :image, as: :file, label: t('.add_photos'), required: false, input_html: {multiple: true, accept: 'image/png, image/gif, image/jpeg, image/jpg'} %>
     </div>
     <div class="form-actions hide">
       <%= f.button :submit, class: 'btn btn-primary', value: t('.upload'), disable_with: t("please_wait") %>

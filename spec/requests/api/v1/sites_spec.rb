@@ -24,9 +24,17 @@ RSpec.describe 'api/v1/sites', type: :request do
       parameter name: :site, in: :body, schema: {
         type: :object,
         properties: {
-          site_id: { type: :integer, description: 'ID do site' },
           managers: { type: :array, items: {type: :integer}, description: 'IDs dos gerenciadores do site' },
-          theme: { type: :string, description: 'Nome do tema' }
+          theme: { type: :string, description: 'Nome do tema' },
+          site: {
+            type: :object,
+            properties: {
+              name: { type: :string, description: 'Nome do site' },
+              title: { type: :string, description: 'Título do site' },
+              locale_id: { type: :array, items: {type: :integer}, description: 'ID do idioma do site' },
+              parent_id: { type: :integer, description: 'ID do site pai' },
+            }
+          }
         },
         required: [ 'managers', 'theme' ]
       }
