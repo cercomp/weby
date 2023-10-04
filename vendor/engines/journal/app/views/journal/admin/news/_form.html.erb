@@ -61,7 +61,7 @@
 
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary', disable_with: t("please_wait") %>
-    <%= link_to t("cancel"), cancel_admin_news_index_path, method: :post, class: "btn btn-default" %>
+    <%= link_to t("back"), cancel_admin_news_index_path, method: :post, class: "btn btn-default" %>
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag("journal/news.form") %>

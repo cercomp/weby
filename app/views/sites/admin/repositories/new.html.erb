@@ -30,7 +30,7 @@
   </div>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-primary send-files', data: {disable_with: t("please_wait")} %>
-    <%= link_to t("cancel"), :back, class: "btn btn-default" %>
+    <%= link_to t("back"), :back, class: "btn btn-default" %>
   </div>
 <% end %>
 <% content_for :javascripts, javascript_include_tag('repositories.new') %>
