@@ -29,6 +29,14 @@ module API
 
       def update
         site = Site.find(params[:id])
+
+        managers = User.where(id: params[:managers])
+        # Assign site admins
+        admin_role = site.find_or_create_local_admin_role!
+        managers.each do |user|
+          user.roles << admin_role
+        end
+
         if site.update_attributes(site_params)
           render json: site, root: 'data'
         else
@@ -80,7 +88,7 @@ module API
           :domain, :description, :show_pages_author,
           :show_pages_created_at, :show_pages_updated_at,
           :restrict_theme, :body_width, :google_analytics,
-          :per_page, :per_page_default, :status, 
+          :per_page, :per_page_default, :status, :users,
           {locale_ids: [], grouping_ids: []})
       end
     end
