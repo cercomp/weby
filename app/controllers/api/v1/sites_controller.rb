@@ -29,7 +29,10 @@ module API
 
       def update
         site = Site.find(params[:id])
-        site.roles.local_admin.destroy_all
+
+        if (params.has_key?(:managers))
+          site.roles.local_admin.destroy_all
+        end
 
         managers = User.where(id: params[:managers])
         # Assign site admins
