@@ -111,6 +111,18 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  def destroy_auth_source
+    @user = User.find(params[:id])
+    auth_source = @user.auth_sources.find(params[:auth_source_id])
+  
+    if auth_source.present?
+      auth_source.destroy
+      redirect_to admin_user_path(@user), notice: 'O vínculo LDAP foi excluído com sucesso.'
+    else
+      Rails.logger.error("Vinculo LDAP não encontrado para o usuário ID: #{params[:id]}, auth_source_id: #{params[:auth_source_id]}")
+      redirect_to admin_user_path(@user), notice: 'Usuário não possui Vínculo LDAP.'
+    end
+  end
   private
 
   def sort_column

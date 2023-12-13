@@ -273,6 +273,14 @@ Rails.application.routes.draw do
     put 'reset_password'  => 'devise/passwords#update'
   end
 
+  namespace :admin do
+    resources :users do
+      member do
+        delete 'destroy_auth_source/:auth_source_id', to: 'users#destroy_auth_source', as: 'destroy_auth_source'
+      end
+    end
+  end
+  
   get 'robots.txt' => 'sites#robots', format: 'txt'
   get '*not_found' => 'application#render_404'
 end
