@@ -64,7 +64,7 @@
 
         <div class="form-actions">
           <%= f.button :submit, @album.persisted? ? t('save') :  t('next'), class: 'btn btn-primary', disable_with: t("please_wait") %>
-          <%= link_to t("cancel"), site_admin_albums_path, class: "btn btn-default" %>
+          <%= link_to t("back"), site_admin_albums_path, class: "btn btn-default" %>
         </div>
       <% end %>
     </div>

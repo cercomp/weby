@@ -54,3 +54,29 @@ __Docs__
 
 * [Wiki](http://github.com/cercomp/weby/wiki)
 * [Project Site](http://weby.cercomp.ufg.br)
+
+__Debug__
+
+No vs-code, inclua o `launch.json`:
+
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Rails server",
+            "type": "Ruby",
+            "request": "launch",
+            "program": "${workspaceRoot}/bin/rails",
+            "args": [
+              "server",
+              "-p",
+              "3000",
+              "-b",
+              "lvh.me"
+            ]
+        }
+    ]
+}
