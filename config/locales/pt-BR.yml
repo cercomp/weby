@@ -43,6 +43,7 @@ pt-BR:
   deactivation_sent_successful:         " Foi enviado para seu email instruções de como desativar sua conta "
 #---D---#
   destroy:                              " Excluir "
+  destroy_bind:                         " Excluir Vínculo"
   disable:                              " Desativado "
   disabled_component:                   " Componente Desabilitado "
   details:                              " Detalhes "
