@@ -8,9 +8,9 @@ COPY . /opt/weby
 WORKDIR /opt/weby
 
 # Install bundler, dependency resolver
-RUN gem install bundler
+RUN gem install bundler -v '2.4.20'
 # Bundle install
-RUN bundle install -v '2.4.20' --jobs 4 --retry 3 --without development test
+RUN bundle install --jobs 4 --retry 3 --without development test
 
 ## Second stage
 FROM ruby:2.7.5-slim-bullseye
