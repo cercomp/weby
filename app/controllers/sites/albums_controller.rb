@@ -32,7 +32,7 @@ class Sites::AlbumsController < ApplicationController
 
     FileUtils.rm_r Dir.glob("#{dir}/*")
 
-    zipname = "album_#{@album.title}_#{Time.now.strftime('%d-%m-%Y')}.zip"
+    zipname = "album_#{@album.title.parameterize}_#{Time.now.strftime('%d-%m-%Y')}.zip"
     zip_dir = Rails.root.join(dir, zipname)
     Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE) do |zipfile|
       read_files_for_zip(current_site).each do |file, entry_path|
