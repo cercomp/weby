@@ -4,7 +4,7 @@ metadata:
   name: weby-master
   namespace: sites
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: weby-master
