@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: weby-master
+  name: weby-develop
   namespace: default
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: weby-master
+      app: weby-develop
   template:
     metadata:
       labels:
-        app: weby-master
+        app: weby-develop
     spec:
       containers:
       - envFrom:
         - configMapRef:
-            name: weby-master
+            name: weby-develop
             optional: false
         - secretRef:
-            name: weby-master
+            name: weby-develop
             optional: false
         image: registry.cercomp.ufg.br/sysadmin/weby/weby_master:latest
         imagePullPolicy: Always
-        name: weby-master
+        name: weby-develop
         ports:
         - containerPort: 3000
           protocol: TCP
