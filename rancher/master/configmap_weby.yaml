@@ -17,4 +17,4 @@ metadata:
   labels:
     app: weby-master
   name: weby-master
-  namespace: sites
+  namespace: default

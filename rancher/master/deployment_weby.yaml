@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: weby-master
-  namespace: sites
+  namespace: default
 spec:
   replicas: 8
   selector:
