@@ -7,6 +7,11 @@ data:
   RAILS_ENV: production
   STORAGE_BUCKET: weby
   STORAGE_HOST: files.cercomp.ufg.br
+  ELASTICSEARCH_PREFIX: main
+  ELASTICSEARCH_URL: http://200.137.221.168:9200
+  STORAGE_BUCKET_ALBUM: galeria
+  STORAGE_ACCESS_KEY_ALBUM: weby
+  STORAGE_HOST_ALBUM: galeria.cercomp.ufg.br
 kind: ConfigMap
 metadata:
   labels:
