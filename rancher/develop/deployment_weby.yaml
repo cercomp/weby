@@ -31,4 +31,4 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       imagePullSecrets:
-      - name: registry-gitlab-cercomp
+      - name: registry-gitlab-cercomp-dev
