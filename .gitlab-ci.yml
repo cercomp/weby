@@ -108,5 +108,5 @@ deploy:
     - develop
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker -H tcp://200.137.218.139:2375 compose -f docker/docker-compose.yml up -d --pull always --force-recreate
+    - docker -H ssh://200.137.218.139 compose -f docker/docker-compose.yml up -d --pull always --force-recreate
   when: manual
