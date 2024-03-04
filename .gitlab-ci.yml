@@ -107,5 +107,5 @@ redeploy-rancher:
     - master
     - develop
   script:
-    - docker -H tcp://${SRV_APP}:${DOCKER_PORT} compose -f docker/docker-compose.yml up -d --pull always --force-recreate
+    - docker -H tcp://200.137.218.139:2375 compose -f docker/docker-compose.yml up -d --pull always --force-recreate
   when: manual
