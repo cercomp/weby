@@ -97,8 +97,6 @@ attach-assets:
 deploy:
   stage: deploy
   image: docker
-  before_script:
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   environment:
     name: $CI_COMMIT_BRANCH
   tags:
@@ -107,5 +105,6 @@ deploy:
     - master
     - develop
   script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker -H tcp://200.137.218.139:2375 compose -f docker/docker-compose.yml up -d --pull always --force-recreate
   when: manual
