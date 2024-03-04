@@ -97,6 +97,8 @@ attach-assets:
 deploy:
   stage: deploy
   image: docker
+  services:
+    - docker:dind
   environment:
     name: $CI_COMMIT_BRANCH
   tags:
