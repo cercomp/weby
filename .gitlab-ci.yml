@@ -99,7 +99,7 @@ deploy:
   environment:
     name: $CI_COMMIT_BRANCH
   tags:
-    - runner-java
+    - ssh
   only:
     - master
     - develop
