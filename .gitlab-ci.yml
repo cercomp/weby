@@ -94,7 +94,7 @@ attach-assets:
     - job: precompile
       artifacts: true
 
-redeploy-rancher:
+deploy:
   stage: deploy
   image: docker
   before_script:
