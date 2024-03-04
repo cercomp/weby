@@ -12,7 +12,6 @@ before_script:
   #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   #- docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
   - cp $ENV_FILE .env
-  - echo $CI_REGISTRY
 
 base:
   stage: build
