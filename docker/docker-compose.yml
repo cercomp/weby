@@ -21,6 +21,6 @@ services:
         STORAGE_HOST_ALBUM: ${STORAGE_HOST_ALBUM}
     ports:
       - 3000:3000
-    #env_file:
-    #  - .env
+    env_file:
+      - .env
 
