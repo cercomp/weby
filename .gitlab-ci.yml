@@ -7,6 +7,7 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   DOCKER_TLS_CERTDIR: ""
   CI_PROJECT_ENV: ${CI_PROJECT_NAME}_${CI_COMMIT_BRANCH}
   CI_VERSION_ENV: "latest"
+  RUNNER_SCRIPT_TIMEOUT: 50m
 
 before_script:
   #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
@@ -95,6 +96,7 @@ attach-assets:
       artifacts: true
 
 deploy:
+  #timeout: 50m
   stage: deploy
   environment:
     name: $CI_COMMIT_BRANCH
