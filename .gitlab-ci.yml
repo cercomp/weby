@@ -96,7 +96,7 @@ attach-assets:
       artifacts: true
 
 deploy:
-  #timeout: 50m
+  timeout: 50m
   stage: deploy
   environment:
     name: $CI_COMMIT_BRANCH
