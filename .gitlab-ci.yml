@@ -99,8 +99,7 @@ deploy:
   environment:
     name: $CI_COMMIT_BRANCH
   before_script:
-    - cp $ENV_FILE .env
-    - cat .env
+    - cp $ENV_FILE docker/.env
   tags:
     - runner-java
   only:
