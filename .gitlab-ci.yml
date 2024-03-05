@@ -11,7 +11,7 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
 before_script:
   #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
   #- docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
-  - cp $ENV_FILE .env
+  #- cp $ENV_FILE .env
 
 base:
   stage: build
@@ -98,6 +98,9 @@ deploy:
   stage: deploy
   environment:
     name: $CI_COMMIT_BRANCH
+  before_script:
+    - cp $ENV_FILE .env
+    - cat .env
   tags:
     - runner-java
   only:
