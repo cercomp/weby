@@ -1,11 +1,11 @@
 apiVersion: v1
 data:
-  DB_DB: weby
+  DB_DB: weby_desenv
   DB_HOST: 200.137.217.175
   DB_PORT: "5432"
-  DB_USER: weby
+  DB_USER: weby_desenv
   RAILS_ENV: production
-  STORAGE_BUCKET: weby
+  STORAGE_BUCKET: webyteste
   STORAGE_HOST: files.cercomp.ufg.br
 kind: ConfigMap
 metadata:
@@ -13,3 +13,4 @@ metadata:
     app: weby-develop
   name: weby-develop
   namespace: default
+
