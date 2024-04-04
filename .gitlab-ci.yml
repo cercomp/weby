@@ -7,10 +7,11 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   DOCKER_TLS_CERTDIR: ""
   CI_PROJECT_ENV: ${CI_PROJECT_NAME}_${CI_COMMIT_BRANCH}
   CI_VERSION_ENV: "latest"
+  RUNNER_SCRIPT_TIMEOUT: 50m
 
 before_script:
-  - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-  - docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
+  #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  #- docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
   #- cp $ENV_FILE .env
 
 base:
@@ -94,16 +95,19 @@ attach-assets:
     - job: precompile
       artifacts: true
 
-redeploy-rancher:
+deploy:
+  timeout: 50m
   stage: deploy
-  image: docker
   environment:
     name: $CI_COMMIT_BRANCH
+  before_script:
+    - cp $ENV_FILE docker/.env
   tags:
-    - ssh
+    - runner-java
   only:
     - master
     - develop
   script:
-    - 'curl -X POST -H "Content-Type: application/json" --user "${TOKEN_API_RANCHER}" "https://rancher.cercomp.ufg.br/v3/project/c-m-gzh7mr9c:p-bxrnt/workloads/deployment:default:weby-develop?action=redeploy"' 
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker -H ssh://200.137.218.139 compose -f docker/docker-compose.yml up -d --pull always --force-recreate
   when: manual
