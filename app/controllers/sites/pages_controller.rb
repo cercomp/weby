@@ -36,11 +36,8 @@ class Sites::PagesController < ApplicationController
     end.compact.sort_by(&:position)
   end
 
-  require 'open-uri'
-  require 'uri'
-
   def frame
-    if params[:url].present?
+    if params[:url].present? && params[:url].match(/^(http|ftp)/)
       begin
         uri = URI(params[:url])
         cnt = URI.open(uri).read
