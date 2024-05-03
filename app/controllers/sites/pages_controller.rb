@@ -36,9 +36,33 @@ class Sites::PagesController < ApplicationController
     end.compact.sort_by(&:position)
   end
 
+  require 'open-uri'
+  require 'uri'
+
   def frame
-    cnt = open(params[:url]).read
-    render html: cnt.html_safe
+    url = params[:url]
+    
+    # Verificar se a URL é válida e se começa com "https://", "http://" ou "ftp://"
+    if valid_url?(url)
+      begin
+        # Abrir a URL e renderizar o conteúdo
+        cnt = open(url).read
+        render html: cnt.html_safe
+      rescue OpenURI::HTTPError => e
+        render plain: "Erro ao abrir a URL: #{e.message}"
+      end
+    else
+      render plain: "A URL é inválida ou não começa com 'https://', 'http://' ou 'ftp://'."
+    end
+  end
+
+  private
+
+  def valid_url?(url)
+    uri = URI.parse(url)
+    %w(https http ftp).include?(uri.scheme) && !uri.host.nil?
+  rescue URI::InvalidURIError
+    false
   end
 
   private
