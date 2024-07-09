@@ -19,6 +19,8 @@ services:
         STORAGE_ACCESS_KEY_ALBUM: ${STORAGE_ACCESS_KEY_ALBUM}
         STORAGE_ACCESS_SECRET_ALBUM: ${STORAGE_ACCESS_SECRET_ALBUM}
         STORAGE_HOST_ALBUM: ${STORAGE_HOST_ALBUM}
+    volumes:
+      - ./tmp/cache:/opt/weby/tmp/cache
     ports:
       - 3000:3000
     env_file:
