@@ -101,7 +101,6 @@ deploy:
   environment:
     name: $CI_COMMIT_BRANCH
   before_script:
-    - rm docker/.env
     - cp $ENV_FILE docker/.env
   tags:
     - runner-java
