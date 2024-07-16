@@ -23,6 +23,16 @@ pt-BR:
         size:          " Tamanho "
         email:         " E-mail "
         archive_fingerprint:  " Assinatura digital do arquivo "
+        share:         "Compartilhar"
+      site_share_event:
+        share:         "Compartilhar"
+        my_sites:      "Escolha o site e o local onde quer compartilhar"
+        front_news:    "Notícias Capa"
+        name:          "Nome"
+        title:         "Título"
+        close:         "Fechar"
+        no-site-found: "Nenhum site disponível para compartilhar"
+        no-event-comps-found: 'Nenhum componente Notícias Capa ativo neste site'
       list:
         read_more:     " Leia mais "
         no_events:     " Nenhum evento encontrado "

@@ -2,7 +2,7 @@ module Calendar
   class Admin::EventsController < Calendar::ApplicationController
     before_action :require_user
     before_action :check_authorization
-    before_action :event_types, only: [:new, :edit, :create, :update]
+    before_action :event_types, only: [:new, :edit, :create, :update, :index]
     before_action :find_event, only: [:show, :edit, :update]
 
     respond_to :html, :js, :json
@@ -57,6 +57,17 @@ module Calendar
     end
 
     def edit
+    end
+
+    def share
+      # Verificar se a noticia ja nao foi compartilhada
+      event_site = Calendar::Event.find_by(event_id: params[:id], site_id: params[:site_id])
+      if event_site.blank?
+        event_site = Calendar::Event.create!(site_id: params[:site_id])
+        record_activity('shared_event', event_site.events)
+      end
+      flash[:notice] = 'TESTE'
+      redirect_back(fallback_location: root_url(subdomain: current_site))
     end
 
     def update

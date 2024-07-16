@@ -7,6 +7,7 @@ module Calendar
           resources :events do
             member do
               put :recover
+              get :share
             end
             collection do
               get :recycle_bin
