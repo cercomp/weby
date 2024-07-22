@@ -60,8 +60,8 @@ module Calendar
     end
 
     def share
-      # Verificar se a noticia ja nao foi compartilhada
-      event_site = Calendar::Event.find_by(event_id: params[:id], site_id: params[:site_id])
+      # Verificar se o evento ja nao foi compartilhado
+      event_site = Calendar::Event.find_by(id: params[:id], site_id: params[:site_id])
       if event_site.blank?
         event_site = Calendar::Event.create!(site_id: params[:site_id])
         record_activity('shared_event', event_site.events)

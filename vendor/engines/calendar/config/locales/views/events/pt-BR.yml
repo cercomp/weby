@@ -32,7 +32,7 @@ pt-BR:
         title:         "Título"
         close:         "Fechar"
         no-site-found: "Nenhum site disponível para compartilhar"
-        no-event-comps-found: 'Nenhum componente Notícias Capa ativo neste site'
+        no-event-comps-found: 'Nenhum componente de Eventos Capa ativo neste site'
       list:
         read_more:     " Leia mais "
         no_events:     " Nenhum evento encontrado "

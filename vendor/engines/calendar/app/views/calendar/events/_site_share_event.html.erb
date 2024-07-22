@@ -24,7 +24,7 @@
                   </div>
                   <div <%= "id=collapse#{site.id}" %> class="accordion-body collapse">
                     <div class="accordion-inner">
-                      <% event_comps = site.active_skin.components.where(name: 'components_group', publish: true, alias: 'Eventos') %>
+                      <% event_comps = site.active_skin.components.where(name: 'event_list', publish: true, alias: 'Eventos') %>
                       <% if event_comps.empty? %>
                         <div class="alert alert-warning">
                           <%= t(".no-event-comps-found") %>
