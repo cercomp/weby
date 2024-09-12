@@ -24,4 +24,4 @@ services:
     env_file:
       - .env
     volumes:
-      - ./tmp/cache:/opt/weby/tmp/cache
+      - /home/gitlab-runner/tmp/cache:/opt/weby/tmp/cache
