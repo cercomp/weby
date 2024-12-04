@@ -59,7 +59,7 @@
   <%= yield :social_code if current_site.event_social_share_pos == 'bottom' %>
   <div style="margin-top: 8px;" class="actions">
     <%= link_to(weby_icon('edit', t("edit")), edit_admin_event_path(@event)) if check_permission(Calendar::Admin::EventsController, [:edit]) %>
-    <%= link_to weby_icon('share', t(".share")), "#", data: {toggle: "modal", target: "#myModalEvent"} if current_user  %>
+    <%= link_to weby_icon('share', t(".share")), "#", data: { toggle: "modal", target: "#shareEventModal" } if check_permission(Calendar::Admin::EventsController, [:share]) %>
     <% if !defined?(as_component) %>
       <%= link_to weby_icon('list', t(".list_all")), events_path %>
       <%= link_to weby_icon('chevron-left', t("back")), :back %>

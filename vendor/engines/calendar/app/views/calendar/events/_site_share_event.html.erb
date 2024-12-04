@@ -1,54 +1,47 @@
-<!-- Modal -->
-<div class="modal fade" id="myModalEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="shareEventModal" tabindex="-1" role="dialog" aria-labelledby="shareEventModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel"><%= t(".my_sites") %></h4>
-      </div>
+
       <div class="modal-body">
-        <% @sites = current_user ? current_user.sites : [] %>
-        <% if @sites.empty? %>
+        <% if @event.shared? %>
           <div class="alert alert-warning">
-            <%= t(".no-site-found") %>
+            <%= t(".cannot_share_shared_event") %>
           </div>
         <% else %>
-        <%= t(".no-site-found") %>
-          <div class="accordion" id="accordion2">
-            <div class="accordion-group">
-              <% @sites.each do |site| %>
-                <% if site.id != current_site.id %>
-                  <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" <%= "href=#collapse#{site.id}" %>>
-                      <th><%= site.title %></th>
-                    </a>
-                  </div>
-                  <div <%= "id=collapse#{site.id}" %> class="accordion-body collapse">
-                    <div class="accordion-inner">
-                      <% event_comps = site.active_skin.components.where(name: 'event_list', publish: true, alias: 'Eventos') %>
-                      <% if event_comps.empty? %>
-                        <div class="alert alert-warning">
-                          <%= t(".no-event-comps-found") %>
-                        </div>
-                      <% else %>
-                        <% event_comps.each do |comp| %>
-                          <% settings = eval(comp.settings) %>
-                          <% tag = settings[:filter_by] %>
-                          <div class="thumbnail">
-                            <h5 class="text-center"><%= link_to "#{t("components.#{comp.name}.name")}  - #{comp.alias.present? ? comp.alias : comp.default_alias}",
-                                share_admin_event_url(@event.id, site_id: site.id, subdomain: site) %></h5>
-                          </div>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
+          <% @sites = if current_user
+           if check_permission(Calendar::Admin::EventsController, [:share])
+             Site.where.not(id: [@event.site_id] + @event.shared_events.pluck(:site_id))
+           else
+             current_user.sites.where.not(id: [@event.site_id] + @event.shared_events.pluck(:site_id))
+           end
+         else
+           Site.none # ou []
+         end.order(:title) %>
+          
+          <% if @sites.empty? %>
+            <div class="alert alert-info">
+              <%= t(".no_sites_available") %>
             </div>
-          </div>
+          <% else %>
+            <div class="modal-header">
+              <h4 class="modal-title" id="shareEventModalLabel"><%= t(".choose_site_to_share") %></h4>
+            </div>
+            <%= form_tag share_admin_event_path(@event), method: :post do %>
+              <div class="form-group">
+                <%= select_tag :site_id, 
+                            options_from_collection_for_select(@sites, :id, :title),
+                            class: 'form-control' %>
+              </div>
+              <%= submit_tag t(".share"), class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.close') %></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          <%= t('.close') %>
+        </button>
       </div>
     </div>
   </div>

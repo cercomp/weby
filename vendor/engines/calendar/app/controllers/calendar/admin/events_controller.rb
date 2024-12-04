@@ -60,14 +60,27 @@ module Calendar
     end
 
     def share
-      # Verificar se o evento ja nao foi compartilhado
-      event_site = Calendar::Event.find_by(id: params[:id], site_id: params[:site_id])
-      if event_site.blank?
-        event_site = Calendar::Event.create!(site_id: params[:site_id])
-        record_activity('shared_event', event_site.events)
+      @event = current_site.events.find(params[:id])
+      target_site = Site.find(params[:site_id])
+      
+      if @event.send(:share_with, target_site)
+        flash[:success] = t('.successfully_shared')
+      else
+        flash[:error] = t('.share_failed')
       end
-      flash[:notice] = 'TESTE'
-      redirect_back(fallback_location: root_url(subdomain: current_site))
+    
+      redirect_back(fallback_location: admin_events_path)
+    end
+    
+    def available_sites_for_share
+      @event = current_site.events.find(params[:id])
+      @sites = Site.where.not(id: [@event.site_id] + @event.shared_events.pluck(:site_id))
+                      .order(:name)
+      
+      respond_to do |format|
+        format.html # renderiza available_sites_for_share.html.erb
+        format.json { render json: @sites.map { |s| { id: s.id, name: s.name } } }
+      end
     end
 
     def update

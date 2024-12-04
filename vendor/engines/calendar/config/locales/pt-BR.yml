@@ -1,5 +1,19 @@
 pt-BR:
   extensions:
     calendar:
-      name:            "Eventos"
+      name: "Eventos"
   moved_event_to_recycle_bin: "Evento movido para a lixeira"
+  calendar:
+    events:
+      site_share_event:
+        choose_site_to_share: "Escolha o site para compartilhar"
+        no_sites_available: "Não há sites disponíveis para compartilhamento"
+        cannot_share_shared_event: "Este evento não pode ser compartilhado novamente"
+        share: "Compartilhar"
+        close: "Fechar"
+    admin:
+      events:
+        share:
+          successfully_shared: "Evento compartilhado com sucesso"
+          cannot_share_shared_event: "Não é possível compartilhar um evento que já é compartilhado"
+          share_failed: "Não foi possível compartilhar o evento"
