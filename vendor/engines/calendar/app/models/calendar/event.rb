@@ -10,19 +10,26 @@ module Calendar
 
     EVENT_TYPES = %w(regional national international)
 
+    SYNC_FIELDS = %w[begin_at end_at kind url email repository_id]
+
     weby_content_i18n :name, :information, :place, required: [:name, :place]
 
     belongs_to :site
     belongs_to :user
+    belongs_to :parent_event, class_name: 'Calendar::Event', optional: true
 
     has_many :menu_items, as: :target, dependent: :nullify
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
+    has_many :shared_events, class_name: 'Calendar::Event',
+             foreign_key: 'parent_event_id', dependent: :destroy
 
     validates :begin_at, presence: true
 
     scope :upcoming, -> { where(' (begin_at >= :time OR end_at >= :time)', time: Time.current) }
     scope :previous, -> { where(' (end_at < :time)', time: Time.current) }
+    scope :originals, -> { where(shared: false) }
+    scope :shared_only, -> { where(shared: true) }
 
     scope :with_search, ->(param, search_type) {
       if param.present?
@@ -51,6 +58,31 @@ module Calendar
 
     def title
       name
+    end
+
+    def sync_fields
+      value = read_attribute(:sync_fields)
+      return [] if value.nil? || value.empty?
+      return value if value.is_a?(Array)
+      
+      begin
+        YAML.load(value) || []
+      rescue
+        []
+      end
+    end
+    
+    def sync_fields=(value)
+      value = [] if value.nil?
+      write_attribute(:sync_fields, value.is_a?(Array) ? value : [])
+    end
+    
+    def same_date?
+      if end_at
+        begin_at.to_date == end_at.to_date
+      else
+        true
+      end
     end
 
     def same_date?
@@ -201,10 +233,88 @@ module Calendar
       events
     end
 
+    def share_with(target_site)
+      return false if parent_event_id.present?
+      return false if target_site == self.site
+      return false if shared_events.exists?(site_id: target_site.id)
+      
+      shared_event = self.class.new(
+        parent_event_id: self.id,
+        site_id: target_site.id,
+        shared: true,
+        sync_fields: SYNC_FIELDS,
+        begin_at: self.begin_at,
+        end_at: self.end_at,
+        kind: self.kind,
+        url: self.url,
+        email: self.email,
+        repository_id: self.repository_id,
+        user_id: self.user_id
+      )
+    
+      # Copia as traduções
+      self.i18ns.each do |i18n|
+        shared_event.i18ns.build(
+          locale_id: i18n.locale_id,
+          name: i18n.name,
+          place: i18n.place,
+          information: i18n.information,
+          sync_with_parent: true
+        )
+      end
+    
+      # Copia as categorias se existirem
+      shared_event.category_list = self.category_list if self.respond_to?(:category_list)
+    
+      shared_event.save
+    end
+    
+    # Verifica se é um evento compartilhado
+    def shared?
+      shared == true
+    end
+    
+    # Verifica se é um evento original
+    def original?
+      !shared?
+    end
+    
+    # Sincroniza alterações com eventos compartilhados
+    after_update :sync_with_shared_events, if: :original?
+
     private
 
     def self.normalize_tags tags
       ApplicationController.helpers.unescape_param(tags).split(',').map { |tag| tag.mb_chars.downcase.to_s }
+    end
+
+    private
+
+    def sync_with_shared_events
+      return unless shared_events.exists?
+      
+      shared_events.each do |shared_event|
+        syncable_attributes = {}
+        
+        # Sincroniza apenas os campos marcados
+        (shared_event.sync_fields & SYNC_FIELDS).each do |field|
+          syncable_attributes[field] = self.send(field)
+        end
+        
+        # Sincroniza traduções se necessário
+        self.i18ns.each do |parent_i18n|
+          shared_i18n = shared_event.i18ns.find_by(locale_id: parent_i18n.locale_id)
+          if shared_i18n&.sync_with_parent?
+            shared_i18n.update(
+              name: parent_i18n.name,
+              place: parent_i18n.place,
+              information: parent_i18n.information
+            )
+          end
+        end
+        
+        shared_event.update(syncable_attributes) if syncable_attributes.present?
+      end
     end
   end
 end

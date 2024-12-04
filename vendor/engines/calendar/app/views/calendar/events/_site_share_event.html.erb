@@ -1,0 +1,48 @@
+<div class="modal fade" id="shareEventModal" tabindex="-1" role="dialog" aria-labelledby="shareEventModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <% if @event.shared? %>
+          <div class="alert alert-warning">
+            <%= t(".cannot_share_shared_event") %>
+          </div>
+        <% else %>
+          <% @sites = if current_user
+           if check_permission(Calendar::Admin::EventsController, [:share])
+             Site.where.not(id: [@event.site_id] + @event.shared_events.pluck(:site_id))
+           else
+             current_user.sites.where.not(id: [@event.site_id] + @event.shared_events.pluck(:site_id))
+           end
+         else
+           Site.none # ou []
+         end.order(:title) %>
+          
+          <% if @sites.empty? %>
+            <div class="alert alert-info">
+              <%= t(".no_sites_available") %>
+            </div>
+          <% else %>
+            <div class="modal-header">
+              <h4 class="modal-title" id="shareEventModalLabel"><%= t(".choose_site_to_share") %></h4>
+            </div>
+            <%= form_tag share_admin_event_path(@event), method: :post do %>
+              <div class="form-group">
+                <%= select_tag :site_id, 
+                            options_from_collection_for_select(@sites, :id, :title),
+                            class: 'form-control' %>
+              </div>
+              <%= submit_tag t(".share"), class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          <%= t('.close') %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@ module Calendar
   class Admin::EventsController < Calendar::ApplicationController
     before_action :require_user
     before_action :check_authorization
-    before_action :event_types, only: [:new, :edit, :create, :update]
+    before_action :event_types, only: [:new, :edit, :create, :update, :index]
     before_action :find_event, only: [:show, :edit, :update]
 
     respond_to :html, :js, :json
@@ -57,6 +57,30 @@ module Calendar
     end
 
     def edit
+    end
+
+    def share
+      @event = current_site.events.find(params[:id])
+      target_site = Site.find(params[:site_id])
+      
+      if @event.send(:share_with, target_site)
+        flash[:success] = t('.successfully_shared')
+      else
+        flash[:error] = t('.share_failed')
+      end
+    
+      redirect_back(fallback_location: admin_events_path)
+    end
+    
+    def available_sites_for_share
+      @event = current_site.events.find(params[:id])
+      @sites = Site.where.not(id: [@event.site_id] + @event.shared_events.pluck(:site_id))
+                      .order(:name)
+      
+      respond_to do |format|
+        format.html # renderiza available_sites_for_share.html.erb
+        format.json { render json: @sites.map { |s| { id: s.id, name: s.name } } }
+      end
     end
 
     def update
