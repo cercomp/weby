@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
 
   def set_tld_length
     if current_site && request.domain
-      url_parts = current_site.url_parts
+      url_parts = current_site.url_parts.except(:default_domain)
       url_domain = url_parts.values.join
       
       if current_site.domain.present? && request.domain.match(current_site.domain)
@@ -135,7 +135,7 @@ class ApplicationController < ActionController::Base
         #request.session_options[:domain] = '.' + 'perm.go.gov.br'
         request.session_options[:domain] = '.' + url_domain
 
-        domain_parts = url_domain.split('.')
+        domain_parts = url_parts.site_domain.split('.')
         tld_length = domain_parts.length > 2 ? 2 : 1
         request.session_options[:tld_length] = tld_length
       elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
