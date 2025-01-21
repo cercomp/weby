@@ -126,10 +126,16 @@ class ApplicationController < ActionController::Base
   helper_method :is_on_mobile?
 
   def set_tld_length
+    puts(current_site)
+    puts(current_site && request.domain)
+    
     if current_site && request.domain
       url_parts = current_site.url_parts.except(:default_domain)
       url_domain = url_parts.values.join
-      
+
+      puts(current_site.domain)
+      puts(request.domain)
+
       if current_site.domain.present? && request.domain.match(current_site.domain)
         request.session_options[:key] = "_#{request.domain}_sess"
         request.session_options[:domain] = '.' + url_domain
