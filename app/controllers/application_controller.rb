@@ -132,7 +132,6 @@ class ApplicationController < ActionController::Base
       
       if current_site.domain.present? && request.domain.match(current_site.domain)
         request.session_options[:key] = "_#{request.domain}_sess"
-        #request.session_options[:domain] = '.' + 'perm.go.gov.br'
         request.session_options[:domain] = '.' + url_domain
 
         domain_parts = url_parts[:site_domain].split('.')
