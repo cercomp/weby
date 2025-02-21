@@ -34,23 +34,27 @@ class Sites::AlbumsController < ApplicationController
 
     zipname = "album_#{@album.title.parameterize}_#{Time.now.strftime('%d-%m-%Y')}.zip"
     zip_dir = Rails.root.join(dir, zipname)
-    Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE) do |zipfile|
-      read_files_for_zip(current_site).each do |file, entry_path|
-        begin
-          if file.is_a?(String)
-            zipfile.add(entry_path, file) if entry_path
-          elsif file.is_a?(Aws::S3::Object)
-            zipfile.get_output_stream(entry_path) do |f|
-              f.write(file.get.body.read)
+    begin
+      Zip::ZipFile.open(zip_dir, Zip::ZipFile::CREATE) do |zipfile|
+        read_files_for_zip(current_site).each do |file, entry_path|
+          begin
+            if file.is_a?(String)
+              zipfile.add(entry_path, file) if entry_path
+            elsif file.is_a?(Aws::S3::Object)
+              zipfile.get_output_stream(entry_path) do |f|
+                f.write(file.get.body.read)
+              end
             end
+          rescue Zip::ZipEntryExistsError
           end
-        rescue Zip::ZipEntryExistsError
         end
       end
+      zip_data = File.read("#{dir}/#{zipname}")
+      send_data(zip_data, type: 'application/zip', filename: zipname)
+    ensure
+      # Clean up the directory after sending the data
+      FileUtils.rm_rf(dir)
     end
-
-    zip_data = File.read("#{dir}/#{zipname}")
-    send_data(zip_data, type: 'application/zip', filename: zipname)
   end
 
   private
