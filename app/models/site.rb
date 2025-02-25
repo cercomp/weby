@@ -19,6 +19,8 @@ class Site < ApplicationRecord
   has_many :extensions, dependent: :destroy
   has_one :theme
   # Extensions relations
+  has_many :event_sites, class_name: 'Calendar::EventSite'
+  has_many :shared_events, through: :event_sites, source: :event
   has_many :news_sites, class_name: "::Journal::NewsSite", dependent: :destroy
   has_many :news, through: :news_sites, source: :news
   has_many :own_news, class_name: "::Journal::News", dependent: :destroy

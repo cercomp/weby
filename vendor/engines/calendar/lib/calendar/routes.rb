@@ -9,6 +9,7 @@ module Calendar
               put :recover
               get :available_sites_for_share
               post :share
+              delete :unshare
             end
             collection do
               get :recycle_bin

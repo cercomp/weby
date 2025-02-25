@@ -17,3 +17,9 @@ pt-BR:
           successfully_shared: "Evento compartilhado com sucesso"
           cannot_share_shared_event: "Não é possível compartilhar um evento que já é compartilhado"
           share_failed: "Não foi possível compartilhar o evento"
+        show:
+          redirected_to_parent: "Você foi redirecionado para o evento original"
+        edit:
+          redirected_to_parent: "Você foi redirecionado para o evento original"
+        update:
+          redirected_to_parent: "Você foi redirecionado para o evento original"

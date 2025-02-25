@@ -21,16 +21,64 @@ module Calendar
     end
 
     def get_events
+      case params[:template]
+      when 'tiny_mce'
+        params[:per_page] = 7
+      end
       params[:direction] ||= 'desc'
-      # Vai ao banco por linha para recuperar
-      # tags e locales
-      events = current_site.events.
-        with_search(params[:search], 1) # 1 = busca com AND entre termos
 
-      events = events.order(sort_column + ' ' + sort_direction)
+      event_sites = current_site.event_sites
+      @events_ids = []
+      event_sites.each do |sites|
+        @events_ids << sites.calendar_event_id
+      end
+
+      events = Calendar::Event.where('calendar_events.id IN (?) OR calendar_events.site_id = ?', 
+        @events_ids, current_site.id).
+        includes(:user, :site, i18ns: :locale, event_sites: :site).
+        where(sites: {status: 'active'}).
+        with_search(params[:search], 1) 
+
+      if params[:template] == 'list_popup'
+        events = events.published if events.respond_to?(:published)
+      end
+
+      if sort_column == 'calendar_events_i18ns.name'
+        events = events.where(locales: {name: I18n.locale})
+      end
+
+      events.order(sort_column + ' ' + sort_direction)
         .page(params[:page]).per(params[:per_page])
     end
     private :get_events
+
+    def unshare
+      @event = Calendar::EventSite.where(site_id: current_site.id, calendar_event_id: params[:id])
+      log_event = @event.first
+      @event.destroy_all
+      record_activity('unshared_event', log_event.event) if log_event
+      flash[:success] = t('.unshared_event')
+      redirect_to admin_events_path
+    end
+
+    def destroy_many
+      event_ids = params[:ids].split(',')
+      
+      current_site.event_sites.includes(:event).where(id: event_ids).each do |es|
+        if es.event.site_id == current_site.id
+          if es.event.trash
+            record_activity('moved_event_to_recycle_bin', es.event)
+            flash[:success] = t('moved_event_to_recycle_bin')
+          end
+        else
+          if es.destroy
+            record_activity('unshared_event', es.event)
+            flash[:success] = t('unshared_event')
+          end
+        end
+      end
+      redirect_back(fallback_location: admin_events_path)
+    end
 
     def recycle_bin
       params[:sort] ||= 'calendar_events.deleted_at'
@@ -62,8 +110,14 @@ module Calendar
     def share
       @event = current_site.events.find(params[:id])
       target_site = Site.find(params[:site_id])
+
+      event_site = Calendar::EventSite.find_or_initialize_by(
+        calendar_event_id: @event.id,
+        site_id: target_site.id
+      )
       
-      if @event.send(:share_with, target_site)
+      if event_site.new_record? && event_site.save
+        record_activity('shared_event', @event)
         flash[:success] = t('.successfully_shared')
       else
         flash[:error] = t('.share_failed')
@@ -74,12 +128,15 @@ module Calendar
     
     def available_sites_for_share
       @event = current_site.events.find(params[:id])
-      @sites = Site.where.not(id: [@event.site_id] + @event.shared_events.pluck(:site_id))
-                      .order(:name)
-      
+      @sites = if check_permission(Calendar::Admin::EventsController, [:share])
+                Site.where.not(id: [@event.site_id] + @event.event_sites.pluck(:site_id))
+              else
+                current_user.sites.where.not(id: [@event.site_id] + @event.event_sites.pluck(:site_id))
+              end.order(:title)
+
       respond_to do |format|
-        format.html # renderiza available_sites_for_share.html.erb
-        format.json { render json: @sites.map { |s| { id: s.id, name: s.name } } }
+        format.html
+        format.json { render json: @sites.map { |s| { id: s.id, title: s.title } } }
       end
     end
 
@@ -140,6 +197,11 @@ module Calendar
     end
 
     private
+
+    def find_event
+      @event = current_site.events.find(params[:id])
+      raise ActiveRecord::RecordNotFound unless @event
+    end
 
     def sort_column
       params[:sort] || 'calendar_events.id'
