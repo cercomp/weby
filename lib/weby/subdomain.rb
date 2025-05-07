@@ -7,7 +7,7 @@ module Weby
       @site_domain = nil
       subdomain = request.subdomain.gsub(/www\./, '')
 
-      if (settings.domain.present? && settings.domain != request.host)
+      if (settings.domain.present? && !request.host.include?(settings.domain))
         tld = request.host.split(".").length - 2
         @@tld_length = tld
       else

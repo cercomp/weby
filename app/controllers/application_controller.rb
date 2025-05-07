@@ -129,18 +129,20 @@ class ApplicationController < ActionController::Base
     if current_site && request.domain
       url_parts = current_site.url_parts.except(:default_domain)
       url_domain = url_parts.values.join
-
+      
       if current_site.domain.present? && request.domain.match(current_site.domain)
         request.session_options[:key] = "_#{request.domain}_sess"
         request.session_options[:domain] = '.' + url_domain
 
         domain_parts = url_parts[:site_domain].split('.')
-        request.session_options[:tld_length] = domain_parts.length
+        tld_length = domain_parts.length > 2 ? 2 : 1
+        request.session_options[:tld_length] = tld_length
       elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
       end
     end
   end
+
 
   def should_be_ssl?
     current_user && Weby::Settings::Weby.login_protocol == 'https' && !request.ssl?
