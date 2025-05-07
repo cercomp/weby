@@ -7,7 +7,12 @@ module Weby
       @site_domain = nil
       subdomain = request.subdomain.gsub(/www\./, '')
 
-      @@tld_length = settings.tld_length.to_i
+      if (settings.domain.present? && settings.domain != request.host)
+        tld = request.host.split(".").length - 2
+        @@tld_length = tld
+      else
+        @@tld_length = settings.tld_length.to_i
+      end
 
       if request.subdomain.present? && request.subdomain != 'www'
         if settings.sites_index.present?
@@ -27,6 +32,7 @@ module Weby
       domain = @site_domain unless domain
       domain = domain.gsub(/www\./, '')
       sites = domain.split('.')
+      
       if sites.length == 2
         site = Site.where(parent_id: nil).find_by_name(sites[-1])
         site = site.subsites.active.find_by_name(sites[-2]) if site
