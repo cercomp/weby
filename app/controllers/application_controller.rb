@@ -127,8 +127,10 @@ class ApplicationController < ActionController::Base
 
   def set_tld_length
     puts('set_tld_length')
-    puts(current_site)
-    puts(current_site && request.domain)
+    puts('current_site: ' + current_site)
+    puts('request.domain: ' + request.domain)
+    puts('boolean: ' + current_site && request.domain)
+    puts('current_site.domain: ' + current_site.domain)
     
     if current_site && request.domain
       url_parts = current_site.url_parts.except(:default_domain)
