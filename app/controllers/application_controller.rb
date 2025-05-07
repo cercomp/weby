@@ -133,11 +133,10 @@ class ApplicationController < ActionController::Base
     puts('current_site.domain: ' + current_site.domain)
     
     if current_site && request.domain
+      puts('entrou no current_site && request.domain')
+
       url_parts = current_site.url_parts.except(:default_domain)
       url_domain = url_parts.values.join
-
-      puts(current_site.domain)
-      puts(request.domain)
 
       if current_site.domain.present? && request.domain.match(current_site.domain)
         request.session_options[:key] = "_#{request.domain}_sess"
