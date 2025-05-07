@@ -126,6 +126,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_on_mobile?
 
   def set_tld_length
+    puts('set_tld_length')
     puts(current_site)
     puts(current_site && request.domain)
     
