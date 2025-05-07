@@ -127,10 +127,12 @@ class ApplicationController < ActionController::Base
 
   def set_tld_length
     puts('set_tld_length')
-    puts('current_site: ' + current_site)
     puts('request.domain: ' + request.domain)
-    puts('boolean: ' + current_site && request.domain)
-    puts('current_site.domain: ' + current_site.domain)
+
+    if (current_site)
+      puts('boolean: ' + (current_site && request.domain))
+      puts('current_site.domain: ' + current_site.domain)
+    end
     
     if current_site && request.domain
       puts('entrou no current_site && request.domain')
