@@ -126,6 +126,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_on_mobile?
 
   def set_tld_length
+    puts("set_tld_length")
     if current_site && request.domain
       url_parts = current_site.url_parts.except(:default_domain)
       url_domain = url_parts.values.join
