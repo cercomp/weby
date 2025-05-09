@@ -135,7 +135,9 @@ class ApplicationController < ActionController::Base
         request.session_options[:domain] = '.' + url_domain
 
         domain_parts = url_parts[:site_domain].split('.')
-        tld_length = domain_parts.length > 2 ? 2 : 1
+        tld_length = domain_parts.length - 1
+        #tld_length = domain_parts.length > 2 ? 2 : 1
+
         request.session_options[:tld_length] = tld_length
       elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
