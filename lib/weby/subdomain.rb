@@ -39,6 +39,8 @@ module Weby
       domain = @site_domain unless domain
       domain = domain.gsub(/www\./, '')
       sites = domain.split('.')
+
+      @@tld_length = sites[1..-1].length-1
       
       site = Site.active.where(parent_id: nil).find_by_name_and_domain(sites[0], sites[1..-1].join('.'))
     end
