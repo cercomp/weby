@@ -7,13 +7,6 @@ module Weby
       @site_domain = nil
       subdomain = request.subdomain.gsub(/www\./, '')
 
-      if (settings.domain.present? && !request.host.include?(settings.domain))
-        tld = request.host.split(".").length - 2
-        @@tld_length = tld
-      else
-        @@tld_length = settings.tld_length.to_i
-      end
-
       if request.subdomain.present? && request.subdomain != 'www'
         if settings.sites_index.present?
           return false if subdomain == settings.sites_index
@@ -40,6 +33,14 @@ module Weby
         site = Site.active.where(parent_id: nil).find_by_name(sites[-1])
       end
       site if [1, 2].include? sites.length
+    end
+
+    def self.find_external_site(domain = nil)
+      domain = @site_domain unless domain
+      domain = domain.gsub(/www\./, '')
+      sites = domain.split('.')
+      
+      site = Site.active.where(parent_id: nil).find_by_name_and_domain(sites[0], sites[1..-1].join('.'))
     end
   end
 end

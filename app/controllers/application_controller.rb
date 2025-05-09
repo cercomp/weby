@@ -68,6 +68,9 @@ class ApplicationController < ActionController::Base
     case
     when defined?(@current_site)
       return @current_site
+    when Weby::Settings::Weby.domain.present? && !request.host.include?(Weby::Settings::Weby.domain)
+      # search external sites
+      @current_site = Weby::Subdomain.find_external_site(request.host)
     when Weby::Subdomain.matches?(request)
       # search subsites
       @current_site = Weby::Subdomain.find_site
@@ -127,16 +130,15 @@ class ApplicationController < ActionController::Base
 
   def set_tld_length
     if current_site && request.domain
-      url_parts = current_site.url_parts.except(:default_domain)
-      url_domain = url_parts.values.join
-      
       if current_site.domain.present? && request.domain.match(current_site.domain)
+        url_parts = current_site.url_parts.except(:default_domain)
+        url_domain = url_parts.values.join
+
         request.session_options[:key] = "_#{request.domain}_sess"
-        request.session_options[:domain] = '.' + url_domain
+        request.session_options[:domain] = "." + url_domain
 
         domain_parts = url_parts[:site_domain].split('.')
-        tld_length = domain_parts.length - 1
-        #tld_length = domain_parts.length > 2 ? 2 : 1
+        tld_length = domain_parts.length-1
 
         request.session_options[:tld_length] = tld_length
       elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
@@ -144,7 +146,6 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
 
   def should_be_ssl?
     current_user && Weby::Settings::Weby.login_protocol == 'https' && !request.ssl?
