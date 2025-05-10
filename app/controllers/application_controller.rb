@@ -21,6 +21,8 @@ class ApplicationController < ActionController::Base
                 :current_locale, :current_site, :current_skin, :current_settings, :current_roles_assigned,
                 :component_is_available, :markdown_renderer
 
+
+  
   def admin
     render 'admin/admin'
   end
@@ -68,7 +70,7 @@ class ApplicationController < ActionController::Base
     case
     when defined?(@current_site)
       return @current_site
-    when Weby::Settings::Weby.domain.present? && !request.host.include?(Weby::Settings::Weby.domain)
+    when ApplicationController.is_external_site?(request)
       # search external sites
       @current_site = Weby::Subdomain.find_external_site(request.host)
     when Weby::Subdomain.matches?(request)
@@ -130,10 +132,11 @@ class ApplicationController < ActionController::Base
 
   def set_tld_length
     if current_site && request.domain
-      if current_site.domain.present? && request.domain.match(current_site.domain)
-        tld_length = current_site.domain.split('.').length - 1
-        request.session_options[:tld_length] = tld_length
-      elsif Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
+      #if current_site.domain.present? && request.domain.match(current_site.domain)
+      #  tld_length = current_site.domain.split('.').length - 1
+      #  request.session_options[:tld_length] = tld_length
+      #els
+      if Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
         request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
       end
     end
@@ -223,6 +226,15 @@ class ApplicationController < ActionController::Base
       params[:model].titleize.constantize.increment_counter :click_count, params[:id]
     end
     head :ok
+  end
+
+  # Verify external site
+  def self.is_external_site?(request)
+    return Weby::Settings::Weby.domain.present? && !request.host.include?(Weby::Settings::Weby.domain)
+  end
+
+  def self.get_domain_external_site(request)
+    return request.host
   end
 
   protected

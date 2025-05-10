@@ -12,7 +12,13 @@ class Weby::Extension
 
   # route matches ==========================
   def matches?(request)
-    site = Weby::Subdomain.find_site
-    site.has_extension(@name) if site
+    if !ApplicationController.is_external_site?(request)
+      site = Weby::Subdomain.find_site
+      site.has_extension(@name) if site
+    else
+      domain = ApplicationController.get_domain_external_site(request)
+      site = Weby::Subdomain.find_external_site(domain)
+      site.has_extension(@name) if site
+    end
   end
 end
