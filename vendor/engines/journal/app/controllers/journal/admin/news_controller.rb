@@ -46,32 +46,32 @@ module Journal::Admin
       end
 
     def get_news
-      case params[:template]
-      when 'tiny_mce'
-        params[:per_page] = 7
-      end
-      params[:direction] ||= 'desc'
+  case params[:template]
+  when 'tiny_mce'
+    params[:per_page] = 7
+  end
+  params[:direction] ||= 'desc'
 
-      news_sites = current_site.news_sites
-      @news = []
-      news_sites.each do |sites|
-        @news << sites.journal_news_id
-      end
+  news_sites = current_site.news_sites
+  @news = []
+  news_sites.each do |sites|
+    @news << sites.journal_news_id
+  end
 
-      news = Journal::News.where('journal_news.id in (?)', @news).
-        includes(:user, :site, i18ns: :locale, news_sites: :categories).
-        where(sites: {status: 'active'}).
-        with_search(params[:search], 1) # 1 = busca com AND entre termos
+  news = Journal::News.where('journal_news.id in (?)', @news)
+    .includes(:user, :site, i18ns: :locale, news_sites: :categories)
+    .where(sites: {status: 'active'})
+    .with_search(params[:search], 1) # 1 = busca com AND entre termos
 
-      if params[:template] == 'list_popup'
-        news = news.published
-      end
-      if sort_column == 'journal_news_i18ns.title'
-         news = news.where(locales: {name: I18n.locale})
-      end
-      if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
-        news = news.send(params[:status_filter])
-      end
+  if params[:template] == 'list_popup'
+    news = news.published
+  end
+  if sort_column == 'journal_news_i18ns.title'
+    news = news.where(locales: {name: I18n.locale})
+  end
+  if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
+    news = news.send(params[:status_filter])
+  end
 
   # --- Filtro por data ---
   if params[:start_date].present?
@@ -83,7 +83,8 @@ module Journal::Admin
   end
   # -----------------------
 
-      news = news.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
+  news = news.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
+end
 
     private :get_news
 

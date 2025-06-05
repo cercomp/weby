@@ -31,6 +31,16 @@
           placeholder: t('.filter_placeholder') %>
     </div>
     <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-6">
+          <%= label_tag :start_date, 'Data inicial' %>
+          <%= date_field_tag :start_date, params[:start_date], class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <%= label_tag :end_date, 'Data final' %>
+          <%= date_field_tag :end_date, params[:end_date], class: 'form-control' %>
+        </div>
+      </div>
       <div class="pull-right">
         <% with_permission(action: :new) do %>
           <%= link_to t(".new_news"),
