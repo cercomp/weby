@@ -23,13 +23,13 @@ module Journal
 #      end.concat('</div>').html_safe
     end
 
-      def publication_status_news(news, options = {})
-        ''.tap do |html|
-          html << toggle_field(news, 'status', 'toggle_publish', options)
-          if news.date_begin_at && Time.current < news.date_begin_at && news.published?
-            html << content_tag(:span, fa_icon(:'clock-o'), class: 'publish-warning text-warning', title: t('scheduled', date: l(news.date_begin_at, format: :medium)))
-          end
-        end.html_safe
+      def publication_status_news(news, remote: false)
+        toggle_url = toggle_publish_site_admin_news_path(news)
+        checked = news.status == "published"
+        content_tag(:a, id: news.id, data: { remote: remote }, rel: "nofollow", "data-method": :patch, href: toggle_url, class: "toggle-publish-link") do
+          check_box_tag("publish", "1", checked, class: "toggle weby-toggle", title: "") +
+          content_tag(:label, content_tag(:span, '', class: "check-handler"), class: "check-trail")
+        end
       end
 
     private

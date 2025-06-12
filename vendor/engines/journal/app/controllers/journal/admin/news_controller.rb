@@ -31,13 +31,19 @@ module Journal::Admin
     end
 
       def toggle_publish
-      @news = Journal::News.find(params[:id])
-      @news.update(status: @news.status == "published" ? "draft" : "published")
-      respond_to do |format|
-        format.js
-        format.html { redirect_to site_admin_news_index_path }
+        Rails.logger.info "PARAMS: #{params.inspect}"
+        @news = Journal::News.find(params[:id])
+        result = if params[:publish].present?
+          @news.update(status: "published")
+        else
+          @news.update(status: "draft")
+        end
+        Rails.logger.info "UPDATE RESULT: #{result}, STATUS: #{@news.status}"
+        respond_to do |format|
+          format.js
+          format.html { redirect_to site_admin_news_index_path }
+        end
       end
-    end
 
     def get_news
       case params[:template]

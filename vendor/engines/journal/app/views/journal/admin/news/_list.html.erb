@@ -16,6 +16,7 @@
           <th width="20%"><%= sortable 'tags.name', t(".category") %></th>
           <th width="12%"><%= sortable 'journal_news.created_at', t(".created_at") %></th>
           <% with_permission(action: :edit) do %>
+            <th width="5%"><%= sortable 'pages.publish', t(".publish") %></th>
             <th width="9%"><%= sortable 'journal_news.front', t(".cover") %></th>
             <th width="5%"><%= sortable 'journal_news.status', t(".status") %></th>
           <% end %>
@@ -43,6 +44,9 @@
             <td><%= news.user.first_name %></td>
             <td><%= raw categories_links(news_site.categories) %></td>
             <td><%= l(news.created_at, :format => :short) %></td>
+            <td class="publish">
+              <%= publication_status_news(news, remote: true) %>
+            </td>
             <% with_permission(action: :edit) do %>
               <td class="front">
                 <%= front_status(news_site, remote: true) %></td>
