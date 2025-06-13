@@ -23,6 +23,15 @@ module Journal
 #      end.concat('</div>').html_safe
     end
 
+      def publication_status_news(news, options = {})
+        ''.tap do |html|
+          html << toggle_field(news, 'status', 'toggle_publish', options)
+          if news.date_begin_at && Time.current < news.date_begin_at && news.published?
+            html << content_tag(:span, fa_icon(:'clock-o'), class: 'publish-warning text-warning', title: t('scheduled', date: l(news.date_begin_at, format: :medium)))
+          end
+        end.html_safe
+      end
+
     private
 
     STATUS_CLASSES = {published: 'success', draft: 'default', review: 'info'}

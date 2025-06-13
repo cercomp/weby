@@ -31,6 +31,8 @@ module Journal
               put :toggle, :recover, :unshare
               get :newsletter, :share
               post :newsletter_histories
+              put :toggle_publish
+              patch :toggle_publish
             end
             collection do
               get :recycle_bin, :fronts

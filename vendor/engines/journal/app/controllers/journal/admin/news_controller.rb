@@ -30,6 +30,15 @@ module Journal::Admin
         page(params[:page]).per(params[:per_page])
     end
 
+      def toggle_publish
+      @news = Journal::News.find(params[:id])
+      @news.update(status: @news.status == "published" ? "draft" : "published")
+      respond_to do |format|
+        format.js
+        format.html { redirect_to site_admin_news_index_path }
+      end
+    end
+
     def get_news
       case params[:template]
       when 'tiny_mce'
@@ -58,8 +67,17 @@ module Journal::Admin
         news = news.send(params[:status_filter])
       end
 
+  # --- Filtro por data ---
+  if params[:start_date].present?
+    news = news.where('journal_news.created_at >= ?', params[:start_date])
+  end
+  if params[:end_date].present?
+    end_date = Date.parse(params[:end_date]) + 1.day
+    news = news.where('journal_news.created_at < ?', end_date)
+  end
+  # -----------------------
+
       news = news.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
-    end
 
     private :get_news
 
