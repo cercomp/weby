@@ -28,12 +28,16 @@
     </div>
 <%
 =end%>
-    <div class="flex-masonry">
-      <% @photos.each do |photo| %>
-        <div class="small-1 medium-5">
-          <div class="album-photo-tile">
-            <%= link_to site_album_album_photo_path(photo.album.slug, photo), remote: true do %>
-              <%= image_tag photo.image.url(:f) %>
+    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+      <% 
+        # Layout responsivo com grid de 3 colunas
+        photos_array = @photos.to_a
+      %>
+      <% photos_array.each do |photo| %>
+        <div style="flex: 0 0 calc(33.333% - 10px); min-width: 200px;">
+          <div class="album-photo-tile" style="height: 200px; overflow: hidden; border-radius: 4px;">
+            <%= link_to site_album_album_photo_path(photo.album.slug, photo), remote: true, style: "display: block; height: 100%;" do %>
+              <%= image_tag photo.image.url(:f), style: "width: 100%; height: 100%; object-fit: cover; display: block;" %>
             <% end %>
           </div>
         </div>
