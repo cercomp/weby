@@ -108,7 +108,78 @@ roles_data.each do |role_new|
 end
 
 
-# 3. Vincula  novo perfil Gestor aos usuários que são administradores
+# 3. Reordena os IDs dos papéis seguindo a hierarquia (Gestor > Gerente > Editor-Chefe > Redator)
+  # Define a ordem hierárquica desejada
+hierarchy_order = ['Gestor', 'Gerente', 'Editor-Chefe', 'Redator']
+
+# Busca todos os papéis com site_id NULL
+roles_with_null_site = Role.where(site_id: nil).order(:id)
+
+unless roles_with_null_site.empty?
+  # Coleta os IDs existentes em ordem crescente
+  existing_ids = roles_with_null_site.pluck(:id).sort
+  
+  # Cria um mapeamento de papel atual -> novo ID baseado na hierarquia
+  id_mapping = {}
+  
+  hierarchy_order.each_with_index do |role_name, index|
+    role = roles_with_null_site.find { |r| r.name == role_name }
+    if role && existing_ids[index]
+      id_mapping[role.id] = existing_ids[index]
+    end
+  end
+  
+  # Aplica a reordenação usando uma transação para garantir consistência
+  ActiveRecord::Base.transaction do
+    # Desabilita temporariamente as restrições de chave estrangeira
+    ActiveRecord::Base.connection.execute("SET session_replication_role = replica;")
+    
+    # PRIMEIRO: Atualiza as referências em roles_users ANTES de alterar os IDs das roles
+    if ActiveRecord::Base.connection.table_exists?('roles_users')
+      id_mapping.each do |old_id, new_id|
+        if old_id != new_id
+          # Move as referências para IDs temporários negativos primeiro
+          ActiveRecord::Base.connection.execute("UPDATE roles_users SET role_id = #{-new_id} WHERE role_id = #{old_id}")
+          puts "Atualizando referência roles_users: #{old_id} -> #{-new_id} (temporário)"
+        end
+      end
+    end
+    
+    # SEGUNDO: Move todos os IDs das roles para valores temporários negativos
+    id_mapping.each do |old_id, new_id|
+      if old_id != new_id
+        ActiveRecord::Base.connection.execute("UPDATE roles SET id = #{-old_id} WHERE id = #{old_id}")
+        puts "Movendo temporariamente ID da role #{old_id} para #{-old_id}"
+      end
+    end
+    
+    # TERCEIRO: Move para os IDs finais nas roles
+    id_mapping.each do |old_id, new_id|
+      if old_id != new_id
+        ActiveRecord::Base.connection.execute("UPDATE roles SET id = #{new_id} WHERE id = #{-old_id}")
+        puts "ID da role reordenado: #{old_id} -> #{new_id}"
+      end
+    end
+    
+    # QUARTO: Finaliza a atualização das referências em roles_users
+    if ActiveRecord::Base.connection.table_exists?('roles_users')
+      id_mapping.each do |old_id, new_id|
+        if old_id != new_id
+          ActiveRecord::Base.connection.execute("UPDATE roles_users SET role_id = #{new_id} WHERE role_id = #{-new_id}")
+          puts "Finalizando atualização roles_users: #{-new_id} -> #{new_id}"
+        end
+      end
+    end
+    
+    # Reabilita as restrições de chave estrangeira
+    ActiveRecord::Base.connection.execute("SET session_replication_role = DEFAULT;")
+  end
+  
+  puts "Reordenação de papéis concluída!"
+end
+
+
+# 4. Vincula  novo perfil Gestor aos usuários que são administradores
 # Busca as roles que possuem na coluna name o valor igual a 'Administrador'
 admin_role_list = Role.where(name: 'Administrador')
 
