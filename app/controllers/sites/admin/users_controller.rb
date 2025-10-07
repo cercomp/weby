@@ -69,7 +69,10 @@ class Sites::Admin::UsersController < ApplicationController
     # Users that are site admins
     @site_admins = User.no_admin.local_admin(current_site).order('users.first_name asc')
     # Search for the roles (global/site)
-    @roles = current_site.roles.order('id').no_local_admin
+    #deprecated
+    # @roles = current_site.roles.order('id').no_local_admin
+    @roles = current_site.roles.no_local_admin
+    reorder_roles_by_hierarchy
     # When it is asked to manage a role
     @user = User.find(params[:user_id]) if params[:user_id]
 
@@ -97,6 +100,12 @@ class Sites::Admin::UsersController < ApplicationController
       current_user.save
     end
     render json: {ok: true}
+  end
+
+  # Method to reorder roles based on a predefined hierarchy
+  def reorder_roles_by_hierarchy
+    hierarchy_order = ['Gestor', 'Gerente', 'Editor-Chefe', 'Redator']
+    @roles = @roles.sort_by { |role| hierarchy_order.index(role.name) || Float::INFINITY }
   end
 
 end

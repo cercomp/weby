@@ -33,6 +33,7 @@ class Admin::UsersController < ApplicationController
     @site_users = User.global_role.no_admin.includes(:roles).order('users.first_name asc')
     # Busca os papéis globais
     @roles = Role.globals
+    reorder_roles_by_hierarchy
     # Quando a edição dos papeis é solicitada
     @user = User.find(params[:user_id]) if params[:user_id]
 
@@ -130,4 +131,11 @@ class Admin::UsersController < ApplicationController
       resource.toggle!(params[:field])
     end
   end
+
+  # Method to reorder roles based on a predefined hierarchy
+  def reorder_roles_by_hierarchy
+    hierarchy_order = ['Gestor', 'Gerente', 'Editor-Chefe', 'Redator']
+    @roles = @roles.sort_by { |role| hierarchy_order.index(role.name) || Float::INFINITY }
+  end
+  
 end
