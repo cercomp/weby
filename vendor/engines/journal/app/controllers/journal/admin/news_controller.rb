@@ -32,15 +32,33 @@ module Journal::Admin
 
       def toggle_publish
         Rails.logger.info "PARAMS: #{params.inspect}"
-        @news = Journal::News.find(params[:id])
+        @news = Journal::News.find_by(id: params[:id]) || Journal::News.find_by(slug: params[:id])
+        if @news.nil?
+          render json: { error: 'News not found' }, status: 404
+          return
+        end
+        Rails.logger.info "News found: #{@news.id}, status before: #{@news.status}"
         result = if params[:publish].present?
           @news.update(status: "published")
         else
           @news.update(status: "draft")
         end
+        if !result
+          render json: { error: @news.errors.full_messages }, status: 422
+          return
+        end
         Rails.logger.info "UPDATE RESULT: #{result}, STATUS: #{@news.status}"
         respond_to do |format|
-          format.js
+          format.json do
+            status = @news.status == "published"
+            render json: {
+              ok: result,
+              message: t('successfully_updated'),
+              icon: ActionController::Base.helpers.asset_url("#{result ? 'true' : 'false'}.png"),
+              status: status,
+              title: status ? t('enable') : t('disable')
+            }
+          end
           format.html { redirect_to site_admin_news_index_path }
         end
       end

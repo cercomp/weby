@@ -24,11 +24,9 @@ module Journal
     end
 
       def publication_status_news(news, remote: false)
-        toggle_url = toggle_publish_site_admin_news_path(news)
-        checked = news.status == "published"
-        content_tag(:a, id: news.id, data: { remote: remote }, rel: "nofollow", "data-method": :patch, href: toggle_url, class: "toggle-publish-link") do
-          check_box_tag("publish", "1", checked, class: "toggle weby-toggle", title: "") +
-          content_tag(:label, content_tag(:span, '', class: "check-handler"), class: "check-trail")
+        form_tag(toggle_publish_site_admin_news_path(news), method: :patch, remote: true, class: 'toggle-publish-form', data: { type: 'json' }) do
+          check_box_tag("publish", "1", news.status == "published", class: "toggle weby-toggle", title: "") +
+          content_tag(:label, content_tag(:span, '', class: "check-handler"), class: "check-trail", for: "publish")
         end
       end
 

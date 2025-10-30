@@ -31,14 +31,22 @@
           placeholder: t('.filter_placeholder') %>
     </div>
     <div class="col-md-5">
-      <div class="row">
+      <div class="row" style="margin-bottom: 15px;">
         <div class="col-md-6">
-          <%= label_tag :start_date, 'Data inicial' %>
-          <%= date_field_tag :start_date, params[:start_date], class: 'form-control' %>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <small class="text-muted">Data inicial</small>
+            </div>
+            <%= text_field_tag :start_date, params[:start_date], class: 'form-control', type: 'date', title: 'Data inicial' %>
+          </div>
         </div>
         <div class="col-md-6">
-          <%= label_tag :end_date, 'Data final' %>
-          <%= date_field_tag :end_date, params[:end_date], class: 'form-control' %>
+          <div class="input-group">
+            <div class="input-group-addon">
+              <small class="text-muted">Data final</small>
+            </div>
+            <%= text_field_tag :end_date, params[:end_date], class: 'form-control', type: 'date', title: 'Data final' %>
+          </div>
         </div>
       </div>
       <div class="pull-right">
