@@ -25,7 +25,14 @@ module Journal
     end
 
     def show
-      raise ActiveRecord::RecordNotFound if !@news.published? && @news.user != current_user
+      # Permite visualização se:
+      # 1. A notícia está publicada, OU
+      # 2. O usuário é o autor da notícia, OU
+      # 3. O usuário tem permissão de visualizar notícias
+      unless @news.published? || @news.user == current_user || check_permission(Journal::Admin::NewsController, [:show])
+        raise ActiveRecord::RecordNotFound
+      end
+
       if request.path != news_path(@news)
         redirect_to news_path(@news), status: :moved_permanently
         return

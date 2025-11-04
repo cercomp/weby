@@ -6,7 +6,7 @@
   <%= render 'show' %>
 
   <div class="form-actions">
-    <%= link_to icon('eye-open', text: t('show')), news_path(@news) if @news.published? || @news.user_id == current_user.id %>
+    <%= link_to icon('eye-open', text: t('show')), news_path(@news) if @news.published? || @news.user_id == current_user.id || check_permission(Journal::Admin::NewsController, [:show]) %>
     <%= make_menu(@news, :except => "show") %>
     <%= link_to icon('list', text: t(".list_all")), admin_news_index_path %>
     <%= link_to icon('chevron-left', text: t("back")), :back %>
