@@ -22,8 +22,8 @@ pt-BR:
   activate:                             " Ativar "
   active:                               " Ativo "
   advanced_options:                     " Opções avançadas "
-  #access_denied:                        " Acesso negado "
-  #access_denied_page:                   " Você não está autorizado a ver está página "
+  access_denied:                        " Acesso negado "
+  access_denied_page:                   " Você não está autorizado a ver está página "
   add_sub_menu:                         " Adiciona um item de menu filho "
 #---B---#
   back:                                 " Voltar "
@@ -328,7 +328,7 @@ pt-BR:
           one:   " não foi possivel atualizar o modelo: 1 erro "
           other: " não foi possivel atualizar o modelo: %{count} erros. "
         body: "Por favor cheque os seguintes campos:"
-      messages: 
+      messages:
         accepted:                 " acception required  "
         attachment_presence:      " deve ser anexado "
         archive_fingerprint:      " arquivo já existe "
@@ -353,7 +353,7 @@ pt-BR:
         too_long:                 " muito longo (não é possível usar mais de %{count} caracteres)  "
         too_short:                " muito curto (não é possível usar menos de %{count} caracteres) "
         wrong_length:             " Tamanho errado (%{count} são requeridos) "
-        
+
   activerecord:
     errors:
       <<: *errors

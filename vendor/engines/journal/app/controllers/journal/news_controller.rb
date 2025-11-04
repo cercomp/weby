@@ -30,7 +30,8 @@ module Journal
       # 2. O usuário é o autor da notícia, OU
       # 3. O usuário tem permissão de visualizar notícias
       unless @news.published? || @news.user == current_user || check_permission(Journal::Admin::NewsController, [:show])
-        raise ActiveRecord::RecordNotFound
+        redirect_to main_app.root_path, alert: t("access_denied_page")
+        return
       end
 
       if request.path != news_path(@news)
