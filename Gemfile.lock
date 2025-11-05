@@ -130,6 +130,7 @@ GEM
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    bigdecimal (1.4.2)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bootsnap (1.4.9)
@@ -255,6 +256,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    json-schema (5.1.0)
+      addressable (~> 2.8)
     jsonapi-renderer (0.2.2)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -398,6 +401,21 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.4)
+    rswag (2.16.0)
+      rswag-api (= 2.16.0)
+      rswag-specs (= 2.16.0)
+      rswag-ui (= 2.16.0)
+    rswag-api (2.16.0)
+      activesupport (>= 5.2, < 8.1)
+      railties (>= 5.2, < 8.1)
+    rswag-specs (2.16.0)
+      activesupport (>= 5.2, < 8.1)
+      json-schema (>= 2.2, < 6.0)
+      railties (>= 5.2, < 8.1)
+      rspec-core (>= 2.14)
+    rswag-ui (2.16.0)
+      actionpack (>= 5.2, < 8.1)
+      railties (>= 5.2, < 8.1)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -477,6 +495,7 @@ DEPENDENCIES
   asset_sync
   aws-sdk-s3 (~> 1)
   better_errors (~> 1.1.0)
+  bigdecimal (= 1.4.2)
   binding_of_caller (~> 0.8.0)
   bootsnap (~> 1.4.6)
   bootstrap-daterangepicker-rails (~> 3.0.4)
@@ -522,6 +541,8 @@ DEPENDENCIES
   redcarpet (~> 3.5.1)
   rollbar
   rspec-rails (~> 3.9.1)
+  rswag
+  rswag-specs
   sassc-rails (= 2.1.2)
   searchkick (~> 4.3.0)
   selenium-webdriver (~> 3.142.5)
@@ -540,4 +561,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.4.5
+   2.4.20
