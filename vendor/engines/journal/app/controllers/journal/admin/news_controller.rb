@@ -51,12 +51,16 @@ module Journal::Admin
         respond_to do |format|
           format.json do
             status = @news.status == "published"
+            # Renderiza o novo HTML do status
+            status_html = view_context.news_status(@news)
             render json: {
               ok: result,
               message: t('successfully_updated'),
               icon: ActionController::Base.helpers.asset_url("#{result ? 'true' : 'false'}.png"),
               status: status,
-              title: status ? t('enable') : t('disable')
+              title: status ? t('enable') : t('disable'),
+              status_html: status_html,
+              news_id: @news.id
             }
           end
           format.html { redirect_to site_admin_news_index_path }
