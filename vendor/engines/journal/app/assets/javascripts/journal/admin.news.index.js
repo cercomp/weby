@@ -25,16 +25,18 @@ $(document).ready(function() {
 
   // Handler para success/error do toggle de publicação
   $(document).on('ajax:success', '.toggle-publish-form', function(ev, data) {
-    handleToggle($(ev.target), data, 'tr');
+    var $form = $(this); // O form que disparou o evento
+    handleToggle($form, data, 'tr');
 
     // Atualiza o campo de status se retornado
     if (data.status_html && data.news_id) {
       // Encontra a linha da tabela correspondente e atualiza o status
-      var $row = $(ev.target).closest('tr');
-      var $statusCell = $row.find('td.publish').last(); // Pega a segunda coluna publish (status)
+      var $row = $form.closest('tr');
+      // A coluna de status é a segunda td.publish (não a que contém o form)
+      var $statusCell = $row.find('td.publish').not(':has(form)');
       $statusCell.html(data.status_html);
     }
   }).on('ajax:error', '.toggle-publish-form', function(ev, data) {
-    handleToggle($(ev.target), data.responseJSON, 'tr');
+    handleToggle($(this), data.responseJSON, 'tr');
   });
 });
