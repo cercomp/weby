@@ -28,16 +28,18 @@ $(function () {
   });
 
     $('#current-photos').on('ajax:success', '.close', function(e, data, status, xhr) {
+    console.log('=== PHOTO REMOVED SUCCESSFULLY ===');
     data = JSON.parse(data);
-    var $photoElement = $(this).closest('.album-photo');
+    var $photoElement = $(this).closest('.repo-item');
 
     if ($photoElement.length > 0) {
       $photoElement.fadeOut(function(){
         $(this).remove();
+        console.log('Photo element removed, recalculating...');
         check_uploads();
       });
     } else {
-      console.error('Não foi possível encontrar o elemento .album-photo para remover');
+      console.error('Não foi possível encontrar o elemento .repo-item para remover');
       location.reload();
     }
 
@@ -86,14 +88,19 @@ $(function () {
 
   function check_uploads() {
     const previewCount = $('#upload-preview .repo-item:not(.repo-template):visible').length;
+    const currentPhotosCount = $('#current-photos .repo-item:visible').length;
     const maxPhotosPerUpload = 100;
 
     console.log('=== CHECK_UPLOADS ===');
-    console.log('Preview count:', previewCount);
+    console.log('Preview count (new photos):', previewCount);
+    console.log('Current photos count:', currentPhotosCount);
     console.log('Max per upload:', maxPhotosPerUpload);
 
     // Limpar mensagens de erro antigas
     FlashMsg.clear();
+
+    // Atualizar contador visual
+    updatePhotosCounter(previewCount, currentPhotosCount, maxPhotosPerUpload);
 
     if (previewCount > 0) {
       console.log('Has items in preview');
@@ -114,6 +121,30 @@ $(function () {
     }
 
     return previewCount <= maxPhotosPerUpload;
+  }
+
+  function updatePhotosCounter(previewCount, currentPhotosCount, maxPhotosPerUpload) {
+    // Criar ou atualizar o contador visual
+    let $counter = $('#photos-counter');
+    if ($counter.length === 0) {
+      $counter = $('<div id="photos-counter" style="margin: 10px 0; padding: 8px; background: #f5f5f5; border-radius: 4px; font-size: 14px;"></div>');
+      $('#upload-preview').before($counter);
+    }
+
+    if (previewCount > 0) {
+      let message = `Fotos selecionadas para upload: ${previewCount}`;
+      if (previewCount > maxPhotosPerUpload) {
+        message += ` <span style="color: #d9534f; font-weight: bold;">(Limite por upload: ${maxPhotosPerUpload})</span>`;
+        $counter.css('background-color', '#f2dede');
+      } else {
+        message += ` <span style="color: #5cb85c;">(OK - Limite por upload: ${maxPhotosPerUpload})</span>`;
+        $counter.css('background-color', '#dff0d8');
+      }
+      $counter.html(message);
+    } else {
+      $counter.html('Nenhuma foto selecionada para upload');
+      $counter.css('background-color', '#f5f5f5');
+    }    $counter.html(message);
   }
 
   function switch_disable_text(disable){
@@ -159,17 +190,9 @@ $(function () {
       console.log('File type:', data.files[0].type);
       console.log('File size:', data.files[0].size);
 
-      ////Validação se o arquivo já foi incluído
-      var included = false;
-      $(".repo-item .file-name").each(function(){
-        if($(this).text().trim() == data.files[0].name){
-          included = true;
-        }
-      });
-      if(included){
-        console.log('File already included, skipping:', data.files[0].name);
-        return;
-      }
+      // Validação de arquivos duplicados removida do preview
+      // A validação agora acontece no backend durante o upload
+      // conforme solicitado pelo analista
 
       console.log('Cloning template...');
       var $repoItem = $('.repo-template').clone(true);
@@ -216,10 +239,12 @@ $(function () {
     },
     /////Evento de retorno do processamento, executado para cada envio, executando tanto success ou failure
     always: function (e, data) {
+      console.log('=== UPLOAD ALWAYS (after success/fail) ===');
       var $msg = data.context.find('.status');
       $msg.removeClass('loading');
       if($('.status.loading').length == 0){
         switch_disable_text(false);
+        console.log('All uploads finished, recalculating...');
       }
       check_uploads();
     },
@@ -228,6 +253,7 @@ $(function () {
         if(data.result.errors){
            handleFail(data.context, data.result.errors);
         }else{
+          console.log('=== UPLOAD DONE SUCCESSFULLY ===');
           var $repoItem = data.context;
           $repoItem.remove();
           var html = $(data.result.html)
@@ -235,6 +261,7 @@ $(function () {
           container = $('<div class="'+ $('.repo-template')[0].className +'"></div>')
           container.removeClass('repo-template').addClass('repo-item')
           $('#current-photos').append(container.html(html));
+          console.log('Photo added to current-photos, recalculating...');
           check_uploads();
         }
      },
@@ -289,6 +316,10 @@ $(function () {
   function check_uploads_and_submit() {
     const previewCount = $('#upload-preview .repo-item:not(.repo-template):visible').length;
     const maxPhotosPerUpload = 100;
+
+    console.log('=== CHECK_UPLOADS_AND_SUBMIT ===');
+    console.log('Preview count for submit:', previewCount);
+    console.log('Max per upload:', maxPhotosPerUpload);
 
     if (previewCount > maxPhotosPerUpload) {
       FlashMsg.error([`É possível fazer o upload de até ${maxPhotosPerUpload} fotos por vez. Você selecionou ${previewCount} foto(s). Por favor, remova ${previewCount - maxPhotosPerUpload} foto(s).`], '#tab-photos');

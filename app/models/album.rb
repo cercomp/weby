@@ -17,9 +17,11 @@ class Album < ApplicationRecord
 
   before_validation :generate_slug
 
-  validates :album_photos, length: {maximum: :max_photos}
+  validates :album_photos, length: {maximum: :max_photos}, unless: :skip_photos_limit_validation
   validates :slug, format: { with: Regexp.new(SLUG_PATTERN.gsub(/^\^/, '\A').gsub(/\$$/, '\z')) }
   validates :cover_photo, presence: true
+
+  attr_accessor :skip_photos_limit_validation
 
   accepts_nested_attributes_for :cover_photo, reject_if: proc { |attributes| attributes["image"].blank? }
 
