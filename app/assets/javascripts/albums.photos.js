@@ -144,7 +144,7 @@ $(function () {
     } else {
       $counter.html('Nenhuma foto selecionada para upload');
       $counter.css('background-color', '#f5f5f5');
-    }    $counter.html(message);
+    }
   }
 
   function switch_disable_text(disable){
