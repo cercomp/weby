@@ -31,40 +31,34 @@
           placeholder: t('.filter_placeholder') %>
     </div>
     <div class="col-md-5">
-      <div class="row" style="margin-bottom: 15px;">
-        <div class="col-md-6">
-          <div class="input-group">
-            <div class="input-group-addon">
-              <small class="text-muted">Data inicial</small>
-            </div>
-            <%= text_field_tag :start_date, params[:start_date], class: 'form-control date-filter', type: 'date', title: 'Data inicial' %>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-group">
-            <div class="input-group-addon">
-              <small class="text-muted">Data final</small>
-            </div>
-            <%= text_field_tag :end_date, params[:end_date], class: 'form-control date-filter', type: 'date', title: 'Data final' %>
-          </div>
-        </div>
+      <div class="input-group">
+        <%= text_field_tag :start_date, params[:start_date], placeholder: "Filtrar por data (inicial)", class: 'datepicker form-control', autocomplete: 'off', readonly: true, style: "background-color:#fff" %>
+        <span class="input-group-addon" style="background-color:#fff; border:none">-</span>
+        <%= text_field_tag :end_date, params[:end_date], placeholder: "Data final", class: 'datepicker form-control', autocomplete: 'off', readonly: true, style: "background-color:#fff" %>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default clear-date-filter" title="Limpar filtro de data">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+        </span>
       </div>
-      <div class="pull-right">
-        <% with_permission(action: :new) do %>
-          <%= link_to t(".new_news"),
-              main_app.new_admin_news_path,
-              class: "btn btn-success" %>
-        <% end %>
-        <% with_permission(action: :fronts) do %>
-          <%= link_to t(".covers"), fronts_admin_news_index_path, class: "btn btn-default" %>
-        <% end %>
-        <% with_permission(action: [:recover, :purge]) do %>
-          <%= link_to t("recycle_bin"), main_app.recycle_bin_admin_news_index_path, class: "btn btn-default" %>
-        <% end %>
-        <% with_permission(controller: Sites::Admin::ExtensionsController, action: [:edit]) do %>
-          <%= link_to icon('cog'), edit_site_admin_extension_path(current_site.extensions.find_by(name: 'journal')), class: "btn btn-default", title: t('.settings') %>
-        <% end %>
-      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 15px;">
+    <div class="col-md-12 text-right">
+      <% with_permission(action: :new) do %>
+        <%= link_to t(".new_news"),
+            main_app.new_admin_news_path,
+            class: "btn btn-success" %>
+      <% end %>
+      <% with_permission(action: :fronts) do %>
+        <%= link_to t(".covers"), fronts_admin_news_index_path, class: "btn btn-default" %>
+      <% end %>
+      <% with_permission(action: [:recover, :purge]) do %>
+        <%= link_to t("recycle_bin"), main_app.recycle_bin_admin_news_index_path, class: "btn btn-default" %>
+      <% end %>
+      <% with_permission(controller: Sites::Admin::ExtensionsController, action: [:edit]) do %>
+        <%= link_to icon('cog'), edit_site_admin_extension_path(current_site.extensions.find_by(name: 'journal')), class: "btn btn-default", title: t('.settings') %>
+      <% end %>
     </div>
   </div>
 <% end %>
@@ -73,3 +67,4 @@
 </div>
 
 <% content_for :javascripts, javascript_include_tag('journal/admin.news.index') %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

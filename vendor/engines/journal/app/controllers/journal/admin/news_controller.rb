@@ -96,12 +96,24 @@ module Journal::Admin
   end
 
   # --- Filtro por data ---
-  if params[:start_date].present?
-    news = news.where('journal_news.created_at >= ?', params[:start_date])
-  end
-  if params[:end_date].present?
-    end_date = Date.parse(params[:end_date]) + 1.day
-    news = news.where('journal_news.created_at < ?', end_date)
+  if params[:start_date].present? || params[:end_date].present?
+    # Converte formato brasileiro DD/MM/YYYY para YYYY-MM-DD se necessário
+    start_date_str = params[:start_date].present? ? params[:start_date] : '01/01/2000'
+    end_date_str = params[:end_date].present? ? params[:end_date] : Time.current.strftime('%d/%m/%Y')
+
+    # Converte para formato internacional se estiver em formato brasileiro
+    if start_date_str =~ /\d{2}\/\d{2}\/\d{4}/
+      start_date_str = start_date_str.split('/').reverse.join('-')
+    end
+    if end_date_str =~ /\d{2}\/\d{2}\/\d{4}/
+      end_date_str = end_date_str.split('/').reverse.join('-')
+    end
+
+    begin_at = Time.zone.parse(start_date_str)
+    end_at = Time.zone.parse(end_date_str)
+    news = news.where("journal_news.created_at BETWEEN ? AND ?",
+      begin_at.beginning_of_day,
+      end_at.end_of_day)
   end
   # -----------------------
 
