@@ -37,7 +37,7 @@
             <div class="input-group-addon">
               <small class="text-muted">Data inicial</small>
             </div>
-            <%= text_field_tag :start_date, params[:start_date], class: 'form-control', type: 'date', title: 'Data inicial' %>
+            <%= text_field_tag :start_date, params[:start_date], class: 'form-control date-filter', type: 'date', title: 'Data inicial' %>
           </div>
         </div>
         <div class="col-md-6">
@@ -45,7 +45,7 @@
             <div class="input-group-addon">
               <small class="text-muted">Data final</small>
             </div>
-            <%= text_field_tag :end_date, params[:end_date], class: 'form-control', type: 'date', title: 'Data final' %>
+            <%= text_field_tag :end_date, params[:end_date], class: 'form-control date-filter', type: 'date', title: 'Data final' %>
           </div>
         </div>
       </div>
