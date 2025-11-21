@@ -145,6 +145,14 @@ pt-BR:
   submit:                               " Enviar "
   successfully_installed_theme:         " Tema adicionado com sucesso "
   successfully_applied_theme:           " Tema aplicado com sucesso! "
+
+  # Cores personalizadas
+  add_custom_color:                     " Adicionar Cor Personalizada "
+  custom_colors:                        " Cores Personalizadas "
+  color_value:                          " Selecionar Cor "
+  add_color:                            " Salvar "
+  remove_custom_color:                  " Remover cor personalizada "
+  confirm_remove_custom_color:          " Tem certeza que deseja remover esta cor? "
   successfully_created:                 " Criado com sucesso."
   successfully_updated:                 " Atualizado com sucesso "
   successfully_created_param:           " %{param} criado com sucesso! "

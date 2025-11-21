@@ -53,6 +53,17 @@ pt-BR:
         edit:
           themes:             " Temas "
           no_settings:      " Este tema não possui nenhuma Configuração "
+          custom_colors:    " Cores Personalizadas "
+          add_custom_color: " Adicionar Cor Personalizada "
+          color_name:       " Nome da Cor "
+          color_name_placeholder: " Ex: Verde UFG "
+          color_value:      " Valor da Cor "
+          add_color:        " Adicionar Cor "
+          remove_custom_color: " Remover cor personalizada "
+          confirm_remove_custom_color: " Tem certeza que deseja remover esta cor personalizada? "
+          custom_color_added: " Cor personalizada adicionada com sucesso "
+          custom_color_removed: " Cor personalizada removida com sucesso "
+          invalid_color_data: " Dados da cor inválidos "
         update:
           successfully_updated_theme: "Tema atualizado com sucesso"
         list:

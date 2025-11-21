@@ -1,7 +1,7 @@
 class Sites::Admin::SkinsController < ApplicationController
   before_action :require_user
   before_action :check_authorization, except: [:index, :show]
-  before_action :load_skin, only: [:show, :destroy, :apply, :preview, :edit, :update]
+  before_action :load_skin, only: [:show, :destroy, :apply, :preview, :edit, :update, :add_custom_color, :remove_custom_color]
 
   def index
     skins = current_site.skins.order(:name)
@@ -71,7 +71,16 @@ class Sites::Admin::SkinsController < ApplicationController
   def update
     theme = @skin.base_theme
     theme.variables.each do |name, config|
-      @skin.set_variable(name, params[name])
+      selected_value = params[name]
+      @skin.set_variable(name, selected_value)
+      if config['type'] == 'color'
+        if params["#{name}_custom"].present?
+          custom_data = JSON.parse(params["#{name}_custom"])
+          custom_data.each do |key, value|
+            @skin.add_custom_color(name, value['main'], key)
+          end
+        end
+      end
     end
 
     @skin.save!
@@ -99,13 +108,105 @@ class Sites::Admin::SkinsController < ApplicationController
     redirect_to site_admin_skin_path(@skin)
   end
 
+  def add_custom_color
+    return redirect_to :back, flash: { error: t('only_admin') } unless current_user.is_admin?
+
+    color_name = params[:color_name]
+    color_value = params[:color_value]
+    variable_name = params[:variable_name]
+
+    if color_name.present? && color_value.present? && variable_name.present?
+      custom_colors = @skin.get_custom_colors(variable_name)
+      custom_colors[color_name] = {
+        'main' => color_value,
+        'sub' => adjust_color_brightness(color_value, -20),
+        'group' => 'custom'
+      }
+      @skin.set_custom_colors(variable_name, custom_colors)
+      @skin.save!
+
+      flash[:success] = t('.custom_color_added')
+      record_activity('added_custom_color', @skin)
+    else
+      flash[:error] = t('.invalid_color_data')
+    end
+
+    redirect_to edit_site_admin_skin_path(@skin)
+  end
+
+  def remove_custom_color
+    return redirect_to :back, flash: { error: t('only_admin') } unless current_user.is_admin?
+
+    color_name = params[:color_name]
+    variable_name = params[:variable_name]
+
+    if color_name.present? && variable_name.present?
+      custom_colors = @skin.get_custom_colors(variable_name)
+      custom_colors.delete(color_name)
+      @skin.set_custom_colors(variable_name, custom_colors)
+      @skin.save!
+
+      flash[:success] = t('.custom_color_removed')
+      record_activity('removed_custom_color', @skin)
+    else
+      flash[:error] = t('.invalid_color_data')
+    end
+
+    redirect_to edit_site_admin_skin_path(@skin)
+  end
+
   private
+
+  def adjust_color_brightness(hex_color, percent)
+    # Remove o # se presente
+    hex = hex_color.gsub('#', '')
+
+    # Converte para RGB
+    rgb = hex.scan(/../).map { |color| color.to_i(16) }
+
+    # Ajusta o brilho
+    rgb = rgb.map do |color|
+      new_color = color + (color * percent / 100.0)
+      [[new_color, 255].min, 0].max.round
+    end
+
+    # Converte de volta para hex
+    "##{rgb.map { |color| color.to_s(16).rjust(2, '0') }.join}"
+  end
 
   def apply_skin skin
     current_site.skins.update_all active: false
     skin.update active: true
     record_activity('theme_applied', skin)
     t('successfully_applied_theme')
+  end
+
+  def add_custom_color
+    return redirect_to edit_site_admin_skin_path(current_site, @skin), alert: 'Acesso negado' unless current_user.is_admin?
+
+    variable_name = params[:variable_name]
+    color_value = params[:color_value]
+
+    if variable_name.present? && color_value.present?
+      @skin.add_custom_color(variable_name, color_value)
+      redirect_to edit_site_admin_skin_path(current_site, @skin), notice: 'Cor personalizada adicionada com sucesso'
+    else
+      redirect_to edit_site_admin_skin_path(current_site, @skin), alert: 'Cor é obrigatória'
+    end
+  end
+
+  def remove_custom_color
+    return redirect_to edit_site_admin_skin_path(current_site, @skin), alert: 'Acesso negado' unless current_user.is_admin?
+
+    variable_name = params[:variable_name]
+    color_name = params[:color_name]
+
+    if variable_name.present? && color_name.present?
+      @skin.remove_custom_color(variable_name, color_name)
+      redirect_to edit_site_admin_skin_path(current_site, @skin), notice: 'Cor personalizada removida com sucesso'
+    else
+      redirect_to edit_site_admin_skin_path(current_site, @skin), alert: 'Parâmetros inválidos'
+    end
   end
 
   def load_skin

@@ -53,6 +53,17 @@ en:
         edit:
           themes:             " Themes "
           no_settings:      " This theme has no settings "
+          custom_colors:    " Custom Colors "
+          add_custom_color: " Add Custom Color "
+          color_name:       " Color Name "
+          color_name_placeholder: " Ex: UFG Green "
+          color_value:      " Color Value "
+          add_color:        " Add Color "
+          remove_custom_color: " Remove custom color "
+          confirm_remove_custom_color: " Are you sure you want to remove this custom color? "
+          custom_color_added: " Custom color added successfully "
+          custom_color_removed: " Custom color removed successfully "
+          invalid_color_data: " Invalid color data "
         update:
           successfully_updated_theme: "Theme successfully updated"
         list:

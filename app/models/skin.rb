@@ -67,14 +67,52 @@ class Skin < ApplicationRecord
   end
 
   def get_variable_config name
-    base_theme.variables[name].to_h.fetch('values', {})[get_variable(name)]
+    get_all_color_options(name)[get_variable(name)]
   end
 
   def set_variable name, value
-    variables = '{}' if variables.blank?
-    vars = eval(variables)
+    self.variables = '{}' if self.variables.blank?
+    vars = eval(self.variables)
     vars[name] = value
     self.variables = vars.to_s
+  end
+
+  def get_custom_colors(variable_name)
+    self.variables = '{}' if self.variables.blank?
+    vars = eval(variables)
+    vars["#{variable_name}_custom"] || {}
+  end
+
+  # Adiciona cor customizada na estrutura de custom_colors (persistida em variables)
+  def add_custom_color(variable_name, color_value, custom_key = nil)
+    self.variables = '{}' if self.variables.blank?
+    vars = eval(self.variables)
+    vars["#{variable_name}_custom"] ||= {}
+    # Gera um id único se não fornecido
+    custom_key ||= "#{variable_name}_custom"
+    vars["#{variable_name}_custom"][custom_key] = {
+      'main' => color_value,
+      'sub' => color_value,
+      'group' => 'custom'
+    }
+    self.variables = vars.to_s
+    save!
+  end
+
+  def remove_custom_color(_variable_name, color_name)
+    self.variables = '{}' if self.variables.blank?
+    vars = eval(self.variables)
+    vars["#{_variable_name}_custom"] ||= {}
+    vars["#{_variable_name}_custom"].delete(color_name)
+    self.variables = vars.to_s
+    save!
+  end
+
+  def get_all_color_options(variable_name)
+    # Combina cores do tema com cores personalizadas persistidas em variables['custom_colors']
+    theme_colors = base_theme.variables[variable_name].to_h.fetch('values', {})
+    custom_colors = get_custom_colors(variable_name)
+    theme_colors.merge(custom_colors)
   end
 
   private
