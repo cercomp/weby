@@ -127,6 +127,14 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :admin, module: 'journal/admin', as: :site_admin do
+      resources :news, param: :id, constraints: { id: /[0-9a-zA-Z\-\_]+/ } do
+        member do
+          patch :toggle_publish
+        end
+      end
+    end
+
     #Extension from core - routes # TODO maybe spread the routes into extensions folder
     namespace :admin, module: 'sites/admin', as: :site_admin do
       get 'gallery', to: 'albums#index'
