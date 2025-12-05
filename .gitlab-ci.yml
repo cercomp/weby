@@ -109,6 +109,7 @@ deploy:
     - develop
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker compose down
+    - docker -H ssh://200.137.218.139 compose docker/docker-compose.yml down
+    - docker -H ssh://200.137.218.139 run --rm -v weby_tmp:/tmp alpine sh -c "rm -f /tmp/pids/server.pid"
     - docker -H ssh://200.137.218.139 compose -f docker/docker-compose.yml up -d --pull always --force-recreate
   when: manual
