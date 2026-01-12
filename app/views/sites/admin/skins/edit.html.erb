@@ -43,11 +43,15 @@
               <label for="skin_color_value_<%= name %>"><%= t('.color_value') %></label>
 
               <div class="color-picker-wrapper">
+                <%
+                  current_color_config = @skin.get_variable_config(name)
+                  current_color = current_color_config&.dig('main') || '#BF4040'
+                %>
                 <input
                   type="color"
                   id="skin_color_value_<%= name %>"
                   name="skin[color_value_<%= name %>]"
-                  value="#BF4040"
+                  value="<%= current_color %>"
                   class="hidden-color-input"
                 >
 
