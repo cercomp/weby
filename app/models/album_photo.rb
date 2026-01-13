@@ -1,5 +1,4 @@
 class AlbumPhoto < ApplicationRecord
-
   attach_options = {
     styles: {
       o: "original",
@@ -15,13 +14,15 @@ class AlbumPhoto < ApplicationRecord
     url: Rails.env.production? ? ':s3_alias_url' : '/up/:site_id/albums/:album_id/:style/:basename.:extension',
     convert_options: {
       o: "-quality 80",
-      t: "-quality 70 -strip", #-crop 160x160+0+0 +repage
+      t: "-quality 70 -strip",
       f: "-quality 70 -strip"
     }
   }
+
   if ENV['STORAGE_HOST_ALBUM'].present?
     region = ENV['STORAGE_REGION'].presence || 'us-east-1'
     is_aws = ENV['STORAGE_HOST_ALBUM'].to_s.include?('aws')
+
     attach_options.merge!({
       storage: :s3,
       s3_protocol: :https,
@@ -36,36 +37,41 @@ class AlbumPhoto < ApplicationRecord
         access_key_id: ENV['STORAGE_ACCESS_KEY_ALBUM'],
         secret_access_key: ENV['STORAGE_ACCESS_SECRET_ALBUM']
       },
-      s3_host_alias: is_aws ? "#{ENV['STORAGE_BUCKET_ALBUM']}.s3-#{region}.amazonaws.com" : "#{ENV['STORAGE_HOST_ALBUM']}/#{ENV['STORAGE_BUCKET_ALBUM']}",
+      s3_host_alias: is_aws ?
+        "#{ENV['STORAGE_BUCKET_ALBUM']}.s3-#{region}.amazonaws.com" :
+        "#{ENV['STORAGE_HOST_ALBUM']}/#{ENV['STORAGE_BUCKET_ALBUM']}",
       s3_options: {
-        endpoint: "https://#{ENV['STORAGE_HOST_ALBUM']}", # for aws-sdk
-        force_path_style: !is_aws # for aws-sdk (required for minio)
+        endpoint: "https://#{ENV['STORAGE_HOST_ALBUM']}",
+        force_path_style: !is_aws
       }
     })
   end
 
   has_attached_file :image, attach_options
 
-  belongs_to :album, inverse_of: :cover_photo
+  # Correto: AlbumPhoto faz parte da coleção album_photos
+  belongs_to :album, inverse_of: :album_photos
   belongs_to :user
   has_one :site, through: :album
 
-  after_save :refresh_photos_count
+  # Ordem: valida duplicidade → só depois define posição
+  before_validation :check_duplicate_filename, on: :create
+  before_create     :set_position
+
+  after_save    :refresh_photos_count
   after_destroy :refresh_photos_count
-  before_create :set_position
 
   scope :cover, -> { where is_cover: true }
 
-  validates_attachment_size :image, less_than: proc {|item| item.get_current_file_size_limit }
+  validates_attachment_size :image, less_than: proc { |item| item.get_current_file_size_limit }
   validates_attachment_presence :image,
-                                message: I18n.t('activerecord.errors.messages.attachment_presence'),
-                                on: :create
-
-  #do_not_validate_attachment_file_type :image
+    message: I18n.t('activerecord.errors.messages.attachment_presence'),
+    on: :create
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   validates :slug, uniqueness: { scope: :album_id, allow_blank: true }
-  validate :unique_image_file_name
+
+  # ================= PUBLIC =================
 
   def parent
     album
@@ -73,21 +79,17 @@ class AlbumPhoto < ApplicationRecord
 
   def make_cover!
     AlbumPhoto.transaction do
-      parent.album_photos.update_all(is_cover: false)
-      self.update!(is_cover: true)
+      album.album_photos.update_all(is_cover: false)
+      update!(is_cover: true)
     end
   end
 
   def generate_slug
-    if self.slug.blank?
-      key = "#{image_file_name.to_s.parameterize}#{Time.current.to_i.to_s.last(6)}#{rand(255)}"
-      self.slug = Digest::MD5.hexdigest(key).last(24)
-    end
-  end
+    return unless slug.blank?
 
-  # def to_param
-  #   slug.blank? ? id : slug
-  # end
+    key = "#{image_file_name.to_s.parameterize}#{Time.current.to_i.to_s.last(6)}#{rand(255)}"
+    self.slug = Digest::MD5.hexdigest(key).last(24)
+  end
 
   def set_position
     self.position ||= album.album_photos.maximum(:position).to_i + 1
@@ -103,20 +105,30 @@ class AlbumPhoto < ApplicationRecord
 
   def get_current_file_size_limit
     lim = 107374182400
-    if album && album.site
-      _extension = album.site.extensions.find_by(name: 'gallery')
-      lim = 1048576 if _extension.limit_photo_size.to_i == 1
+    if album&.site
+      ext = album.site.extensions.find_by(name: 'gallery')
+      lim = 1048576 if ext&.limit_photo_size.to_i == 1
     end
     lim
   end
 
+  # ================= PRIVATE =================
+
   private
 
-  def unique_image_file_name
-    if album
-      check_filename = album.album_photos.where.not(id: id).find_by(image_file_name: image_file_name)
-      errors.add(:image_file_name, I18n.t('file_already_exists', value: check_filename.image_file_name)) if check_filename.present?
-    end
+  def check_duplicate_filename
+    return unless album && image_file_name.present?
+
+    exists = album.album_photos
+                  .where.not(id: id)
+                  .find_by(image_file_name: image_file_name)
+
+    return unless exists
+
+    errors.add(:image_file_name,
+               I18n.t('file_already_exists', value: image_file_name))
+
+    throw :abort
   end
 
   def refresh_photos_count
