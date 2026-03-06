@@ -1,0 +1,46 @@
+services:
+  weby:
+    image: weby:latest
+    container_name: weby
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        RAILS_ENV: development
+        SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    volumes:
+      - .:/opt/weby
+    depends_on:
+      - db
+    networks:
+      - weby_network
+
+  db:
+    image: postgres:17-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: weby
+      POSTGRES_PASSWORD: weby
+      POSTGRES_DB: weby
+    ports:
+      - "5432:5432"
+    volumes:
+      - weby_postgres_data:/var/lib/postgresql/data
+    networks:
+      - weby_network
+
+volumes:
+  weby_postgres_data:
+
+networks:
+  weby_network:
+    driver: bridge
+
+#sudo docker exec -it weby rake db:create
+#sudo docker exec -it weby rake db:schema:load
+#sudo docker exec -it weby rake db:seed
