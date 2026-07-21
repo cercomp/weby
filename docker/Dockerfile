@@ -3,7 +3,6 @@ FROM ruby:2.7.5 AS base
 
 RUN apt-get clean && apt-get update && apt-get upgrade -y
 RUN apt-get install -y imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils nodejs
-RUN apt-get update && apt-get install -y ca-certificates
 
 COPY . /opt/weby
 WORKDIR /opt/weby
