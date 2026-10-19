@@ -89,6 +89,8 @@ Rails.application.routes.draw do
         member do
           post :apply
           get :preview
+          post :add_custom_color
+          delete :remove_custom_color
         end
         resources :components do
           member do
@@ -121,6 +123,14 @@ Rails.application.routes.draw do
         collection do
           get :settings
           patch :settings, action: "update_settings"
+        end
+      end
+    end
+
+    namespace :admin, module: 'journal/admin', as: :site_admin do
+      resources :news, param: :id, constraints: { id: /[0-9a-zA-Z\-\_]+/ } do
+        member do
+          patch :toggle_publish
         end
       end
     end
@@ -280,7 +290,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  
   get 'robots.txt' => 'sites#robots', format: 'txt'
   get '*not_found' => 'application#render_404'
 end

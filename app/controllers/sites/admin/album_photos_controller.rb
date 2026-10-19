@@ -34,18 +34,47 @@ class Sites::Admin::AlbumPhotosController < ApplicationController
   end
 
   def create
+    # Validação específica para limite de upload (100 fotos por vez)
+    # Não usar a validação do modelo que limita o total do álbum
+    max_photos_per_upload = 100
+
+    # Contar quantas fotos estão sendo enviadas nesta sessão de upload
+    # Como cada foto é enviada individualmente via AJAX, verificamos quantas
+    # foram enviadas recentemente (nos últimos 5 minutos)
+    recent_photos_count = @album.album_photos
+                                .where('created_at > ?', 5.minutes.ago)
+                                .where(user: current_user)
+                                .count
+
+    Rails.logger.info "=== ALBUM PHOTO UPLOAD DEBUG ==="
+    Rails.logger.info "Recent photos count (last 5 min): #{recent_photos_count}"
+    Rails.logger.info "Max per upload: #{max_photos_per_upload}"
+    Rails.logger.info "Album ID: #{@album.id}"
+    Rails.logger.info "User ID: #{current_user.id}"
+
+    if recent_photos_count >= max_photos_per_upload
+      render json: {
+        errors: ["Limite de #{max_photos_per_upload} fotos por upload atingido. Aguarde alguns minutos antes de fazer um novo upload."]
+      }, status: 412, content_type: check_accept_json
+      return
+    end
+
     @album_photo = @album.album_photos.new(album_photo_params)
     @album_photo.user = current_user
-    if @album.valid? && @album_photo.save
+
+    # Pular validação de limite total do álbum durante upload individual
+    @album.skip_photos_limit_validation = true
+
+    # Validar somente a foto individual, não o álbum completo
+    if @album_photo.save
       render json: { photo_album: @album_photo,
-                      archive_errors: @album_photo.errors.messages, #.merge(@album_photo.image.errors)
+                      archive_errors: @album_photo.errors.messages,
                       html: render_to_string(partial: '/sites/admin/albums/photo_card', formats: [:html], locals: {photo: @album_photo}),
                       message: t('successfully_created')},
               content_type: check_accept_json
       #record_activity('uploaded_album_photo', @album_photo)
     else
-      _msg = (@album.valid? ? @album_photo : @album).errors.full_messages
-      _msg = _msg + (@album_photo.invalid? ? @album_photo.errors.full_messages : '')
+      _msg = @album_photo.errors.full_messages
       render json: { errors:  _msg}, status: 412,
               content_type: check_accept_json
     end

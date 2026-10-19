@@ -10,6 +10,11 @@ rights:
         en: View Events
         pt-BR: Ver Eventos
       action: show
+    share:
+      name:
+        en: Share Events
+        pt-BR: Compartilhar Eventos
+      action: share
     edit:
       name:
         en: Edit Events

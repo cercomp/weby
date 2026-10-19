@@ -30,36 +30,95 @@ module Journal::Admin
         page(params[:page]).per(params[:per_page])
     end
 
+      def toggle_publish
+        Rails.logger.info "PARAMS: #{params.inspect}"
+        @news = Journal::News.find_by(id: params[:id]) || Journal::News.find_by(slug: params[:id])
+        if @news.nil?
+          render json: { error: 'News not found' }, status: 404
+          return
+        end
+        Rails.logger.info "News found: #{@news.id}, status before: #{@news.status}"
+        result = if params[:publish].present?
+          @news.update(status: "published")
+        else
+          @news.update(status: "draft")
+        end
+        if !result
+          render json: { error: @news.errors.full_messages }, status: 422
+          return
+        end
+        Rails.logger.info "UPDATE RESULT: #{result}, STATUS: #{@news.status}"
+        respond_to do |format|
+          format.json do
+            status = @news.status == "published"
+            # Renderiza o novo HTML do status
+            status_html = view_context.news_status(@news)
+            render json: {
+              ok: result,
+              message: t('successfully_updated'),
+              icon: ActionController::Base.helpers.asset_url("#{result ? 'true' : 'false'}.png"),
+              status: status,
+              title: status ? t('enable') : t('disable'),
+              status_html: status_html,
+              news_id: @news.id
+            }
+          end
+          format.html { redirect_to site_admin_news_index_path }
+        end
+      end
+
     def get_news
-      case params[:template]
-      when 'tiny_mce'
-        params[:per_page] = 7
-      end
-      params[:direction] ||= 'desc'
+  case params[:template]
+  when 'tiny_mce'
+    params[:per_page] = 7
+  end
+  params[:direction] ||= 'desc'
 
-      news_sites = current_site.news_sites
-      @news = []
-      news_sites.each do |sites|
-        @news << sites.journal_news_id
-      end
+  news_sites = current_site.news_sites
+  @news = []
+  news_sites.each do |sites|
+    @news << sites.journal_news_id
+  end
 
-      news = Journal::News.where('journal_news.id in (?)', @news).
-        includes(:user, :site, i18ns: :locale, news_sites: :categories).
-        where(sites: {status: 'active'}).
-        with_search(params[:search], 1) # 1 = busca com AND entre termos
+  news = Journal::News.where('journal_news.id in (?)', @news)
+    .includes(:user, :site, i18ns: :locale, news_sites: :categories)
+    .where(sites: {status: 'active'})
+    .with_search(params[:search], 1) # 1 = busca com AND entre termos
 
-      if params[:template] == 'list_popup'
-        news = news.published
-      end
-      if sort_column == 'journal_news_i18ns.title'
-         news = news.where(locales: {name: I18n.locale})
-      end
-      if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
-        news = news.send(params[:status_filter])
-      end
+  if params[:template] == 'list_popup'
+    news = news.published
+  end
+  if sort_column == 'journal_news_i18ns.title'
+    news = news.where(locales: {name: I18n.locale})
+  end
+  if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
+    news = news.send(params[:status_filter])
+  end
 
-      news = news.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
+  # --- Filtro por data ---
+  if params[:start_date].present? || params[:end_date].present?
+    # Converte formato brasileiro DD/MM/YYYY para YYYY-MM-DD se necessário
+    start_date_str = params[:start_date].present? ? params[:start_date] : '01/01/2000'
+    end_date_str = params[:end_date].present? ? params[:end_date] : Time.current.strftime('%d/%m/%Y')
+
+    # Converte para formato internacional se estiver em formato brasileiro
+    if start_date_str =~ /\d{2}\/\d{2}\/\d{4}/
+      start_date_str = start_date_str.split('/').reverse.join('-')
     end
+    if end_date_str =~ /\d{2}\/\d{2}\/\d{4}/
+      end_date_str = end_date_str.split('/').reverse.join('-')
+    end
+
+    begin_at = Time.zone.parse(start_date_str)
+    end_at = Time.zone.parse(end_date_str)
+    news = news.where("journal_news.created_at BETWEEN ? AND ?",
+      begin_at.beginning_of_day,
+      end_at.end_of_day)
+  end
+  # -----------------------
+
+  news = news.order(sort_column + ' ' + sort_direction).page(params[:page]).per(params[:per_page])
+end
 
     private :get_news
 

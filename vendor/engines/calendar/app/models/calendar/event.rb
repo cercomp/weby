@@ -15,14 +15,26 @@ module Calendar
     belongs_to :site
     belongs_to :user
 
+    has_many :event_sites, foreign_key: :calendar_event_id, 
+             class_name: "::Calendar::EventSite", 
+             inverse_of: :event, 
+             dependent: :destroy
+    has_many :sites, through: :event_sites
+    has_one :own_event_site, ->(this){ where(site_id: this.site_id) }, 
+            class_name: "::Calendar::EventSite", 
+            foreign_key: :calendar_event_id
     has_many :menu_items, as: :target, dependent: :nullify
     has_many :posts_repositories, as: :post, dependent: :destroy
     has_many :related_files, through: :posts_repositories, source: :repository
 
     validates :begin_at, presence: true
 
+    accepts_nested_attributes_for :event_sites, allow_destroy: true
+
     scope :upcoming, -> { where(' (begin_at >= :time OR end_at >= :time)', time: Time.current) }
     scope :previous, -> { where(' (end_at < :time)', time: Time.current) }
+    scope :originals, -> { where(shared: false) }
+    scope :shared_only, -> { where(shared: true) }
 
     scope :with_search, ->(param, search_type) {
       if param.present?
@@ -49,8 +61,37 @@ module Calendar
       end
     }
 
+    def event_site_for(site)
+      event_sites.detect{|es| es.site_id == site.id }
+    end
+
     def title
       name
+    end
+
+    def sync_fields
+      value = read_attribute(:sync_fields)
+      return [] if value.nil? || value.empty?
+      return value if value.is_a?(Array)
+      
+      begin
+        YAML.load(value) || []
+      rescue
+        []
+      end
+    end
+    
+    def sync_fields=(value)
+      value = [] if value.nil?
+      write_attribute(:sync_fields, value.is_a?(Array) ? value : [])
+    end
+    
+    def same_date?
+      if end_at
+        begin_at.to_date == end_at.to_date
+      else
+        true
+      end
     end
 
     def same_date?
@@ -201,10 +242,25 @@ module Calendar
       events
     end
 
+    def share_with(target_site)
+      return false if target_site == self.site
+      return false if event_sites.exists?(site_id: target_site.id)
+      
+      event_site = event_sites.build(
+        site_id: target_site.id,
+        front: true
+      )
+
+      event_site.category_list = self.category_list if self.respond_to?(:category_list)
+      
+      event_site.save
+    end
+    
     private
 
     def self.normalize_tags tags
       ApplicationController.helpers.unescape_param(tags).split(',').map { |tag| tag.mb_chars.downcase.to_s }
     end
+
   end
 end

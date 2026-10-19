@@ -14,6 +14,7 @@
 @import "weby-assets";
 @import "repository_search";
 @import "target.dialog";
+@import "admin/custom_colors";
 
 // Global scaffolding - UFG Cercomp Standard
 body {
@@ -706,4 +707,11 @@ body.modal-open {
   padding: 14px 20px;
   background: #f8fafc;
   border-radius: 0 0 10px 10px;
+}
+
+.menu-footnote {
+  margin-bottom: 15px;
+  color: #999;
+  font-size: 13px;
+  text-transform: none;
 }

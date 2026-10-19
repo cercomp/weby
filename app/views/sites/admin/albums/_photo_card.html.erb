@@ -1,5 +1,5 @@
 
-  <div class="album-photo">
+    <div class="album-photo">
     <% if photo.is_cover? %>
       <%= content_tag(:span, t('.cover'), class: 'label label-success cover-label is-cover') %>
     <% else %>
@@ -8,7 +8,7 @@
       <% end %>
     <% end %>
     <% if check_permission(Sites::Admin::AlbumPhotosController, [:destroy]) %>
-      <%= link_to icon(:trash), site_admin_album_album_photo_path(@album, photo), title: t("destroy"), class: 'close', method: :delete, remote: true, data: {confirm: t('are_you_sure_del_item', item: photo.screen_name)} %>
+      <%= link_to icon(:trash), '#', title: t("destroy"), class: 'close' %>
     <% end %>
     <%= image_tag photo.image.url(:t), class: 'preview' %>
     <%= simple_form_for [:site_admin, @album, photo], remote: true do |f| %>
@@ -34,6 +34,26 @@
 
       .label {
         white-space: unset;
+      }
+
+      .album-photo {
+        position: relative;
+      }
+
+      .deletion-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        z-index: 10;
+        pointer-events: none;
       }
     </style>
   </div>

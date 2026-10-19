@@ -25,11 +25,61 @@
     </div>
   <% end %>
 <% end %>
-<div id="current-photos" class="row flex-wrap">
-  <% @album.album_photos.each do |photo| %>
-    <div class="col-sm-6 col-md-3 col-lg-2 closeable repo-item">
-      <%= render '/sites/admin/albums/photo_card', photo: photo %>
-    </div>
+
+<div id="current-photos" style="display: flex; flex-wrap: wrap; gap: 15px;">
+  <% 
+    # Carrega todas as fotos ordenadas por posição
+    all_photos = @album.album_photos.order(:position)
+    
+    # Define quantas fotos mostrar por página (sempre múltiplo de 3)
+    photos_per_page = 21  # 7 linhas × 3 fotos = 21 fotos por página
+    
+    # Calcula paginação se houver parâmetro de página
+    if params[:page].present?
+      page = params[:page].to_i
+      page = 1 if page < 1
+      start_index = (page - 1) * photos_per_page
+      total_photos = all_photos.count
+      # Pegue fotos extras para checar se a última linha ficaria incompleta
+      raw_photos = all_photos.offset(start_index).limit(photos_per_page + 2) # +2 para garantir até 2 sobras
+      # Se não for a última página, remova fotos extras para garantir múltiplo de 3
+      if (start_index + photos_per_page) < total_photos
+        # Só mostre múltiplos de 3
+        count = (raw_photos.size / 3) * 3
+        current_photos = raw_photos.first(count)
+      else
+        # Última página: pode mostrar menos de 3 na última linha
+        current_photos = raw_photos
+      end
+      has_next_page = (start_index + current_photos.size) < total_photos
+      has_prev_page = page > 1
+    else
+      current_photos = all_photos
+      has_next_page = false
+      has_prev_page = false
+    end
+    total_photos ||= all_photos.count
+  %>
+  
+  <% current_photos.each_slice(3) do |photos| %>
+    <% photos.each do |photo| %>
+      <div style="flex: 0 0 calc(33.333% - 10px); min-width: 200px; margin-bottom: 15px;">
+        <div class="album-photo-tile" style="height: 200px; overflow: hidden; border-radius: 4px;">
+          <%= render '/sites/admin/albums/photo_card', photo: photo %>
+        </div>
+      </div>
+    <% end %>
+    <% if photos.size < 3 %>
+      <% (3 - photos.size).times do %>
+        <div style="flex: 0 0 calc(33.333% - 10px); min-width: 200px; margin-bottom: 15px;"></div>
+      <% end %>
+    <% end %>
+  <% end %>
+  
+  <% if params[:page].present? %>
+    <div class="clearfix"></div>
+    <%#= per_page_links @photos, true, :sm %>
+    <%= paginate current_photos, remote: true, page_links: true %>
   <% end %>
 </div>
 <div class="form-actions">

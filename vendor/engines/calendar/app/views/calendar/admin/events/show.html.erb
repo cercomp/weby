@@ -37,11 +37,14 @@
     <% end %>
   </p>
 
-  <%= content_tag_if @event.category_list.any?, :p, class: 'categories' do %>
-    <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
-    <% @event.category_list.each do |category| %>
-      <span class="label label-info"><%= category %></span>
-    <% end %>
+  <% event_site = @event.event_site_for(current_site) %>
+  <% if event_site && event_site.category_list.any? %>
+    <p class="categories">
+      <span class="categories-label"><%= "#{t('.categories')}:"  %></span>
+      <% event_site.category_list.each do |category| %>
+        <span class="label label-info"><%= category %></span>
+      <% end %>
+    </p>
   <% end %>
 
 

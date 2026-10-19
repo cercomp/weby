@@ -99,6 +99,10 @@ function addToSelect(selectId, text){
 }
 
 function handleToggle(target, json, parentSelector) {
+  console.log('handleToggle called', json);
+  if (json.status !== undefined) {
+    target.find('[type=checkbox]').prop('checked', json.status);
+  }
   if (json && json.message) {
     FlashMsg.info(`<img src="${json.icon}"/> ${json.message}`);
     target.find('[type=checkbox]').prop('checked', json.status).val(json.status).prop('title', json.title).prop('alt', json.title);
@@ -110,6 +114,9 @@ function handleToggle(target, json, parentSelector) {
     }
   } else {
     FlashMsg.info('Ocorreu um erro, tente novamente');
+  }
+  if (json && json.html) {
+    $('#' + json.id).replaceWith(json.html);
   }
 }
 
@@ -343,4 +350,11 @@ $(document).ready(function() {
     , hashPieces = ((hash.split('?')[0] == "") ? 0 : hash.split('?'))
     , activeTab = $('[href="' + hashPieces[0] + '"]');
   activeTab && activeTab.tab('show');
+
+  $(document).on('change', '.weby-toggle', function(){
+    $(this).closest('form').submit();
+  });
+
+  ///// init toggle handles
+  appendToggleHandle('.toggle-publish-form', 'tr');
 });

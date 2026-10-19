@@ -4,8 +4,11 @@ class Admin::RolesController < Admin::BaseController
   respond_to :html
 
   def index
-    @roles = Role.globals.order('id')
+    #deprecated
+    # @roles = Role.globals.order('id')
+    @roles = Role.globals
     @rights = Weby::Rights.permissions.sort
+    reorder_roles_by_hierarchy
 
     if request.put? # && params[:role]
       params[:role] ||= {}
@@ -61,4 +64,11 @@ class Admin::RolesController < Admin::BaseController
   def role_params
     params.require(:role).permit(:name)
   end
+
+  # Method to reorder roles based on a predefined hierarchy
+  def reorder_roles_by_hierarchy
+    hierarchy_order = ['Gestor', 'Gerente', 'Editor-Chefe', 'Redator']
+    @roles = @roles.sort_by { |role| hierarchy_order.index(role.name) || Float::INFINITY }
+  end
+
 end

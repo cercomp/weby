@@ -19,7 +19,31 @@ class Sites::AlbumsController < ApplicationController
 
   def show
     raise ActiveRecord::RecordNotFound if !@album.publish && @album.user != current_user
-    @photos = @album.album_photos.order(:position).page(params[:page]).per(50)
+    
+    # Lógica para garantir múltiplos de 3 por página, exceto na última
+    all_photos = @album.album_photos.order(:position)
+    total_photos = all_photos.count
+    page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    
+    # Calcula quantas fotos por página (múltiplo de 3)
+    photos_per_page = 30
+    
+    # Calcula o offset baseado na página
+    offset = (page - 1) * photos_per_page
+    
+    # Pega as fotos da página atual
+    photos = all_photos.offset(offset).limit(photos_per_page)
+    
+    # Se não for a última página, garante múltiplo de 3
+    if (offset + photos.size) < total_photos
+      remainder = photos.size % 3
+      if remainder > 0
+        photos = photos.first(photos.size - remainder)
+      end
+    end
+    
+    # Cria objeto de paginação compatível com Kaminari
+    @photos = Kaminari.paginate_array(photos.to_a, total_count: total_photos).page(page).per(photos_per_page)
   end
 
   def generate

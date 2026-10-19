@@ -35,6 +35,8 @@ services:
       - .env
     environment:
       - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+    volumes:
+      - /home/gitlab-runner/tmp/cache:/opt/weby/tmp/cache
 
 volumes:
   redis_data:

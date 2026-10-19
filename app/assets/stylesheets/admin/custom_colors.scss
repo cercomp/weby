@@ -1,0 +1,47 @@
+/* Estilos para paleta de cores personalizada */
+.custom-color-form {
+  margin: 15px 0;
+  padding: 16px 18px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #000;
+}
+
+.custom-color-form h5 {
+  margin-bottom: 15px;
+  color: #000;
+  font-weight: 600;
+}
+
+.hidden-color-input {
+  display: none;
+}
+
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-color {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-color:hover {
+  background: #555;
+}
+
+.color-preview {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  display: inline-block;
+}
