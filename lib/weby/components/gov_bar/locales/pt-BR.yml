@@ -1,4 +1,12 @@
 pt-BR:
   components:
     gov_bar:
-      name:              " Barra do Governo "
+      name:                 " Barra do Governo "
+  activerecord:
+    attributes:
+      gov_bar_component:
+        script_url:         " URL do Script "
+  gov_bar:
+    views:
+      form:
+        script_url_hint:    " URL do script JavaScript da barra (padrão: //barra.brasil.gov.br/barra.js ou //barra.brasil.gov.br/barra_2.0.js) "

@@ -1,4 +1,12 @@
 en:
   components:
     gov_bar:
-      name:              " Government Bar "
+      name:                 " Government Bar "
+  activerecord:
+    attributes:
+      gov_bar_component:
+        script_url:         " Script URL "
+  gov_bar:
+    views:
+      form:
+        script_url_hint:    " JavaScript URL for the bar (default: //barra.brasil.gov.br/barra.js or //barra.brasil.gov.br/barra_2.0.js) "

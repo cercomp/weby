@@ -5,5 +5,9 @@
   </ul>
 </div>
 <% content_for :javascripts do %>
-  <script defer="defer" async="async" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+  <% if component.script_url.to_s.strip.start_with?('<script') %>
+    <%= component.script_url.html_safe %>
+  <% else %>
+    <script defer="defer" async="async" src="<%= component.script_url %>" type="text/javascript"></script>
+  <% end %>
 <% end %>
