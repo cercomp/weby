@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 ruby '2.7.5'
 
@@ -6,7 +6,13 @@ gem 'rails', '5.2.4.2'
 gem 'rake', '13.0.1'
 
 gem 'thin', '~> 1.7.2'
+gem 'puma', '~> 5.6'
 gem 'pg', '~> 1.2.3'
+
+# Cache and Redis
+gem 'redis', '~> 4.2'
+gem 'hiredis', '~> 0.6.3'
+gem 'connection_pool', '~> 2.4'
 
 gem 'bootsnap', '~> 1.4.6', require: false
 

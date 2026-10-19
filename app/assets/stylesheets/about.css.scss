@@ -3,50 +3,71 @@
  *= require google/lato
  */
 
-#about-body
-{
-  font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+#about-body {
+  font-family: "Roboto", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  background: #FCFCFC url(sessions_bg.jpg) repeat left top;
+  background: #f4f6f9;
   height: 100%;
+  color: #334155;
 
-  .header
-  {
-    background: #FCFCFC url(sessions_bg.jpg) repeat left top;
+  .header {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
     text-align: center;
+    padding: 30px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    .description {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto 0;
+      color: #64748b;
+      font-size: 15px;
+    }
+  }
+
+  .container {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    h1 {
+      color: #005088;
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    a, a:hover {
+      color: #005088;
+      text-decoration: underline;
+    }
+
+    ul {
+      color: #334155;
+      padding-left: 20px;
+    }
+
+    .footnote {
+      color: #94a3b8;
+      font-size: 12px;
+      margin-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 12px;
+    }
+  }
+
+  .footer {
     padding: 20px 0;
-    .description
-    {
-      width: 800px;
-      margin: 30px auto 0;
-    }
-  }
-  .container
-  {
-    width: 800px;
-    margin: 0 auto;
-    padding: 0 15px;
-
-    h1
-    {
-      color: #BC1625;
-      font-size: 20px;
-    }
-
-    a,
-    a:hover
-    {
-      color: #BC1625;
-      text-decoration: none;
-    }
-    ul { color: #344259; }
-    .footnote { color: #888; }
-  }
-  .footer
-  {
-    padding: 15px 0;
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
-    text-transform: uppercase;
+    color: #94a3b8;
   }
 }
+

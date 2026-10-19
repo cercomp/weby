@@ -21,6 +21,8 @@ class ApplicationController < ActionController::Base
                 :current_locale, :current_site, :current_skin, :current_settings, :current_roles_assigned,
                 :component_is_available, :markdown_renderer
 
+
+  
   def admin
     render 'admin/admin'
   end
@@ -68,6 +70,9 @@ class ApplicationController < ActionController::Base
     case
     when defined?(@current_site)
       return @current_site
+    when ApplicationController.is_external_site?(request)
+      # search external sites
+      @current_site = Weby::Subdomain.find_external_site(request.host)
     when Weby::Subdomain.matches?(request)
       # search subsites
       @current_site = Weby::Subdomain.find_site
@@ -192,31 +197,34 @@ class ApplicationController < ActionController::Base
       return unless @album_photo.present?
     end
 
-    if(current_site)
-#      current_site.views.create(viewable: @page,
-#                                ip_address: request.remote_ip,
-#                                referer: request.referer,
-#                                user: current_user,
-#                                query_string: request.query_string,
-#                                request_path: request.path,
-#                                user_agent: request.user_agent,
-#                                session_hash: request.session_options[:id])
-      Page.increment_counter :view_count, @page.id if @page
-      Album.increment_counter :view_count, @album.id if @album
-      AlbumPhoto.increment_counter :view_count, @album_photo.id if @album_photo
-      Site.increment_counter :view_count, current_site.id
-      Journal::News.increment_counter :view_count, @news.id if @news && @news.is_a?(Journal::News)
-      Calendar::Event.increment_counter :view_count, @event.id if @event
-    else
-#      View.create(viewable: @page,
-#                              ip_address: request.remote_ip,
-#                              referer: request.referer,
-#                              user: current_user,
-#                              query_string: request.query_string,
-#                              request_path: request.path,
-#                              user_agent: request.user_agent,
-#                              session_hash: request.session_options[:id])
+    if current_site
+      if Weby.redis
+        begin
+          Weby.redis.pipelined do |pipeline|
+            pipeline.hincrby('weby:views:sites', current_site.id.to_s, 1)
+            pipeline.hincrby('weby:views:pages', @page.id.to_s, 1) if @page
+            pipeline.hincrby('weby:views:albums', @album.id.to_s, 1) if @album
+            pipeline.hincrby('weby:views:album_photos', @album_photo.id.to_s, 1) if @album_photo
+            pipeline.hincrby('weby:views:news', @news.id.to_s, 1) if @news && @news.is_a?(Journal::News)
+            pipeline.hincrby('weby:views:events', @event.id.to_s, 1) if @event
+          end
+        rescue StandardError => e
+          Rails.logger.warn("Redis view count buffer error: #{e.message}. Falling back to DB.")
+          increment_views_in_db
+        end
+      else
+        increment_views_in_db
+      end
     end
+  end
+
+  def increment_views_in_db
+    Page.increment_counter :view_count, @page.id if @page
+    Album.increment_counter :view_count, @album.id if @album
+    AlbumPhoto.increment_counter :view_count, @album_photo.id if @album_photo
+    Site.increment_counter :view_count, current_site.id
+    Journal::News.increment_counter :view_count, @news.id if @news && @news.is_a?(Journal::News)
+    Calendar::Event.increment_counter :view_count, @event.id if @event
   end
 
   # NOTE Review this method to include the extensions
@@ -228,6 +236,15 @@ class ApplicationController < ActionController::Base
       params[:model].titleize.constantize.increment_counter :click_count, params[:id]
     end
     head :ok
+  end
+
+  # Verify external site
+  def self.is_external_site?(request)
+    return Weby::Settings::Weby.domain.present? && !request.host.include?(Weby::Settings::Weby.domain)
+  end
+
+  def self.get_domain_external_site(request)
+    return request.host
   end
 
   protected
@@ -379,10 +396,12 @@ class ApplicationController < ActionController::Base
     else
       if @site
 
-        @global_menus = {}
-        # Get the menus more efficiently, since menus are asked for in every requisition
-        @site.menus.includes(menu_items: :target).each do |menu|
-          @global_menus[menu.id] = menu
+        @global_menus = Rails.cache.fetch("site:#{@site.id}:global_menus:#{@site.updated_at.to_i}", expires_in: 30.minutes) do
+          menus = {}
+          @site.menus.includes(menu_items: :target).each do |menu|
+            menus[menu.id] = menu
+          end
+          menus
         end
 
         @global_components = {}

@@ -1,8 +1,10 @@
 ## First stage (base)
 FROM ruby:2.7.5 AS base
 
-RUN apt-get clean && apt-get update && apt-get upgrade -y
-RUN apt-get install -y imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils nodejs file
+RUN echo 'deb http://archive.debian.org/debian bullseye main' > /etc/apt/sources.list && \
+    echo 'deb http://archive.debian.org/debian-security bullseye-security main' >> /etc/apt/sources.list && \
+    apt-get update -o Acquire::Check-Valid-Until=false && \
+    apt-get install -y -o Acquire::Check-Valid-Until=false imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils nodejs file
 
 COPY . /opt/weby
 WORKDIR /opt/weby
@@ -17,8 +19,10 @@ FROM ruby:2.7.5-slim-bullseye
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
-RUN apt-get clean && apt-get update && apt-get upgrade -y
-RUN apt-get install -y tzdata imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs file
+RUN echo 'deb http://archive.debian.org/debian bullseye main' > /etc/apt/sources.list && \
+    echo 'deb http://archive.debian.org/debian-security bullseye-security main' >> /etc/apt/sources.list && \
+    apt-get update -o Acquire::Check-Valid-Until=false && \
+    apt-get install -y -o Acquire::Check-Valid-Until=false tzdata imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs file
 
 # Config time zones
 ENV TZ=America/Sao_Paulo
@@ -36,6 +40,7 @@ ENV CI_COMMIT_SHORT_SHA $CI_COMMIT_SHORT_SHA
 ENV RAILS_ENV $RAILS_ENV
 ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 
+COPY . /opt/weby
 WORKDIR /opt/weby
 
 # Files to logs and tmp

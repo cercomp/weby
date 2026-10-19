@@ -18,7 +18,12 @@
 <div id="auth_sources">
   <%= content_tag(:h4, t('.auth_sources')) if @user.auth_sources.any? %>
   <% @user.auth_sources.each do |auth_src| %>
-    <p> <b><%= auth_src.source_type.titleize %>:</b> <%= auth_src.source_login %> </p>
+    <p>
+      <b><%= auth_src.source_type.titleize %>:</b> <%= auth_src.source_login %>
+      <b><%= link_to url_for(controller: 'admin/users', action: 'destroy_auth_source', id: @user, auth_source_id: auth_src.id), method: :delete, data: { confirm: "Tem certeza?" } do %>
+        <%= icon('trash') %> <%= t('destroy_bind') %>
+      <% end %></b>      
+    </p>
   <% end %>
 </div>
 <div id="user_current_roles">

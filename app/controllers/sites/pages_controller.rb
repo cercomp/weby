@@ -37,8 +37,17 @@ class Sites::PagesController < ApplicationController
   end
 
   def frame
-    cnt = open(params[:url]).read
-    render html: cnt.html_safe
+    if params[:url].present? && params[:url].match(/^(http|ftp)/)
+      begin
+        uri = URI(params[:url])
+        cnt = URI.open(uri).read
+        render html: cnt.html_safe
+      rescue => exception
+        render plain: 'URL inválida'
+      end
+    else
+      render plain: 'URL inválida'
+    end
   end
 
   private

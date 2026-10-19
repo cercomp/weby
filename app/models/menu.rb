@@ -1,5 +1,5 @@
 class Menu < ApplicationRecord
-  belongs_to :site
+  belongs_to :site, touch: true
 
   has_many :menu_items, -> { order(:position).includes(:i18ns) }, dependent: :destroy
   has_many :root_menu_items, -> { order(:position).includes(:i18ns).where('parent_id is NULL') }, class_name: 'MenuItem'

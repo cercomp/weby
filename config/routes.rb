@@ -290,7 +290,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
   get 'robots.txt' => 'sites#robots', format: 'txt'
   get '*not_found' => 'application#render_404'
 end

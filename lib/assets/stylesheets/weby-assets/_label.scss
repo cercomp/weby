@@ -1,16 +1,17 @@
 .weby-label {
-  display: inline;
-  padding: .2em .6em .3em;
-  font-size: 75%;
-  font-weight: bold;
-  line-height: 1;
-  color: #FFFFFF;
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #ffffff;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  border-radius: .25em;
+  border-radius: 4px;
   text-decoration: none;
   margin-right: 5px;
+  letter-spacing: 0.3px;
 
   &:last-child {
     margin-right: 0;
@@ -31,77 +32,78 @@
   }
 
   &.default {
-    background-color: #999;
+    background-color: #64748b;
 
     &[href] {
       &:hover,
       &:focus {
-        background-color: darken(#999, 10%);
+        background-color: darken(#64748b, 10%);
       }
     }
   }
 
   &.primary {
-    background-color: #428bca;
+    background-color: #005088;
 
     &[href] {
       &:hover,
       &:focus {
-        background-color: darken(#428bca, 10%);
+        background-color: darken(#005088, 10%);
       }
     }
   }
 
   &.success {
-    background-color: #5cb85c;
+    background-color: #16a34a;
 
     &[href] {
       &:hover,
       &:focus {
-        background-color: darken(#5cb85c, 10%);
+        background-color: darken(#16a34a, 10%);
       }
     }
   }
 
   &.info {
-    background-color: #5bc0de;
+    background-color: #0284c7;
 
     &[href] {
       &:hover,
       &:focus {
-        background-color: darken(#5bc0de, 10%);
+        background-color: darken(#0284c7, 10%);
       }
     }
   }
 
   &.warning {
-    background-color: #f0ad4e;
+    background-color: #d97706;
 
     &[href] {
       &:hover,
       &:focus {
-        background-color: darken(#f0ad4e, 10%);
+        background-color: darken(#d97706, 10%);
       }
     }
   }
 
   &.danger {
-    background-color: #d9534f;
+    background-color: #dc2626;
 
     &[href] {
       &:hover,
       &:focus {
-        background-color: darken(#d9534f, 10%);
+        background-color: darken(#dc2626, 10%);
       }
     }
   }
 }
 
-a.weby-label, .wbey-label a {
+a.weby-label, .weby-label a, .wbey-label a {
   &:hover,
   &:focus {
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
     cursor: pointer;
   }
 }
+

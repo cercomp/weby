@@ -43,6 +43,7 @@ en:
   deactivation_sent_successful:         " Deactivation instructions were sent to your e-mail. "
 #---D---#
   destroy:                              " Destroy "
+  destroy_bind:                         " Destroy bind"
   disable:                              " Disable "
   disabled_component:                   " Disabled Component "
   deactivate:                           " Deactivate "

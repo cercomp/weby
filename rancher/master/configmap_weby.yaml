@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  DB_DB: weby
+  DB_HOST: 200.137.217.175
+  DB_PORT: "5432"
+  DB_USER: weby
+  RAILS_ENV: production
+  STORAGE_BUCKET: weby
+  STORAGE_HOST: files.cercomp.ufg.br
+  ELASTICSEARCH_PREFIX: main
+  ELASTICSEARCH_URL: http://200.137.221.168:9200
+  STORAGE_BUCKET_ALBUM: galeria
+  STORAGE_ACCESS_KEY_ALBUM: weby
+  STORAGE_HOST_ALBUM: galeria.cercomp.ufg.br
+kind: ConfigMap
+metadata:
+  labels:
+    app: weby-master
+  name: weby-master
+  namespace: default

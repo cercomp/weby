@@ -7,8 +7,6 @@ module Weby
       @site_domain = nil
       subdomain = request.subdomain.gsub(/www\./, '')
 
-      @@tld_length = settings.tld_length.to_i
-
       if request.subdomain.present? && request.subdomain != 'www'
         if settings.sites_index.present?
           return false if subdomain == settings.sites_index
@@ -25,15 +23,36 @@ module Weby
 
     def self.find_site(domain = nil)
       domain = @site_domain unless domain
+      return nil if domain.blank?
       domain = domain.gsub(/www\./, '')
-      sites = domain.split('.')
-      if sites.length == 2
-        site = Site.where(parent_id: nil).find_by_name(sites[-1])
-        site = site.subsites.active.find_by_name(sites[-2]) if site
-      elsif sites.length == 1
-        site = Site.active.where(parent_id: nil).find_by_name(sites[-1])
+
+      site_id = Rails.cache.fetch("weby:subdomain:site_id:#{domain}", expires_in: 30.minutes) do
+        sites = domain.split('.')
+        resolved = nil
+        if sites.length == 2
+          resolved = Site.where(parent_id: nil).find_by_name(sites[-1])
+          resolved = resolved.subsites.active.find_by_name(sites[-2]) if resolved
+        elsif sites.length == 1
+          resolved = Site.active.where(parent_id: nil).find_by_name(sites[-1])
+        end
+        resolved.try(:id)
       end
-      site if [1, 2].include? sites.length
+
+      Site.find_by(id: site_id) if site_id
+    end
+
+    def self.find_external_site(domain = nil)
+      domain = @site_domain unless domain
+      return nil if domain.blank?
+      domain = domain.gsub(/www\./, '')
+
+      site_id = Rails.cache.fetch("weby:subdomain:ext_site_id:#{domain}", expires_in: 30.minutes) do
+        sites = domain.split('.')
+        resolved = Site.active.where(parent_id: nil).find_by_name_and_domain(sites[0], sites[1..-1].join('.'))
+        resolved.try(:id)
+      end
+
+      Site.find_by(id: site_id) if site_id
     end
   end
 end

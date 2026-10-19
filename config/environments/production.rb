@@ -102,7 +102,20 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  if ENV['REDIS_URL'].present?
+    config.cache_store = :redis_cache_store, {
+      url: ENV['REDIS_URL'],
+      connect_timeout: 2,
+      read_timeout: 1,
+      write_timeout: 1,
+      reconnect_attempts: 2,
+      error_handler: -> (method:, returning:, exception:) {
+        Rails.logger.warn("RedisCacheStore Error: #{exception} on #{method}")
+      }
+    }
+  else
+    config.cache_store = :file_store, Rails.root.join('tmp/cache')
+  end
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque

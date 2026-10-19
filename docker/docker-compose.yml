@@ -1,9 +1,19 @@
 version: '3.4'
 services:
+  redis:
+    image: redis:7-alpine
+    container_name: ${CI_PROJECT_ENV:-weby}_redis
+    restart: always
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
   weby:
-    image: registry.cercomp.ufg.br/sysadmin/weby/weby_develop:latest
+    image: ${CI_REGISTRY_IMAGE:-registry.cercomp.ufg.br/sysadmin/weby}/${CI_PROJECT_ENV:-weby_develop}:${CI_VERSION_ENV:-latest}
     container_name: ${CI_PROJECT_ENV}
     restart: always
+    depends_on:
+      - redis
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -23,5 +33,11 @@ services:
       - 3000:3000
     env_file:
       - .env
+    environment:
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
     volumes:
       - /home/gitlab-runner/tmp/cache:/opt/weby/tmp/cache
+
+volumes:
+  redis_data:
+

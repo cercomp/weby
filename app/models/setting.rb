@@ -56,4 +56,11 @@ class Setting < ApplicationRecord
     end
     instance
   end
+
+  after_commit :clear_cache
+
+  def clear_cache
+    Rails.cache.delete('weby:settings:all')
+    Weby::Settings.clear rescue nil
+  end
 end
