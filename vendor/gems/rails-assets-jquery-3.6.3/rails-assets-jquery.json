@@ -1,0 +1,32 @@
+{
+  "name": "rails-assets-jquery",
+  "downloads": null,
+  "version": "3.6.3",
+  "version_downloads": null,
+  "platform": "ruby",
+  "authors": "rails-assets.org",
+  "info": "",
+  
+  "licenses": "MIT",
+  
+  "metadata": {
+
+  },
+  "sha": null,
+  "project_uri": "https://github.com/jquery/jquery-dist",
+  "gem_uri": null,
+  "homepage_uri": "https://github.com/jquery/jquery-dist",
+  "wiki_uri": null,
+  "documentation_uri": null,
+  "mailing_list_uri": null,
+  "source_code_uri": "https://github.com/jquery/jquery-dist",
+  "bug_tracker_uri": null,
+  "dependencies": {
+    "development": [
+    
+    ],
+    "runtime": [
+
+    ]
+  }
+}
