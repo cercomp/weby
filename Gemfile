@@ -78,12 +78,10 @@ gem 'rswag'
 gem 'rswag-specs'
 gem 'bigdecimal', '1.4.2'
 
-# rails assets org
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tinymce', '~> 4.8.5'
-  gem 'rails-assets-select2', '~> 3.5.4'
-  #gem 'rails-assets-d3', '~> 5.7.0'
-end
+# rails assets org (vendored locally in vendor/gems because rails-assets.org is offline/deprecated)
+gem 'rails-assets-jquery', '3.6.3', path: 'vendor/gems/rails-assets-jquery-3.6.3'
+gem 'rails-assets-select2', '3.5.4', path: 'vendor/gems/rails-assets-select2-3.5.4'
+gem 'rails-assets-tinymce', '4.8.5', path: 'vendor/gems/rails-assets-tinymce-4.8.5'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.9.1'
