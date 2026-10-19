@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tag %>
     <%= favicon_link_tag asset_url('favicon.ico') %>
-    <title>weby<%= " - #{yield :title}" if content_for?(:title) %></title>
+    <title>Weby | UFG<%= " - #{yield :title}" if content_for?(:title) %></title>
     <%= stylesheet_link_tag 'application' %>
     <%# NOTE: review here %>
     <%= yield :stylesheets %>
@@ -21,80 +21,100 @@
       <meta name="storage" content="<%= "#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}" %>">
     <% end %>
   </head>
-  <body>
+  <body class="ufg-cercomp-theme">
     <div class="zone">
       <div id="header" class="container-fluid">
-        <div class="row">
-          <div class="col-md-2">
-            <%= link_to main_app.root_url(subdomain: nil) do %>
-              <%= image_tag 'weby-logo-60.png', class: 'weby-logo' %>
+        <div class="row align-items-center">
+          <div class="col-md-2 col-sm-3 col-xs-6 brand-area">
+            <%= link_to main_app.root_url(subdomain: nil), class: 'brand-link', title: 'Weby - UFG' do %>
+              <%= image_tag 'weby-logo-60.png', class: 'weby-logo', alt: 'Weby UFG' %>
             <% end %>
           </div>
-          <div class="col-md-6 site">
+          <div class="col-md-6 col-sm-5 hidden-xs site-area">
             <% if current_site %>
-              <div class="avatar pull-left">
-                <%= site_avatar_tag %>
+              <div class="current-site-card">
+                <div class="avatar pull-left">
+                  <%= site_avatar_tag %>
+                </div>
+                <div class="site-meta pull-left">
+                  <div class="info name" title="<%= current_site.title %>">
+                    <%= current_site.title %>
+                  </div>
+                  <div class="info actions">
+                    <%= link_to main_app.site_url(subdomain: current_site), target: '_blank', class: 'btn-view-site' do %>
+                      <i class="fa fa-external-link" aria-hidden="true"></i> <%= t(".show-site") %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
               </div>
-              <div class="pull-left">
+            <% end %>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-6 person-area">
+            <div class="user-profile-header pull-right">
+              <div class="avatar pull-right">
+                <%= link_to main_app.profile_url(current_user.login, subdomain: current_site), title: current_user.first_name do %>
+                  <img src="//www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=36&d=mm" class="img-circle user-avatar-img" alt="<%= current_user.first_name %>">
+                <% end %>
+              </div>
+              <div class="user-details pull-right text-right">
                 <div class="info name">
-                  <%= current_site.title %>
+                  <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site), class: 'user-name-link' %>
                 </div>
                 <div class="info actions">
-                  <%= link_to t(".show-site"), main_app.site_url(subdomain: current_site) %>
+                  <%= link_to(fa_icon('cogs'), main_app.site_admin_url(subdomain: nil), class: "label label-ufg-admin", title: t('.weby_admin')) if current_user.is_admin? %>
+                  <%= notifications_icon %>
+                  <%= link_to fa_icon('sign-out'), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger btn-logout', title: t('.logout') %>
                 </div>
               </div>
-            <% end %>
-          </div>
-          <div class="col-md-4 person">
-            <div class="avatar pull-right">
-              <%= link_to main_app.profile_url(current_user.login, subdomain: current_site) do %>
-                <img src="//www.gravatar.com/avatar/<%= Digest::MD5.hexdigest(current_user.email) %>?s=32&d=mm">
-              <% end %>
+              <div class="clearfix"></div>
             </div>
-            <div class="pull-right text-right">
-              <div class="info name">
-                <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site) %>
-              </div>
-              <div class="info actions">
-                <%= link_to(icon('cog', white: true), main_app.site_admin_url(subdomain: nil), class: "label label-default") if current_user.is_admin? %>
-                <%= notifications_icon %>
-                <%= link_to icon('off', white: true), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger', title: t('.logout') %>
-              </div>
-            </div>
-            <div class="clearfix"></div>
           </div>
         </div>
       </div>
     </div>
+
     <div id="main" class="container-fluid">
       <div class="row">
-        <div class="col-md-2">
+        <aside class="col-md-2 col-sm-3 sidebar-wrapper">
           <%= render 'layouts/shared/menu_admin' %>
-          &nbsp;
-        </div>
-        <div class="col-md-10">
+        </aside>
+        <main class="col-md-10 col-sm-9 content-wrapper" id="main-content">
           <% unless flash.empty? %>
-            <%= raw flash_message %>
+            <div class="flash-messages-container">
+              <%= raw flash_message %>
+            </div>
           <% end %>
-          <div class="well">
-            <%= breadcrumbs style: :bootstrap %>
-            <%= yield %>
+          <div class="arq-base-page card-base well">
+            <div class="arq-base-page-header">
+              <%= breadcrumbs style: :bootstrap %>
+            </div>
+            <div class="arq-base-page-content">
+              <%= yield %>
+            </div>
           </div>
-        </div>
+        </main>
       </div>
     </div>
-    <div id="footer" class="container-fluid">
-      <p>
-        <%= t(".licence") %>
-        <br />
-        <%= link_to t(".sites"), main_app.root_url(subdomain: nil) %>
-        <%= link_to(t(".help"), current_settings.help_site, target: '_blank') if current_settings.help_site %>
-        <%= link_to t(".about"), 'http://weby.cercomp.ufg.br/pages/67630-sobre', target: '_blank' %>
-      </p>
-      <% if current_user.is_admin? %>
-        <div class="menu-footnote"><%= "#{ENV['CI_PROJECT_ENV']}:#{ENV['CI_VERSION_ENV']} - #{ENV['CI_COMMIT_SHORT_SHA']}" %></div>
-      <% end %>
-    </div>
+
+    <footer id="footer" class="container-fluid">
+      <div class="footer-inner">
+        <p class="footer-links">
+          <%= link_to t(".sites"), main_app.root_url(subdomain: nil) %>
+          <span class="footer-divider">•</span>
+          <%= link_to(t(".help"), current_settings.help_site, target: '_blank') if current_settings.help_site %>
+          <span class="footer-divider">•</span>
+          <%= link_to t(".about"), 'https://cercomp.ufg.br/', target: '_blank' %>
+        </p>
+        <p class="footer-license">
+          <%= t(".licence") %> — Universidade Federal de Goiás (UFG) / CERCOMP
+        </p>
+        <% if current_user.is_admin? && ENV['CI_COMMIT_SHORT_SHA'].present? %>
+          <div class="menu-footnote"><%= "#{ENV['CI_PROJECT_ENV']}:#{ENV['CI_VERSION_ENV']} - #{ENV['CI_COMMIT_SHORT_SHA']}" %></div>
+        <% end %>
+      </div>
+    </footer>
+
     <%# NOTE: review here %>
     <%= yield :body_end %>
     <%= javascript_include_tag "application" %>

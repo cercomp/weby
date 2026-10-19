@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 ruby '2.7.5'
 
@@ -6,7 +6,13 @@ gem 'rails', '5.2.4.2'
 gem 'rake', '13.0.1'
 
 gem 'thin', '~> 1.7.2'
+gem 'puma', '~> 5.6'
 gem 'pg', '~> 1.2.3'
+
+# Cache and Redis
+gem 'redis', '~> 4.2'
+gem 'hiredis', '~> 0.6.3'
+gem 'connection_pool', '~> 2.4'
 
 gem 'bootsnap', '~> 1.4.6', require: false
 
@@ -43,7 +49,7 @@ gem 'simple_form', '~> 5.0.2'
 gem 'rails-observers', '~> 0.1.5'
 gem 'devise', '~> 4.8.1'
 gem 'kaminari', '~> 1.2.0'
-gem 'paperclip', :git => 'http://github.com/leo-souza/paperclip.git'
+gem 'paperclip', :git => 'https://github.com/leo-souza/paperclip.git'
 gem 'acts-as-taggable-on', '~> 6.5.0'
 gem 'gretel', '~> 3.0.9'
 gem 'clipboard-rails', '~> 1.7.1'
@@ -53,7 +59,7 @@ gem 'simple_captcha2', require: 'simple_captcha'
 gem 'active_model_serializers'
 gem 'activemodel-serializers-xml'
 
-gem 'useragent', '0.2.3', :git => 'http://github.com/jilion/useragent'
+gem 'useragent', '0.2.3', :git => 'https://github.com/jilion/useragent'
 
 gem 'net-ldap', '~> 0.16.0'
 gem 'prawn', '~> 2.0.1'

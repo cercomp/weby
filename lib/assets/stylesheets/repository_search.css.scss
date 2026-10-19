@@ -1,5 +1,8 @@
 #dialog-repository-search {
   display: none;
+  &.in {
+    display: block !important;
+  }
 }
 
 .add-uniq-file {

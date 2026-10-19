@@ -1,5 +1,5 @@
 //
-// Variables
+// Variables - UFG / Cercomp Design Standard
 // --------------------------------------------------
 
 
@@ -7,137 +7,131 @@
 // --------------------------------------------------
 
 
-// Grays
+// Grays (Slate / Modern Neutral Palette)
 // -------------------------
-$black:                 #000 !default;
-$gray-darker:           #222 !default;
-$gray-dark:             #333 !default;
-$gray:                  #555 !default;
-$gray-light:            #999 !default;
-$gray-lighter:          #eee !default;
-$white:                 #fff !default;
+$black:                 #0f172a !default;
+$gray-darker:           #1e293b !default;
+$gray-dark:             #334155 !default;
+$gray:                  #64748b !default;
+$gray-light:            #94a3b8 !default;
+$gray-lighter:          #e2e8f0 !default;
+$white:                 #ffffff !default;
 
 
-// Accent colors
+// UFG & Cercomp Brand Colors
 // -------------------------
-$blue:                  #049cdb !default;
-$blue-dark:             #0064cd !default;
-$green:                 #46a546 !default;
-$red:                   #9d261d !default;
-$yellow:                #ffc40d !default;
-$orange:                #f89406 !default;
-$pink:                  #c3325f !default;
-$purple:                #7a43b6 !default;
-// NOTE: changed to weby
-$weby-red:              #BC1625 !default;
-$weby-blue:             #344259 !default;
+$ufg-blue:              #005088 !default; // UFG Primary Blue
+$ufg-blue-dark:         #003860 !default;
+$ufg-blue-light:        #0073c0 !default;
+$ufg-blue-soft:         #e0f2fe !default;
+$cercomp-cyan:          #0080c9 !default;
+
+// System Semantic Colors
+// -------------------------
+$blue:                  #0284c7 !default;
+$blue-dark:             #0369a1 !default;
+$green:                 #16a34a !default;
+$red:                   #dc2626 !default;
+$yellow:                #d97706 !default;
+$orange:                #ea580c !default;
+$pink:                  #db2777 !default;
+$purple:                #7c3aed !default;
+
+$weby-red:              #dc2626 !default;
+$weby-blue:             #005088 !default;
 
 
 // Scaffolding
 // -------------------------
-$body-bg:        $white !default;
-$text-color:     $gray-dark !default;
+$body-bg:               #f4f6f9 !default;
+$text-color:            #334155 !default;
 
 
 // Links
 // -------------------------
-// NOTE: changed to weby
-//$linkColor:             #08c !default;
-$link-color:             $weby-blue !default;
-$link-hover-color:       darken($link-color, 15%) !default;
+$link-color:            #005088 !default;
+$link-hover-color:      #003860 !default;
 
 
 // Typography
 // -------------------------
-$font-family-sans-serif:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$lato-font-family:             "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-serif:            Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$font-family-sans-serif: "Roboto", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$lato-font-family:       "Roboto", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:  SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 
-// NOTE: changed to weby
-$font-size-base:          14px !default;
-//$baseFontFamily:        //$sansFontFamily !default;
-$font-family-base:        $lato-font-family !default;
-//$line-height-base:        20px !default;
-//$altFontFamily:         $serifFontFamily !default;
+$font-size-base:         14px !default;
+$font-family-base:       $font-family-sans-serif !default;
 
-$headings-font-family:    inherit !default; // empty to use BS default, //$baseFontFamily
-$headings-font-weight:    bold !default;    // instead of browser default, bold
-$headings-color:         inherit !default; // empty to use BS default, //$textColor
+$headings-font-family:   inherit !default;
+$headings-font-weight:   600 !default;
+$headings-color:         #1e293b !default;
 
 
-// Component sizing
+// Component sizing & Radius
 // -------------------------
-// Based on 14px font-size and 20px line-height
+$font-size-large:        16px !default;
+$font-size-small:        12px !default;
+$font-size-mini:         11px !default;
 
-$font-size-large:        $font-size-base * 1.25; // ~18px
-$font-size-small:        $font-size-base * 0.85; // ~12px
-$font-size-mini:         $font-size-base * 0.75; // ~11px
-
-//$padding-large:          11px 19px !default; // 44px
-//$padding-small:          2px 10px !default;  // 26px
-//$padding-mini:           0px 6px !default;   // 22px
-
-$border-radius-base:      4px !default;
-$border-radius-large:     6px !default;
-$border-radius-small:     3px !default;
+$border-radius-base:      6px !default;
+$border-radius-large:     8px !default;
+$border-radius-small:     4px !default;
 
 
 // Tables
 // -------------------------
-$table-bg:                   transparent !default; // overall background-color
-$table-bg-accent:            #f9f9f9 !default; // for striping
-$table-bg-hover:             #f5f5f5 !default; // for hover
-$table-border-color:         #ddd !default; // table and cell border
+$table-bg:                   #ffffff !default;
+$table-bg-accent:            #f8fafc !default;
+$table-bg-hover:             #f1f5f9 !default;
+$table-border-color:         #e2e8f0 !default;
 
 // Buttons
 // -------------------------
-// NOTE: changed to weby
-//$btn-default-bg:                    $white !default;
-//$btnBackgroundHighlight:            darken($white, 10%) !default;
-//$btnBackgroundHighlight:            lighten(//$linkColor, 15%) !default;
-$btn-default-bg:                      $link-color !default;
-$btn-default-border:                  $link-color !default;
-$btn-default-color:                   $white;
+$btn-default-bg:                      #ffffff !default;
+$btn-default-border:                  #cbd5e1 !default;
+$btn-default-color:                   #334155 !default;
 
-// NOTE: changed to weby
-$btn-primary-bg:                      $weby-red !default;
-//$btnPrimaryBackgroundHighlight:     lighten($weby-red, 15%) !default;
-$btn-info-bg:                         #2f96b4 !default;
-//$btnInfoBackgroundHighlight:        #5bc0de !default;
-$btn-success-border:                  #62c462 !default;
-//$btnSuccessBackgroundHighlight:     lighten(#62c462, 10%) !default;
-//$btn-warning-color:                   $orange !default;
-//$btnWarningBackgroundHighlight:     lighten(//$orange, 15%) !default;
+$btn-primary-bg:                      #005088 !default;
+$btn-primary-border:                  #005088 !default;
+$btn-primary-color:                   #ffffff !default;
 
-// NOTE: changed to weby
-//$btn-danger-border:                   red !default;
-//$btnDangerBackgroundHighlight:      lighten(red, 15%) !default;
+$btn-success-bg:                      #16a34a !default;
+$btn-success-border:                  #16a34a !default;
+$btn-success-color:                   #ffffff !default;
 
-// NOTE: changed to weby
-// //$btnInverseBackground:             #444 !default;
-// //$btnInverseBackgroundHighlight:    //$grayDarker !default;
-//$btnInverseBackground:                  $black !default;
-//$btnInverseBackgroundHighlight:       #444 !default;
+$btn-info-bg:                         #0284c7 !default;
+$btn-info-border:                     #0284c7 !default;
+$btn-info-color:                      #ffffff !default;
+
+$btn-warning-bg:                      #d97706 !default;
+$btn-warning-border:                  #d97706 !default;
+$btn-warning-color:                   #ffffff !default;
+
+$btn-danger-bg:                       #dc2626 !default;
+$btn-danger-border:                   #dc2626 !default;
+$btn-danger-color:                    #ffffff !default;
 
 //Brands
-$brand-primary:  $weby-blue;
-$brand-danger:   $weby-red;
+$brand-primary:  #005088 !default;
+$brand-success:  #16a34a !default;
+$brand-info:     #0284c7 !default;
+$brand-warning:  #d97706 !default;
+$brand-danger:   #dc2626 !default;
 
 // Forms
 // -------------------------
-//$inputBackground:               //$white !default;
-//$inputBorder:                   #ccc !default;
-//$inputBorderRadius:             //$baseBorderRadius !default;
-//$inputDisabledBackground:       //$grayLighter !default;
-//$formActionsBackground:         #f5f5f5 !default;
-//$inputHeight:                   //$baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
+$input-bg:               #ffffff !default;
+$input-border:           #cbd5e1 !default;
+$input-border-radius:    $border-radius-base !default;
+$input-color:            #334155 !default;
+$input-color-placeholder:#94a3b8 !default;
 
 
 // Dropdowns
 // -------------------------
-//$dropdownBackground:            //$white !default;
-//$dropdownBorder:                rgba(0,0,0,.2) !default;
+$dropdown-bg:            #ffffff !default;
+$dropdown-border:        #e2e8f0 !default;
 //$dropdownDividerTop:            #e5e5e5 !default;
 //$dropdownDividerBottom:         //$white !default;
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tag %>
     <%= favicon_link_tag asset_url('favicon.ico') %>
-    <title>weby</title>
+    <title>Weby | UFG - Acesso</title>
     <%= stylesheet_link_tag 'weby_sessions' %>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,47 +18,68 @@
       <meta name="storage" content="<%= "#{ENV['STORAGE_HOST']}/#{ENV['STORAGE_BUCKET']}" %>">
     <% end %>
   </head>
-  <body>
-    <div class="container-fluid">
+  <body class="ufg-session-body">
+    <div class="session-wrapper">
       <div class="inside">
-        <div class="logo">
-          <%= link_to image_tag('weby-logo-60.png'), main_app.root_url(subdomain: nil, protocol: 'http') %>
-        </div>
-
-        <div class="box">
-          <nav class="locales-nav pull-right">
-            <% admin_locales.each do |locale| %>
-              <%= link_to flag(locale), {locale: locale.name} %>
-            <% end %>
-          </nav>
-
-          <ul class="sessions-pills nav nav-pills">
-            <li<%= ' class=active' if active_tab('login').present? %>>
-              <% if active_tab('login').present? || active_tab('signup').present? %>
-                <%= link_to t('.login'), '#login', 'data-toggle' => 'tab' %>
-              <% else %>
-                <%= link_to t('.login'), login_path %>
-              <% end %>
-            </li>
-            <li<%= ' class=active' if active_tab('signup').present? %>>
-              <% if active_tab('login').present? || active_tab('signup').present? %>
-                <%= link_to t('.register'), '#signup', 'data-toggle' => 'tab' %>
-              <% else %>
-                <%= link_to t('.register'), signup_path %>
-              <% end %>
-            </li>
-          </ul>
-          <%= flash_message %>
-          <%= yield %>
-        </div>
-        <nav class="help-nav">
-          <% if Weby::Settings::Cafe.login_host.present? %>
-            <%= link_to image_tag('cafe-logo.png'), user_omniauth_authorize_path(:shibboleth), class: 'cafe-logo' %>
+        <div class="session-brand">
+          <%= link_to main_app.root_url(subdomain: nil, protocol: 'http'), title: 'Weby - UFG' do %>
+            <%= image_tag('weby-logo-60.png', class: 'session-logo-img', alt: 'Weby UFG') %>
           <% end %>
-          <li><%= link_to t('.confirmation'), new_user_confirmation_path %></li>
-          <li><%= link_to t('.unlock'), new_user_unlock_path %></li>
-          <li><%= link_to t('.sites'), root_url(subdomain: nil, protocol: 'http') %></li>
-          <li><%= link_to(t('.help'), current_settings.help_site, target: '_blank') if current_settings.help_site %></li>
+          <div class="session-subtitle">Universidade Federal de Goiás</div>
+        </div>
+
+        <div class="session-card">
+          <div class="session-card-header">
+            <nav class="locales-nav pull-right">
+              <% admin_locales.each do |locale| %>
+                <%= link_to flag(locale), {locale: locale.name}, class: 'locale-flag-link' %>
+              <% end %>
+            </nav>
+
+            <ul class="sessions-pills nav nav-tabs ufg-tabs">
+              <li<%= ' class=active' if active_tab('login').present? %>>
+                <% if active_tab('login').present? || active_tab('signup').present? %>
+                  <%= link_to t('.login'), '#login', 'data-toggle' => 'tab' %>
+                <% else %>
+                  <%= link_to t('.login'), login_path %>
+                <% end %>
+              </li>
+              <li<%= ' class=active' if active_tab('signup').present? %>>
+                <% if active_tab('login').present? || active_tab('signup').present? %>
+                  <%= link_to t('.register'), '#signup', 'data-toggle' => 'tab' %>
+                <% else %>
+                  <%= link_to t('.register'), signup_path %>
+                <% end %>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="session-card-body">
+            <%= flash_message %>
+            <%= yield %>
+          </div>
+
+          <% if Weby::Settings::Cafe.login_host.present? %>
+            <div class="cafe-federation-box">
+              <span class="cafe-text"><%= t('.cafe_login', default: 'Acesso Federado CAFe') %></span>
+              <%= link_to image_tag('cafe-logo.png', alt: 'Comunidade Acadêmica Federada'), user_omniauth_authorize_path(:shibboleth), class: 'btn btn-cafe-auth' %>
+            </div>
+          <% end %>
+        </div>
+
+        <nav class="help-nav-modern">
+          <ul class="help-links">
+            <li><%= link_to t('.confirmation'), new_user_confirmation_path %></li>
+            <li>•</li>
+            <li><%= link_to t('.unlock'), new_user_unlock_path %></li>
+            <li>•</li>
+            <li><%= link_to t('.sites'), root_url(subdomain: nil, protocol: 'http') %></li>
+            <% if current_settings.help_site %>
+              <li>•</li>
+              <li><%= link_to t('.help'), current_settings.help_site, target: '_blank' %></li>
+            <% end %>
+          </ul>
         </nav>
       </div>
     </div>

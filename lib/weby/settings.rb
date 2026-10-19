@@ -25,7 +25,9 @@ module Weby
       @@default_settings.each do |key, _value|
         class_eval <<-METHOD
           def #{name.classify}.#{key}(value_only=true)
-            @settings ||= Setting.all
+            @settings ||= Rails.cache.fetch('weby:settings:all', expires_in: 1.day) do
+              Setting.all.to_a
+            end
             sett = @settings.select{|setting| setting.name == "#{key}" }.first || Setting.new({name: '#{key}', value: @@default_settings['#{key}']['value'], group: '#{name}'})
             sett.default_value = @@default_settings['#{key}']['value']
             value_only ? sett.value : sett

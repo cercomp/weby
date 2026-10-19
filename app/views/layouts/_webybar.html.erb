@@ -1,34 +1,43 @@
 <% if current_user %>
-  <div id="webybar">
-    <%= link_to main_app.root_url(subdomain: nil), class: 'pull-left logo', title: t('.sites') do %>
-      <%= image_tag 'weby-navbar.png', alt: t('.weby_logo') %>
-    <% end %>
-
-    <div class="nav pull-left">
-      <%= link_to t(".dashboard"), main_app.site_admin_path, class: 'pull-left', title: t('.admin_area') if current_user.has_role_in?(current_site) %>
-      <%= link_to "#{t(".help")} #{icon('new-window', glyph: true)}".html_safe, current_settings.help_site, target: '_blank', class: 'pull-left', title: t('.help_site') if current_settings.help_site %>
-    </div>
-    <div class="user pull-right">
-      <%= link_to main_app.profile_url(current_user.login, subdomain: current_site), class: 'user-avatar', title: t('.user_profile'), data: {pref: set_preferences_site_admin_users_path} do %>
-        <%= image_tag "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email)}?s=42&d=mm", class: 'pull-right', alt: t('.user_avatar') %>
-      <% end %>
-      <div class="info pull-right">
-        <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site), title: t('.user_profile') %>
-        <br/>
-        <% if current_user.is_admin? %>
-          <%= link_to icon(:cog, glyph: true), main_app.site_admin_url(subdomain: nil), class: 'label label-default', title: t('.weby_admin') %>
+  <div id="webybar" class="ufg-webybar">
+    <div class="webybar-container">
+      <div class="webybar-left">
+        <%= link_to main_app.root_url(subdomain: nil), class: 'logo', title: t('.sites') do %>
+          <%= image_tag 'weby-navbar.png', alt: t('.weby_logo') %>
         <% end %>
-        <%= notifications_icon %>
-        <%= link_to icon(:off, glyph: true), main_app.logout_path(back_url: main_app.site_path), method:
-          :delete, class: 'label label-danger', title: t('.logout') %>
+
+        <nav class="nav">
+          <%= link_to main_app.site_admin_path, class: 'nav-link btn-admin-dash', title: t('.admin_area') do %>
+            <i class="fa fa-tachometer" aria-hidden="true"></i> <%= t(".dashboard") %>
+          <% end if current_user.has_role_in?(current_site) %>
+          <%= link_to current_settings.help_site, target: '_blank', class: 'nav-link', title: t('.help_site') do %>
+            <i class="fa fa-question-circle" aria-hidden="true"></i> <%= t(".help") %>
+          <% end if current_settings.help_site %>
+        </nav>
+      </div>
+
+      <div class="user">
+        <div class="info">
+          <%= link_to current_user.first_name, main_app.profile_url(current_user.login, subdomain: current_site), class: 'user-name', title: t('.user_profile') %>
+          <div class="user-actions">
+            <% if current_user.is_admin? %>
+              <%= link_to fa_icon('cogs'), main_app.site_admin_url(subdomain: nil), class: 'label label-ufg-admin', title: t('.weby_admin') %>
+            <% end %>
+            <%= notifications_icon %>
+            <%= link_to fa_icon('sign-out'), main_app.logout_path(back_url: main_app.site_path), method: :delete, class: 'label label-danger', title: t('.logout') %>
+          </div>
+        </div>
+        <%= link_to main_app.profile_url(current_user.login, subdomain: current_site), class: 'user-avatar', title: t('.user_profile'), data: {pref: set_preferences_site_admin_users_path} do %>
+          <%= image_tag "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email)}?s=36&d=mm", class: 'img-circle', alt: t('.user_avatar') %>
+        <% end %>
       </div>
     </div>
-    <div class="clearfix"></div>
   </div>
   <%# Flash message for site front end %>
   <% unless flash.empty? %>
     <%= raw flash_message %>
   <% end %>
 <% else %>
-  <%= link_to image_tag('weby-shortcut.png'), weby_login_url(request.url), id: 'weby_shortcut', title: t('.login') %>
+  <%= link_to image_tag('weby-shortcut.png'), weby_login_url(request.url), id: 'weby_shortcut', class: 'ufg-shortcut', title: t('.login') %>
 <% end %>
+
