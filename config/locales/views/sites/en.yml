@@ -53,6 +53,12 @@ en:
       name: "Name"
       no-site-found: "Not in any site."
       dashboard: " Dashboard "
+    site:
+      see_all: "See all"
+      visit_site: "Visit portal"
+      dashboard: "Dashboard"
+      no_description: "No description available."
+      no_news: "No recent news published."
     edit:
       sites: " Sites "
       settings: " Settings "

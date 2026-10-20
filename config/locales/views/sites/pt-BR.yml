@@ -57,6 +57,10 @@ pt-BR:
       dashboard: " Administração "
     site:
       see_all: "Ver todas"
+      visit_site: "Acessar portal"
+      dashboard: "Administração"
+      no_description: "Sem descrição cadastrada."
+      no_news: "Nenhuma notícia publicada recentemente."
     edit:
       sites: " Sites "
       settings: " Configurações "
