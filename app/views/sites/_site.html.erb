@@ -1,7 +1,7 @@
 <div class="thumbnail portal-card">
   <div class="portal-card-header">
     <div class="portal-avatar">
-      <%= site_avatar_tag site, 44 %>
+      <%= site_avatar_tag site, 48 %>
     </div>
     <div class="portal-title-wrapper" title="<%= site.description.presence || site.title %>">
       <h3 class="portal-title"><%= link_to site.title, site_url(subdomain: site) %></h3>
@@ -26,74 +26,65 @@
     %>
     <% if news_items.empty? %>
       <div class="portal-no-news">
+        <div class="portal-empty-banner">
+          <i class="glyphicon glyphicon-globe"></i>
+        </div>
         <% if site.description.present? %>
           <p class="portal-site-desc"><%= site.description %></p>
         <% else %>
           <p class="portal-site-desc text-muted"><%= t('.no_description') %></p>
         <% end %>
-        <div class="portal-empty-hint">
-          <%= icon('bullhorn') %> <%= t('.no_news') %>
-        </div>
-      </div>
-    <% elsif news_items.size == 1 %>
-      <% item = news_items.first %>
-      <div class="portal-single-story">
-        <div class="portal-single-image">
-          <%= news_image(item.image, :m, 300, 135, {as: "link", url: news_url(item, subdomain: item.site), image_class: 'portal-banner-img'}) %>
-        </div>
-        <div class="portal-single-content">
-          <h4 class="portal-news-title">
-            <%= link_to item.title, news_url(item, subdomain: item.site) %>
-          </h4>
-          <span class="portal-news-date">
-            <%= icon('calendar') %> <%= l(item.updated_at, format: :short) %>
-          </span>
-        </div>
+        <span class="portal-empty-hint">
+          <i class="glyphicon glyphicon-info-sign"></i> <%= t('.no_news') %>
+        </span>
       </div>
     <% else %>
       <% lead_news = news_items.first %>
       <% other_news = news_items[1..-1] %>
 
-      <div class="portal-stories-group">
-        <div class="portal-lead-story">
-          <div class="portal-lead-thumb">
-            <%= news_image(lead_news.image, :t, 76, 62, {as: "link", url: news_url(lead_news, subdomain: lead_news.site), image_class: 'portal-lead-img'}) %>
-          </div>
-          <div class="portal-lead-info">
-            <h4 class="portal-lead-title">
-              <%= link_to lead_news.title, news_url(lead_news, subdomain: lead_news.site) %>
-            </h4>
-            <span class="portal-news-date">
-              <%= icon('calendar') %> <%= l(lead_news.updated_at, format: :short) %>
-            </span>
-          </div>
+      <div class="portal-hero-news">
+        <div class="portal-hero-media">
+          <%= news_image(lead_news.image, :m, 360, 145, {as: "link", url: news_url(lead_news, subdomain: lead_news.site), image_class: 'portal-banner-img'}) %>
         </div>
+        <h4 class="portal-lead-title">
+          <%= link_to lead_news.title, news_url(lead_news, subdomain: lead_news.site) %>
+        </h4>
+        <div class="portal-news-date">
+          <i class="glyphicon glyphicon-calendar"></i> <%= l(lead_news.updated_at, format: :short) %>
+        </div>
+      </div>
 
+      <% if other_news.any? %>
+        <div class="portal-feed-header">
+          <span><%= t('.latest_news') %></span>
+        </div>
         <div class="portal-news-list">
           <% other_news.each do |news| %>
             <div class="portal-news-item">
-              <span class="portal-bullet">&bull;</span>
+              <i class="glyphicon glyphicon-chevron-right portal-item-bullet"></i>
               <div class="portal-item-content">
                 <div class="portal-item-title">
                   <%= link_to news.title, news_url(news, subdomain: news.site) %>
                 </div>
-                <span class="portal-news-date"><%= l(news.updated_at, format: :short) %></span>
+                <span class="portal-item-date"><%= l(news.updated_at, format: :short) %></span>
               </div>
             </div>
           <% end %>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 
   <div class="portal-card-footer">
-    <%= link_to site_url(subdomain: site), class: 'portal-footer-link' do %>
-      <%= t('.visit_site') %> <%= icon('chevron-right') %>
-    <% end %>
-    <% if news_items.any? %>
+    <% if news_items.size > 1 %>
       <%= link_to news_index_url(subdomain: site), class: 'portal-footer-more', title: t('.see_all') do %>
-        <%= t('.see_all') %>
+        <%= t('.see_all') %> &rsaquo;
       <% end %>
+    <% else %>
+      <span></span>
+    <% end %>
+    <%= link_to site_url(subdomain: site), class: 'btn-portal-access' do %>
+      <%= t('.visit_site') %> <i class="glyphicon glyphicon-arrow-right"></i>
     <% end %>
   </div>
 </div>

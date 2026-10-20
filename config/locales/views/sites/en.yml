@@ -59,6 +59,7 @@ en:
       dashboard: "Dashboard"
       no_description: "No description available."
       no_news: "No recent news published."
+      latest_news: "More news"
     edit:
       sites: " Sites "
       settings: " Settings "
