@@ -1,10 +1,15 @@
 <div class="thumbnail portal-card">
+  <!-- Top Brand Accent Ribbon -->
+  <div class="portal-card-accent"></div>
+
+  <!-- Header -->
   <div class="portal-card-header">
     <div class="portal-avatar">
-      <%= site_avatar_tag site, 48 %>
+      <%= site_avatar_tag site, 52 %>
     </div>
     <div class="portal-title-wrapper" title="<%= site.description.presence || site.title %>">
       <h3 class="portal-title"><%= link_to site.title, site_url(subdomain: site) %></h3>
+      <span class="portal-badge-status"><i class="glyphicon glyphicon-ok-sign"></i> Portal Ativo</span>
     </div>
     <div class="portal-actions">
       <% if current_user && current_user.is_admin? %>
@@ -14,6 +19,7 @@
     </div>
   </div>
 
+  <!-- Body -->
   <div class="caption portal-card-body">
     <%
       news_sites = Journal::NewsSite.where(site_id: site.id)
@@ -26,7 +32,7 @@
     %>
     <% if news_items.empty? %>
       <div class="portal-no-news">
-        <div class="portal-empty-banner">
+        <div class="portal-empty-icon">
           <i class="glyphicon glyphicon-globe"></i>
         </div>
         <% if site.description.present? %>
@@ -34,9 +40,9 @@
         <% else %>
           <p class="portal-site-desc text-muted"><%= t('.no_description') %></p>
         <% end %>
-        <span class="portal-empty-hint">
+        <div class="portal-empty-hint">
           <i class="glyphicon glyphicon-info-sign"></i> <%= t('.no_news') %>
-        </span>
+        </div>
       </div>
     <% else %>
       <% lead_news = news_items.first %>
@@ -44,7 +50,16 @@
 
       <div class="portal-hero-news">
         <div class="portal-hero-media">
-          <%= news_image(lead_news.image, :m, 360, 145, {as: "link", url: news_url(lead_news, subdomain: lead_news.site), image_class: 'portal-banner-img'}) %>
+          <% if lead_news.image.present? %>
+            <%= news_image(lead_news.image, :m, 360, 155, {as: "link", url: news_url(lead_news, subdomain: lead_news.site), image_class: 'portal-banner-img'}) %>
+          <% else %>
+            <%= link_to news_url(lead_news, subdomain: lead_news.site), class: 'portal-banner-fallback' do %>
+              <div class="portal-fallback-content">
+                <i class="glyphicon glyphicon-bullhorn"></i>
+                <span>Destaque Institucional</span>
+              </div>
+            <% end %>
+          <% end %>
         </div>
         <h4 class="portal-lead-title">
           <%= link_to lead_news.title, news_url(lead_news, subdomain: lead_news.site) %>
@@ -75,6 +90,7 @@
     <% end %>
   </div>
 
+  <!-- Footer -->
   <div class="portal-card-footer">
     <% if news_items.size > 1 %>
       <%= link_to news_index_url(subdomain: site), class: 'portal-footer-more', title: t('.see_all') do %>
@@ -83,8 +99,8 @@
     <% else %>
       <span></span>
     <% end %>
-    <%= link_to site_url(subdomain: site), class: 'btn-portal-access' do %>
-      <%= t('.visit_site') %> <i class="glyphicon glyphicon-arrow-right"></i>
+    <%= link_to site_url(subdomain: site), class: 'btn btn-portal-cta' do %>
+      <%= t('.visit_site') %> <i class="glyphicon glyphicon-chevron-right"></i>
     <% end %>
   </div>
 </div>
