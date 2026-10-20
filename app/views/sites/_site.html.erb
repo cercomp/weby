@@ -1,35 +1,99 @@
-<div class="thumbnail">
-  <div class="thumbnail-header" title="<%= site.description %>">
-    <%= site_avatar_tag site, 60 %>
-    <span><%= link_to site.title, site_url(subdomain: site) %></span>
-    <small><%= link_to icon('cog'), site_admin_url(subdomain: site), class: 'pull-right' if current_user && current_user.is_admin? %></small>
+<div class="thumbnail portal-card">
+  <div class="portal-card-header">
+    <div class="portal-avatar">
+      <%= site_avatar_tag site, 44 %>
+    </div>
+    <div class="portal-title-wrapper" title="<%= site.description.presence || site.title %>">
+      <h3 class="portal-title"><%= link_to site.title, site_url(subdomain: site) %></h3>
+    </div>
+    <div class="portal-actions">
+      <% if current_user && current_user.is_admin? %>
+        <%= link_to icon('cog'), site_admin_url(subdomain: site), class: 'portal-icon-action', title: t('.dashboard') %>
+      <% end %>
+      <%= link_to icon('new-window'), site_url(subdomain: site), class: 'portal-icon-action', title: t('.visit_site') %>
+    </div>
   </div>
-  <div class="caption">
-    <% newslist = Journal::NewsSite.where(site_id: site.id).preload(news: [:i18ns, :site]).published.order('updated_at desc').front.first(4) %>
-      <% top_news = newslist.shift.news if newslist.any? %>
-    <% if top_news %>
-      <div class="top-news col-md-6">
-        <%= news_image(top_news.image, :t, 140, nil, {as: "link", url: news_url(top_news, subdomain: top_news.site)}) %>
-        <div><%= link_to top_news.title, news_url(top_news, subdomain: top_news.site) %></div>
-        <span class="date"><%= l(top_news.updated_at, format: :short) %></span>
-      </div>
-      <div class="news col-md-6">
-        <% newslist.each do |news_site| %>
-          <% news = news_site.news %>
-          <% if news %>
-            <div>
-              <%= news_image(news.image, :t, 60, nil, {as: "link", url: news_url(news, subdomain: news.site)}) %>
-              <div><%= link_to news.title, news_url(news, subdomain: news.site) %></div>
-              <span class="date"><%= l(news.updated_at, format: :short) %></span>
-            </div>
-          <% end %>
+
+  <div class="caption portal-card-body">
+    <%
+      news_sites = Journal::NewsSite.where(site_id: site.id)
+                     .preload(news: [:i18ns, :site, :image])
+                     .published
+                     .order('updated_at desc')
+                     .front
+                     .first(4)
+      news_items = news_sites.map(&:news).compact
+    %>
+    <% if news_items.empty? %>
+      <div class="portal-no-news">
+        <% if site.description.present? %>
+          <p class="portal-site-desc"><%= site.description %></p>
+        <% else %>
+          <p class="portal-site-desc text-muted"><%= t('.no_description') %></p>
         <% end %>
+        <div class="portal-empty-hint">
+          <%= icon('bullhorn') %> <%= t('.no_news') %>
+        </div>
+      </div>
+    <% elsif news_items.size == 1 %>
+      <% item = news_items.first %>
+      <div class="portal-single-story">
+        <div class="portal-single-image">
+          <%= news_image(item.image, :m, 300, 135, {as: "link", url: news_url(item, subdomain: item.site), image_class: 'portal-banner-img'}) %>
+        </div>
+        <div class="portal-single-content">
+          <h4 class="portal-news-title">
+            <%= link_to item.title, news_url(item, subdomain: item.site) %>
+          </h4>
+          <span class="portal-news-date">
+            <%= icon('calendar') %> <%= l(item.updated_at, format: :short) %>
+          </span>
+        </div>
       </div>
     <% else %>
-      <div>
-        <%= site.description %>
+      <% lead_news = news_items.first %>
+      <% other_news = news_items[1..-1] %>
+
+      <div class="portal-stories-group">
+        <div class="portal-lead-story">
+          <div class="portal-lead-thumb">
+            <%= news_image(lead_news.image, :t, 76, 62, {as: "link", url: news_url(lead_news, subdomain: lead_news.site), image_class: 'portal-lead-img'}) %>
+          </div>
+          <div class="portal-lead-info">
+            <h4 class="portal-lead-title">
+              <%= link_to lead_news.title, news_url(lead_news, subdomain: lead_news.site) %>
+            </h4>
+            <span class="portal-news-date">
+              <%= icon('calendar') %> <%= l(lead_news.updated_at, format: :short) %>
+            </span>
+          </div>
+        </div>
+
+        <div class="portal-news-list">
+          <% other_news.each do |news| %>
+            <div class="portal-news-item">
+              <span class="portal-bullet">&bull;</span>
+              <div class="portal-item-content">
+                <div class="portal-item-title">
+                  <%= link_to news.title, news_url(news, subdomain: news.site) %>
+                </div>
+                <span class="portal-news-date"><%= l(news.updated_at, format: :short) %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
-  <%= link_to '...', news_index_url(subdomain: site), class: 'pull-right footer-link', title: t('.see_all') %>
+
+  <div class="portal-card-footer">
+    <%= link_to site_url(subdomain: site), class: 'portal-footer-link' do %>
+      <%= t('.visit_site') %> <%= icon('chevron-right') %>
+    <% end %>
+    <% if news_items.any? %>
+      <%= link_to news_index_url(subdomain: site), class: 'portal-footer-more', title: t('.see_all') do %>
+        <%= t('.see_all') %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
