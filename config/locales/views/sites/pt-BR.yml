@@ -61,6 +61,7 @@ pt-BR:
       dashboard: "Administração"
       no_description: "Sem descrição cadastrada."
       no_news: "Nenhuma notícia publicada recentemente."
+      latest_news: "Mais notícias"
     edit:
       sites: " Sites "
       settings: " Configurações "

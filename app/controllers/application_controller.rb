@@ -233,6 +233,7 @@ class ApplicationController < ActionController::Base
 
   # Verify external site
   def self.is_external_site?(request)
+    return false if ['localhost', '127.0.0.1'].include?(request.host)
     return Weby::Settings::Weby.domain.present? && !request.host.include?(Weby::Settings::Weby.domain)
   end
 

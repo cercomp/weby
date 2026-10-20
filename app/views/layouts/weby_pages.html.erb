@@ -8,6 +8,10 @@
     <%= favicon_link_tag asset_url('favicon.ico') %>
     <title>Weby | UFG<%= " - #{yield :title}" if content_for?(:title) %></title>
     <%= stylesheet_link_tag 'weby_pages' %>
+    <% if Rails.env.development? %>
+      <link rel="stylesheet" media="screen" href="/assets/weby_pages.css?v=<%= Time.current.to_i %>" />
+    <% end %>
+    <%= yield :stylesheets %>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -171,7 +171,7 @@ body {
   .site-thumbnail {
     display: flex;
     flex-direction: column;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
   }
 
   .portal-card,
@@ -180,21 +180,28 @@ body {
     flex-direction: column;
     flex: 1 0 auto;
     width: 100%;
-    min-height: 340px;
+    min-height: 440px;
     height: auto;
-    border-radius: 10px;
+    border-radius: 14px;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
     background: #ffffff;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    padding: 14px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+    padding: 0;
     margin-bottom: 0;
     position: relative;
+    overflow: hidden;
+
+    .portal-card-accent {
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, #005088 0%, #0284c7 100%);
+    }
 
     &:hover {
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      border-color: #cbd5e1;
-      transform: translateY(-2px);
+      box-shadow: 0 18px 36px -8px rgba(0, 80, 136, 0.2), 0 8px 16px -2px rgba(15, 23, 42, 0.08);
+      border-color: #93c5fd;
+      transform: translateY(-5px);
     }
   }
 
@@ -202,30 +209,31 @@ body {
   .portal-card-header {
     display: flex;
     align-items: center;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #f1f5f9;
+    padding: 18px 20px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
 
     .portal-avatar {
       flex-shrink: 0;
-      width: 44px;
-      height: 44px;
-      margin-right: 12px;
+      width: 52px;
+      height: 52px;
+      margin-right: 14px;
 
       a {
         display: block;
-        width: 44px;
-        height: 44px;
+        width: 52px;
+        height: 52px;
       }
 
       img {
-        width: 44px !important;
-        height: 44px !important;
+        width: 52px !important;
+        height: 52px !important;
         margin: 0 !important;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0;
-        background-color: #f8fafc;
+        border-radius: 12px;
+        border: 1px solid #cbd5e1;
+        background-color: #ffffff;
         object-fit: cover;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
       }
     }
 
@@ -235,16 +243,17 @@ body {
 
       .portal-title {
         margin: 0;
-        font-size: 15px;
+        font-size: 20px;
         font-weight: 700;
-        line-height: 1.3;
+        line-height: 1.25;
+        letter-spacing: -0.3px;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
 
         a {
-          color: #1e293b;
+          color: #0f2942;
           text-decoration: none;
           transition: color 0.15s ease;
 
@@ -253,30 +262,49 @@ body {
           }
         }
       }
+
+      .portal-badge-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #059669;
+        margin-top: 4px;
+
+        .glyphicon {
+          font-size: 11px;
+        }
+      }
     }
 
     .portal-actions {
       flex-shrink: 0;
       display: flex;
       align-items: center;
-      margin-left: 8px;
+      margin-left: 10px;
 
       .portal-icon-action {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        color: #64748b;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 28px;
-        height: 28px;
-        border-radius: 6px;
-        color: #64748b;
-        font-size: 13px;
-        margin-left: 4px;
+        font-size: 14px;
+        margin-left: 6px;
         text-decoration: none;
-        transition: background-color 0.15s ease, color 0.15s ease;
+        transition: all 0.2s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 
         &:hover {
-          background-color: #f1f5f9;
-          color: #005088;
+          background: #005088;
+          color: #ffffff;
+          border-color: #005088;
+          box-shadow: 0 3px 8px rgba(0, 80, 136, 0.35);
         }
       }
     }
@@ -288,7 +316,7 @@ body {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    padding: 0;
+    padding: 20px;
   }
 
   // State: No News
@@ -299,13 +327,26 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px 10px;
+    padding: 28px 14px;
+
+    .portal-empty-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      color: #005088;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
 
     .portal-site-desc {
-      font-size: 13px;
-      color: #475569;
-      line-height: 1.5;
-      margin-bottom: 14px;
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.6;
+      margin-bottom: 18px;
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
@@ -313,35 +354,36 @@ body {
     }
 
     .portal-empty-hint {
-      font-size: 12px;
-      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748b;
       background-color: #f8fafc;
-      border: 1px dashed #e2e8f0;
-      border-radius: 6px;
-      padding: 8px 12px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 10px 16px;
       display: inline-flex;
       align-items: center;
 
       .glyphicon {
-        font-size: 12px;
+        font-size: 14px;
         margin-right: 6px;
+        color: #94a3b8;
       }
     }
   }
 
-  // State: Single Story Banner
-  .portal-single-story {
-    flex: 1 1 auto;
+  // Hero Lead News
+  .portal-hero-news {
     display: flex;
     flex-direction: column;
 
-    .portal-single-image {
+    .portal-hero-media {
       width: 100%;
-      height: 135px;
-      border-radius: 6px;
+      height: 155px;
+      border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 10px;
-      background-color: #f8fafc;
+      margin-bottom: 14px;
+      background: #f1f5f9;
       border: 1px solid #e2e8f0;
 
       a {
@@ -352,171 +394,171 @@ body {
 
       img, .portal-banner-img {
         width: 100% !important;
-        height: 135px !important;
+        height: 155px !important;
         margin: 0 !important;
-        object-fit: cover;
-        transition: transform 0.25s ease;
+        object-fit: cover !important;
+        transition: transform 0.3s ease;
       }
 
       &:hover img {
-        transform: scale(1.02);
+        transform: scale(1.03);
+      }
+
+      .portal-banner-fallback {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #005088 0%, #0284c7 100%);
+        color: #ffffff;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+          opacity: 0.95;
+        }
+
+        .portal-fallback-content {
+          text-align: center;
+
+          .glyphicon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 6px;
+            opacity: 0.9;
+          }
+
+          span {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            opacity: 0.95;
+          }
+        }
       }
     }
 
-    .portal-single-content {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
+    .portal-lead-title {
+      margin: 0 0 6px 0;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
 
-      .portal-news-title {
-        margin: 0 0 6px 0;
-        font-size: 13.5px;
-        font-weight: 600;
-        line-height: 1.4;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+      a {
+        color: #0f172a;
+        text-decoration: none;
+        transition: color 0.15s ease;
 
-        a {
-          color: #1e293b;
-          text-decoration: none;
-          &:hover { color: #005088; }
+        &:hover {
+          color: #005088;
         }
       }
+    }
 
-      .portal-news-date {
-        margin-top: auto;
-        font-size: 11px;
+    .portal-news-date {
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748b;
+      display: inline-flex;
+      align-items: center;
+
+      .glyphicon {
+        font-size: 12px;
         color: #94a3b8;
-
-        .glyphicon {
-          font-size: 10px;
-          margin-right: 3px;
-        }
+        margin-right: 5px;
       }
     }
   }
 
-  // State: Multiple Stories (Lead + List)
-  .portal-stories-group {
+  // Feed Header & Secondary News List
+  .portal-feed-header {
+    display: flex;
+    align-items: center;
+    margin: 18px 0 10px 0;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #94a3b8;
+
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+      margin-left: 10px;
+    }
+  }
+
+  .portal-news-list {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+    gap: 6px;
 
-    .portal-lead-story {
+    .portal-news-item {
       display: flex;
       align-items: flex-start;
-      padding-bottom: 10px;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #f1f5f9;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+      text-decoration: none;
 
-      .portal-lead-thumb {
-        flex-shrink: 0;
-        width: 76px;
-        height: 62px;
-        border-radius: 6px;
-        overflow: hidden;
-        margin-right: 12px;
-        background-color: #f8fafc;
-        border: 1px solid #e2e8f0;
+      &:hover {
+        background-color: #eff6ff;
 
-        a {
-          display: block;
-          width: 100%;
-          height: 100%;
+        .portal-item-title a {
+          color: #005088;
         }
 
-        img, .portal-lead-img {
-          width: 76px !important;
-          height: 62px !important;
-          margin: 0 !important;
-          object-fit: cover;
+        .portal-item-bullet {
+          transform: translateX(2px);
+          color: #005088;
         }
       }
 
-      .portal-lead-info {
+      .portal-item-bullet {
+        flex-shrink: 0;
+        font-size: 13px;
+        color: #005088;
+        margin-right: 10px;
+        margin-top: 3px;
+        transition: transform 0.15s ease;
+      }
+
+      .portal-item-content {
         flex: 1 1 auto;
         min-width: 0;
 
-        .portal-lead-title {
-          margin: 0 0 4px 0;
-          font-size: 13px;
+        .portal-item-title {
+          font-size: 15px;
           font-weight: 600;
-          line-height: 1.35;
+          line-height: 1.4;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+          margin-bottom: 3px;
 
           a {
-            color: #1e293b;
+            color: #334155;
             text-decoration: none;
-            &:hover { color: #005088; }
+            transition: color 0.15s ease;
           }
         }
 
-        .portal-news-date {
-          font-size: 11px;
+        .portal-item-date {
+          display: block;
+          font-size: 12.5px;
           color: #94a3b8;
-
-          .glyphicon {
-            font-size: 10px;
-            margin-right: 3px;
-          }
-        }
-      }
-    }
-
-    .portal-news-list {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-
-      .portal-news-item {
-        display: flex;
-        align-items: flex-start;
-        padding: 5px 0;
-        border-bottom: 1px dotted #f1f5f9;
-
-        &:last-child {
-          border-bottom: none;
-        }
-
-        .portal-bullet {
-          flex-shrink: 0;
-          color: #005088;
-          font-size: 16px;
-          line-height: 1.1;
-          margin-right: 8px;
-        }
-
-        .portal-item-content {
-          flex: 1 1 auto;
-          min-width: 0;
-
-          .portal-item-title {
-            font-size: 12px;
-            line-height: 1.35;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 2px;
-
-            a {
-              color: #475569;
-              text-decoration: none;
-              &:hover { color: #005088; }
-            }
-          }
-
-          .portal-news-date {
-            display: block;
-            font-size: 10.5px;
-            color: #94a3b8;
-            line-height: 1;
-          }
+          line-height: 1;
         }
       }
     }
@@ -525,36 +567,16 @@ body {
   // Footer
   .portal-card-footer {
     margin-top: auto;
-    padding-top: 10px;
-    border-top: 1px solid #f1f5f9;
+    padding: 14px 20px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .portal-footer-link {
-      font-size: 12px;
-      font-weight: 600;
-      color: #005088;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-
-      .glyphicon {
-        font-size: 9px;
-        margin-left: 4px;
-        transition: transform 0.15s ease;
-      }
-
-      &:hover {
-        color: #003359;
-        .glyphicon {
-          transform: translateX(2px);
-        }
-      }
-    }
-
     .portal-footer-more {
-      font-size: 11.5px;
+      font-size: 14px;
+      font-weight: 600;
       color: #64748b;
       text-decoration: none;
       transition: color 0.15s ease;
@@ -564,10 +586,41 @@ body {
         text-decoration: underline;
       }
     }
+
+    .btn-portal-cta {
+      display: inline-flex;
+      align-items: center;
+      background: #005088;
+      color: #ffffff !important;
+      padding: 9px 22px;
+      border-radius: 25px;
+      font-size: 14.5px;
+      font-weight: 700;
+      text-decoration: none !important;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 80, 136, 0.3);
+      border: none;
+
+      .glyphicon {
+        font-size: 12px;
+        margin-left: 6px;
+        transition: transform 0.15s ease;
+      }
+
+      &:hover {
+        background: #003e6b;
+        box-shadow: 0 6px 16px rgba(0, 80, 136, 0.45);
+        transform: translateY(-2px);
+
+        .glyphicon {
+          transform: translateX(3px);
+        }
+      }
+    }
   }
 
   .btn-admin {
-    margin-top: 8px;
+    margin: 8px 14px 14px;
   }
 }
 
