@@ -8,6 +8,7 @@ variables:  # https://docs.gitlab.com/ee/ci/variables/
   CI_PROJECT_ENV: ${CI_PROJECT_NAME}_${CI_COMMIT_BRANCH}
   CI_VERSION_ENV: "latest"
   RUNNER_SCRIPT_TIMEOUT: 50m
+  # Desativa atestações padrão do buildx para compatibilidade com o registry
   BUILDX_NO_DEFAULT_ATTESTATIONS: "1"
 
 before_script:
