@@ -18,7 +18,9 @@ base:
     entrypoint: [""]
   before_script:
     - mkdir -p /kaniko/.docker
-    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+    - REG_USER="${CI_DEPLOY_USER:-$CI_REGISTRY_USER}"
+    - REG_PASS="${CI_DEPLOY_PASSWORD:-$CI_REGISTRY_PASSWORD}"
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${REG_USER}" "${REG_PASS}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
   script:
     - echo "Iniciando compilação segura da imagem base com Kaniko..."
     - /kaniko/executor
@@ -31,6 +33,7 @@ base:
         --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
         --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}"
         --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_COMMIT_SHORT_SHA}"
+        --skip-tls-verify
         --cache=true
   tags:
     - kaniko
@@ -78,7 +81,9 @@ attach-assets:
     entrypoint: [""]
   before_script:
     - mkdir -p /kaniko/.docker
-    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+    - REG_USER="${CI_DEPLOY_USER:-$CI_REGISTRY_USER}"
+    - REG_PASS="${CI_DEPLOY_PASSWORD:-$CI_REGISTRY_PASSWORD}"
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${REG_USER}" "${REG_PASS}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
   script:
     - echo "Empacotando assets finais na imagem via Kaniko..."
     - /kaniko/executor
@@ -90,6 +95,7 @@ attach-assets:
         --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
         --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}"
         --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_COMMIT_SHORT_SHA}"
+        --skip-tls-verify
         --cache=true
   needs:
     - job: precompile
