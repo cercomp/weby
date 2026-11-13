@@ -33,7 +33,7 @@ base:
         --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_COMMIT_SHORT_SHA}"
         --cache=true
   tags:
-    - docker
+    - kaniko
   only:
     - master
     - develop
