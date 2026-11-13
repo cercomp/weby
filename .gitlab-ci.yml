@@ -3,80 +3,109 @@ stages:
   - precompile
   - deploy
 
-variables:  # https://docs.gitlab.com/ee/ci/variables/
-  DOCKER_TLS_CERTDIR: ""
+variables:
   CI_PROJECT_ENV: ${CI_PROJECT_NAME}_${CI_COMMIT_BRANCH}
   CI_VERSION_ENV: "latest"
   RUNNER_SCRIPT_TIMEOUT: 50m
-  # Desativa atestações padrão do buildx para compatibilidade com o registry
-  BUILDX_NO_DEFAULT_ATTESTATIONS: "1"
 
-before_script:
-  #- echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-  #- docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
-  #- cp $ENV_FILE .env
-
+# ==============================================================================
+# 1. BUILD BASE (Kaniko - Zero-Trust: Sem dind, sem root no host, sem socket)
+# ==============================================================================
 base:
   stage: build
-  image: docker
+  image:
+    name: gcr.io/kaniko-project/executor:v1.23.2-debug
+    entrypoint: [""]
   before_script:
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-  services:
-    - docker:dind
-  environment:
-    name: $CI_COMMIT_BRANCH
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+  script:
+    - echo "Iniciando compilação segura da imagem base com Kaniko..."
+    - /kaniko/executor
+        --context "${CI_PROJECT_DIR}"
+        --dockerfile "${CI_PROJECT_DIR}/docker/Dockerfile"
+        --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
+        --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+        --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
+        --build-arg RAILS_ENV=$RAILS_ENV
+        --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
+        --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}"
+        --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_COMMIT_SHORT_SHA}"
+        --cache=true
   tags:
     - docker
   only:
     - master
     - develop
-  script:
-    ## - DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker compose --project-directory . -f docker/docker-compose.yml --env-file .env build
-    - docker build -f docker/Dockerfile
-      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
-      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
-      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
-      --build-arg RAILS_ENV=$RAILS_ENV
-      --build-arg SECRET_KEY_BASE=$SECRET_KEY_BASE
-      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
-    - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
   when: manual
 
+# ==============================================================================
+# 2. PRECOMPILAÇÃO DE ASSETS (Rails Rake isolado, sem dind)
+# ==============================================================================
 precompile:
   stage: precompile
-  image: $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
+  image: ${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}
   environment:
     name: $CI_COMMIT_BRANCH
-  services:
-    - docker:dind
   tags:
     - docker
   only:
     - master
     - develop
   script:
-    - mkdir log
+    - mkdir -p log
     ## Assets precompile
     - bundle exec rake assets:precompile --trace
     - bundle exec rake assets:clean
     ## Cleanup
     - cp public/assets/.sprockets-manifest-*.json .
     - bundle exec rake assets:clobber
-    - mkdir public/assets
+    - mkdir -p public/assets
     - cp .sprockets-manifest-*.json public/assets/
   artifacts:
     paths:
       - public/assets/
+    expire_in: 1 day
   when: manual
 
+# ==============================================================================
+# 3. ATTACH ASSETS (Kaniko - Embala os assets gerados na imagem final)
+# ==============================================================================
 attach-assets:
   stage: precompile
-  image: docker
+  image:
+    name: gcr.io/kaniko-project/executor:v1.23.2-debug
+    entrypoint: [""]
   before_script:
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-  services:
-    - docker:dind
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+  script:
+    - echo "Empacotando assets finais na imagem via Kaniko..."
+    - /kaniko/executor
+        --context "${CI_PROJECT_DIR}"
+        --dockerfile "${CI_PROJECT_DIR}/docker/Dockerfile-gitlab"
+        --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
+        --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
+        --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
+        --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
+        --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}"
+        --destination "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_COMMIT_SHORT_SHA}"
+        --cache=true
+  needs:
+    - job: precompile
+      artifacts: true
+  tags:
+    - docker
+  only:
+    - master
+    - develop
+
+# ==============================================================================
+# 4. DEPLOY SEGURO (Notificação / Pull-based)
+# ==============================================================================
+deploy:
+  stage: deploy
+  image: curlimages/curl:latest
   environment:
     name: $CI_COMMIT_BRANCH
   tags:
@@ -85,32 +114,10 @@ attach-assets:
     - master
     - develop
   script:
-    - docker build -f docker/Dockerfile-gitlab
-      --build-arg CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE
-      --build-arg CI_PROJECT_ENV=$CI_PROJECT_ENV
-      --build-arg CI_VERSION_ENV=$CI_VERSION_ENV
-      --build-arg CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
-      --tag $CI_PROJECT_ENV:$CI_VERSION_ENV .
-    - docker tag $CI_PROJECT_ENV:$CI_VERSION_ENV $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-    - docker push $CI_REGISTRY_IMAGE/$CI_PROJECT_ENV:$CI_VERSION_ENV
-  needs:
-    - job: precompile
-      artifacts: true
-
-deploy:
-  timeout: 50m
-  stage: deploy
-  environment:
-    name: $CI_COMMIT_BRANCH
-  before_script:    
-    - cp $ENV_FILE docker/.env
-  tags:
-    - runner-java
-  only:
-    - master
-    - develop
-  script:
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker -H ssh://200.137.218.139 compose -f docker/docker-compose.yml down    
-    - docker -H ssh://200.137.218.139 compose -f docker/docker-compose.yml up -d --pull always --force-recreate
+    - echo "=== Deploy Seguro ==="
+    - echo "Imagem publicada com sucesso no Registry:"
+    - echo "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}"
+    - echo "Para o deploy definitivo, a VM de destino (200.137.218.139) atualizará via Webhook."
+    # Quando o webhook na VM estiver escutando, basta descomentar a linha abaixo:
+    # - curl -f -s -X POST -H "Authorization: Bearer ${DEPLOY_TOKEN}" https://200.137.218.139:9000/hooks/deploy-weby
   when: manual
