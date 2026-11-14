@@ -57,6 +57,6 @@ COPY --from=base /usr/local/bundle/ /usr/local/bundle/
 # Env to system
 ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
 
-EXPOSE 3000:3000
+EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]

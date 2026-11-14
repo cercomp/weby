@@ -17,6 +17,6 @@ COPY ./public/assets /opt/weby/public/assets
 
 WORKDIR /opt/weby
 
-EXPOSE 3000:3000
+EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
