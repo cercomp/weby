@@ -107,7 +107,7 @@ attach-assets:
     - develop
 
 # ==============================================================================
-# 4. DEPLOY SEGURO (Disparo de Webhook com injeção segura de ENV)
+# 4. DEPLOY SEGURO (Deploy Dinâmico Pull-based via Webhook)
 # ==============================================================================
 deploy:
   stage: deploy
@@ -120,14 +120,19 @@ deploy:
     - master
     - develop
   script:
-    - echo "=== Disparando Webhook de Deploy em srv-weby-teste (200.137.218.139) ==="
+    - echo "=== Disparando Deploy Dinâmico em srv-weby-teste (200.137.218.139) ==="
+    - COMPOSE_B64=$(base64 "docker/docker-compose.yml" | tr -d '\r\n')
     - ENV_B64=$(base64 "${ENV_FILE}" | tr -d '\r\n')
     - |
       curl -f -sS -X POST \
         -H "X-Gitlab-Token: ${WEBHOOK_SECRET}" \
         -H "Content-Type: application/json" \
-        -d "{\"env_base64\":\"${ENV_B64}\",\"branch\":\"${CI_COMMIT_BRANCH}\",\"commit\":\"${CI_COMMIT_SHORT_SHA}\"}" \
-        http://200.137.218.139:9000/hooks/deploy-weby
+        -d "{
+          \"project\": \"${CI_PROJECT_NAME}\",
+          \"compose_base64\": \"${COMPOSE_B64}\",
+          \"env_base64\": \"${ENV_B64}\"
+        }" \
+        http://200.137.218.139:9000/hooks/deploy
     - echo ""
-    - echo "Deploy solicitado com sucesso! A VM de destino recebeu o .env e atualizou os contêineres."
+    - echo "Deploy solicitado com sucesso! A VM de destino recebeu o compose e .env e atualizou os contêineres."
   when: manual

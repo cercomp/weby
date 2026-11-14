@@ -2,7 +2,7 @@ version: '3.4'
 services:
   redis:
     image: redis:7-alpine
-    container_name: ${CI_PROJECT_ENV:-weby}_redis
+    container_name: ${CI_PROJECT_ENV:-weby_develop}_redis
     restart: always
     volumes:
       - redis_data:/data
@@ -10,7 +10,7 @@ services:
 
   weby:
     image: ${CI_REGISTRY_IMAGE:-registry.cercomp.ufg.br/sysadmin/weby}/${CI_PROJECT_ENV:-weby_develop}:${CI_VERSION_ENV:-latest}
-    container_name: ${CI_PROJECT_ENV}
+    container_name: ${CI_PROJECT_ENV:-weby_develop}
     restart: always
     depends_on:
       - redis
