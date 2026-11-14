@@ -9,7 +9,7 @@ services:
     command: redis-server --appendonly yes
 
   weby:
-    image: ${CI_REGISTRY_IMAGE:-registry.cercomp.ufg.br/sysadmin/weby}/${CI_PROJECT_ENV:-weby_develop}:${CI_VERSION_ENV:-latest}
+    image: ${CI_REGISTRY_IMAGE:-registry.cercomp.ufg.br/sysadmin/weby}/${CI_PROJECT_ENV:-weby_develop}:latest
     container_name: ${CI_PROJECT_ENV:-weby_develop}
     restart: always
     depends_on:
