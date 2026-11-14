@@ -107,7 +107,7 @@ attach-assets:
     - develop
 
 # ==============================================================================
-# 4. DEPLOY SEGURO (Notificação / Pull-based)
+# 4. DEPLOY SEGURO (Disparo de Webhook Pull-based)
 # ==============================================================================
 deploy:
   stage: deploy
@@ -120,10 +120,13 @@ deploy:
     - master
     - develop
   script:
-    - echo "=== Deploy Seguro ==="
-    - echo "Imagem publicada com sucesso no Registry:"
-    - echo "${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}"
-    - echo "Para o deploy definitivo, a VM de destino (200.137.218.139) atualizará via Webhook."
-    # Quando o webhook na VM estiver escutando, basta descomentar a linha abaixo:
-    # - curl -f -s -X POST -H "Authorization: Bearer ${DEPLOY_TOKEN}" https://200.137.218.139:9000/hooks/deploy-weby
+    - echo "=== Disparando Webhook de Deploy em srv-weby-teste (200.137.218.139) ==="
+    - |
+      curl -f -sS -X POST \
+        -H "X-Gitlab-Token: ${WEBHOOK_SECRET}" \
+        -H "Content-Type: application/json" \
+        -d "{\"project\":\"${CI_PROJECT_NAME}\",\"branch\":\"${CI_COMMIT_BRANCH}\",\"commit\":\"${CI_COMMIT_SHORT_SHA}\"}" \
+        http://200.137.218.139:9000/hooks/deploy-weby
+    - echo ""
+    - echo "Deploy solicitado com sucesso! A VM de destino atualizou os contêineres."
   when: manual
