@@ -1,13 +1,14 @@
 // @ts-check
 const { expect } = require('@playwright/test');
+const { ADMIN_USER, ADMIN_PASSWORD } = require('./env');
 
 /**
  * Helper to log into Weby with given credentials.
  * @param {import('@playwright/test').Page} page
- * @param {string} login
- * @param {string} password
+ * @param {string} [login]
+ * @param {string} [password]
  */
-async function loginAs(page, login = 'admin', password = 'Admin1') {
+async function loginAs(page, login = ADMIN_USER, password = ADMIN_PASSWORD) {
   await page.goto('/login');
   
   // Fill in login credentials
@@ -18,7 +19,7 @@ async function loginAs(page, login = 'admin', password = 'Admin1') {
   await page.click('form#new_user input[type="submit"]');
   
   // Wait until navigation finishes and user profile / logout link is visible
-  await expect(page.locator('a[href*="logout"], a.btn-logout, .user-actions')).toBeVisible({ timeout: 10000 });
+  await expect(page.locator('a[href*="logout"], a.btn-logout, .user-actions, .user-profile-header').first()).toBeVisible({ timeout: 10000 });
 }
 
 /**

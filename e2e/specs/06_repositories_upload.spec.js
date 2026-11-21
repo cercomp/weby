@@ -2,15 +2,17 @@
 const { test, expect } = require('@playwright/test');
 const path = require('path');
 const { loginAs } = require('../support/auth');
+const { SITE_URL } = require('../support/env');
 
 test.describe('Fluxo 6: Repositório de Arquivos e Uploads', () => {
 
   test.beforeEach(async ({ page }) => {
-    await loginAs(page, 'admin', 'Admin1');
+    await loginAs(page);
   });
 
-  test('Deve acessar a listagem de arquivos do repositório', async ({ page }) => {
-    await page.goto('http://ufg.lvh.me:3000/admin/repositories');
+  test('Deve acessar a listagem de arquivos do repositório @smoke', async ({ page }) => {
+    const response = await page.goto(`${SITE_URL}/admin/repositories`);
+    expect(response?.status()).toBe(200);
     await expect(page).toHaveTitle(/Weby/);
 
     const uploadBtn = page.locator('a[href*="/repositories/new"], .btn-primary').first();
@@ -18,7 +20,7 @@ test.describe('Fluxo 6: Repositório de Arquivos e Uploads', () => {
   });
 
   test('Deve abrir a tela de upload e enviar uma imagem com sucesso (sem spoofing)', async ({ page }) => {
-    await page.goto('http://ufg.lvh.me:3000/admin/repositories/new');
+    await page.goto(`${SITE_URL}/admin/repositories/new`);
 
     const fileInput = page.locator('input[type="file"]').first();
     await expect(fileInput).toBeAttached();

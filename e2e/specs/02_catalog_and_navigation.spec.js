@@ -1,10 +1,11 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const { loginAs } = require('../support/auth');
+const { SITE_URL } = require('../support/env');
 
 test.describe('Fluxo 2: Catálogo de Portais e Webybar', () => {
 
-  test('Deve exibir a listagem inicial do catálogo de portais', async ({ page }) => {
+  test('Deve exibir a listagem inicial do catálogo de portais @smoke', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/Weby | UFG/);
 
@@ -17,7 +18,7 @@ test.describe('Fluxo 2: Catálogo de Portais e Webybar', () => {
     expect(await portalCards.count()).toBeGreaterThan(0);
   });
 
-  test('Deve filtrar portais pelo campo de busca', async ({ page }) => {
+  test('Deve filtrar portais pelo campo de busca @smoke', async ({ page }) => {
     await page.goto('/');
 
     const searchInput = page.locator('input[type="search"], input[name*="search"], input#search, input.search-query').first();
@@ -31,8 +32,8 @@ test.describe('Fluxo 2: Catálogo de Portais e Webybar', () => {
     }
   });
 
-  test('Deve renderizar os ícones do FontAwesome na barra superior (webybar e cabeçalho)', async ({ page }) => {
-    await loginAs(page, 'admin', 'Admin1');
+  test('Deve renderizar os ícones do FontAwesome na barra superior (webybar e cabeçalho) @smoke', async ({ page }) => {
+    await loginAs(page);
     
     // 1. Testa no portal principal (weby_pages)
     await page.goto('/');
@@ -40,7 +41,7 @@ test.describe('Fluxo 2: Catálogo de Portais e Webybar', () => {
     await expect(adminLabel).toBeVisible();
 
     // 2. Testa no site institucional (webybar)
-    await page.goto('http://ufg.lvh.me:3000/');
+    await page.goto(`${SITE_URL}/`);
     const webybar = page.locator('#webybar, .ufg-webybar');
     await expect(webybar).toBeVisible();
 

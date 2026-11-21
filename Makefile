@@ -1,4 +1,4 @@
-.PHONY: setup up build down logs db reset-db shell test-e2e
+.PHONY: setup up build down logs db reset-db shell test-e2e test-smoke
 
 setup:
 	@echo "Configurando ambiente de desenvolvimento..."
@@ -36,17 +36,22 @@ shell:
 	@docker compose -f docker-compose.dev.yml exec weby bash
 
 test-e2e:
-	@echo "Executando suíte de testes E2E com Playwright..."
+	@echo "Executando suíte completa de testes E2E com Playwright..."
 	@npx playwright test
+
+test-smoke:
+	@echo "Executando testes E2E seguros (Smoke Tests - Somente Leitura)..."
+	@npx playwright test --grep @smoke
 
 help:
 	@echo "Comandos disponíveis:"
-	@echo "  make setup     - Configuração inicial completa"
-	@echo "  make up        - Sobe os containers"
-	@echo "  make build     - Rebuilda os containers"
-	@echo "  make down      - Para os containers"
-	@echo "  make logs      - Mostra logs em tempo real"
-	@echo "  make db        - Roda seeds do banco"
-	@echo "  make reset-db  - Reseta o banco completamente"
-	@echo "  make shell     - Abre shell no container"
-	@echo "  make test-e2e  - Executa testes E2E com Playwright"
+	@echo "  make setup      - Configuração inicial completa"
+	@echo "  make up         - Sobe os containers"
+	@echo "  make build      - Rebuilda os containers"
+	@echo "  make down       - Para os containers"
+	@echo "  make logs       - Mostra logs em tempo real"
+	@echo "  make db         - Roda seeds do banco"
+	@echo "  make reset-db   - Reseta o banco completamente"
+	@echo "  make shell      - Abre shell no container"
+	@echo "  make test-e2e   - Executa suíte completa de testes E2E"
+	@echo "  make test-smoke - Executa testes seguros (Smoke / Somente Leitura)"

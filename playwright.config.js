@@ -1,5 +1,6 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
+const { BASE_URL } = require('./e2e/support/env');
 
 /**
  * Playwright E2E Test Configuration for Weby (Rails 8)
@@ -19,7 +20,7 @@ module.exports = defineConfig({
     ['html', { outputFolder: 'playwright-report', open: 'never' }]
   ],
   use: {
-    baseURL: process.env.BASE_URL || 'http://portais.lvh.me:3000',
+    baseURL: BASE_URL,
     channel: 'chrome',
     headless: true,
     viewport: { width: 1280, height: 720 },

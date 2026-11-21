@@ -1,15 +1,16 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const { loginAs } = require('../support/auth');
+const { SITE_URL } = require('../support/env');
 
 test.describe('Fluxo 9: Agenda de Eventos e Compartilhamento (Calendar)', () => {
 
   test.beforeEach(async ({ page }) => {
-    await loginAs(page, 'admin', 'Admin1');
+    await loginAs(page);
   });
 
-  test('Deve acessar a listagem de eventos da agenda (/admin/events)', async ({ page }) => {
-    const response = await page.goto('http://ufg.lvh.me:3000/admin/events');
+  test('Deve acessar a listagem de eventos da agenda (/admin/events) @smoke', async ({ page }) => {
+    const response = await page.goto(`${SITE_URL}/admin/events`);
     expect(response?.status()).toBe(200);
     await expect(page).toHaveTitle(/Weby/);
 
@@ -17,8 +18,8 @@ test.describe('Fluxo 9: Agenda de Eventos e Compartilhamento (Calendar)', () => 
     await expect(newEventBtn).toBeVisible();
   });
 
-  test('Deve abrir o formulário para cadastro de novo evento com opções de compartilhamento', async ({ page }) => {
-    const response = await page.goto('http://ufg.lvh.me:3000/admin/events/new');
+  test('Deve abrir o formulário para cadastro de novo evento com opções de compartilhamento @smoke', async ({ page }) => {
+    const response = await page.goto(`${SITE_URL}/admin/events/new`);
     expect(response?.status()).toBe(200);
 
     const form = page.locator('form#new_event, form');
