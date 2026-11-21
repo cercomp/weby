@@ -31,6 +31,14 @@ describe Menu do
       expect(subject.items_by_parent(false)).to eq(1 => [@item1], 2 => [@item2], 3 => [@item3])
     end
 
+    it 'handles models deserialized from cache with nil strict_loading_mode' do
+      locale = create(:locale)
+      site = create(:site, locales: [locale])
+      menu = create(:menu, site: site)
+      menu.instance_variable_set(:@strict_loading_mode, nil)
+
+      expect { menu.items_by_parent(true) }.not_to raise_error
+    end
   end
 
   skip 'self.import' do
