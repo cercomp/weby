@@ -13,6 +13,7 @@ $link-color: $ufg-blue;
   @import "bootstrap-sprockets";
   @import "weby/bootstrap";
   @import "bootstrap";
+  @import "font-awesome";
 
   margin: 0;
   font-family: "Roboto", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -26,7 +27,17 @@ $link-color: $ufg-blue;
   position: relative;
   z-index: 10000;
 
-  * { font-family: inherit; }
+  *:not(.fa):not(.glyphicon):not([class*="fa-"]):not([class*="glyphicon-"]) {
+    font-family: inherit;
+  }
+
+  .fa {
+    font-family: 'FontAwesome' !important;
+  }
+
+  .glyphicon {
+    font-family: 'Glyphicons Halflings' !important;
+  }
   a:hover { text-decoration: none; }
 
   .webybar-container {
