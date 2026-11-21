@@ -41,3 +41,9 @@ data/
 /config/master.key
 GEMINI.md
 
+# Playwright & Node
+node_modules/
+test-results/
+playwright-report/
+
+

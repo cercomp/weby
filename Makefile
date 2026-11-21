@@ -1,4 +1,4 @@
-.PHONY: setup up build down logs db reset-db shell
+.PHONY: setup up build down logs db reset-db shell test-e2e
 
 setup:
 	@echo "Configurando ambiente de desenvolvimento..."
@@ -35,6 +35,10 @@ shell:
 	@echo "Abrindo shell no container..."
 	@docker compose -f docker-compose.dev.yml exec weby bash
 
+test-e2e:
+	@echo "Executando suíte de testes E2E com Playwright..."
+	@npx playwright test
+
 help:
 	@echo "Comandos disponíveis:"
 	@echo "  make setup     - Configuração inicial completa"
@@ -45,3 +49,4 @@ help:
 	@echo "  make db        - Roda seeds do banco"
 	@echo "  make reset-db  - Reseta o banco completamente"
 	@echo "  make shell     - Abre shell no container"
+	@echo "  make test-e2e  - Executa testes E2E com Playwright"
