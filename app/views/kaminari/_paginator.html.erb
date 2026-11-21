@@ -24,7 +24,7 @@
         <li class="page">
           <select class="input-mini<%= " input-#{size}" if defined?(size) %> form-control">
             <% 1.upto total_pages do |page| %>
-              <option data-url="<%= Kaminari::Helpers::Page.new(@template, @options).page_url_for page %>" <%= page == current_page.number ? 'selected="selected"' : '' %>><%= page -%></option>
+              <option data-url="<%= Kaminari::Helpers::Page.new(@template, **(@options || {})).page_url_for page %>" <%= page == current_page.number ? 'selected="selected"' : '' %>><%= page -%></option>
             <% end -%>
           </select>
         </li>

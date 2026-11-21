@@ -7,14 +7,14 @@ describe Admin::UsersController do
   before { sign_in first_user }
 
   describe "GET #index" do
+    render_views
+    let!(:second_user) { FactoryBot.create(:user) }
     before { get :index }
 
-    it "assigns @users" do
-      expect(assigns(:users)).to eq([first_user])
-    end
-
-    it "renders the :index view" do
+    it "assigns @users and renders pagination successfully" do
+      expect(assigns(:users)).to include(first_user, second_user)
       expect(response).to render_template(:index)
+      expect(response.status).to eq(200)
     end
   end
 
