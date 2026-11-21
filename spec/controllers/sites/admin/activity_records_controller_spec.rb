@@ -1,12 +1,15 @@
 require "rails_helper"
 
 describe Sites::Admin::ActivityRecordsController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:locale) { FactoryGirl.create(:locale) }
-  let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:record) { FactoryGirl.create(:activity_record, user_id: user.id, site_id: site.id) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:record) { FactoryBot.create(:activity_record, user_id: user.id, site_id: site.id) }
 
-  before { sign_in user }
+  before do
+    @request.host = "#{site.name}.example.com"
+    sign_in user
+  end
 
   context "GET #index" do
     #before { get :index }

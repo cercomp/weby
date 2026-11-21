@@ -340,6 +340,7 @@ pt-BR:
       messages:
         accepted:                 " acception required  "
         attachment_presence:      " deve ser anexado "
+        spoofed_media_type:       " não possui formato compatível com o conteúdo do arquivo "
         archive_fingerprint:      " arquivo já existe "
         archive_file_name:        " já existe um arquivo com esse nome "
         blank:                    " deve ser preenchido "
@@ -370,6 +371,9 @@ pt-BR:
   activemodel:
     errors:
       <<: *errors
+
+  errors:
+    <<: *errors
 
 # -- SIMPLE FORM -- #
   simple_form:

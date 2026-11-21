@@ -43,10 +43,10 @@ describe Site do
   end
 
   it { expect(subject).to validate_presence_of(:title) }
-  it { expect(subject).to ensure_length_of(:title).is_at_most(50) }
+  it { expect(subject).to validate_length_of(:title).is_at_most(50) }
 
   it { expect(subject).to have_many(:subsites).class_name('Site').with_foreign_key('parent_id') }
-  it { expect(subject).to belong_to(:main_site).class_name('Site').with_foreign_key('parent_id') }
+  it { expect(subject).to belong_to(:main_site).class_name('Site').with_foreign_key('parent_id').optional }
 
   it { expect(subject).to have_many(:roles) }
 
@@ -65,7 +65,7 @@ describe Site do
   it { expect(subject).to have_many(:styles) }
   it { expect(subject).to have_many(:skins) }
 
-  it { expect(subject).to belong_to(:repository).with_foreign_key('top_banner_id') }
+  it { expect(subject).to belong_to(:repository).with_foreign_key('top_banner_id').optional }
 
   it { expect(subject).to have_many(:repositories) }
 

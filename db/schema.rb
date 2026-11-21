@@ -2,18 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_03_181860) do
-
+ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "acadufg_settings", id: :serial, force: :cascade do |t|
     t.integer "site_id"
@@ -154,6 +153,18 @@ ActiveRecord::Schema.define(version: 2024_12_03_181860) do
     t.boolean "sync_with_parent", default: true
     t.index ["calendar_event_id"], name: "index_calendar_event_i18ns_on_calendar_event_id"
     t.index ["locale_id"], name: "index_calendar_event_i18ns_on_locale_id"
+  end
+
+  create_table "calendar_event_sites", id: :serial, force: :cascade do |t|
+    t.integer "calendar_event_id"
+    t.integer "site_id"
+    t.integer "position"
+    t.boolean "front", default: false
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.index ["calendar_event_id", "site_id"], name: "index_calendar_event_sites_on_calendar_event_id_and_site_id", unique: true
+    t.index ["calendar_event_id"], name: "index_calendar_event_sites_on_calendar_event_id"
+    t.index ["site_id"], name: "index_calendar_event_sites_on_site_id"
   end
 
   create_table "calendar_events", id: :serial, force: :cascade do |t|

@@ -41,10 +41,10 @@ module API
           user.roles << admin_role
         end
 
-        if site.update_attributes(site_params)
+        if site.update(site_params)
           render json: site, root: 'data'
         else
-          render json: {error: t('api.site_not_created'), message: @site.errors.full_messages}, status: 403
+          render json: {error: t('api.site_not_created'), message: site.errors.full_messages}, status: 403
         end
       end
 
@@ -56,7 +56,7 @@ module API
           site.unscoped_destroy!
           render json: {msg: t('successfully_deleted')}, status: 200
         rescue ActiveRecord::RecordNotDestroyed => error
-          render json: {error: t('api.error_destroying_object'), message: @site.errors.full_messages}, status: 400
+          render json: {error: t('api.error_destroying_object'), message: site.errors.full_messages}, status: 400
         end
       end
 

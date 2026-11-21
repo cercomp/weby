@@ -17,15 +17,13 @@ describe User do
     end
 
     it 'should validate uniqueness of email addresses' do
-      user = create(:user, password_salt: 'salt', encrypted_password: 'salt')
-      subject = build(:user, email: user.email)
-      expect(subject).to validate_uniqueness_of(:email)
+      user = create(:user)
+      expect(user).to validate_uniqueness_of(:email).case_insensitive
     end
 
     it 'should reject email addresses identical up to case' do
-      user = create(:user, password_salt: 'salt', encrypted_password: 'salt')
-      subject = build(:user, email: user.email.upcase)
-      expect(subject).to validate_uniqueness_of(:email)
+      user = create(:user)
+      expect(user).to validate_uniqueness_of(:email).case_insensitive
     end
 
     it 'should change email into downcase before saving' do
@@ -36,6 +34,8 @@ describe User do
   end
 
   context 'Login' do
+    subject { build(:user) }
+
     it 'should accept valid login format' do
       expect(subject).to allow_value('login1').for(:login)
     end
@@ -45,9 +45,8 @@ describe User do
     end
 
     it 'should validate uniqueness of login' do
-      user = create(:user, password_salt: 'salt', encrypted_password: 'salt')
-      subject = build(:user, login: user.email)
-      expect(subject).to validate_uniqueness_of(:login)
+      user = create(:user)
+      expect(user).to validate_uniqueness_of(:login).case_insensitive
     end
   end
 
@@ -84,7 +83,7 @@ describe User do
   end
 
   context 'Locale' do
-    it { expect(subject).to belong_to(:locale) }
+    it { expect(subject).to belong_to(:locale).optional }
   end
 
   context 'LoginHistories' do

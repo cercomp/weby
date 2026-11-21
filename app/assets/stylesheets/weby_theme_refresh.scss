@@ -1,0 +1,294 @@
+/* Shared visual refresh for the Weby admin, portal index and sign-in screens. */
+:root {
+  --weby-ink: #18263d;
+  --weby-muted: #63738c;
+  --weby-primary: #2459a6;
+  --weby-primary-deep: #193f78;
+  --weby-teal: #0c9f9a;
+  --weby-teal-light: #d9f4f1;
+  --weby-canvas: #f2f6fb;
+  --weby-surface: #ffffff;
+  --weby-border: #e1e9f2;
+  --weby-shadow: 0 14px 36px rgba(26, 52, 87, 0.08);
+}
+
+body {
+  background-color: var(--weby-canvas);
+  background-image: radial-gradient(ellipse at 8% 0%, rgba(41, 111, 183, 0.08), transparent 32%),
+                    radial-gradient(ellipse at 94% 8%, rgba(12, 159, 154, 0.06), transparent 28%);
+  color: var(--weby-ink);
+  font-family: "Lato", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--weby-primary);
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+
+  &:hover, &:focus { color: var(--weby-primary-deep); }
+}
+
+#header {
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--weby-border);
+  box-shadow: 0 5px 20px rgba(26, 52, 87, 0.055);
+  padding-top: 14px;
+  padding-bottom: 14px;
+
+  &:after {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--weby-primary), #4384d2 52%, var(--weby-teal));
+    content: "";
+    opacity: 0.78;
+  }
+
+  .weby-logo, .logo { max-height: 44px; }
+  .current-site-card {
+    background: #f7faff;
+    border-color: var(--weby-border);
+    border-radius: 10px;
+    padding: 7px 12px;
+  }
+  .user-avatar-img { box-shadow: 0 0 0 3px #eef4fb; }
+}
+
+#main.container, #main.container-fluid {
+  padding-top: 24px;
+  padding-bottom: 16px;
+}
+
+#menu-admin {
+  .sidebar-menu-card {
+    background: linear-gradient(160deg, #172a47 0%, #203b63 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 16px 32px rgba(20, 40, 69, 0.18);
+    padding: 14px 10px;
+  }
+
+  .ufg-nav-list {
+    .menu-heading { padding: 15px 12px 5px; }
+    .menu-heading-text {
+      color: #9eb2ce;
+      font-size: 10px;
+      letter-spacing: 1.15px;
+    }
+
+    > li > a {
+      color: #e7eef8;
+      border-radius: 9px;
+      margin: 3px 0;
+      padding: 9px 12px;
+
+      i.fa, .glyphicon { color: #9eb2ce; }
+      &:hover, &:focus {
+        background: rgba(255, 255, 255, 0.09);
+        color: #ffffff;
+        i.fa, .glyphicon { color: #70ded5; }
+      }
+    }
+
+    > li.active > a,
+    > li.active > a:hover,
+    > li.active > a:focus {
+      background: rgba(12, 159, 154, 0.2);
+      border-left: 3px solid #45d2c7;
+      color: #ffffff;
+      padding-left: 9px;
+      i.fa, .glyphicon { color: #70ded5; }
+    }
+  }
+}
+
+.arq-base-page, .card-base, .session-card {
+  background-color: var(--weby-surface);
+  border: 1px solid var(--weby-border);
+  border-radius: 16px;
+  box-shadow: var(--weby-shadow);
+}
+
+.arq-base-page, .card-base {
+  padding: 26px;
+  .arq-base-page-header { border-bottom-color: #edf1f6; }
+}
+
+.breadcrumb {
+  color: var(--weby-muted);
+  font-size: 12px;
+  > li > a { color: var(--weby-primary); }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--weby-ink);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.btn {
+  border-radius: 9px;
+  font-weight: 600;
+  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+  &:active { transform: translateY(1px); }
+}
+
+.btn-primary, .label-ufg-admin {
+  background-color: var(--weby-primary);
+  border-color: var(--weby-primary);
+  color: #ffffff;
+  &:hover, &:focus {
+    background-color: var(--weby-primary-deep);
+    border-color: var(--weby-primary-deep);
+    color: #ffffff;
+    box-shadow: 0 5px 14px rgba(36, 89, 166, 0.2);
+  }
+}
+
+.btn-success {
+  background-color: var(--weby-teal);
+  border-color: var(--weby-teal);
+  &:hover, &:focus { background-color: #087f7b; border-color: #087f7b; }
+}
+
+.btn-default, .btn-light {
+  background: #ffffff;
+  border-color: #d8e2ee;
+  color: #354761;
+  &:hover, &:focus { background: #f4f8fc; border-color: #b9cbe0; color: var(--weby-primary-deep); }
+}
+
+.form-control, select.form-control {
+  border-color: #d7e1ed;
+  border-radius: 9px;
+  color: var(--weby-ink);
+  &:focus {
+    border-color: #4c86cf;
+    box-shadow: 0 0 0 3px rgba(51, 117, 194, 0.14);
+  }
+}
+
+table.table {
+  border-color: var(--weby-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(26, 52, 87, 0.035);
+  thead tr th {
+    background: #f4f7fb;
+    border-bottom-color: #e1e9f2;
+    color: #52647d;
+    letter-spacing: 0.65px;
+  }
+  tbody tr td { border-top-color: #edf1f6; }
+}
+
+// Menu editor: keep the selected menu and sortable entries readable.
+.menu-tabs {
+  > .list-group-item {
+    background: #ffffff;
+    border-color: var(--weby-border);
+    color: var(--weby-ink);
+    > a { color: var(--weby-primary-deep); }
+
+    &:hover, &:focus {
+      background: #f2f7fc;
+      > a { color: var(--weby-primary-deep); }
+    }
+
+    &.active, &.active:hover, &.active:focus {
+      background: var(--weby-primary-deep);
+      border-color: var(--weby-primary-deep);
+      color: #ffffff;
+      > a, > a:hover, > a:focus { color: #ffffff; }
+      .dropmic > a, .dropdown-toggle { color: #ffffff; }
+    }
+  }
+}
+
+#main-menu {
+  background: #f1f5fa;
+  border: 1px solid var(--weby-border);
+  border-radius: 12px;
+  padding: 12px;
+
+  .menuitem-ctrl {
+    background: #ffffff;
+    border-color: #dbe5f0;
+    color: var(--weby-ink);
+  }
+
+  .menu-entry > a:first-child { color: var(--weby-primary-deep); }
+  .menu-entry .link-text { color: #64748b; }
+}
+
+.pagination > li {
+  > a, > span { border-radius: 8px; }
+  &.active > a, &.active > span,
+  &.active > a:hover, &.active > span:hover {
+    background: var(--weby-primary);
+    border-color: var(--weby-primary);
+  }
+}
+
+.alert { border-radius: 11px; }
+.modal-content { border-radius: 16px; }
+
+#footer {
+  border-top-color: #e2eaf3;
+  color: var(--weby-muted);
+  .footer-links a { color: var(--weby-primary); }
+}
+
+// Public portal directory cards
+#sites {
+  .portal-card, .thumbnail {
+    border-color: #e0e8f2;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(26, 52, 87, 0.07);
+    .portal-card-accent { background: linear-gradient(90deg, var(--weby-primary), #4384d2 58%, var(--weby-teal)); }
+    &:hover {
+      border-color: #a9c5e6;
+      box-shadow: 0 18px 38px rgba(27, 68, 119, 0.14);
+    }
+  }
+  .portal-card-header { background: linear-gradient(180deg, #f8faff 0%, #f3f7fc 100%); }
+  .portal-title a { color: var(--weby-ink); }
+  .portal-icon-action:hover { background: var(--weby-primary); border-color: var(--weby-primary); }
+}
+
+// Sign-in and account pages
+body.ufg-session-body {
+  background-color: #eef3fa;
+  background-image: radial-gradient(ellipse at 15% 15%, rgba(47, 115, 190, 0.16), transparent 33%),
+                    radial-gradient(ellipse at 86% 82%, rgba(12, 159, 154, 0.13), transparent 34%),
+                    linear-gradient(145deg, #f7f9fd 0%, #edf3fa 100%);
+}
+
+.session-card {
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(25, 56, 98, 0.13);
+  .session-card-header { background: #f7f9fc; }
+  .sessions-pills.nav-tabs > li.active > a,
+  .sessions-pills.nav-tabs > li.active > a:hover,
+  .sessions-pills.nav-tabs > li.active > a:focus {
+    border-bottom-color: var(--weby-teal);
+    color: var(--weby-primary-deep);
+  }
+  .session-card-body .btn-primary { background-color: var(--weby-primary); border-color: var(--weby-primary); }
+}
+
+@media (max-width: 767px) {
+  #main.container, #main.container-fluid { padding: 14px 12px; }
+  .arq-base-page, .card-base { border-radius: 13px; padding: 18px; }
+  #header { padding: 10px 12px; }
+  #menu-admin .sidebar-menu-card { margin-bottom: 14px; }
+  .session-wrapper { max-width: 100%; }
+  .session-card .session-card-body { padding: 22px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}

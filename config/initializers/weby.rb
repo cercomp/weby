@@ -1,3 +1,5 @@
+require Rails.root.join('app/models/application_record')
+
 require 'weby/content_i18n'
 require 'weby/multisites'
 require 'weby/form/show_errors'
@@ -5,7 +7,9 @@ require 'weby/components'
 require 'weby/routing'
 require 'weby/rights'
 require 'weby/settings'
+require 'weby/theme'
 require 'weby/themes'
+require 'weby/bots'
 require 'weby/assets'
 require './db/data_migrations/theme_migration'
 

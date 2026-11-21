@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe Admin::SitesController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:locale) { FactoryGirl.create(:locale) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:locale) { FactoryBot.create(:locale) }
   let!(:first_site) { Site.create(:name => "site", :title => "Site") }
 
   before { sign_in user }

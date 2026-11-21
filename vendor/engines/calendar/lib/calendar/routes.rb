@@ -13,7 +13,8 @@ module Calendar
             end
             collection do
               get :recycle_bin
-              delete :empty_bin, :destroy_many
+              delete :empty_bin
+              delete :destroy_many
             end
           end
         end

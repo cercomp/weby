@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ActivityRecord do
   it { expect(subject).to belong_to(:user) }
-  it { expect(subject).to belong_to(:site) }
+  it { expect(subject).to belong_to(:site).optional }
 
   context 'Scopes' do
     it 'user_or_action_like (ACTION)' do

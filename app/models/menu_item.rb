@@ -47,8 +47,8 @@ class MenuItem < ApplicationRecord
     end
   end
 
-  def serializable_hash(options = {})
-    options.merge!(include: [:i18ns, :children])
+  def serializable_hash(options = nil)
+    options = (options || {}).merge(include: [:i18ns, :children])
     super options
   end
 

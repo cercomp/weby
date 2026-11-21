@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   validates :email, :login, :first_name, :last_name, presence: true
   validates :password, presence: true, on: :create
-  validates :email, :login, uniqueness: true
+  validates :email, :login, uniqueness: { case_sensitive: false }
   validates :password, confirmation: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :login, format: { with: /\A[a-z\d_\-\.@]+\z/i }
@@ -191,6 +191,6 @@ class User < ApplicationRecord
   private
 
   def normalize_attributes
-    email.downcase!
+    self.email = email.to_s.downcase
   end
 end

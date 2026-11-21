@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe Admin::UsersController do
-  let(:first_user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:_user) { FactoryGirl.create(:user) }
+  let(:first_user) { FactoryBot.create(:user, is_admin: true) }
+  let(:_user) { FactoryBot.create(:user) }
 
   before { sign_in first_user }
 

@@ -1,3 +1,11 @@
 
 Dockerfile
 .git
+/config.txt
+/fundahc.json
+/logs_weby.log
+/erro weby.png
+/tela portais.png
+/relatorio_compatibilidade_ruby_weby.pdf
+/relatorio_melhoria_performance_weby.pdf
+/relatorio_seguranca_ruby2shell_weby.pdf

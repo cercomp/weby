@@ -55,19 +55,22 @@ Rails.application.routes.draw do
             put :toggle
           end
           collection do
-            post :change_order, :change_menu
+            post :change_order
+            post :change_menu
             delete :destroy_many
           end
         end
       end
       resources :pages do
         member do
-          put :toggle, :recover
+          put :toggle
+          put :recover
         end
         collection do
           get :recycle_bin
           get "template/:template", action: :template
-          delete :empty_bin, :destroy_many
+          delete :empty_bin
+          delete :destroy_many
         end
       end
       resources :repositories do
@@ -77,7 +80,8 @@ Rails.application.routes.draw do
         end
         collection do
           get :recycle_bin
-          delete :empty_bin, :destroy_many
+          delete :empty_bin
+          delete :destroy_many
         end
       end
       resources :roles, except: [:show] do
@@ -104,7 +108,10 @@ Rails.application.routes.draw do
         end
         resources :styles do
           member do
-            put :toggle, :copy, :follow, :unfollow
+            put :toggle
+            put :copy
+            put :follow
+            put :unfollow
           end
           collection do
             post :sort
@@ -114,8 +121,11 @@ Rails.application.routes.draw do
       end
       resources :users, only: [] do
         collection do
-          get :manage_roles, :search
-          post :change_roles, :create_local_admin_role, :set_preferences #create_subsite_local_admin
+          get :manage_roles
+          get :search
+          post :change_roles
+          post :create_local_admin_role
+          post :set_preferences #create_subsite_local_admin
           delete :destroy_local_admin_role
         end
       end
@@ -190,7 +200,8 @@ Rails.application.routes.draw do
       post 'settings/exec' => 'settings#exec', as: :exec
       resources :users do
         collection do
-          get :manage_roles, :search
+          get :manage_roles
+          get :search
           post :change_roles
         end
         member do

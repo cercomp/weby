@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper # In order to user helper methods in controllers
   include SimpleCaptcha::ControllerHelpers
 
-  force_ssl if: :should_be_ssl?
+  before_action :redirect_to_ssl, if: :should_be_ssl?
 
   protect_from_forgery with: :exception, prepend: true
 
@@ -144,6 +144,12 @@ class ApplicationController < ActionController::Base
 
   def should_be_ssl?
     current_user && Weby::Settings::Weby.login_protocol == 'https' && !request.ssl?
+  end
+
+  def redirect_to_ssl
+    target = url_for(protocol: 'https://', only_path: false)
+    status = request.get? || request.head? ? :moved_permanently : :temporary_redirect
+    redirect_to target, status: status
   end
 
   unless Rails.application.config.consider_all_requests_local

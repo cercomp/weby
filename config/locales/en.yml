@@ -324,6 +324,7 @@ en:
       messages: 
         accepted:                 " acception required "
         attachment_presence:      " should be attached "
+        spoofed_media_type:       " has an extension that does not match its contents "
         blank:                    " must be filled "
         confirmation:             " confirmation does not equal "
         empty:                    " must be filled "

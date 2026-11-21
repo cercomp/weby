@@ -1,6 +1,32 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/sites', type: :request do
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:site_record) { FactoryBot.create(:site, locales: [locale]) }
+  let(:id) { site_record.id }
+  let(:search) { site_record.name }
+  let(:site_post) do
+    {
+      managers: [user.id],
+      theme: 'weby',
+      site: {
+        name: "site#{rand(1000..9999)}",
+        title: 'New Site',
+        locale_ids: [locale.id]
+      }
+    }
+  end
+  let(:site_put) do
+    {
+      site_id: site_record.id,
+      managers: [user.id],
+      theme: 'weby',
+      site: {
+        title: 'Updated Site'
+      }
+    }
+  end
 
   path '/api/v1/sites' do
 
@@ -39,6 +65,7 @@ RSpec.describe 'api/v1/sites', type: :request do
         required: [ 'managers', 'theme' ]
       }
       response(200, 'successful') do
+        let(:site) { site_post }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -53,12 +80,10 @@ RSpec.describe 'api/v1/sites', type: :request do
   end
 
   path '/api/v1/sites/{id}' do
-    # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show site') do
       response(200, 'successful') do
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -72,8 +97,18 @@ RSpec.describe 'api/v1/sites', type: :request do
     end
 
     patch('update site') do
+      consumes 'application/json'
+      parameter name: :site, in: :body, schema: {
+        type: :object,
+        properties: {
+          site_id: { type: :integer, description: 'ID do site' },
+          managers: { type: :array, items: {type: :integer},  description: 'IDs dos gerenciadores do site' },
+          theme: { type: :string, description: 'Nome do tema' }
+        },
+        required: [ 'managers', 'theme' ]
+      }
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:site) { site_put }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -98,7 +133,7 @@ RSpec.describe 'api/v1/sites', type: :request do
         required: [ 'managers', 'theme' ]
       }
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:site) { site_put }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -113,7 +148,6 @@ RSpec.describe 'api/v1/sites', type: :request do
 
     delete('deleta site') do
       response(200, 'successful') do
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {

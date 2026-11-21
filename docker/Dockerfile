@@ -1,10 +1,9 @@
 ## First stage (base)
-FROM ruby:2.7.5 AS base
+FROM ruby:3.3.14-slim-bookworm AS base
 
-RUN echo 'deb http://archive.debian.org/debian bullseye main' > /etc/apt/sources.list && \
-    echo 'deb http://archive.debian.org/debian-security bullseye-security main' >> /etc/apt/sources.list && \
-    apt-get update -o Acquire::Check-Valid-Until=false && \
-    apt-get install -y -o Acquire::Check-Valid-Until=false imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils nodejs file
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends imagemagick libpng-dev libpq-dev libncurses-dev libffi-dev curl build-essential libssl-dev libreadline-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libxslt-dev ghostscript ntpdate nodejs file git && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY . /opt/weby
 WORKDIR /opt/weby
@@ -15,14 +14,13 @@ RUN gem install bundler -v '2.4.20'
 RUN bundle install --jobs 4 --retry 3 --without development test
 
 ## Second stage
-FROM ruby:2.7.5-slim-bullseye
+FROM ruby:3.3.14-slim-bookworm
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
-RUN echo 'deb http://archive.debian.org/debian bullseye main' > /etc/apt/sources.list && \
-    echo 'deb http://archive.debian.org/debian-security bullseye-security main' >> /etc/apt/sources.list && \
-    apt-get update -o Acquire::Check-Valid-Until=false && \
-    apt-get install -y -o Acquire::Check-Valid-Until=false tzdata imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs file
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends tzdata imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs file && \
+    rm -rf /var/lib/apt/lists/*
 
 # Config time zones
 ENV TZ=America/Sao_Paulo
@@ -44,8 +42,7 @@ COPY . /opt/weby
 WORKDIR /opt/weby
 
 # Files to logs and tmp
-RUN mkdir tmp
-RUN mkdir log
+RUN mkdir -p tmp log
 RUN touch log/error.log
 RUN touch log/production.log
 RUN ln -sf /dev/stderr log/error.log
@@ -55,7 +52,7 @@ COPY . /opt/weby
 COPY --from=base /usr/local/bundle/ /usr/local/bundle/
 
 # Env to system
-ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
+ENV PATH=/opt/weby/bin:$PATH
 
 EXPOSE 3000
 

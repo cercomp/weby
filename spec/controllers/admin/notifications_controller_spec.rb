@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe Admin::NotificationsController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let!(:notifi) { FactoryGirl.create(:notification, body: "Body") }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let!(:notifi) { FactoryBot.create(:notification, body: "Body") }
 
   before { sign_in user }
 

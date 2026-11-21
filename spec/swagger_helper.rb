@@ -6,7 +6,7 @@ RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated
   # NOTE: If you're using the rswag-api to serve API descriptions, you'll need
   # to ensure that it's configured to serve Swagger from the same folder
-  config.swagger_root = Rails.root.join('swagger').to_s
+  config.openapi_root = Rails.root.join('swagger').to_s
 
   # Define one or more Swagger documents and provide global metadata for each one
   # When you run the 'rswag:specs:swaggerize' rake task, the complete Swagger will
@@ -14,7 +14,7 @@ RSpec.configure do |config|
   # By default, the operations defined in spec files are added to the first
   # document below. You can override this behavior by adding a swagger_doc tag to the
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
-  config.swagger_docs = {
+  config.openapi_specs = {
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
@@ -50,13 +50,13 @@ RSpec.configure do |config|
       ],
       components: {
         securitySchemes: {
-          "weby-app-code": {
+          weby_app_code: {
             description: 'Código do Sistema',
             type: :apiKey,
             name: 'weby-app-code',
             in: :header
           },
-          "weby-api-token": {
+          weby_api_token: {
             description: 'Token do sistema',
             type: :apiKey,
             name: 'weby-api-token',
@@ -64,7 +64,7 @@ RSpec.configure do |config|
           }
         }
       },
-      security: [{ "weby-app-code": [], "weby-api-token": [] }]
+      security: [{ weby_app_code: [], weby_api_token: [] }]
     }
   }
 
@@ -72,5 +72,5 @@ RSpec.configure do |config|
   # The swagger_docs configuration option has the filename including format in
   # the key, this may want to be changed to avoid putting yaml in json files.
   # Defaults to json. Accepts ':json' and ':yaml'.
-  config.swagger_format = :yaml
+  config.openapi_format = :yaml
 end

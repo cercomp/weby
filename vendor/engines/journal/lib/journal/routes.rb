@@ -28,22 +28,31 @@ module Journal
           get :journal, to: 'news#index'
           resources :news do
             member do
-              put :toggle, :recover, :unshare
-              get :newsletter, :share
+              put :toggle
+              put :recover
+              put :unshare
+              get :newsletter
+              get :share
               post :newsletter_histories
               put :toggle_publish
               patch :toggle_publish
             end
             collection do
-              get :recycle_bin, :fronts
-              delete :empty_bin, :destroy_many
-              post :sort, :update_draft, :cancel, :restore_draft
+              get :recycle_bin
+              get :fronts
+              delete :empty_bin
+              delete :destroy_many
+              post :sort
+              post :update_draft
+              post :cancel
+              post :restore_draft
               patch :update_draft
             end
           end
           resources :newsletter_histories, only: [:index] do
             collection do
-              get :pdf, :csv
+              get :pdf
+              get :csv
             end
           end
           resources :newsletters, only: [:index, :destroy] do

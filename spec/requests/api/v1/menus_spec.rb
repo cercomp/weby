@@ -1,6 +1,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/menus', type: :request do
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:id) { site.id }
 
   path '/api/v1/menus' do
 

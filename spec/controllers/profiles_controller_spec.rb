@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe ProfilesController do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   it "GET #show"
   it "GET history"

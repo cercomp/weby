@@ -1,11 +1,11 @@
 require "rails_helper"
 
 describe Admin::GroupingsController do
-  before { sign_in FactoryGirl.create(:user, is_admin: true) }
+  before { sign_in FactoryBot.create(:user, is_admin: true) }
 
   describe "GET #index" do
     it "renders groupings" do
-      group = FactoryGirl.create(:grouping)
+      group = FactoryBot.create(:grouping)
 
       get :index
 
@@ -34,7 +34,7 @@ describe Admin::GroupingsController do
 
   describe "PUT #update" do
     it "updates the grouping" do
-      group = FactoryGirl.create(:grouping)
+      group = FactoryBot.create(:grouping)
 
       put :update, grouping: { :name => "New Name" }, :id => group.id
 
@@ -45,7 +45,7 @@ describe Admin::GroupingsController do
 
   describe "DELETE #destroy" do
     it "deletes the grouping" do
-      group = FactoryGirl.create(:grouping)
+      group = FactoryBot.create(:grouping)
 
       delete :destroy, :id => group.id
 

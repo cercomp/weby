@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe Sites::Admin::ExtensionsController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:locale) { FactoryGirl.create(:locale) }
-  let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:extension) { FactoryGirl.create(:extension, site_id: site.id) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:extension) { FactoryBot.create(:extension, site_id: site.id) }
 
   before { sign_in user }
 

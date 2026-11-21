@@ -165,17 +165,22 @@ paths:
                   type: string
                   description: URL do item de menu
                 i18ns_attributes:
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                      description: Título do item de menu
-                    description:
-                      type: string
-                      description: Descrição do menu pertencente
-                    locale_id:
-                      type: integer
-                      description: ID do idioma do site
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: ID do i18n
+                      title:
+                        type: string
+                        description: Título do item de menu
+                      description:
+                        type: string
+                        description: Descrição do menu pertencente
+                      locale_id:
+                        type: integer
+                        description: ID do idioma do site
               required:
               - publish
               - parent_id
@@ -261,9 +266,22 @@ paths:
           description: successful
     patch:
       summary: update page
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site pertencente
+                publish:
+                  type: boolean
+                  description: Define se a página será publicada
     put:
       summary: Atualiza pagina
       parameters: []
@@ -373,9 +391,30 @@ paths:
           description: successful
     patch:
       summary: update site
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site_id:
+                  type: integer
+                  description: ID do site
+                managers:
+                  type: array
+                  items:
+                    type: integer
+                  description: IDs dos gerenciadores do site
+                theme:
+                  type: string
+                  description: Nome do tema
+              required:
+              - managers
+              - theme
     put:
       summary: Atualiza site
       parameters: []
@@ -445,16 +484,16 @@ servers:
       default: portais.ufg.br
 components:
   securitySchemes:
-    weby-app-code:
+    weby_app_code:
       description: Código do Sistema
       type: apiKey
       name: weby-app-code
       in: header
-    weby-api-token:
+    weby_api_token:
       description: Token do sistema
       type: apiKey
       name: weby-api-token
       in: header
 security:
-- weby-app-code: []
-  weby-api-token: []
+- weby_app_code: []
+  weby_api_token: []

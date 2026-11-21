@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :skin do
-    theme 'ufg'
-    name 'UFG'
+    theme { 'ufg' }
+    name { 'UFG' }
   end
 end

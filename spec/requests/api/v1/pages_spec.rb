@@ -1,6 +1,28 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/pages', type: :request do
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:page_record) do
+    p = Page.new(site_id: site.id, user_id: user.id, publish: true)
+    p.i18ns.build(title: 'Page Title', text: 'Page text', locale_id: locale.id)
+    p.save!
+    p
+  end
+  let(:id_site) { site.id }
+  let(:id) { page_record.id }
+  let(:page_payload) do
+    {
+      site_id: site.id,
+      user: user.id,
+      publish: true,
+      i18ns_attributes: [
+        { title: 'Page Title', text: 'Page text', locale_id: locale.id }
+      ]
+    }
+  end
+  let(:page) { page_payload }
 
   path '/api/v1/pages' do
 
@@ -21,7 +43,7 @@ RSpec.describe 'api/v1/pages', type: :request do
 
     post('Cria página') do
       consumes 'application/json'
-      parameter name: :menu_item, in: :body, schema: {
+      parameter name: :page, in: :body, schema: {
         type: :object,
         properties: {
           site_id: { type: :integer, description: 'ID do site pertencente' },
@@ -57,12 +79,10 @@ RSpec.describe 'api/v1/pages', type: :request do
   end
 
   path '/api/v1/pages/{id}' do
-    # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show page') do
       response(200, 'successful') do
-        let(:id) { '123' }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -76,8 +96,16 @@ RSpec.describe 'api/v1/pages', type: :request do
     end
 
     patch('update page') do
+      consumes 'application/json'
+      parameter name: :page, in: :body, schema: {
+        type: :object,
+        properties: {
+          site_id: { type: :integer, description: 'ID do site pertencente' },
+          publish: { type: :boolean, description: 'Define se a página será publicada' }
+        }
+      }
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:page) { { site_id: site.id, publish: false } }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -92,7 +120,7 @@ RSpec.describe 'api/v1/pages', type: :request do
 
     put('Atualiza pagina') do
       consumes 'application/json'
-      parameter name: :menu_item, in: :body, schema: {
+      parameter name: :page, in: :body, schema: {
         type: :object,
         properties: {
           site_id: { type: :integer, description: 'ID do site pertencente' },
@@ -114,7 +142,15 @@ RSpec.describe 'api/v1/pages', type: :request do
         required: [ 'site_id', 'user', 'i18ns_attributes' ]
       }
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:page) do
+          {
+            site_id: site.id,
+            user: user.id,
+            i18ns_attributes: [
+              { id: page_record.i18ns.first.id, title: 'Updated Page', text: 'Updated content', locale_id: locale.id }
+            ]
+          }
+        end
 
         after do |example|
           example.metadata[:response][:content] = {

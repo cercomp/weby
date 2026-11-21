@@ -1,9 +1,19 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'paperclip/matchers'
+require 'rails-controller-testing'
+require 'shoulda/matchers'
+require 'factory_bot_rails'
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -21,7 +31,14 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
+  config.before(type: :request) do
+    @rswag_test_app = App.create!(name: 'RSpec API', code: 'rspec-api')
+  end
+  config.include(Module.new do
+    define_method(:'weby-app-code') { @rswag_test_app&.code }
+    define_method(:'weby-api-token') { @rswag_test_app&.api_token }
+  end, type: :request)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -42,6 +59,12 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+  config.define_derived_metadata(file_path: %r{spec/lib/weby/components}) do |metadata|
+    metadata[:type] ||= :model
+  end
+  config.include LegacyControllerRequestArgs, type: :controller
+  config.include Rails::Controller::Testing::TestProcess, type: :controller
+  config.include Rails::Controller::Testing::TemplateAssertions, type: :controller
 
   # paperclip
   config.include Paperclip::Shoulda::Matchers

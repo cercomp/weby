@@ -1,12 +1,12 @@
 require "rails_helper"
 
 describe Sites::Admin::StylesController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:locale) { FactoryGirl.create(:locale) }
-  let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:skin) { FactoryGirl.create(:skin, site_id: site.id, active: true) }
-  let(:first_style) { FactoryGirl.create(:style, skin_id: skin.id) }
-  let(:new_site) { FactoryGirl.create(:site, locales: [locale]) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:skin) { FactoryBot.create(:skin, site_id: site.id, active: true) }
+  let(:first_style) { FactoryBot.create(:style, skin_id: skin.id) }
+  let(:new_site) { FactoryBot.create(:site, locales: [locale]) }
 
   before do
     @request.host = "#{site.name}.example.com"
@@ -18,7 +18,7 @@ describe Sites::Admin::StylesController do
     before { get :index }
 
     it "renders the :index view" do
-      expect(response).to redirect_to(site_admin_skins_path(anchor: 'tab-styles'))
+      expect(response).to redirect_to(site_admin_skin_path(skin, anchor: 'tab-styles'))
     end
   end
 
@@ -75,7 +75,7 @@ describe Sites::Admin::StylesController do
       before { put :update, style: { :name => "New name" }, :id => first_style.id }
 
       it "will redirect to site_admin_skins_path" do
-        expect(response).to redirect_to(site_admin_skins_path(anchor: 'tab-styles'))
+        expect(response).to redirect_to(site_admin_skin_path(skin, anchor: 'tab-styles'))
       end
 
       it "will set flash[:success]" do
@@ -127,7 +127,7 @@ describe Sites::Admin::StylesController do
       end
 
       it "will redirect to site_admin_skins_path" do
-        expect(response).to redirect_to(site_admin_skins_path(anchor: 'tab-styles'))
+        expect(response).to redirect_to(site_admin_skin_path(skin, anchor: 'tab-styles'))
       end
     end
 
@@ -139,13 +139,13 @@ describe Sites::Admin::StylesController do
       end
 
       it "will redirect to site_admin_skins_path" do
-        expect(response).to redirect_to(site_admin_skins_path(anchor: 'tab-styles'))
+        expect(response).to redirect_to(site_admin_skin_path(skin, anchor: 'tab-styles'))
       end
     end
   end
 
   describe "sort" do
-    let(:sec_style) { FactoryGirl.create(:style, site_id: site.id) }
+    let(:sec_style) { FactoryBot.create(:style, site_id: site.id) }
 
     before { post :sort }
 

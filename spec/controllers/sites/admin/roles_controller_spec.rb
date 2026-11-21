@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe Sites::Admin::RolesController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:locale) { FactoryGirl.create(:locale) }
-  let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:role) { FactoryGirl.create(:role) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:role) { FactoryBot.create(:role) }
 
  before { sign_in user }
 

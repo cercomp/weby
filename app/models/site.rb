@@ -82,7 +82,7 @@ class Site < ApplicationRecord
     page_query = Journal::News.select("coalesce(max(journal_news.updated_at),'1900-01-01')")
       .published.where('journal_news.site_id = sites.id').to_sql
 
-    name_or_description_like(text).order("(#{page_query}) DESC")
+    name_or_description_like(text).order(Arel.sql("(#{page_query}) DESC"))
   }
 
   scope :visible, -> {

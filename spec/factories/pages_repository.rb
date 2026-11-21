@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :posts_repository do
   end
 end

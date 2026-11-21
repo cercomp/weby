@@ -1,6 +1,12 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/components', type: :request do
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:skin) { FactoryBot.create(:skin, site_id: site.id, active: true) }
+  let(:comp) { FactoryBot.create(:component, skin_id: skin.id) }
+  let(:id) { site.id }
+  let(:component) { { publish: true } }
 
   path '/api/v1/components' do
 
@@ -34,7 +40,7 @@ RSpec.describe 'api/v1/components', type: :request do
         required: [ 'publish' ]
       }
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:id) { comp.id }
 
         after do |example|
           example.metadata[:response][:content] = {

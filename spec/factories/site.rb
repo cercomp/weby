@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :site do
     sequence(:name) { |count| "site#{count}" }
     sequence(:title) { |count| "Site #{count}" }

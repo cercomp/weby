@@ -1,6 +1,20 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/menu_items', type: :request do
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:menu) { FactoryBot.create(:menu, site_id: site.id) }
+  let(:item) { FactoryBot.create(:menu_item, menu_id: menu.id, i18ns_attributes: [{ title: 'Item', locale_id: locale.id }]) }
+  let(:id) { menu.id }
+  let(:menu_item) do
+    {
+      menu_id: menu.id,
+      publish: true,
+      parent_id: nil,
+      url: 'http://example.com',
+      i18ns_attributes: [{ title: 'Item', locale_id: locale.id }]
+    }
+  end
 
   path '/api/v1/menu_items' do
 
@@ -71,7 +85,8 @@ RSpec.describe 'api/v1/menu_items', type: :request do
         required: [ 'publish' ]
       }
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:id) { item.id }
+        let(:menu_item) { { publish: false } }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -95,18 +110,31 @@ RSpec.describe 'api/v1/menu_items', type: :request do
           parent_id: { type: :integer, description: 'ID do item de menu pai (Se houver)' },
           url: { type: :string, description: 'URL do item de menu' },
           i18ns_attributes: { 
-            type: :object, 
-            properties: {
-              title: { type: :string, description: 'Título do item de menu' },
-              description: { type: :string, description: 'Descrição do menu pertencente' },
-              locale_id: { type: :integer, description: 'ID do idioma do site' }
+            type: :array, 
+            items: {
+              type: :object,
+              properties: {
+                id: { type: :integer, description: 'ID do i18n' },
+                title: { type: :string, description: 'Título do item de menu' },
+                description: { type: :string, description: 'Descrição do menu pertencente' },
+                locale_id: { type: :integer, description: 'ID do idioma do site' }
+              }
             }
           }
         },
         required: [ 'publish', 'parent_id', 'url' ]
       }
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:id) { item.id }
+        let(:menu_item) do
+          {
+            menu_id: menu.id,
+            publish: true,
+            parent_id: nil,
+            url: 'http://example.com',
+            i18ns_attributes: [{ id: item.i18ns.first.id, title: 'Updated Item', locale_id: locale.id }]
+          }
+        end
 
         after do |example|
           example.metadata[:response][:content] = {

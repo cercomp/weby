@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Style do
   it { expect(subject).to belong_to(:skin) }
-  it { expect(subject).to belong_to(:style) }
+  it { expect(subject).to belong_to(:style).optional }
 
   it { expect(subject).to have_many(:styles).dependent(:restrict_with_error) }
   it { expect(subject).to have_many(:followers).through(:styles) }
@@ -101,47 +101,51 @@ describe Style do
   describe '#copy!' do
     it "returns false when copy to own site and hasn't style_id" do
       site = double(:site)
+      skin = double(:skin, site: site)
 
       allow(subject).to receive(:site).and_return(site)
 
-      expect(subject.copy!(site)).to eq(false)
+      expect(subject.copy!(skin)).to eq(false)
     end
 
     it 'updates css, name, and style_id when copy to own site' do
       site = double(:site)
+      skin = double(:skin, site: site)
       style = double(:style, name: 'name', css: 'css')
 
       allow(subject).to receive(:site).and_return(site)
       allow(subject).to receive(:style).and_return(style)
-      allow(subject).to receive(:update).with(css: 'css', name: 'name', style_id: nil)
+      allow(subject).to receive(:style_id).and_return(1)
+      allow(subject).to receive(:update).with(css: 'css', name: 'name', style_id: nil).and_return(true)
 
-      subject.copy!(site)
+      expect(subject.copy!(skin)).to eq(subject)
     end
 
-    it "returns false when copy to diferent site and hasn't style_id" do
+    it "returns false when copy to diferent site and has style_id" do
       site = double(:site)
       site2 = double(:site2)
+      skin = double(:skin, site: site)
 
       allow(subject).to receive(:site).and_return(site2)
       allow(subject).to receive(:style_id).and_return(1)
 
-      expect(subject.copy!(site)).to eq(false)
+      expect(subject.copy!(skin)).to eq(false)
     end
 
     it 'create a new style when copy to a diferent site' do
       site = double(:site)
       site2 = double(:site2)
+      skin = double(:skin, site: site)
       name = double(:name)
       css = double(:css)
-      skin = double(:skin)
 
       allow(subject).to receive(:site).and_return(site2)
+      allow(subject).to receive(:style_id).and_return(nil)
       allow(subject).to receive(:name).and_return(name)
       allow(subject).to receive(:css).and_return(css)
-      allow(Style).to receive(:create!).with(css: css, name: name, skin: skin)
-      allow(site).to receive(:active_skin).and_return(skin)
+      expect(Style).to receive(:create!).with(css: css, name: name, skin: skin)
 
-      subject.copy!(site)
+      subject.copy!(skin)
     end
   end
 

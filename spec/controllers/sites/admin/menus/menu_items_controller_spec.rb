@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe Sites::Admin::Menus::MenuItemsController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:menu) { FactoryGirl.create(:menu, site_id: site.id) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:menu) { FactoryBot.create(:menu, site_id: site.id) }
 
   describe "GET #index" do
     skip "will redirect to spendinge_admin_menus" do

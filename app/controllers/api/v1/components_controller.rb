@@ -13,7 +13,7 @@ module API
 
       def update
         component = Component.find_by id: params[:id]
-        if component.update_attributes(component_params)
+        if component.update(component_params)
           render json: component, root: 'data'
         else
           render json: {error: t('api.component_not_created'), message: component.errors.full_messages}, status: 403

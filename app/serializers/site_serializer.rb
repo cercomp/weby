@@ -5,7 +5,7 @@ class SiteSerializer < ActiveModel::Serializer
   :title, :created_at, :updated_at, :url, :view_count, :body_width, :description
 
   def theme_name
-    object.theme.name
+    object.theme&.name
   end
 
 end

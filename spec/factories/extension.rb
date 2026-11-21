@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :extension do
     sequence(:name) { |count| "Extension #{count}" }
   end

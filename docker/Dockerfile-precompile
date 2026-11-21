@@ -47,7 +47,7 @@ RUN cp .sprockets-manifest-*.json public/assets/
 RUN mv config/email.rb config/initializers/
 
 ## Second stage (publish)
-FROM ruby:2.7.5-slim-bullseye
+FROM ruby:3.3.14-slim-bookworm
 
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
@@ -69,8 +69,7 @@ ENV SECRET_KEY_BASE $SECRET_KEY_BASE
 WORKDIR /opt/weby
 
 # Files to logs and tmp
-RUN mkdir tmp
-RUN mkdir log
+RUN mkdir -p tmp log
 RUN touch log/error.log
 RUN ln -sf /dev/stderr log/error.log
 
@@ -80,7 +79,7 @@ COPY --from=base /usr/local/bundle/ /usr/local/bundle/
 COPY --from=base /opt/weby/public/assets/ /opt/weby/public/assets/
 
 # Env to system
-ENV PATH=/opt/weby/bin:/opt/weby/vendor/bundle/ruby/2.7.0/bin:$PATH
+ENV PATH=/opt/weby/bin:$PATH
 
 EXPOSE 3000
 

@@ -1,9 +1,9 @@
 require "rails_helper"
 
 describe Sites::Admin::BackupsController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:locale) { FactoryGirl.create(:locale) }
-  let(:site) { FactoryGirl.create(:site, locales: [locale]) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
 
   before { sign_in user }
 

@@ -1,9 +1,8 @@
-FROM ruby:2.7.5
+FROM ruby:3.3.14-slim-bookworm
 
-RUN echo 'deb http://archive.debian.org/debian bullseye main' > /etc/apt/sources.list && \
-    echo 'deb http://archive.debian.org/debian-security bullseye-security main' >> /etc/apt/sources.list && \
-    apt-get update -o Acquire::Check-Valid-Until=false && \
-    apt-get install -y -o Acquire::Check-Valid-Until=false tzdata imagemagick libpng-dev libpq-dev libncurses5-dev libffi-dev curl build-essential libssl-dev libreadline6-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libreadline-dev libxslt-dev ghostscript ntpdate apt-utils nodejs
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends tzdata imagemagick libpng-dev libpq-dev libncurses-dev libffi-dev curl build-essential libssl-dev libreadline-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libxslt-dev ghostscript ntpdate nodejs file git && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV TZ=America/Sao_Paulo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -17,6 +16,7 @@ RUN gem install bundler -v '2.4.20'
 
 COPY Gemfile Gemfile.lock ./
 COPY vendor/engines ./vendor/engines/
+COPY vendor/gems ./vendor/gems/
 
 RUN bundle install --jobs 4 --retry 3
 

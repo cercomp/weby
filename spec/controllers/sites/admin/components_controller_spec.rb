@@ -1,12 +1,16 @@
 require "rails_helper"
 
 describe Sites::Admin::ComponentsController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:locale) { FactoryGirl.create(:locale) }
-  let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:first_component) { FactoryGirl.create(:component, site_id: site.id) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:skin) { FactoryBot.create(:skin, site_id: site.id, active: true) }
+  let(:first_component) { FactoryBot.create(:component, skin_id: skin.id) }
 
-  before { sign_in user }
+  before do
+    @request.host = "#{site.name}.example.com"
+    sign_in user
+  end
 
   describe "GET #index" do
     before { get :index }

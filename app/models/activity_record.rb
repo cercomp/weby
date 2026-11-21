@@ -1,14 +1,15 @@
 class ActivityRecord < ApplicationRecord
-  belongs_to :loggeable, polymorphic: true
+  belongs_to :loggeable, polymorphic: true, optional: true
   belongs_to :site, optional: true
   belongs_to :user
 
-  scope :user_or_action_like, ->(text) {
+  scope :user_or_action_like, ->(text, site_id = nil) {
     if text.present?
-      joins(:user)
-      .where("(LOWER(users.first_name) like :text OR
+      relation = joins(:user).where("(LOWER(users.first_name) like :text OR
             LOWER(action) like :text OR
             LOWER(controller) like :text)", text: "%#{text.try(:downcase)}%")
+      relation = relation.where(site_id: site_id) if site_id.present?
+      relation
     end
   }
 

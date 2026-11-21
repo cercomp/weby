@@ -1,6 +1,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/users', type: :request do
+  let!(:user) { FactoryBot.create(:user) }
+  let(:email) { user.email }
+  let(:login) { user.login }
 
   path '/api/v1/users/find' do
 

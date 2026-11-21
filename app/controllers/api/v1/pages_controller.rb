@@ -30,8 +30,9 @@ module API
       def create_page page
         ActiveRecord::Base.transaction do
           # Validations
-          page.errors.add(:base, 'Nenhum usuario informado') && raise(ActiveRecord::Rollback) if params[:user].blank?
-          user = User.find_by(id: params[:user])
+          user_id = params[:user].presence || params.dig(:page, :user)
+          page.errors.add(:base, 'Nenhum usuario informado') && raise(ActiveRecord::Rollback) if user_id.blank?
+          user = User.find_by(id: user_id)
           @page.user = user
 
           page.save!
@@ -44,7 +45,8 @@ module API
       # PUT /pages/1.json
       def update
         @page = Page.find_by id: params[:id]
-        puts page_params
+        return not_found :page, params[:id] if !@page
+
         if @page.update(page_params)
           render json: @page, root: 'data'
         else

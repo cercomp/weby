@@ -14,7 +14,6 @@ module API
 
       def create
         @menu_item = MenuItem.new(menu_items_params)
-        puts @menu_item
         if create_menu_items(@menu_item)
           render json: @menu_item, root: 'data'
         else

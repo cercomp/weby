@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe Sites::Admin::MenusController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:locale) { FactoryGirl.create(:locale) }
-  let(:site) { FactoryGirl.create(:site, locales: [locale]) }
-  let(:menu) { FactoryGirl.create(:menu, site_id: site.id) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let(:locale) { FactoryBot.create(:locale) }
+  let(:site) { FactoryBot.create(:site, locales: [locale]) }
+  let(:menu) { FactoryBot.create(:menu, site_id: site.id) }
 
   before { sign_in user }
 

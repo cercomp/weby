@@ -13,5 +13,6 @@ Paperclip.options[:whiny] = (ENV['PAPERCLIP_WHINY'].to_s == 'true')
 Paperclip.options[:content_type_mappings] = {
   pem: "text/plain",
   cer: "text/plain",
-  crt: "text/plain"
+  crt: "text/plain",
+  svg: ["image/svg+xml", "text/xml", "text/plain", "application/xml"]
 }

@@ -1,13 +1,13 @@
 require "rails_helper"
 
 describe Admin::ActivityRecordsController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
 
   before { sign_in user }
 
   describe "GET #index" do
     it "renders all records" do
-      record = FactoryGirl.create(:activity_record, user: user)
+      record = FactoryBot.create(:activity_record, user: user)
       get :index
 
       expect(assigns(:activity_records)).to eq([record])
@@ -17,7 +17,7 @@ describe Admin::ActivityRecordsController do
 
   describe "GET #show" do
     it "render the record" do
-      activity = ActivityRecord.create
+      activity = FactoryBot.create(:activity_record, user: user)
       get :show, id: activity
 
       expect(assigns(:activity_record)).to eq(activity)
@@ -27,7 +27,7 @@ describe Admin::ActivityRecordsController do
 
   describe "DELETE #destroy" do
     it "deletes the activity record" do
-      activity = ActivityRecord.create
+      activity = FactoryBot.create(:activity_record, user: user)
 
       expect { delete :destroy, id: activity }.to change(ActivityRecord, :count).by(-1)
       expect(response).to redirect_to admin_activity_records_path

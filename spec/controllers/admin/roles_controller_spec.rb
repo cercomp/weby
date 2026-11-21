@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe Admin::RolesController do
-  let(:user) { FactoryGirl.create(:user, is_admin: true) }
-  let(:user_role) { FactoryGirl.create(:role) }
+  let(:user) { FactoryBot.create(:user, is_admin: true) }
+  let!(:user_role) { FactoryBot.create(:role) }
 
   before { sign_in user }
 
@@ -43,7 +43,8 @@ describe Admin::RolesController do
   describe "PUT #update" do
     context "when success" do
       it "will redirect to admin_roles path" do
-        expect(response).to be_success
+        put :update, id: user_role.id, role: { name: "New Name" }
+        expect(response).to redirect_to admin_roles_path
       end
     end
   end
