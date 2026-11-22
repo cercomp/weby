@@ -169,3 +169,121 @@ ul.order-list {
   }
 }
 
+
+// Shared Weby Captcha Component
+.weby-captcha-wrapper {
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  .captcha-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+
+    .fa-shield {
+      color: #005088;
+      font-size: 14px;
+    }
+  }
+
+  .weby-captcha-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.2s ease;
+
+    &:focus-within {
+      border-color: #005088;
+      box-shadow: 0 0 0 3px rgba(0, 80, 136, 0.12);
+    }
+
+    .weby-captcha-visual {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .weby-captcha-img {
+        height: 42px;
+        min-width: 130px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        background: #ffffff;
+        object-fit: contain;
+        display: block;
+      }
+
+      .btn-refresh-captcha {
+        height: 42px;
+        width: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        background: #ffffff;
+        color: #475569;
+        font-size: 15px;
+        transition: all 0.15s ease;
+
+        &:hover, &:focus {
+          color: #005088;
+          border-color: #005088;
+          background: #f1f5f9;
+        }
+
+        .fa-refresh {
+          transition: transform 0.2s ease;
+        }
+      }
+    }
+
+    .weby-captcha-input-wrap {
+      .weby-captcha-input {
+        height: 42px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background: #ffffff;
+        padding: 8px 12px;
+        color: #1e293b;
+        box-shadow: none;
+
+        &::placeholder {
+          font-size: 13px;
+          letter-spacing: normal;
+          text-transform: none;
+          font-weight: 400;
+          color: #94a3b8;
+        }
+
+        &:focus {
+          border-color: #005088;
+          box-shadow: 0 0 0 2px rgba(0, 80, 136, 0.15);
+        }
+      }
+    }
+  }
+
+  .captcha-hint {
+    margin-top: 6px;
+    margin-bottom: 0;
+    font-size: 11px;
+    color: #64748b;
+
+    .fa-info-circle {
+      color: #005088;
+      margin-right: 2px;
+    }
+  }
+}

@@ -10,29 +10,36 @@
     <div class="tab-content">
       <% Weby::Settings.groups.each_with_index do |group, index| %>
         <div class="tab-pane <%= index == 0 ? "active" : "" %>" id=<%= group %>>
-          <table class='table table-striped'>
-            <thead>
-              <tr>
-                <th> <%= t('.name') %> </th>
-                <th style="width: 30%"> <%= t('.value') %> </th>
-                <th style="width: 50%"> <%= t('.description') %> </th>
-              </tr>
-            </thead>
-            <tbody>
-            <% @settings.each do |setting| %>
+          <div class="table-responsive">
+            <table class='table table-striped align-middle'>
+              <thead>
+                <tr>
+                  <th width="35%"> <%= t('.name') %> </th>
+                  <th width="35%"> <%= t('.value') %> </th>
+                  <th class="hidden-xs" width="30%"> <%= t('.description') %> </th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @settings.each do |setting| %>
 	          <% if setting.group == group %>
                 <tr>
-                  <input type="hidden" value="<%= setting.id %>" name="settings[][id]"/>
-		          <input type="hidden" value="<%= setting.name %>" name="settings[][name]"/>
-		          <input type="hidden" value="<%= setting.group %>" name="settings[][group]"/>
-                  <td> <%= setting.name %> </td>
+                  <td>
+                    <input type="hidden" value="<%= setting.id %>" name="settings[][id]"/>
+		            <input type="hidden" value="<%= setting.name %>" name="settings[][name]"/>
+		            <input type="hidden" value="<%= setting.group %>" name="settings[][group]"/>
+                    <strong><%= setting.name %></strong>
+                    <div class="visible-xs-block text-muted table-meta-sub" style="margin-top: 4px;">
+                      <%= t("settings.#{setting.name}") %>
+                    </div>
+                  </td>
                   <td> <%= setting_input_tag setting %> </td>
-                  <td> <%= t("settings.#{setting.name}") %> </td>
+                  <td class="hidden-xs"> <%= t("settings.#{setting.name}") %> </td>
 		        </tr>
 	           <% end %>
               <% end %>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       <% end %>
     </div>

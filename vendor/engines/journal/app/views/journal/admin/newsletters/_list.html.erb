@@ -6,29 +6,34 @@
   <div class="pull-left"> <%= info_page @newsletterlist %> </div>
   <div class="pull-right"> <%= paginate @newsletterlist, remote: true %> </div>
   <div class="clearfix"></div>
-  <div class="table-wrapper">
-    <table class="table table-striped nowrap">
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
       <thead>
         <tr>
           <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
-          <th width="30%"><%= t(".email") %></th>
-          <th width="15%" style="text-align:center;"><%= t(".confirm") %></th>
-          <th width="15%"><%= t(".date_create") %></th>
-          <th width="15%"><%= t(".date_confirm") %></th>
-          <th width="10%" style="text-align:center;"><%#= t(".delete") %></th>
+          <th><%= t(".email") %></th>
+          <th width="15%" class="text-center"><%= t(".confirm") %></th>
+          <th class="hidden-xs" width="20%"><%= t(".date_create") %></th>
+          <th class="hidden-xs hidden-sm" width="20%"><%= t(".date_confirm") %></th>
+          <th class="actions text-right"><%#= t(".delete") %></th>
         </tr>
       </thead>
       <tbody>
         <% @newsletterlist.each do |newsletter| %>
           <tr id="<%= newsletter.id %>">
             <td class="center sel-item"><%= check_box_tag :select_item, newsletter.id, false %></td>
-            <td><%= newsletter.email %></td>
-            <td width="15%" style="text-align:center;">
-              <span class="glyphicon <%= newsletter.confirm ? "glyphicon-ok" : "glyphicon-remove" %>"></span>
+            <td>
+              <%= newsletter.email %>
+              <div class="visible-xs-block table-meta-sub">
+                <span><i class="fa fa-calendar"></i> <%= l(newsletter.created_at, :format => :short) %></span>
+              </div>
             </td>
-            <td><%= l(newsletter.created_at, :format => :short) %></td>
-            <td><%= newsletter.confirm ? l(newsletter.updated_at, :format => :short) : "" %></td>
-            <td width="10%" class="actions">
+            <td width="15%" style="text-align:center;">
+              <span class="glyphicon <%= newsletter.confirm ? "glyphicon-ok text-success" : "glyphicon-remove text-muted" %>"></span>
+            </td>
+            <td class="hidden-xs"><%= l(newsletter.created_at, :format => :short) %></td>
+            <td class="hidden-xs hidden-sm"><%= newsletter.confirm ? l(newsletter.updated_at, :format => :short) : "" %></td>
+            <td class="actions text-right">
               <%= render_dropdown_menu do %>
                 <%= link_to icon('trash', text: t('destroy')),
                   admin_newsletter_path(newsletter.id),

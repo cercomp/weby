@@ -142,7 +142,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def should_be_ssl?
+  def should_be_ssl?(*)
     current_user && Weby::Settings::Weby.login_protocol == 'https' && !request.ssl?
   end
 
@@ -239,7 +239,7 @@ class ApplicationController < ActionController::Base
 
   # Verify external site
   def self.is_external_site?(request)
-    return false if ['localhost', '127.0.0.1'].include?(request.host)
+    return false if ['localhost', '127.0.0.1'].include?(request.host) || request.host.end_with?('.localhost')
     return Weby::Settings::Weby.domain.present? && !request.host.include?(Weby::Settings::Weby.domain)
   end
 

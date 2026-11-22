@@ -63,7 +63,7 @@ module Journal::Admin
               news_id: @news.id
             }
           end
-          format.html { redirect_to site_admin_news_index_path }
+          format.html { redirect_to admin_news_index_path }
         end
       end
 

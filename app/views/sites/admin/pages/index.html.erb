@@ -1,25 +1,23 @@
 <% title ".pages" %>
 <% breadcrumb params[:search].present? ? :pages_search : :pages, params[:search] %>
-<div class="row">
-  <div class="col-md-5">
+<div class="row" style="margin-bottom: 15px;">
+  <div class="col-xs-12 col-sm-6 col-md-5 form-group">
     <%= form_tag site_admin_pages_path, method: 'get', autocapitalize: "off", class: 'search' do %>
       <%= search_input params[:search] %>
     <% end %>
   </div>
-  <div class="col-md-7">
-    <div class="pull-right">
-      <% with_permission(action: :new) do %>
-        <%= link_to t(".new_page"),
-            new_site_admin_page_path,
-            class: "btn btn-success" %>
-      <% end %>
-      <% with_permission(action: [:recover, :purge]) do %>
-        <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
-      <% end %>
-      <% with_permission(controller: SitesController, action: [:edit]) do %>
-        <%= link_to icon('cog'), edit_site_admin_path(anchor: 'tab-pages'), class: "btn btn-default", title: t('.settings') %>
-      <% end %>
-    </div>
+  <div class="col-xs-12 col-sm-6 col-md-7 text-right btn-group-responsive">
+    <% with_permission(action: :new) do %>
+      <%= link_to t(".new_page"),
+          new_site_admin_page_path,
+          class: "btn btn-success" %>
+    <% end %>
+    <% with_permission(action: [:recover, :purge]) do %>
+      <%= link_to t("recycle_bin"), recycle_bin_site_admin_pages_path, class: "btn btn-default" %>
+    <% end %>
+    <% with_permission(controller: SitesController, action: [:edit]) do %>
+      <%= link_to icon('cog'), edit_site_admin_path(anchor: 'tab-pages'), class: "btn btn-default", title: t('.settings') %>
+    <% end %>
   </div>
 </div>
 

@@ -6,18 +6,18 @@
   <div class="pull-left"> <%= info_page @events %> </div>
   <div class="pull-right"> <%= paginate @events, remote: true %> </div>
   <div class="clearfix"></div>
-  <div class="table-wrapper">
-    <table class="table table-striped align-middle nowrap">
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
       <thead>
         <tr>
           <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
-          <th width="30%"><%= sortable 'calendar_event_i18ns.name', t(".name") %></th>
-          <th width="12%"><%= sortable 'users.first_name', t(".user") %></th>
-          <th width="20%"><%= sortable 'tags.name', t(".category") %></th>
-          <th width="12%"><%= sortable 'calendar_events.created_at', t(".created_at") %></th>
-          <th width="12%"><%= sortable 'calendar_events.begin_at', t(".begin_at") %></th>
-          <th width="5%" class="center"><%= sortable 'calendar_events.view_count', t(".views") %></th>
-          <th width="5%" class="center"><%#= t(".action")%></th>
+          <th><%= sortable 'calendar_event_i18ns.name', t(".name") %></th>
+          <th class="hidden-xs hidden-sm"><%= sortable 'users.first_name', t(".user") %></th>
+          <th class="hidden-xs hidden-sm"><%= sortable 'tags.name', t(".category") %></th>
+          <th class="hidden-xs hidden-sm"><%= sortable 'calendar_events.created_at', t(".created_at") %></th>
+          <th class="hidden-xs"><%= sortable 'calendar_events.begin_at', t(".begin_at") %></th>
+          <th class="center hidden-xs hidden-sm"><%= sortable 'calendar_events.view_count', t(".views") %></th>
+          <th class="actions text-right"><%#= t(".action")%></th>
         </tr>
       </thead>
       <tbody>
@@ -36,13 +36,24 @@
                 <%= icon('retweet') %>
                 <%= link_to event.name, event_url(event, subdomain: event.site), target: :_blank %>
               <% end %>
+              <div class="visible-xs-block visible-sm-block table-meta-sub">
+                <span><i class="fa fa-calendar"></i> <%= l(event.begin_at, format: :short) %></span>
+                <% if event.user %>
+                  <span class="meta-divider">•</span>
+                  <span><i class="fa fa-user"></i> <%= event.user.first_name %></span>
+                <% end %>
+                <% if event_site&.categories.present? %>
+                  <span class="meta-divider">•</span>
+                  <span><%= raw categories_links(event_site.categories) %></span>
+                <% end %>
+              </div>
             </td>
-            <td><%= event.user.first_name %></td>
-            <td><%= raw categories_links(event_site&.categories) if event_site %></td>
-            <td><%= l(event.created_at, format: :short) %></td>
-            <td><%= l(event.begin_at, format: :short) %></td>
-            <td width="5%" style="text-align:center;"><%= event.view_count %></td>
-            <td class="actions" style="padding-left: 0px; padding-right: 5px;">
+            <td class="hidden-xs hidden-sm"><%= event.user.first_name %></td>
+            <td class="hidden-xs hidden-sm"><%= raw categories_links(event_site&.categories) if event_site %></td>
+            <td class="hidden-xs hidden-sm"><%= l(event.created_at, format: :short) %></td>
+            <td class="hidden-xs"><%= l(event.begin_at, format: :short) %></td>
+            <td class="hidden-xs hidden-sm" style="text-align:center;"><%= event.view_count %></td>
+            <td class="actions text-right" style="padding-left: 0px; padding-right: 5px;">
               <%= render_dropdown_menu do %>
                 <%= link_to icon('eye-open', text: t('show')), event_url(event, subdomain: event.site), target: :_blank %>
                 <% with_permission(action: :share) do %>

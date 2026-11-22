@@ -1,6 +1,6 @@
 <% title "recycle_bin" %>
 <% breadcrumb :news_recycle_bin %>
-<div class="pull-right">
+<div class="text-right btn-group-responsive" style="margin-bottom: 15px;">
   <% with_permission(action: :new) do %>
     <%= link_to t(".new_news"),
       new_admin_news_path,
@@ -21,39 +21,50 @@
       <%= t("empty_recycle_bin") %>
     </div>
   <% else %>
-    <div class="pull-left"> <%= info_page @newslist %> </div>
-    <div class="pull-right"> <%= paginate @newslist, remote: true %> </div>
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= info_page @newslist %> </div>
+      <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @newslist, remote: true %> </div>
+    </div>
 
-    <table class="table table-striped nowrap align-middle">
-      <thead>
-        <tr>
-          <th width="35%"><%= t(".title") %></th>
-          <th width="12%"><%= sortable 'users.first_name', t(".author") %></th>
-          <th width="20%"><%= sortable 'tags.name', t(".category") %></th>
-          <th width="13%"><%= sortable 'news.deleted_at', t(".deleted_at") %></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @newslist.each do |news| %>
-          <tr id="<%= news.id %>">
-            <td><%= news.title %></td>
-            <td><%= news.user.first_name %></td>
-            <td><%= raw categories_links(news.news_site_for(current_site).categories) %></td>
-            <td><%= l(news.deleted_at, :format => :short) %></td>
-            <td class="actions text-right">
-              <%= render_dropdown_menu do %>
-                <%= recycle_bin_actions news, with_text: true %>
-              <% end %>
-            </td>
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th><%= t(".title") %></th>
+            <th class="hidden-xs" width="15%"><%= sortable 'users.first_name', t(".author") %></th>
+            <th class="hidden-xs hidden-sm" width="20%"><%= sortable 'tags.name', t(".category") %></th>
+            <th class="hidden-xs" width="15%"><%= sortable 'news.deleted_at', t(".deleted_at") %></th>
+            <th class="actions text-right"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @newslist.each do |news| %>
+            <tr id="<%= news.id %>">
+              <td>
+                <%= news.title %>
+                <div class="visible-xs-block table-meta-sub">
+                  <span><i class="fa fa-user"></i> <%= news.user.first_name %></span>
+                  <span class="meta-divider">•</span>
+                  <span><i class="fa fa-calendar"></i> <%= l(news.deleted_at, :format => :short) %></span>
+                </div>
+              </td>
+              <td class="hidden-xs"><%= news.user.first_name %></td>
+              <td class="hidden-xs hidden-sm"><%= raw categories_links(news.news_site_for(current_site).categories) %></td>
+              <td class="hidden-xs"><%= l(news.deleted_at, :format => :short) %></td>
+              <td class="actions text-right">
+                <%= render_dropdown_menu do %>
+                  <%= recycle_bin_actions news, with_text: true %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="pull-left"> <%= per_page_links @newslist, true, :mini %> </div>
-    <div class="pull-right"> <%= paginate @newslist, remote: true %> </div>
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= per_page_links @newslist, true, :mini %> </div>
+      <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @newslist, remote: true %> </div>
+    </div>
   <% end %>
 </div>

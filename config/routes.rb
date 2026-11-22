@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       get 'backups' => 'backups#index'
       get 'generate' => 'backups#generate'
       post 'import' => 'backups#import'
+      get 'journal', to: redirect('/admin/news')
 
       resources :activity_records, only: [:index, :show]
       resources :extensions
@@ -138,11 +139,8 @@ Rails.application.routes.draw do
     end
 
     namespace :admin, module: 'journal/admin', as: :site_admin do
-      resources :news, param: :id, constraints: { id: /[0-9a-zA-Z\-\_]+/ } do
-        member do
-          patch :toggle_publish
-        end
-      end
+      patch 'news/:id/toggle_publish', to: 'news#toggle_publish', as: :toggle_publish_news
+      get 'news', to: 'news#index', as: :news_index
     end
 
     #Extension from core - routes # TODO maybe spread the routes into extensions folder
@@ -196,6 +194,9 @@ Rails.application.routes.draw do
     get '/admin' => 'application#admin'
 
     namespace :admin do
+      get 'pages', to: redirect { |_, _| site = Site.active.first; site ? "/admin/sites/#{site.id}/edit#tab-pages" : "/admin/sites" }
+      get 'journal', to: redirect { |_, _| site = Site.active.first; site ? "/admin/sites/#{site.id}/edit" : "/admin/sites" }
+      get 'news', to: redirect { |_, _| site = Site.active.first; site ? "/admin/sites/#{site.id}/edit" : "/admin/sites" }
       match 'settings' => 'settings#index', via: [:get, :put]
       post 'settings/exec' => 'settings#exec', as: :exec
       resources :users do

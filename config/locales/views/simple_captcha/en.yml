@@ -1,0 +1,10 @@
+en:
+  simple_captcha:
+    placeholder: "Type the code from the image"
+    label: "Security Verification"
+    refresh_button_text: "Refresh code"
+    captcha_code: "The security code entered does not match the image. Please try again."
+    hint: "Type the 5 characters shown above (case-insensitive)."
+    message:
+      default: "The code entered does not match the image"
+      user: "The image and the code are different"

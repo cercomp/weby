@@ -7,43 +7,50 @@
   <div class="pull-right"> <%= paginate @sites, remote: true %> </div>
   <div class="clearfix"></div>
 
-  <table class="table table-striped align-middle">
-    <thead>
-      <tr>
-        <th><%= sortable 'id', 'ID' %></th>
-        <th class='site-name'><%= sortable 'name', t(".name") %></th>
-        <th><%= sortable 'title', t(".title") %></th>
-        <th><%= sortable 'description', t(".description") %></th>
-        <th><%= t('.active') %></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @sites.each do |site| %>
-        <tr class="<%= site.status %> <%= 'deactivated' if site.status == 'inactive' %>">
-          <td><%= site.id %></td>
-          <td><%= link_to site.name, site_url(subdomain: site), target: :_blank %></td>
-          <td><%= link_to "#{site.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_site_path(site.id) %></td>
-          <td><%= site.description %></td>
-          <td class="activate"><%= toggle_field(site, 'is_active', 'toggle', remote: true, data: {confirm: t('are_you_sure')}) %></td>
-          <td class="text-right">
-            <%= render_dropdown_menu do %>
-              <% if current_user && current_user.is_admin %>
-                <%# if site.status == 'active' %>
-                  <%#= link_to icon('remove-circle', text: t(".deactivate")), admin_site_path(site.id, return_to: :index, site: {status: 'inactive'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
-                <%# else %>
-                  <%#= link_to icon('ok-circle', text: t(".activate")), admin_site_path(site.id, return_to: :index, site: {status: 'active'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
-                <%# end %>
-                <%= link_to icon('trash', text: t(".delete")), admin_site_path(site.id), class: "action-link", method: :delete, data: {confirm: t('are_you_sure_del_item', item: site.title)} %>
-                <%= link_to icon('edit', text: t(".settings")), edit_admin_site_path(site.id), class: "action-link" %>
-              <% end %>
-              <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "action-link"  if current_user && current_user.has_role_in?(site) %>
-            <% end %>
-          </td>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr>
+          <th class="hidden-xs" width="60"><%= sortable 'id', 'ID' %></th>
+          <th class='site-name'><%= sortable 'name', t(".name") %></th>
+          <th><%= sortable 'title', t(".title") %></th>
+          <th class="hidden-xs hidden-sm"><%= sortable 'description', t(".description") %></th>
+          <th class="activate text-center"><%= t('.active') %></th>
+          <th class="actions text-right"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @sites.each do |site| %>
+          <tr class="<%= site.status %> <%= 'deactivated' if site.status == 'inactive' %>">
+            <td class="hidden-xs"><%= site.id %></td>
+            <td class='site-name'><%= link_to site.name, site_url(subdomain: site), target: :_blank %></td>
+            <td>
+              <%= link_to "#{site.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_site_path(site.id) %>
+              <% if site.description.present? %>
+                <div class="visible-xs-block table-meta-sub"><%= truncate(site.description, length: 60) %></div>
+              <% end %>
+            </td>
+            <td class="hidden-xs hidden-sm"><%= site.description %></td>
+            <td class="activate text-center"><%= toggle_field(site, 'is_active', 'toggle', remote: true, data: {confirm: t('are_you_sure')}) %></td>
+            <td class="actions text-right">
+              <%= render_dropdown_menu do %>
+                <% if current_user && current_user.is_admin %>
+                  <%# if site.status == 'active' %>
+                    <%#= link_to icon('remove-circle', text: t(".deactivate")), admin_site_path(site.id, return_to: :index, site: {status: 'inactive'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
+                  <%# else %>
+                    <%#= link_to icon('ok-circle', text: t(".activate")), admin_site_path(site.id, return_to: :index, site: {status: 'active'}), class: "action-link", method: :patch, data: {confirm: t('are_you_sure')} %>
+                  <%# end %>
+                  <%= link_to icon('trash', text: t(".delete")), admin_site_path(site.id), class: "action-link", method: :delete, data: {confirm: t('are_you_sure_del_item', item: site.title)} %>
+                  <%= link_to icon('edit', text: t(".settings")), edit_admin_site_path(site.id), class: "action-link" %>
+                <% end %>
+                <%= link_to icon('briefcase', text: t(".dashboard")), site_admin_url(subdomain: site), class: "action-link"  if current_user && current_user.has_role_in?(site) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <div class="pull-left"> <%= per_page_links @sites, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @sites, remote: true %> </div>

@@ -1,39 +1,41 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= t (".enroled_user")%></th>
-      <th style="width: 40%"><%= t(".role") %></th>
-      <th style="width: 15%"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @site_users.present? %>
-      <% @site_users.each do |user| %>
-        <tr>
-          <td><%= raw "#{user.fullname} (#{link_to_if check_permission(Admin::UsersController, :index), user.login, admin_user_url(user, subdomain: nil)})" %></td>
-          <td>
-            <span id="user_<%= user.id %>">
-              <%= user.global_roles.map{|r| content_tag(:span, r.name, class: 'label label-primary') }.join(' ').html_safe %>
-            </span>
-            <div id="role_form_<%= user.id %>">
-              <% if @user and @user == user %>
-                <%= render 'role_form' %>
-              <% end %>
-            </div>
-          </td>
-          <td>
-            <%= link_to icon('edit', text: t("edit")), { action: 'manage_roles', user_id: user.id },
-              remote: 'true',
-              user_id: user.id %>
-          </td>
-        </tr>
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th><%= t (".enroled_user")%></th>
+        <th><%= t(".role") %></th>
+        <th class="actions text-right"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @site_users.present? %>
+        <% @site_users.each do |user| %>
+          <tr>
+            <td><%= raw "#{user.fullname} (#{link_to_if check_permission(Admin::UsersController, :index), user.login, admin_user_url(user, subdomain: nil)})" %></td>
+            <td>
+              <span id="user_<%= user.id %>">
+                <%= user.global_roles.map{|r| content_tag(:span, r.name, class: 'label label-primary') }.join(' ').html_safe %>
+              </span>
+              <div id="role_form_<%= user.id %>">
+                <% if @user and @user == user %>
+                  <%= render 'role_form' %>
+                <% end %>
+              </div>
+            </td>
+            <td class="actions text-right">
+              <%= link_to icon('edit', text: t("edit")), { action: 'manage_roles', user_id: user.id },
+                remote: 'true',
+                user_id: user.id %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr><td colspan="3">
+          <div class="alert alert-warning">
+            <%= t(".none_user") %>
+          </div>
+        </td></tr>
       <% end %>
-    <% else %>
-      <tr><td colspan="3">
-        <div class="alert alert-warning">
-          <%= t(".none_user") %>
-        </div>
-      </td></tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

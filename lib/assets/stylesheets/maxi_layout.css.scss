@@ -1,8 +1,13 @@
 .maxi_layout{
   margin-bottom: 10px;
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
 
   .maxi_level {
     margin-bottom: 15px;
+    min-width: 580px;
 
     > .placeholder {
       background-color: #EEE;

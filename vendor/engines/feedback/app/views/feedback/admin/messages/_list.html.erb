@@ -6,23 +6,30 @@
   <div class="pull-left"> <%= info_page @messages %> </div>
   <div class="pull-right"> <%= paginate @messages, remote: true %> </div>
   <div class="clearfix"></div>
-  <div class="table-wrapper">
+  <div class="table-responsive">
     <table class="table table-striped notifications align-middle">
       <thead>
         <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
         <th><%= t(".subject") %></th>
-        <th><%= t(".name") %></th>
-        <th><%= t(".date") %></th>
-        <th class="text-right"></th>
+        <th class="hidden-xs"><%= t(".name") %></th>
+        <th class="hidden-xs" width="15%"><%= t(".date") %></th>
+        <th class="actions text-right"></th>
       </thead>
       <tbody>
         <% @messages.each do |message| %>
           <tr class="<%= message.read_status ? "" : "unread warning" %>">
             <td class="center sel-item"><%= check_box_tag :select_item, message.id, false %></td>
-            <td><%= link_to "#{image_tag("message-new.png", style: "width: 14px") if !message.read_status} #{message.subject}".html_safe, admin_message_path(message) %></td>
-            <td><%= "#{message.name} <#{message.email}>" %></td>
-            <td><%= l(message.created_at, :format => :short) %></td>
-            <td class="text-right">
+            <td>
+              <%= link_to "#{image_tag("message-new.png", style: "width: 14px") if !message.read_status} #{message.subject}".html_safe, admin_message_path(message) %>
+              <div class="visible-xs-block table-meta-sub">
+                <span><i class="fa fa-user"></i> <%= message.name %></span>
+                <span class="meta-divider">•</span>
+                <span><i class="fa fa-calendar"></i> <%= l(message.created_at, :format => :short) %></span>
+              </div>
+            </td>
+            <td class="hidden-xs"><%= "#{message.name} <#{message.email}>" %></td>
+            <td class="hidden-xs"><%= l(message.created_at, :format => :short) %></td>
+            <td class="actions text-right">
               <%= render_dropdown_menu do %>
                 <%= make_menu(message) %>
               <% end %>

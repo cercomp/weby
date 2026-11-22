@@ -6,6 +6,8 @@ module Weby
       if settings.domain.present? && request.host.end_with?(settings.domain)
         sub = request.host.sub(/\.?#{Regexp.escape(settings.domain)}(:\d+)?$/, '')
         sub.gsub(/^www\./, '')
+      elsif request.host.match?(/\.localhost$/)
+        request.host.sub(/\.?localhost$/, '').gsub(/^www\./, '')
       else
         tld_len = settings.tld_length.present? ? settings.tld_length.to_i : 1
         request.subdomain(tld_len).gsub(/^www\./, '')

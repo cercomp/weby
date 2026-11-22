@@ -1,7 +1,7 @@
 <% title "recycle_bin" %>
 <% breadcrumb :repositories_recycle_bin %>
 <% content_for :javascripts, javascript_include_tag('repositories.index') %>
-<div class="pull-right">
+<div class="text-right btn-group-responsive" style="margin-bottom: 15px;">
   <% with_permission(action: :new) do %>
     <%= link_to t(".new_archive"),
       new_site_admin_repository_path,
@@ -22,39 +22,50 @@
   </div>
 <% else %>
   <div id="repo_list">
-    <div class="pull-left"> <%= info_page @repositories %> </div>
-    <div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= info_page @repositories %> </div>
+      <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @repositories, remote: true %> </div>
+    </div>
 
-    <table class="table table-striped table-condensed align-middle">
+    <div class="table-responsive">
+      <table class="table table-striped table-condensed align-middle">
         <thead>
-            <th><%= sortable 'archive_file_name', t(".archive") %></th>
-            <th><%= sortable 'title', t(".title") %></th>
-            <th><%= sortable 'description', t(".description") %></th>
-            <th><%= sortable 'archive_content_type', t(".type") %></th>
-            <th><%= sortable 'deleted_at', t(".deleted_at") %></th>
-            <th></th>
-          </thead>
+          <th width="70"><%= sortable 'archive_file_name', t(".archive") %></th>
+          <th><%= sortable 'title', t(".title") %></th>
+          <th class="hidden-xs hidden-sm"><%= sortable 'description', t(".description") %></th>
+          <th class="hidden-xs" width="15%"><%= sortable 'archive_content_type', t(".type") %></th>
+          <th class="hidden-xs" width="15%"><%= sortable 'deleted_at', t(".deleted_at") %></th>
+          <th class="actions text-right"></th>
+        </thead>
         <tbody>
           <% @repositories.each do |repository| %>
-              <tr>
-              <td> <%= weby_file_view(repository, :t, "64", "64", as: :image, title: repository.archive_file_name) %> </td>
-              <td> <%= repository.title %> </td>
-              <td> <%= repository.description %> </td>
-              <td> <%= repository.archive_content_type %> </td>
-              <td> <%= l(repository.deleted_at, :format => :short) %> </td>
-              <td class="text-right">
+            <tr>
+              <td><%= weby_file_view(repository, :t, "54", "54", as: :image, title: repository.archive_file_name) %></td>
+              <td>
+                <%= repository.title %>
+                <div class="visible-xs-block table-meta-sub">
+                  <span><%= repository.archive_content_type %></span>
+                  <span class="meta-divider">•</span>
+                  <span><i class="fa fa-calendar"></i> <%= l(repository.deleted_at, :format => :short) %></span>
+                </div>
+              </td>
+              <td class="hidden-xs hidden-sm"><%= repository.description %></td>
+              <td class="hidden-xs"><%= repository.archive_content_type %></td>
+              <td class="hidden-xs"><%= l(repository.deleted_at, :format => :short) %></td>
+              <td class="actions text-right">
                 <%= render_dropdown_menu do %>
                   <%= recycle_bin_actions repository, with_text: true %>
                 <% end %>
               </td>
             </tr>
           <% end %>
-          </tbody>
-        </table>
+        </tbody>
+      </table>
+    </div>
 
-        <div class="pull-left"> <%= per_page_links @repositories, true, :i  %> </div>
-        <div class="pull-right"> <%= paginate @repositories, remote: true %> </div>
-        <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= per_page_links @repositories, true, :i  %> </div>
+      <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @repositories, remote: true %> </div>
+    </div>
   </div>
 <% end %>

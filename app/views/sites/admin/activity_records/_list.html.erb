@@ -7,42 +7,47 @@
   <div class="pull-right"> <%= paginate @activity_records, remote: true %> </div>
   <div class="clearfix"></div>
 
-  <table class="table table-striped table-hover align-middle">
-    <thead>
-      <tr>
-        <th width="15%"><%= t(".created_at", default: "Data / Hora") %></th>
-        <th width="20%"><%= t(".user", default: "Usuário") %></th>
-        <th width="18%"><%= t(".action", default: "Ação / Operação") %></th>
-        <th width="40%"><%= t(".target_item", default: "Item / Arquivo Afetado") %></th>
-        <th width="7%" class="text-right"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @activity_records.each do |activity_record| %>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead>
         <tr>
-          <td>
-            <small class="text-muted"><%= l(activity_record.created_at, format: :short) %></small>
-          </td>
-          <td>
-            <%= activity_user_view(activity_record) %>
-          </td>
-          <td>
-            <%= activity_action_badge(activity_record) %>
-          </td>
-          <td>
-            <%= activity_item_view(activity_record) %>
-          </td>
-          <td class="text-right">
-            <%= render_dropdown_menu do %>
-              <%= link_to(icon("eye", text: t(".show_item", default: "Visualizar item")), build_loggeable_url(activity_record), class: 'action-link') if activity_record.is_linkable? %>
-              <%= link_to(icon("search", text: t(".details", default: "Detalhes do registro")),
-                          site_admin_activity_record_path(activity_record), class: 'action-link') %>
-            <% end %>
-          </td>
+          <th width="15%"><%= t(".created_at", default: "Data / Hora") %></th>
+          <th class="hidden-xs" width="20%"><%= t(".user", default: "Usuário") %></th>
+          <th width="18%"><%= t(".action", default: "Ação / Operação") %></th>
+          <th><%= t(".target_item", default: "Item / Arquivo Afetado") %></th>
+          <th class="actions text-right"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @activity_records.each do |activity_record| %>
+          <tr>
+            <td>
+              <small class="text-muted"><%= l(activity_record.created_at, format: :short) %></small>
+            </td>
+            <td class="hidden-xs">
+              <%= activity_user_view(activity_record) %>
+            </td>
+            <td>
+              <%= activity_action_badge(activity_record) %>
+            </td>
+            <td>
+              <%= activity_item_view(activity_record) %>
+              <div class="visible-xs-block table-meta-sub">
+                <span><i class="fa fa-user"></i> <%= activity_user_view(activity_record) %></span>
+              </div>
+            </td>
+            <td class="actions text-right">
+              <%= render_dropdown_menu do %>
+                <%= link_to(icon("eye", text: t(".show_item", default: "Visualizar item")), build_loggeable_url(activity_record), class: 'action-link') if activity_record.is_linkable? %>
+                <%= link_to(icon("search", text: t(".details", default: "Detalhes do registro")),
+                            site_admin_activity_record_path(activity_record), class: 'action-link') %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <div class="pull-left"> <%= per_page_links @activity_records, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @activity_records, remote: true %> </div>

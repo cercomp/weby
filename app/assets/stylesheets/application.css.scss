@@ -17,6 +17,11 @@
 @import "admin/custom_colors";
 
 // Global scaffolding - UFG Cercomp Standard
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   background: #f4f6f9;
   font-family: "Roboto", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -316,10 +321,15 @@ table.table {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  overflow: hidden;
+  border-radius: 8px;
+  overflow: visible;
   background-color: #ffffff;
   margin-bottom: 16px;
+
+  > thead:first-child > tr:first-child > th:first-child { border-top-left-radius: 7px; }
+  > thead:first-child > tr:first-child > th:last-child { border-top-right-radius: 7px; }
+  > tbody:last-child > tr:last-child > td:first-child { border-bottom-left-radius: 7px; }
+  > tbody:last-child > tr:last-child > td:last-child { border-bottom-right-radius: 7px; }
 
   thead {
     background-color: #f8fafc;
@@ -359,6 +369,11 @@ table.table {
         background-color: #f8fafc;
       }
 
+      &.row-dropdown-active {
+        position: relative;
+        z-index: 1055;
+      }
+
       &.deactivated, &.deactivated > td {
         background-color: #fff1f2 !important;
       }
@@ -373,12 +388,99 @@ table.table {
     text-align: right;
     white-space: nowrap;
     padding: 8px 12px;
+    width: 50px;
+    min-width: 50px;
   }
 
   .sel-all, .sel-item {
-    width: 36px;
+    width: 38px;
+    min-width: 38px;
     text-align: center;
-    padding-left: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .publish, .front, .activate {
+    width: 70px;
+    min-width: 70px;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+// Sub-metadata for responsive table rows on mobile
+.table-meta-sub {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+
+  .meta-divider {
+    color: #cbd5e1;
+    font-weight: bold;
+  }
+
+  a {
+    color: #005088;
+    &:hover { text-decoration: underline; }
+  }
+
+  .label {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
+// Table wrapper to support responsive tables across all listing screens
+.table-wrapper, .table-responsive {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+  background: #ffffff;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  min-height: 220px;
+
+  table.table {
+    margin-bottom: 0;
+    border: none;
+    width: 100%;
+    max-width: 100%;
+
+    th, td {
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+}
+
+.select2-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.pagination {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+// Maxi Layout (Permissions Matrix & Layout Editor) responsive scrolling
+.maxi_layout {
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  margin-bottom: 16px;
+
+  .maxi_level {
+    min-width: 580px;
   }
 }
 
@@ -495,6 +597,48 @@ textarea.form-control {
   }
 }
 
+// Dropmic container & button
+.dropmic {
+  position: relative;
+  display: inline-block;
+
+  &[data-dropmic-direction="top-left"]::before {
+    border-top-color: #e2e8f0;
+  }
+
+  &[data-dropmic-direction="bottom-left"]::before {
+    border-bottom-color: #e2e8f0;
+  }
+
+  [data-dropmic-btn] {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover, &:focus {
+      background: #f1f5f9;
+      color: #005088;
+      border-color: #e2e8f0;
+      outline: none;
+    }
+  }
+
+  &.dropmic--show {
+    z-index: 1060;
+
+    [data-dropmic-btn] {
+      background: #e2e8f0;
+      color: #005088;
+    }
+  }
+}
+
 // Dropdown & Action Menus
 .dropmic-menu, .dropdown-menu {
   background: #ffffff;
@@ -503,6 +647,9 @@ textarea.form-control {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   padding: 6px 0;
   min-width: 160px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   z-index: 1050;
 
   li > a, a {
@@ -717,3 +864,180 @@ body.modal-open {
 }
 
 @import "weby_theme_refresh";
+
+// Header responsive menu button & brand alignment
+#header {
+  .brand-area {
+    display: flex;
+    align-items: center;
+  }
+
+  .btn-menu-toggle {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 16px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-right: 10px;
+    vertical-align: middle;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover, &:focus {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.4);
+      outline: none;
+    }
+  }
+}
+
+// Mobile menu toggle bar (above sidebar on mobile/tablet)
+.mobile-menu-toggle-bar {
+  margin-bottom: 14px;
+
+  .btn-mobile-menu {
+    background: linear-gradient(160deg, #172a47 0%, #203b63 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(20, 40, 69, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+
+    .mobile-menu-text {
+      flex: 1;
+      margin-left: 10px;
+    }
+
+    .toggle-chevron {
+      transition: transform 0.25s ease;
+      font-size: 13px;
+
+      &.rotate-180 {
+        transform: rotate(180deg);
+      }
+    }
+
+    &:hover, &:focus {
+      color: #ffffff;
+      background: linear-gradient(160deg, #1c3355 0%, #254472 100%);
+      outline: none;
+    }
+  }
+}
+
+// Responsive sidebar collapse rules
+@media (max-width: 991px) {
+  .sidebar-wrapper {
+    #menu-admin {
+      margin-bottom: 14px;
+
+      &.collapse:not(.in) {
+        display: none !important;
+      }
+
+      &.collapse.in {
+        display: block !important;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #menu-admin.collapse {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+  }
+
+  .mobile-menu-toggle-bar,
+  .btn-menu-toggle {
+    display: none !important;
+  }
+}
+
+// Layout wrapper responsiveness & blowout prevention
+.content-wrapper {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.arq-base-page {
+  min-width: 0;
+  max-width: 100%;
+
+  @media (max-width: 767px) {
+    padding: 16px 12px;
+  }
+}
+
+.arq-base-page-content {
+  min-width: 0;
+  max-width: 100%;
+}
+
+// Responsive Action Buttons Group
+.btn-group-responsive {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+
+  @media (max-width: 767px) {
+    justify-content: flex-start;
+    margin-top: 8px;
+
+    .btn {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+  }
+}
+
+// Responsive Date Range Input Group
+.date-range-group {
+  @media (max-width: 767px) {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+
+    .form-control.datepicker {
+      flex: 1 1 calc(50% - 15px);
+      min-width: 110px;
+      display: inline-block;
+      border-radius: 4px !important;
+      font-size: 13px;
+    }
+
+    .input-group-addon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      border: none !important;
+      background: transparent !important;
+    }
+
+    .input-group-btn {
+      display: flex;
+      width: 100%;
+      margin-top: 6px;
+      gap: 6px;
+
+      .btn {
+        flex: 1;
+        border-radius: 4px !important;
+      }
+    }
+  }
+}

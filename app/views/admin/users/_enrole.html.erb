@@ -1,21 +1,17 @@
 <%= form_tag change_roles_admin_users_path, method: "post", id: "subscribe_users", remote: 'true', update: 'enrole' do %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th><%= t(".enrole_user") %></th>
-        <th style="width: 55%"><%= t('.role') %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
+  <div class="panel panel-default" style="border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6" style="margin-bottom: 15px;">
+          <h4 style="margin-top: 0; font-size: 14px; font-weight: 600;"><%= t(".enrole_user") %></h4>
           <%= render 'user_search' %>
-        </td>
-        <td>
-          <ul class="nav">
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <h4 style="margin-top: 0; font-size: 14px; font-weight: 600;"><%= t('.role') %></h4>
+          <ul class="nav" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 14px; max-height: 240px; overflow-y: auto;">
             <% if @roles.each do |role| %>
               <li>
-                <div class="checkbox">
+                <div class="checkbox" style="margin: 4px 0;">
                   <label>
                     <%= check_box_tag 'role_ids[]', role.id %>
                     <%= role.name %>
@@ -26,10 +22,10 @@
               <%= link_to t(".new_role"), new_admin_role_path, class: "btn btn-success" %>
             <% end %>
           </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="form-actions">
     <%= button_tag t("save"), class: 'btn btn-primary', disable_with: t("please_wait") %>
     <%= link_to t("back"), :back, class: "btn btn-default" %>

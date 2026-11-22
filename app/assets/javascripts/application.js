@@ -128,6 +128,51 @@ function appendToggleHandle(selector, parentSelector) {
   });
 }
 
+function adjustDropmicDirection(dropmicEl) {
+  var $dropmic = $(dropmicEl);
+  var $btn = $dropmic.find('[data-dropmic-btn]');
+  var $row = $dropmic.closest('tr');
+  var $table = $dropmic.closest('table');
+  var $responsive = $dropmic.closest('.table-responsive');
+
+  var shouldOpenUp = false;
+
+  if ($row.length && $table.length) {
+    var $tbody = $row.closest('tbody');
+    if (!$tbody.length) $tbody = $table;
+    var rows = $tbody.find('tr').length;
+    var rowIndex = $row.index();
+
+    // If table has only 1 or 2 rows, or is the last row, flip upwards to prevent clipping
+    if (rows <= 2 || rowIndex >= rows - 1) {
+      shouldOpenUp = true;
+    }
+  }
+
+  // Also check remaining viewport height below button
+  if ($btn.length && $btn[0].getBoundingClientRect) {
+    var btnRect = $btn[0].getBoundingClientRect();
+    var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    var spaceBelow = windowHeight - btnRect.bottom;
+    var spaceAbove = btnRect.top;
+    var menuHeight = 220;
+
+    if (spaceBelow < menuHeight && spaceAbove > spaceBelow) {
+      shouldOpenUp = true;
+    }
+  }
+
+  if (shouldOpenUp) {
+    $dropmic.attr('data-dropmic-direction', 'top-left');
+  } else {
+    $dropmic.attr('data-dropmic-direction', 'bottom-left');
+  }
+
+  if ($row.length) {
+    $row.addClass('row-dropdown-active');
+  }
+}
+
 function initDropmic() {
   /// open dropdown menu
   $('[data-dropmic=42]').each(function(){
@@ -265,6 +310,34 @@ $(document).ready(function() {
 
   /// init dropmic
   initDropmic();
+
+  // Dynamic dropmic direction flip on click (capturing phase ensures correct direction before Dropmic opens)
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('[data-dropmic-btn]') : $(e.target).closest('[data-dropmic-btn]')[0];
+    if (!btn) return;
+
+    var dropmic = btn.closest ? btn.closest('.dropmic') : $(btn).closest('.dropmic')[0];
+    if (dropmic) {
+      adjustDropmicDirection(dropmic);
+    }
+  }, true);
+
+  // Close dropmic responsive helpers when clicking outside
+  $(document).on('click', function(e) {
+    if (!$(e.target).closest('.dropmic').length) {
+      $('.table-responsive.dropdown-open').removeClass('dropdown-open');
+      $('tr.row-dropdown-active').removeClass('row-dropdown-active');
+    }
+  });
+
+  // Sync mobile admin menu toggle and chevron rotation
+  $('#menu-admin').on('show.bs.collapse', function() {
+    $('#btn-toggle-admin-menu, .btn-mobile-menu').attr('aria-expanded', 'true');
+    $('.toggle-chevron').addClass('rotate-180');
+  }).on('hide.bs.collapse', function() {
+    $('#btn-toggle-admin-menu, .btn-mobile-menu').attr('aria-expanded', 'false');
+    $('.toggle-chevron').removeClass('rotate-180');
+  });
 
   ///// select bulk
   var checkBulk = function(){

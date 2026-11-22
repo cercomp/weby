@@ -4,8 +4,8 @@
   </div>
 <% else %>
   <div class="row">
-    <div class="col-xs-6"> <%= info_page @newslist %> </div>
-    <div class="col-xs-6 text-right"> <%= paginate @newslist, remote: true %> </div>
+    <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= info_page @newslist %> </div>
+    <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @newslist, remote: true %> </div>
   </div>
   <div class="table-responsive">
     <table class="table table-striped align-middle">
@@ -13,16 +13,16 @@
         <tr>
           <th class="center sel-all"><%= check_box_tag :select_all, 1, false %></th>
           <th><%= sortable 'journal_news_i18ns.title', t(".title") %></th>
-          <th><%= sortable 'users.first_name', t(".user") %></th>
-          <th><%= sortable 'tags.name', t(".category") %></th>
-          <th><%= sortable 'journal_news.created_at', t(".created_at") %></th>
+          <th class="hidden-xs hidden-sm"><%= sortable 'users.first_name', t(".user") %></th>
+          <th class="hidden-xs hidden-sm"><%= sortable 'tags.name', t(".category") %></th>
+          <th class="hidden-xs"><%= sortable 'journal_news.created_at', t(".created_at") %></th>
           <% with_permission(action: :edit) do %>
-            <th><%= sortable 'pages.publish', t(".publish") %></th>
-            <th><%= sortable 'journal_news.front', t(".cover") %></th>
-            <th><%= sortable 'journal_news.status', t(".status") %></th>
+            <th class="publish text-center"><%= sortable 'pages.publish', t(".publish") %></th>
+            <th class="front hidden-xs hidden-sm text-center"><%= sortable 'journal_news.front', t(".cover") %></th>
+            <th class="publish hidden-xs text-center"><%= sortable 'journal_news.status', t(".status") %></th>
           <% end %>
-          <th class="center"><%= sortable 'journal_news.view_count', t(".views") %></th>
-          <th class="center"><%#= t(".action")%></th>
+          <th class="center hidden-xs hidden-sm"><%= sortable 'journal_news.view_count', t(".views") %></th>
+          <th class="actions text-right"><%#= t(".action")%></th>
         </tr>
       </thead>
       <tbody>
@@ -41,21 +41,32 @@
                 <%= icon('retweet') %>
                 <%= link_to news.title, news_url(news, subdomain: news.site), target: :_blank %>
               <% end %>
+              <div class="visible-xs-block visible-sm-block table-meta-sub">
+                <span><i class="fa fa-user"></i> <%= news.user.first_name %></span>
+                <span class="meta-divider">•</span>
+                <span><i class="fa fa-calendar"></i> <%= l(news.created_at, format: :short) %></span>
+                <% if news_site.categories.present? %>
+                  <span class="meta-divider">•</span>
+                  <span><%= raw categories_links(news_site.categories) %></span>
+                <% end %>
+              </div>
             </td>
-            <td><%= news.user.first_name %></td>
-            <td><%= raw categories_links(news_site.categories) %></td>
-            <td><%= l(news.created_at, :format => :short) %></td>
-            <td class="publish">
+            <td class="hidden-xs hidden-sm"><%= news.user.first_name %></td>
+            <td class="hidden-xs hidden-sm"><%= raw categories_links(news_site.categories) %></td>
+            <td class="hidden-xs"><%= l(news.created_at, :format => :short) %></td>
+            <td class="publish text-center">
               <%= publication_status_news(news, remote: true) %>
             </td>
             <% with_permission(action: :edit) do %>
-              <td class="front">
-                <%= front_status(news_site, remote: true) %></td>
-            <td class="publish">
-              <%= news_status(news) %></td>
+              <td class="front hidden-xs hidden-sm text-center">
+                <%= front_status(news_site, remote: true) %>
+              </td>
+              <td class="publish hidden-xs text-center">
+                <%= news_status(news) %>
+              </td>
             <% end %>
-            <td style="text-align:center;"><%= news.view_count %></td>
-            <td class="actions" style="padding-left: 0px; padding-right: 5px;">
+            <td class="hidden-xs hidden-sm" style="text-align:center;"><%= news.view_count %></td>
+            <td class="actions text-right">
               <%= render_dropdown_menu do %>
                 <%= link_to icon('eye-open', text: t('show')), news_url(news, subdomain: news.site), target: :_blank %>
                 <% with_permission(action: :unshare) do %>
@@ -78,7 +89,7 @@
     <% end %>
   </div>
   <div class="row">
-    <div class="col-xs-6"> <%= per_page_links @newslist, true, :sm %> </div>
-    <div class="col-xs-6 text-right"> <%= paginate @newslist, remote: true %> </div>
+    <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= per_page_links @newslist, true, :sm %> </div>
+    <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @newslist, remote: true %> </div>
   </div>
 <% end %>

@@ -1,6 +1,6 @@
 <% title "recycle_bin" %>
 <% breadcrumb :pages_recycle_bin %>
-<div class="pull-right">
+<div class="text-right btn-group-responsive" style="margin-bottom: 15px;">
   <% with_permission(action: :new) do %>
     <%= link_to t(".new_page"),
       new_site_admin_page_path,
@@ -21,39 +21,48 @@
       <%= t("empty_recycle_bin") %>
     </div>
   <% else %>
-    <div class="pull-left"> <%= info_page @pages %> </div>
-    <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= info_page @pages %> </div>
+      <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @pages, remote: true %> </div>
+    </div>
 
-    <table class="table table-striped nowrap align-middle">
-      <thead>
-        <tr>
-          <th width="270px"><%= t(".title") %></th>
-          <th width="90px"><%= sortable 'users.first_name', t(".author") %></th>
-          <th width="120px"><%= sortable 'pages.deleted_at', t(".deleted_at") %></th>
-          <th width="50px"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @pages.each do |page| %>
-          <tr id="<%= page.id %>">
-            <td>
-              <%= page.title %>
-            </td>
-            <td><%= page.user.first_name %></td>
-            <td><%= l(page.deleted_at, :format => :short) %></td>
-            <td class="actions text-right">
-              <%= render_dropdown_menu do %>
-                <%= recycle_bin_actions page, with_text: true %>
-              <% end %>
-            </td>
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th><%= t(".title") %></th>
+            <th class="hidden-xs" width="15%"><%= sortable 'users.first_name', t(".author") %></th>
+            <th class="hidden-xs" width="20%"><%= sortable 'pages.deleted_at', t(".deleted_at") %></th>
+            <th class="actions text-right"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @pages.each do |page| %>
+            <tr id="<%= page.id %>">
+              <td>
+                <%= page.title %>
+                <div class="visible-xs-block table-meta-sub">
+                  <span><i class="fa fa-user"></i> <%= page.user.first_name %></span>
+                  <span class="meta-divider">•</span>
+                  <span><i class="fa fa-calendar"></i> <%= l(page.deleted_at, :format => :short) %></span>
+                </div>
+              </td>
+              <td class="hidden-xs"><%= page.user.first_name %></td>
+              <td class="hidden-xs"><%= l(page.deleted_at, :format => :short) %></td>
+              <td class="actions text-right">
+                <%= render_dropdown_menu do %>
+                  <%= recycle_bin_actions page, with_text: true %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="pull-left"> <%= per_page_links @pages, true, :i %> </div>
-    <div class="pull-right"> <%= paginate @pages, remote: true %> </div>
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= per_page_links @pages, true, :i %> </div>
+      <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @pages, remote: true %> </div>
+    </div>
   <% end %>
 </div>

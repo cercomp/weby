@@ -1,35 +1,35 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= t(".enroled_users") %></th>
-      <th style="width: 15%"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @site_admins.present? %>
-      <% @site_admins.each do |user| %>
-        <tr>
-          <td>
-            <%= link_to user, profile_url(user.login, subdomain: current_site) %> <%= link_to "(#{user.login}) #{icon('user')}".html_safe, admin_user_url(user, subdomain: nil), target: '_blank' if current_user.is_admin? %>
-          </td>
-          <td>
-            <% if check_permission(Sites::Admin::UsersController, [:destroy_local_admin_role]) %>
-              <div class="text-right">
-                <%= link_to icon('trash', text: t("destroy")),destroy_local_admin_role_site_admin_users_path(id: user.id), data: {confirm: t("are_you_sure_del_admin", user: user.fullname)}, method: :delete %>
-              </div>
-            <% end %>
-          </td>
-        </tr>
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th><%= t(".enroled_users") %></th>
+        <th class="actions text-right" style="width: 15%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @site_admins.present? %>
+        <% @site_admins.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to user, profile_url(user.login, subdomain: current_site) %> <%= link_to "(#{user.login}) #{icon('user')}".html_safe, admin_user_url(user, subdomain: nil), target: '_blank' if current_user.is_admin? %>
+            </td>
+            <td class="actions text-right">
+              <% if check_permission(Sites::Admin::UsersController, [:destroy_local_admin_role]) %>
+                <%= link_to icon('trash', text: t("destroy")), destroy_local_admin_role_site_admin_users_path(id: user.id), data: {confirm: t("are_you_sure_del_admin", user: user.fullname)}, method: :delete, class: "btn btn-xs btn-default text-danger" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr><td colspan="2">
+          <div class="alert alert-warning">
+            <%= t(".none_user") %>
+          </div>
+        </td></tr>
       <% end %>
-    <% else %>
-      <tr><td colspan="2">
-        <div class="alert alert-warning">
-          <%= t(".none_user") %>
-        </div>
-      </td></tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
 <%= form_tag create_local_admin_role_site_admin_users_path, method: "post", id: "subscribe_users", update: 'enrole_adms' do %>
   <table class="table">

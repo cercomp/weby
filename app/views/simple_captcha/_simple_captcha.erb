@@ -1,41 +1,53 @@
-<style type="text/css">
-  .simple_captcha{border: 1px solid #ccc; padding: 5px !important;}
-  .simple_captcha,
-  .simple_captcha div{display: table;}
-  .simple_captcha .simple_captcha_field,
-  .simple_captcha .simple_captcha_image{
-    border: 1px solid #ccc;
-    margin: 0px 0px 2px 0px !important;
-    padding: 0px !important;
-  }
-  .simple_captcha .simple_captcha_image img{
-    margin: 0px !important;
-    padding: 0px !important;
-    width: 110px !important;
-  }
-  .simple_captcha .simple_captcha_label{font-size: 12px;}
-  .simple_captcha .simple_captcha_field input{
-    width: 395px !important;
-    font-size: 16px;
-    border: none;
-    background-color: #efefef;
-  }
-</style>
+<%
+  key = simple_captcha_options[:field_value].to_s
+  image_id = "simple_captcha-#{key[0..10]}"
+  hidden_field_id = "simple-captcha-hidden-field-#{image_id}"
+  image_url = "/simple_captcha?code=#{key}&time=#{Time.current.to_i}"
+  refresh_url = "/simple_captcha?id=#{image_id}"
+  placeholder_text = simple_captcha_options[:placeholder].presence || t('simple_captcha.placeholder', default: 'Digite o código da imagem')
+  object_name = simple_captcha_options[:object]
+  captcha_name = object_name ? "#{object_name}[captcha]" : "captcha"
+  captcha_key_name = object_name ? "#{object_name}[captcha_key]" : "captcha_key"
+%>
 
-<div class='simple_captcha'>
-  <div class='simple_captcha_image'>
-    <%= simple_captcha_options[:image] %>
-  </div>
+<div class="weby-captcha-wrapper form-group">
+  <label class="control-label captcha-label" for="<%= image_id %>_input">
+    <i class="fa fa-shield" aria-hidden="true"></i>
+    <span><%= t('simple_captcha.label', default: 'Confirmação de segurança') %></span>
+  </label>
 
-  <div class='simple_captcha_field'>
-    <%= simple_captcha_options[:field] %>
-  </div>
+  <div class="weby-captcha-box">
+    <div class="weby-captcha-visual">
+      <img src="<%= image_url %>" alt="Código de verificação" id="<%= image_id %>" class="weby-captcha-img" />
+      <a href="<%= refresh_url %>"
+         class="btn btn-default btn-refresh-captcha"
+         data-remote="true"
+         title="<%= t('simple_captcha.refresh_button_text', default: 'Atualizar código') %>"
+         aria-label="<%= t('simple_captcha.refresh_button_text', default: 'Atualizar código') %>">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </a>
+    </div>
 
-  <div class='simple_captcha_label'>
-    <%= simple_captcha_options[:label] %>
+    <div class="weby-captcha-input-wrap">
+      <input type="text"
+             name="<%= captcha_name %>"
+             id="<%= image_id %>_input"
+             class="form-control weby-captcha-input"
+             autocomplete="off"
+             autocorrect="off"
+             autocapitalize="characters"
+             spellcheck="false"
+             required="required"
+             maxlength="10"
+             placeholder="<%= placeholder_text %>" />
+      <input type="hidden"
+             name="<%= captcha_key_name %>"
+             id="<%= hidden_field_id %>"
+             value="<%= key %>"
+             autocomplete="off" />
+    </div>
   </div>
-
-  <div class='simple_captcha_refresh_button'>
-    <%= simple_captcha_options[:refresh_button] %>
-  </div>
+  <p class="help-block captcha-hint">
+    <small><i class="fa fa-info-circle" aria-hidden="true"></i> <%= t('simple_captcha.hint', default: 'Insira os caracteres exibidos acima (não diferencia maiúsculas de minúsculas).') %></small>
+  </p>
 </div>

@@ -16,7 +16,8 @@ module Journal
     end
 
     def publication_status_news(news, remote: false)
-      form_tag(toggle_publish_site_admin_news_path(news), method: :patch, remote: true, class: 'toggle-publish-form', data: { type: 'json' }) do
+      path = respond_to?(:toggle_publish_admin_news_path) ? toggle_publish_admin_news_path(news) : (respond_to?(:toggle_publish_site_admin_news_path) ? toggle_publish_site_admin_news_path(news) : "/admin/news/#{news.id}/toggle_publish")
+      form_tag(path, method: :patch, remote: true, class: 'toggle-publish-form', data: { type: 'json' }) do
         checkbox_id = "publish_#{news.id}"
         check_box_tag("publish", "1", news.status == "published", class: "toggle weby-toggle", title: "", id: checkbox_id) +
         content_tag(:label, content_tag(:span, '', class: "check-handler"), class: "check-trail", for: checkbox_id)

@@ -5,8 +5,10 @@ class RegistrationsController < Devise::RegistrationsController
     else
       build_resource(sign_up_params)
       clean_up_passwords(resource)
+      resource.valid?
+      set_minimum_password_length
       @captcha_errors = t("simple_captcha.captcha_code")
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 end

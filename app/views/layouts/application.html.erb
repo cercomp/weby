@@ -26,6 +26,9 @@
       <div id="header" class="container-fluid">
         <div class="row align-items-center">
           <div class="col-md-2 col-sm-3 col-xs-6 brand-area">
+            <button type="button" class="btn btn-menu-toggle visible-xs-inline-block visible-sm-inline-block" id="btn-toggle-admin-menu" aria-label="<%= t('.toggle_menu', default: 'Alternar menu') %>" aria-expanded="false" data-toggle="collapse" data-target="#menu-admin">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
             <%= link_to main_app.root_url(subdomain: nil), class: 'brand-link', title: 'Weby - UFG' do %>
               <%= image_tag 'weby-logo-60.png', class: 'weby-logo', alt: 'Weby UFG' %>
             <% end %>
@@ -76,10 +79,10 @@
 
     <div id="main" class="container-fluid">
       <div class="row">
-        <aside class="col-md-2 col-sm-3 sidebar-wrapper">
+        <aside class="col-md-2 col-sm-12 col-xs-12 sidebar-wrapper">
           <%= render 'layouts/shared/menu_admin' %>
         </aside>
-        <main class="col-md-10 col-sm-9 content-wrapper" id="main-content">
+        <main class="col-md-10 col-sm-12 col-xs-12 content-wrapper" id="main-content">
           <% unless flash.empty? %>
             <div class="flash-messages-container">
               <%= raw flash_message %>

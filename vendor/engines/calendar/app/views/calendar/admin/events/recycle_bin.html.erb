@@ -1,6 +1,6 @@
 <% title "recycle_bin" %>
 <% breadcrumb :events_recycle_bin %>
-<div class="pull-right">
+<div class="text-right btn-group-responsive" style="margin-bottom: 15px;">
   <% with_permission(action: :new) do %>
     <%= link_to t(".new_event"),
       new_admin_event_path,
@@ -21,40 +21,50 @@
       <%= t("empty_recycle_bin") %>
     </div>
   <% else %>
-    <div class="pull-left"> <%= info_page @events %> </div>
-    <div class="pull-right"> <%= paginate @events, remote: true %> </div>
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= info_page @events %> </div>
+      <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @events, remote: true %> </div>
+    </div>
 
-    <table class="table table-striped nowrap align-middle">
-      <thead>
-        <tr>
-          <th width="25%"><%= t(".name") %></th>
-          <th width="6%"><%= sortable 'events.kind', t(".kind") %></th>
-          <th width="13%"><%= sortable 'tags.name', t(".category") %></th>
-          <th width="13%"><%= sortable 'calendar_events.deleted_at', t(".deleted_at") %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @events.each do |event| %>
-          <tr id="<%= event.id %>">
-            <td>
-              <%= event.name %>
-            </td>
-            <td><%= event.kind %></td>
-            <td><%= raw categories_links(event.categories) %></td>
-            <td><%= l(event.deleted_at, :format => :short) %></td>
-            <td class="actions text-right">
-              <%= render_dropdown_menu do %>
-                <%= recycle_bin_actions event, with_text: true %>
-              <% end %>
-            </td>
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th><%= t(".name") %></th>
+            <th class="hidden-xs" width="10%"><%= sortable 'events.kind', t(".kind") %></th>
+            <th class="hidden-xs hidden-sm" width="20%"><%= sortable 'tags.name', t(".category") %></th>
+            <th class="hidden-xs" width="15%"><%= sortable 'calendar_events.deleted_at', t(".deleted_at") %></th>
+            <th class="actions text-right"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @events.each do |event| %>
+            <tr id="<%= event.id %>">
+              <td>
+                <%= event.name %>
+                <div class="visible-xs-block table-meta-sub">
+                  <span><%= event.kind %></span>
+                  <span class="meta-divider">•</span>
+                  <span><i class="fa fa-calendar"></i> <%= l(event.deleted_at, :format => :short) %></span>
+                </div>
+              </td>
+              <td class="hidden-xs"><%= event.kind %></td>
+              <td class="hidden-xs hidden-sm"><%= raw categories_links(event.categories) %></td>
+              <td class="hidden-xs"><%= l(event.deleted_at, :format => :short) %></td>
+              <td class="actions text-right">
+                <%= render_dropdown_menu do %>
+                  <%= recycle_bin_actions event, with_text: true %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="pull-left"> <%= per_page_links @events, true, :mini %> </div>
-    <div class="pull-right"> <%= paginate @events, remote: true %> </div>
-    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"> <%= per_page_links @events, true, :mini %> </div>
+      <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"> <%= paginate @events, remote: true %> </div>
+    </div>
   <% end %>
 </div>

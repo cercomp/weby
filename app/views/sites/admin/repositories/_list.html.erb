@@ -1,36 +1,44 @@
 <%= render 'view_picker' %>
-<div class="pull-right"><%= paginate @repositories, :remote => true %></div>
-<div class="pull-left"><%= info_page @repositories %></div>
-<div class="clearfix"></div>
-<div class="table-wrapper">
-  <table class='table table-striped table-condensed align-middle nowrap'>
+<div class="row">
+  <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"><%= info_page @repositories %></div>
+  <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"><%= paginate @repositories, :remote => true %></div>
+</div>
+<div class="table-responsive">
+  <table class='table table-striped table-condensed align-middle'>
     <thead>
       <th class="center sel-all" width="1%"><%= check_box_tag :select_all, 1, false %></th>
-      <th width="10%"><%= sortable 'archive_file_name', t(".archive") %></th>
-      <th width="35%"><%= sortable 'title', t(".title") %></th>
-      <th width="35%"><%= sortable 'description', t(".description") %></th>
-      <th width="20%"><%= sortable 'archive_content_type', t(".type") %></th>
-      <th></th>
+      <th width="70"><%= sortable 'archive_file_name', t(".archive") %></th>
+      <th><%= sortable 'title', t(".title") %></th>
+      <th class="hidden-xs hidden-sm"><%= sortable 'description', t(".description") %></th>
+      <th class="hidden-xs" width="15%"><%= sortable 'archive_content_type', t(".type") %></th>
+      <th class="actions text-right"></th>
     </thead>
     <tbody>
       <% @repositories.each do |repository| %>
         <tr>
           <td class="center sel-item"><%= check_box_tag :select_item, repository.id, false %></td>
-          <td><%= weby_file_view(repository, :t, "64", "64", target: '_blank') %></td>
+          <td><%= weby_file_view(repository, :t, "54", "54", target: '_blank') %></td>
           <td>
             <% if check_permission(Sites::Admin::RepositoriesController, [:edit]) %>
               <%= link_to "#{repository.title} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_site_admin_repository_path(repository) %>
             <% else %>
               <%= repository.title %>
             <% end %>
+            <div class="visible-xs-block table-meta-sub">
+              <span><%= repository.archive_content_type %></span>
+              <% if repository.uploader_user.present? %>
+                <span class="meta-divider">•</span>
+                <span><i class="fa fa-user"></i> <%= repository.uploader_user %></span>
+              <% end %>
+            </div>
           </td>
-          <td>
+          <td class="hidden-xs hidden-sm">
             <%= repository.description %>
             <% if repository.uploader_user.present? %>
               <br><small class="text-muted"><i class="fa fa-user"></i> <%= repository.uploader_user %></small>
             <% end %>
           </td>
-          <td><%= repository.archive_content_type %></td>
+          <td class="hidden-xs"><%= repository.archive_content_type %></td>
           <td class="actions text-right">
             <%= render_dropdown_menu do %>
               <% if repository.image? && check_permission(Sites::Admin::RepositoriesController, [:crop]) %>
@@ -50,6 +58,7 @@
     <% end %>
   <% end %>
 </div>
-<div class="pull-right"><%= paginate @repositories, remote: true %></div>
-<div class="pull-left"><%= per_page_links @repositories, true, :sm%></div>
-<div class="clearfix"></div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6" style="margin-bottom: 8px;"><%= per_page_links @repositories, true, :sm%></div>
+  <div class="col-xs-12 col-sm-6 text-right" style="margin-bottom: 8px;"><%= paginate @repositories, remote: true %></div>
+</div>

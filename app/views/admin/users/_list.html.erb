@@ -7,55 +7,66 @@
   <div class="pull-right"> <%= paginate @users, remote: true %> </div>
   <div class="clearfix"></div>
 
-  <table class="table table-striped align-middle">
-    <thead>
-      <tr>
-        <th><%= sortable 'first_name', t(".name") %></th>
-        <th><%= sortable 'email', t(".email") %></th>
-        <th><%= t(".active") %></th>
-        <th><%= t(".is_admin") %></th>
-        <% if check_permission(Admin::UsersController, :manage_roles) %>
-          <th><%= t(".roles") %></th>
-        <% end %>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr<%= ' class="deactivated"'.html_safe unless user.confirmed_at %>>
-          <td><%= link_to "#{user.fullname} (#{user.login}) #{content_tag(:span, icon(:'eye-open'), class: 'oh-c-i')}".html_safe, admin_user_path(user) %></td>
-          <td><%= link_to "#{user.email} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_user_path(user) %></td>
-          <td><%= toggle_field(user, 'confirmed_at') %></td>
-          <td><%= toggle_field(user, 'is_admin') %></td>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr>
+          <th><%= sortable 'first_name', t(".name") %></th>
+          <th class="hidden-xs"><%= sortable 'email', t(".email") %></th>
+          <th class="publish text-center"><%= t(".active") %></th>
+          <th class="hidden-xs text-center"><%= t(".is_admin") %></th>
           <% if check_permission(Admin::UsersController, :manage_roles) %>
-            <% link = user.is_admin? ? t('.admin') : t('.manage_roles') %>
-            <td>
-              <% if user.is_admin? %>
-                <span class="label label-success"><%= t('.admin') %></span>
-              <% else %>
-                <% roles = user.global_roles %>
-                <% if roles.any? %>
-                  <% tags = roles.map{|r| content_tag(:span, r.name, class: 'label label-primary') } %>
-                  <%= link_to_if check_permission(Admin::UsersController, :change_roles), tags.join(' ').html_safe, manage_roles_admin_users_path(user_id: user.id), title: t('.manage_roles') %>
-                <% else %>
-                  <i>-<%#= t('.no_global_roles') %></i>
-                <% end %>
-              <% end %>
-              <%#= link_to link, manage_roles_admin_users_path(user_id: user.id) %>
-            </td>
+            <th class="hidden-xs hidden-sm"><%= t(".roles") %></th>
           <% end %>
-          <td class="text-right">
-            <%= render_dropdown_menu do %>
-              <% if check_permission(Admin::UsersController, :change_roles) && !user.is_admin? %>
-                <%= link_to icon(:user, text: t('.manage_roles')), manage_roles_admin_users_path(user_id: user.id ) %>
-              <% end %>
-              <%= raw make_menu(user) %>
-            <% end %>
-          </td>
+          <th class="actions text-right"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr<%= ' class="deactivated"'.html_safe unless user.confirmed_at %>>
+            <td>
+              <%= link_to "#{user.fullname} (#{user.login}) #{content_tag(:span, icon(:'eye-open'), class: 'oh-c-i')}".html_safe, admin_user_path(user) %>
+              <div class="visible-xs-block table-meta-sub">
+                <span><i class="fa fa-envelope-o"></i> <%= user.email %></span>
+                <% if user.is_admin? %>
+                  <span class="meta-divider">•</span>
+                  <span class="label label-success"><%= t('.admin') %></span>
+                <% end %>
+              </div>
+            </td>
+            <td class="hidden-xs"><%= link_to "#{user.email} #{content_tag(:span, icon(:edit), class: 'oh-c-i')}".html_safe, edit_admin_user_path(user) %></td>
+            <td class="publish text-center"><%= toggle_field(user, 'confirmed_at') %></td>
+            <td class="hidden-xs text-center"><%= toggle_field(user, 'is_admin') %></td>
+            <% if check_permission(Admin::UsersController, :manage_roles) %>
+              <% link = user.is_admin? ? t('.admin') : t('.manage_roles') %>
+              <td class="hidden-xs hidden-sm">
+                <% if user.is_admin? %>
+                  <span class="label label-success"><%= t('.admin') %></span>
+                <% else %>
+                  <% roles = user.global_roles %>
+                  <% if roles.any? %>
+                    <% tags = roles.map{|r| content_tag(:span, r.name, class: 'label label-primary') } %>
+                    <%= link_to_if check_permission(Admin::UsersController, :change_roles), tags.join(' ').html_safe, manage_roles_admin_users_path(user_id: user.id), title: t('.manage_roles') %>
+                  <% else %>
+                    <i>-<%#= t('.no_global_roles') %></i>
+                  <% end %>
+                <% end %>
+                <%#= link_to link, manage_roles_admin_users_path(user_id: user.id) %>
+              </td>
+            <% end %>
+            <td class="actions text-right">
+              <%= render_dropdown_menu do %>
+                <% if check_permission(Admin::UsersController, :change_roles) && !user.is_admin? %>
+                  <%= link_to icon(:user, text: t('.manage_roles')), manage_roles_admin_users_path(user_id: user.id ) %>
+                <% end %>
+                <%= raw make_menu(user) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <div class="pull-left"> <%= per_page_links @users, true, :sm %> </div>
   <div class="pull-right"> <%= paginate @users, remote: true %> </div>

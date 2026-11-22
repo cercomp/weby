@@ -2,29 +2,74 @@
   as: resource_name,
   wrapper: :devise_input,
   url: signup_path do |f| %>
-  <%= f.error_notification %>
+
+  <% if @captcha_errors.present? %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="<%= t('close', default: 'Fechar') %>"><span aria-hidden="true">&times;</span></button>
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <%= @captcha_errors %>
+    </div>
+  <% end %>
+
+  <% if resource.errors.any? %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="<%= t('close', default: 'Fechar') %>"><span aria-hidden="true">&times;</span></button>
+      <strong><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <%= t('problem_create_account') %></strong>
+      <ul style="margin-top: 6px; margin-bottom: 0; padding-left: 20px;">
+        <% resource.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row name-row">
+    <div class="col-xs-6 col-sm-6 name-col-first">
+      <%= f.input :first_name, label: false, placeholder: t('.field_first_name') %>
+    </div>
+    <div class="col-xs-6 col-sm-6 name-col-last">
+      <%= f.input :last_name, label: false, placeholder: t('.field_last_name') %>
+    </div>
+  </div>
 
   <%= f.input :login, label: false, placeholder: t('.field_login') %>
   <%= f.input :email, label: false, as: :email, placeholder: t('.field_email') %>
-  <%= f.input :password,
-    label: false,
-    as: :password,
-    placeholder: t('.field_password'),
-    hint: t('lower_upper_number_chars'),
-    input_html: { pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$' } %>
-  <%= f.input :password_confirmation,
-    label: false,
-    as: :password,
-    placeholder: t('.field_password_conf') %>
-  <%= f.input :first_name, label: false, placeholder: t('.field_first_name') %>
-  <%= f.input :last_name, label: false, placeholder: t('.field_last_name') %>
-  <% if @captcha_errors %>
-    <blockquote class="alert-danger">
-      <a aria-hidden="true" class="close" data-dismiss="alert" href="#">×</a>
-      <%= @captcha_errors %>
-    </blockquote>
-  <% end %>
+
+  <div class="password-field-wrapper">
+    <div class="password-toggle-wrapper">
+      <%= f.input :password,
+        label: false,
+        as: :password,
+        placeholder: t('.field_password'),
+        input_html: {
+          pattern: '(?=.*\d)(?=.*[A-Z])(?=.*[a-z])^.{4,}$',
+          id: 'user_registration_password'
+        } %>
+      <button type="button" class="toggle-password-btn" data-target="#user_registration_password" title="Mostrar ou ocultar senha" aria-label="Mostrar ou ocultar senha">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </button>
+    </div>
+    <p class="help-block password-rules">
+      <small><i class="fa fa-lock" aria-hidden="true"></i> <%= t('lower_upper_number_chars') %></small>
+    </p>
+  </div>
+
+  <div class="password-field-wrapper">
+    <div class="password-toggle-wrapper">
+      <%= f.input :password_confirmation,
+        label: false,
+        as: :password,
+        placeholder: t('.field_password_conf'),
+        input_html: {
+          id: 'user_registration_password_confirmation'
+        } %>
+      <button type="button" class="toggle-password-btn" data-target="#user_registration_password_confirmation" title="Mostrar ou ocultar senha" aria-label="Mostrar ou ocultar senha">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
   <%= show_simple_captcha %>
+
   <%= f.button :submit,
     t('.register'),
     class: 'btn-primary btn-block',
