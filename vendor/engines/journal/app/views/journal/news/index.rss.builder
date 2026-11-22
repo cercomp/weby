@@ -31,7 +31,7 @@ xml.rss :version => "2.0", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast
         if @extension.show_author?
           xml.author news.user.fullname
         end
-        xml.pubDate news.created_at.to_s(:rfc822)
+        xml.pubDate news.created_at.to_fs(:rfc822)
         xml.link news_url(news, subdomain: current_site)
         xml.guid news_url(news, subdomain: current_site)
         if news.related_files.any?

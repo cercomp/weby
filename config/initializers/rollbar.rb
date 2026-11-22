@@ -55,3 +55,26 @@ Rollbar.configure do |config|
   # https://devcenter.heroku.com/articles/deploying-to-a-custom-rails-environment
   config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
 end
+
+# Rails 8 ActionDispatch::DebugExceptions#render_exception compatibility:
+# In Rails 8, ActionDispatch::DebugExceptions#render_exception accepts (request, exception, wrapper).
+# Rollbar 3.4.0 aliases render_exception to render_exception_with_rollbar(env, exception) with only 2 arguments.
+if defined?(ActionDispatch::DebugExceptions)
+  ActionDispatch::DebugExceptions.class_eval do
+    def render_exception(request, exception, wrapper = nil)
+      request = ActionDispatch::Request.new(request) unless request.is_a?(ActionDispatch::Request)
+      wrapper ||= ActionDispatch::ExceptionWrapper.new(request.get_header("action_dispatch.backtrace_cleaner"), exception)
+      key = 'action_dispatch.show_detailed_exceptions'
+
+      if exception.is_a?(ActionController::RoutingError) && request.get_header(key)
+        scope = extract_scope_from(request.env) if respond_to?(:extract_scope_from, true)
+        Rollbar.scoped(scope || {}) do
+          report_exception_to_rollbar(request.env, exception) if respond_to?(:report_exception_to_rollbar, true)
+        end
+      end
+
+      render_exception_without_rollbar(request, exception, wrapper)
+    end
+  end
+end
+

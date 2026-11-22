@@ -20,7 +20,7 @@ xml.rss :version => "2.0" do
         body += "<br/>#{link_to 'Original', event.url, target: '_blank'}" if event.url.present?
         xml.description body
         #xml.enclosure url: "http://#{request.host_with_port}#{event.image.archive.url}", event.image.archive_file_size, type: event.image.archive_content_type if event.image
-        xml.pubDate event.created_at.to_s(:rfc822)
+        xml.pubDate event.created_at.to_fs(:rfc822)
         xml.link event_url(event, subdomain: current_site)
         xml.guid event_url(event, subdomain: current_site)
       end

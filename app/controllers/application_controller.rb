@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception, prepend: true
 
+  rescue_from ActionController::InvalidAuthenticityToken do |_exception|
+    flash[:error] = t('invalid_authenticity_token', default: 'Sua sessão expirou ou o token de segurança é inválido. Por favor, tente novamente.')
+    redirect_back(fallback_location: root_path)
+  end
+
   before_action :set_tld_length, :set_global_vars
   before_action :set_contrast, :set_locale, :set_view_types
   before_action :maintenance_mode

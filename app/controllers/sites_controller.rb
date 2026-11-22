@@ -89,12 +89,16 @@ class SitesController < ApplicationController
   end
 
   def sitemap
+    raise ActiveRecord::RecordNotFound unless current_site
+
     @items = []
-    current_site.own_news.published.available.includes(:i18ns).order(updated_at: :desc).find_each do |news|
-      @items << {
-        loc: news_url(news),
-        lastmod: news.updated_at.strftime("%Y-%m-%d")
-      }
+    if current_site.respond_to?(:own_news)
+      current_site.own_news.published.available.includes(:i18ns).order(updated_at: :desc).find_each do |news|
+        @items << {
+          loc: news_url(news),
+          lastmod: news.updated_at.strftime("%Y-%m-%d")
+        }
+      end
     end
     current_site.pages.published.includes(:i18ns).order(updated_at: :desc).find_each do |page|
       @items << {
@@ -102,11 +106,13 @@ class SitesController < ApplicationController
         lastmod: page.updated_at.strftime("%Y-%m-%d")
       }
     end
-    current_site.events.includes(:i18ns).order(updated_at: :desc).find_each do |event|
-      @items << {
-        loc: event_url(event),
-        lastmod: event.updated_at.strftime("%Y-%m-%d")
-      }
+    if current_site.respond_to?(:events)
+      current_site.events.includes(:i18ns).order(updated_at: :desc).find_each do |event|
+        @items << {
+          loc: event_url(event),
+          lastmod: event.updated_at.strftime("%Y-%m-%d")
+        }
+      end
     end
   end
 
