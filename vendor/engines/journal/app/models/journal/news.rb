@@ -26,7 +26,7 @@ module Journal
 
     validate :validate_date
 
-    scope :published, -> { where(status: 'published') }
+    scope :published, -> { where(status: 'published').where('journal_news.date_begin_at IS NULL OR journal_news.date_begin_at <= :time', time: Time.current) }
     scope :review, -> { where(status: 'review') }
     scope :draft, -> { where(status: 'draft') }
     scope :scheduled, -> { where(status: 'published').where('journal_news.date_begin_at > :time', time: Time.current) }
