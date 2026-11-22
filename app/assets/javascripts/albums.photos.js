@@ -190,14 +190,19 @@ $(function () {
      },
 
      fail: function(e, data) {
+        let errors = ['Erro ao enviar a foto. Tente novamente.'];
         try{
-          let response = JSON.parse(data.jqXHR.responseText);
-          let errors = response.errors || ['Erro ao enviar a foto. Tente novamente.'];
-        }catch(e){
-          console.log('Error parsing response:', e);
-          let errors = [data.jqXHR.responseText.split(/\r?\n/)[0] || 'Erro desconhecido ao enviar a foto.']
+          if (data.jqXHR && data.jqXHR.responseText) {
+            let response = JSON.parse(data.jqXHR.responseText);
+            errors = response.errors || errors;
+          }
+        }catch(err){
+          console.log('Error parsing response:', err);
+          if (data.jqXHR && data.jqXHR.responseText) {
+            errors = [data.jqXHR.responseText.split(/\r?\n/)[0] || 'Erro desconhecido ao enviar a foto.'];
+          }
         }
-        handleFail(data.context, errors)
+        handleFail(data.context, errors);
      }
   });
 
