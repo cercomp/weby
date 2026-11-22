@@ -41,6 +41,14 @@ class Repository < ApplicationRecord
 
   validates :description, presence: true
 
+  def screen_name
+    title.presence || description.presence || archive_file_name.presence || super
+  end
+
+  def uploader_user
+    user || ActivityRecord.where(loggeable_type: 'Repository', loggeable_id: id, note: 'uploaded_file').order(created_at: :asc).first&.user
+  end
+
   validates_attachment_presence :archive,
                                 message: I18n.t('activerecord.errors.messages.attachment_presence'),
                                 on: :create

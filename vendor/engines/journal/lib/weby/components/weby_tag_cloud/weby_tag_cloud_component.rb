@@ -14,7 +14,7 @@ class WebyTagCloudComponent < Component
     occurs = tag_count(site)
     min_occurs = occurs.min
     max_occurs = occurs.max
-    tag_occurs = site.news_sites.joins(news: :site).where(sites: {status: 'active'}).published.tagged_with(tag.to_s.mb_chars.downcase.to_s, any: true).length
+    tag_occurs = site.news_sites.available.joins(news: :site).where(sites: {status: 'active'}).published.tagged_with(tag.to_s.mb_chars.downcase.to_s, any: true).length
 
     tag_occurs = 1 if tag_occurs < 1
     diff = Math.log(max_occurs) - Math.log(min_occurs)
@@ -40,6 +40,6 @@ class WebyTagCloudComponent < Component
   end
 
   def tag_count(site)
-    site.news_sites.joins(news: :site).where(sites: {status: 'active'}).published.uniq_category_counts.map(&:count)
+    site.news_sites.available.joins(news: :site).where(sites: {status: 'active'}).published.uniq_category_counts.map(&:count)
   end
 end

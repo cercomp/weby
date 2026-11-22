@@ -8,7 +8,12 @@
 <p><b><%= t(".legend") %>:</b> <%= @repository.legend %> </p>
 <p><b><%= t(".archive_description") %>:</b> <%= @repository.description %> </p>
 <p><b><%= t(".created") %>:</b> <%= l(@repository.created_at, format: :medium) %> </p>
-<p><b><%= t(".uploaded_by") %>:</b> <%= @repository.user %> </p>
+<p>
+  <b><%= t(".uploaded_by") %>:</b> <%= @repository.uploader_user || content_tag(:span, t('.unknown', default: 'Não identificado'), class: 'text-muted') %>
+  <%= link_to "#{fa_icon('history')} #{t('.view_file_history', default: 'Histórico de atividades')}".html_safe,
+              site_admin_activity_records_path(search: @repository.archive_file_name),
+              class: 'btn btn-default btn-xs', style: 'margin-left: 8px;' %>
+</p>
 <p><b><%= t(".archive_fingerprint") %>:</b> <%= @repository.archive_fingerprint %> </p>
 <p>
   <b id="toppathwrap"><%= t(".file_link") %>: </b>

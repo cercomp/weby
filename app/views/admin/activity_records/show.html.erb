@@ -1,19 +1,42 @@
 <% title ".activity_records" if current_site %>
 <% breadcrumb :activity_records_details if current_site %>
-<p><b><%= t('.id') %>: </b> <%= @activity_record.id %></p>
-<p><b><%= t('.user') %>: </b> <%= @activity_record.user %></p>
-<% if @activity_record.site %>
-  <p><b><%= t('.site') %>: </b> <%= @activity_record.site.title %></p>
-<% end %>
-<p><b><%= t('.browser') %>: </b> <%= @activity_record.browser %></p>
-<p><b><%= t('.ip') %>: </b> <%= @activity_record.ip_address %></p>
-<p><b><%= t('.controller') %>: </b> <%= @activity_record.controller %></p>
-<p><b><%= t('.action') %>: </b> <%= @activity_record.action %></p>
-<p><b><%= t('.params') %>: </b> <%= @activity_record.params %></p>
-<p><b><%= t('.created_at') %>: </b> <%= l(@activity_record.created_at, format: :medium) %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= fa_icon('history') %> <%= t('.details_title', default: "Detalhes do Registro de Atividade") %> #<%= @activity_record.id %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong><%= t('.created_at', default: "Data / Hora") %>:</strong> <%= l(@activity_record.created_at, format: :medium) %></p>
+        <p><strong><%= t('.user', default: "Usuário Responsável") %>:</strong> <%= activity_user_view(@activity_record) %></p>
+        <% if @activity_record.site %>
+          <p><strong><%= t('.site', default: "Site") %>:</strong> <%= link_to("#{@activity_record.site.title} (#{@activity_record.site.name})", site_url(subdomain: @activity_record.site), target: :_blank) %></p>
+        <% end %>
+        <p><strong><%= t('.action', default: "Operação / Ação") %>:</strong> <%= activity_action_badge(@activity_record) %></p>
+        <p><strong><%= t('.target_item', default: "Item Afetado") %>:</strong> <%= activity_item_view(@activity_record) %></p>
+      </div>
+      <div class="col-md-6">
+        <p><strong><%= t('.controller', default: "Módulo / Controller") %>:</strong> <code><%= @activity_record.controller %></code></p>
+        <p><strong><%= t('.action_name', default: "Ação Técnica") %>:</strong> <code><%= @activity_record.action %></code></p>
+        <p><strong><%= t('.ip', default: "Endereço IP") %>:</strong> <code><%= @activity_record.ip_address %></code></p>
+        <p><strong><%= t('.browser', default: "Navegador / Dispositivo") %>:</strong> <small class="text-muted"><%= @activity_record.browser %></small></p>
+      </div>
+    </div>
+
+    <% if @activity_record.params.present? %>
+      <hr>
+      <h4><%= t('.params', default: "Parâmetros da Requisição") %></h4>
+      <pre style="max-height: 250px; overflow-y: auto; background-color: #f8f9fa; font-size: 12px;"><%= @activity_record.params %></pre>
+    <% end %>
+  </div>
+</div>
 
 <div class="form-actions">
-  <%= link_to icon('trash', text: t(".destroy")), admin_activity_record_path(@activity_record), method: :delete, data: {confirm: t('are_you_sure_del_item', item: @activity_record.screen_name)} unless current_site %>
-  <%= link_to icon('list', text: t(".list_all")), site_admin_activity_records_path %>
-  <%= link_to icon('chevron-left', text: t("back")), :back %>
+  <%= link_to icon('eye', text: t(".view_item", default: "Visualizar Item")), build_loggeable_url(@activity_record), class: "btn btn-info" if @activity_record.is_linkable? %>
+  <%= link_to icon('trash', text: t(".destroy")), admin_activity_record_path(@activity_record), method: :delete, data: {confirm: t('are_you_sure_del_item', item: @activity_record.screen_name)}, class: "btn btn-danger" unless current_site %>
+  <%= link_to icon('list', text: t(".list_all", default: "Voltar para a Lista")), admin_activity_records_path, class: "btn btn-default" %>
+  <%= link_to icon('chevron-left', text: t("back", default: "Voltar")), :back, class: "btn btn-default" %>
 </div>

@@ -13,6 +13,7 @@ module Journal
     validate :validate_position
 
     scope :published, -> { joins(:news).where(journal_news: {status: 'published'}) }
+    scope :scheduled, -> { joins(:news).where(journal_news: {status: 'published'}).where('journal_news.date_begin_at > :time', time: Time.current) }
     scope :front, -> { where(front: true) }
     scope :no_front, -> { where(front: false) }
     scope :available, -> { joins(:news).where('journal_news.date_begin_at is NULL OR journal_news.date_begin_at <= :time', time: Time.current) }

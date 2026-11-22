@@ -1,37 +1,42 @@
 <% if @activity_records.empty? %>
   <div class="alert alert-warning">
-    <%= t('.no_activity_records') %>
+    <%= t('.no_activity_records', default: "Nenhum registro de atividade encontrado.") %>
   </div>
 <% else %>
   <div class="pull-left"> <%= info_page @activity_records %> </div>
   <div class="pull-right"> <%= paginate @activity_records, remote: true %> </div>
   <div class="clearfix"></div>
 
-  <table class="table table-striped align-middle">
+  <table class="table table-striped table-hover align-middle">
     <thead>
       <tr>
-        <th><%= t(".created_at") %></th>
-        <th><%= t(".note") %></th>
-        <th></th>
+        <th width="15%"><%= t(".created_at", default: "Data / Hora") %></th>
+        <th width="20%"><%= t(".user", default: "Usuário") %></th>
+        <th width="18%"><%= t(".action", default: "Ação / Operação") %></th>
+        <th width="40%"><%= t(".target_item", default: "Item / Arquivo Afetado") %></th>
+        <th width="7%" class="text-right"></th>
       </tr>
     </thead>
     <tbody>
       <% @activity_records.each do |activity_record| %>
         <tr>
-          <td><%= l(activity_record.created_at, format: :short) %></td>
           <td>
-            <%= activity_record.user %>
-            <% if activity_record.is_linkable? %>
-              <%= link_to "#{t(".#{activity_record.note}")} #{content_tag(:span, icon(:'eye-open'), class: 'oh-c-i')}".html_safe, build_loggeable_url(activity_record) %>
-            <% else %>
-              <%= t(".#{activity_record.note}") %>
-            <% end %>
+            <small class="text-muted"><%= l(activity_record.created_at, format: :short) %></small>
+          </td>
+          <td>
+            <%= activity_user_view(activity_record) %>
+          </td>
+          <td>
+            <%= activity_action_badge(activity_record) %>
+          </td>
+          <td>
+            <%= activity_item_view(activity_record) %>
           </td>
           <td class="text-right">
             <%= render_dropdown_menu do %>
-              <%= link_to(icon("eye-open", text: t(".show")), build_loggeable_url(activity_record), class: 'action-link') if activity_record.is_linkable? %>
-              <%= link_to(icon("search", text: t(".details")),
-                          site_admin_activity_record_path(activity_record), class: 'action-link') if current_user.is_admin? %>
+              <%= link_to(icon("eye", text: t(".show_item", default: "Visualizar item")), build_loggeable_url(activity_record), class: 'action-link') if activity_record.is_linkable? %>
+              <%= link_to(icon("search", text: t(".details", default: "Detalhes do registro")),
+                          site_admin_activity_record_path(activity_record), class: 'action-link') %>
             <% end %>
           </td>
         </tr>

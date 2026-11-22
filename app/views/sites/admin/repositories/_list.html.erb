@@ -24,13 +24,19 @@
               <%= repository.title %>
             <% end %>
           </td>
-          <td><%= repository.description %></td>
+          <td>
+            <%= repository.description %>
+            <% if repository.uploader_user.present? %>
+              <br><small class="text-muted"><i class="fa fa-user"></i> <%= repository.uploader_user %></small>
+            <% end %>
+          </td>
           <td><%= repository.archive_content_type %></td>
           <td class="actions text-right">
             <%= render_dropdown_menu do %>
               <% if repository.image? && check_permission(Sites::Admin::RepositoriesController, [:crop]) %>
                 <%= link_to icon('scissors', text: t('.crop_image')), crop_site_admin_repository_path(repository) %>
               <% end %>
+              <%= link_to icon('history', text: t('.history', default: 'Histórico')), site_admin_activity_records_path(search: repository.archive_file_name) %>
               <%= raw make_menu(repository) %>
             <% end %>
           </td>

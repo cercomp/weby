@@ -91,8 +91,14 @@ module Journal::Admin
   if sort_column == 'journal_news_i18ns.title'
     news = news.where(locales: {name: I18n.locale})
   end
-  if params[:status_filter].present? && Journal::News::STATUS_LIST.include?(params[:status_filter])
-    news = news.send(params[:status_filter])
+  if params[:status_filter].present?
+    if params[:status_filter] == 'scheduled'
+      news = news.scheduled
+    elsif params[:status_filter] == 'published'
+      news = news.published.available
+    elsif Journal::News::STATUS_LIST.include?(params[:status_filter])
+      news = news.send(params[:status_filter])
+    end
   end
 
   # --- Filtro por data ---
@@ -205,6 +211,7 @@ end
 
     def status_types
       @status_types = Journal::News::STATUS_LIST.map { |el| [t("journal.admin.news.form.#{el}"), el] }
+      @status_types << [t("journal.admin.news.status.scheduled", default: "Agendada"), 'scheduled'] if action_name == 'index'
     end
     private :status_types
 

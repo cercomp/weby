@@ -1,16 +1,62 @@
-<%= form_tag admin_activity_records_path, method: 'get', autocapitalize: "off", class: 'search' do %>
-  <div class="row">
-    <div class="col-md-5">
-      <%= search_input params[:search] %>
+<div class="activity-records-filters" style="margin-bottom: 20px;">
+  <%= form_tag admin_activity_records_path, method: 'get', autocapitalize: "off", class: 'search' do %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= search_input params[:search], placeholder: t('.search_placeholder', default: "Buscar termo, arquivo ou usuário...") %>
+      </div>
+      <div class="col-md-3">
+        <%= select_tag :site_id,
+            options_for_select(Site.all.map{ |site| [site.title || site.name, site.id] }, params[:site_id]),
+            include_blank: t('.all_sites', default: "Todos os sites"),
+            class: 'form-control',
+            onchange: 'this.form.submit()' %>
+      </div>
+      <div class="col-md-2">
+        <%= select_tag :controller_filter,
+            options_for_select(@controllers_list || [], params[:controller_filter]),
+            include_blank: t('.all_modules', default: "Todos os módulos"),
+            class: 'form-control',
+            onchange: 'this.form.submit()' %>
+      </div>
+      <div class="col-md-2">
+        <%= select_tag :action_filter,
+            options_for_select(@actions_list || [], params[:action_filter]),
+            include_blank: t('.all_actions', default: "Todas as ações"),
+            class: 'form-control',
+            onchange: 'this.form.submit()' %>
+      </div>
+      <div class="col-md-2">
+        <%= select_tag :user_id,
+            options_from_collection_for_select(@users_list || [], :id, ->(u){ "#{u.first_name} (#{u.login})" }, params[:user_id]),
+            include_blank: t('.all_users', default: "Todos os usuários"),
+            class: 'form-control',
+            onchange: 'this.form.submit()' %>
+      </div>
     </div>
-    <div class="col-md-4">
-      <%= select_tag :site_id, options_for_select(Site.all.map{ |site| [site.title || site.name, site.id] }, params[:site_id]), include_blank: true,
-        class: 'form-control' %>
+
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-5">
+        <div class="input-group">
+          <%= text_field_tag :start_date, params[:start_date], placeholder: t('.start_date', default: "Data inicial"), class: 'datepicker form-control', autocomplete: 'off', readonly: true, style: "background-color:#fff" %>
+          <span class="input-group-addon" style="background-color:#fff; border:none">-</span>
+          <%= text_field_tag :end_date, params[:end_date], placeholder: t('.end_date', default: "Data final"), class: 'datepicker form-control', autocomplete: 'off', readonly: true, style: "background-color:#fff" %>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" title="<%= t('search') %>">
+              <%= icon('search') %>
+            </button>
+            <% if params[:search].present? || params[:site_id].present? || params[:controller_filter].present? || params[:action_filter].present? || params[:user_id].present? || params[:start_date].present? || params[:end_date].present? %>
+              <%= link_to icon('times', text: t('.clear_filters', default: "Limpar")), admin_activity_records_path, class: 'btn btn-default' %>
+            <% end %>
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="col-md-3"></div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <div id="list">
   <%= render :partial => "list" %>
 </div>
+
+<% content_for :javascripts, javascript_include_tag("init/datetime") %>
+<% content_for :stylesheets, stylesheet_link_tag("datetime") %>

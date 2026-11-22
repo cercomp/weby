@@ -3,6 +3,13 @@
 
 
 <article class="news-show">
+  <% if @news.scheduled? %>
+    <div class="alert alert-warning" style="margin-bottom: 20px;">
+      <%= fa_icon('clock-o') %>
+      <strong><%= t('.scheduled_notice_title', default: "Publicação Agendada:") %></strong>
+      <%= t('.scheduled_notice_body', default: "Esta notícia está programada para publicação em %{date}. Ela só está visível para você por ser autor ou administrador.", date: l(@news.date_begin_at, format: :medium)) %>
+    </div>
+  <% end %>
   <%= weby_file_view(@news.image, :l, '128', nil) %>
   <%= yield :social_code if current_site.news_social_share_pos == 'top' %>
   <header>

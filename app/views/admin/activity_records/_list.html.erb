@@ -1,39 +1,37 @@
 <% if @activity_records.empty? %>
   <div class="alert alert-warning">
-    <%= t('.no_activity_records') %>
+    <%= t('.no_activity_records', default: "Nenhum registro de atividade encontrado.") %>
   </div>
 <% else %>
   <div class="pull-right"><%= paginate @activity_records, remote: true %></div>
   <div class="pull-left"><%= info_page @activity_records %></div>
   <div class="clearfix"></div>
-  <table class="table table-striped align-middle">
+
+  <table class="table table-striped table-hover align-middle">
     <thead>
       <tr>
-        <th><%= t(".created_at") %></th>
-        <th><%= t(".site") %></th>
-        <th><%= t(".note") %></th>
-        <th></th>
+        <th width="12%"><%= t(".created_at", default: "Data / Hora") %></th>
+        <th width="15%"><%= t(".site", default: "Site") %></th>
+        <th width="18%"><%= t(".user", default: "Usuário") %></th>
+        <th width="15%"><%= t(".action", default: "Ação") %></th>
+        <th width="33%"><%= t(".target_item", default: "Item / Arquivo Afetado") %></th>
+        <th width="7%" class="text-right"></th>
       </tr>
     </thead>
     <tbody>
       <% @activity_records.each do |activity_record| %>
         <tr>
-          <td><%= l(activity_record.created_at, format: :short) %></td>
+          <td><small class="text-muted"><%= l(activity_record.created_at, format: :short) %></small></td>
           <td><%= link_to activity_record.site.name, site_url(subdomain: activity_record.site), title: activity_record.site.title, target: :_blank if activity_record.site %></td>
-          <td>
-            <%= activity_record.user %>
-            <% if activity_record.is_linkable? %>
-              <%= link_to "#{t(".#{activity_record.note}")} #{content_tag(:span, icon(:'eye-open'), class: 'oh-c-i')}".html_safe, build_loggeable_url(activity_record) %>
-            <% else %>
-              <%= t(".#{activity_record.note}") %>
-            <% end %>
-          </td>
+          <td><%= activity_user_view(activity_record) %></td>
+          <td><%= activity_action_badge(activity_record) %></td>
+          <td><%= activity_item_view(activity_record) %></td>
           <td class="text-right">
             <%= render_dropdown_menu do %>
-              <%= link_to(icon("eye-open", text: t(".show")), build_loggeable_url(activity_record), class: "action-link") if activity_record.is_linkable? %>
-              <%= link_to(icon("search", text: t(".details")),
+              <%= link_to(icon("eye", text: t(".show_item", default: "Visualizar item")), build_loggeable_url(activity_record), class: "action-link") if activity_record.is_linkable? %>
+              <%= link_to(icon("search", text: t(".details", default: "Detalhes do registro")),
                           admin_activity_record_path(activity_record), class: "action-link" )%>
-              <%= link_to(icon("trash", text: t(".destroy")),
+              <%= link_to(icon("trash", text: t(".destroy", default: "Excluir registro")),
                           admin_activity_record_path(activity_record), method: :delete, data: {confirm: t('are_you_sure_del_item', item: activity_record.screen_name)}, class: "action-link") %>
             <% end %>
           </td>

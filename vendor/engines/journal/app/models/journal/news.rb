@@ -29,6 +29,7 @@ module Journal
     scope :published, -> { where(status: 'published') }
     scope :review, -> { where(status: 'review') }
     scope :draft, -> { where(status: 'draft') }
+    scope :scheduled, -> { where(status: 'published').where('journal_news.date_begin_at > :time', time: Time.current) }
     scope :by_user, ->(id) { where(user_id: id) }
     scope :available, -> { where('journal_news.date_begin_at is NULL OR journal_news.date_begin_at <= :time', time: Time.current) }
     scope :available_fronts, -> { available.front.where('journal_news.date_end_at is NULL OR journal_news.date_end_at > :time', time: Time.current) }
@@ -110,7 +111,11 @@ module Journal
     end
 
     def published?
-      status == 'published'
+      status == 'published' && (date_begin_at.blank? || date_begin_at <= Time.current)
+    end
+
+    def scheduled?
+      status == 'published' && date_begin_at.present? && date_begin_at > Time.current
     end
 
     def link
@@ -199,13 +204,13 @@ module Journal
       params[:direction] = 'desc' if params[:direction].blank?
       params[:page] = 1 if params[:page].blank?
       if params[:tags].present?
-        result = site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
+        result = site.news_sites.available.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
           tagged_with(normalize_tags(params[:tags]), any: true).
           with_search(params[:search], params.fetch(:search_type, 1).to_i).
           order(params[:sort_column] + ' ' + params[:sort_direction]).
           page(params[:page]).per(params[:per_page])
       else
-        result = site.news_sites.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
+        result = site.news_sites.available.published.includes(:categories, news: [:image, :related_files, :site, :i18ns]).
           with_search(params[:search], params.fetch(:search_type, 1).to_i).
           order(params[:sort_column] + ' ' + params[:sort_direction]).
           page(params[:page]).per(params[:per_page])
