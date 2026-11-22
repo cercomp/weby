@@ -96,11 +96,13 @@ class AlbumPhoto < ApplicationRecord
   end
 
   def prev_photo
-    album.album_photos.order(position: :desc).where('position < ?', position).first
+    pos = position.to_i
+    album.album_photos.where('position < ? OR (position = ? AND id < ?)', pos, pos, id).order(position: :desc, id: :desc).first
   end
 
   def next_photo
-    album.album_photos.order(position: :asc).where('position > ?', position).first
+    pos = position.to_i
+    album.album_photos.where('position > ? OR (position = ? AND id > ?)', pos, pos, id).order(position: :asc, id: :asc).first
   end
 
   def get_current_file_size_limit

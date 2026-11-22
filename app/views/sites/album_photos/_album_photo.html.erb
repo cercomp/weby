@@ -1,27 +1,59 @@
 <div class="photo-viewer-overlay">
+  <div class="photo-viewer-backdrop"></div>
   <div class="photo-viewer">
     <div class="photo-viewer-header">
-      <button type="button" class="close">✕</button>
+      <div class="photo-viewer-meta">
+        <span class="photo-album-title"><%= @album.title %></span>
+        <% if @total_photos && @total_photos > 0 %>
+          <span class="photo-counter-badge"><%= @current_photo_index %> / <%= @total_photos %></span>
+        <% end %>
+      </div>
+      <div class="photo-viewer-actions">
+        <%= link_to download_site_album_album_photo_path(@album.slug, @album_photo), class: 'action-btn download-btn', title: t('.download', default: 'Baixar imagem') do %>
+          <%= fa_icon('download') %>
+        <% end %>
+        <button type="button" class="action-btn close-btn close" title="<%= t('close', default: 'Fechar') %>" aria-label="Fechar">
+          <%= fa_icon('times') %>
+        </button>
+      </div>
     </div>
     <div class="photo-viewer-content">
-      <div class="ctrl ctrl-prev"><%= link_to('〈', site_album_album_photo_path(@album_photo.album.slug, @album_photo.prev_photo), remote: true) if @album_photo.prev_photo %></div>
-      <div class="photo-viewer-photo">
-        <%= image_tag @album_photo.image.url(:o) %>
+      <div class="ctrl ctrl-prev">
+        <% if @album_photo.prev_photo %>
+          <%= link_to site_album_album_photo_path(@album_photo.album.slug, @album_photo.prev_photo), class: 'nav-arrow nav-prev', remote: true, title: t('.previous', default: 'Anterior') do %>
+            <%= fa_icon('chevron-left') %>
+          <% end %>
+        <% end %>
       </div>
-      <div class="ctrl ctrl-prev"><%= link_to('〉', site_album_album_photo_path(@album_photo.album.slug, @album_photo.next_photo), remote: true) if @album_photo.next_photo %></div>
+      <div class="photo-viewer-photo">
+        <%= image_tag @album_photo.image.url(:o), alt: @album_photo.description.presence || @album.title %>
+      </div>
+      <div class="ctrl ctrl-next">
+        <% if @album_photo.next_photo %>
+          <%= link_to site_album_album_photo_path(@album_photo.album.slug, @album_photo.next_photo), class: 'nav-arrow nav-next', remote: true, title: t('.next', default: 'Próxima') do %>
+            <%= fa_icon('chevron-right') %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <div class="photo-viewer-footer"></div>
-  </div>
-  <div class="photo-viewer-expand">
-    <div class="info">
-      <%= @album_photo.description %>
-    </div>
-    <p>
-      <b><%= t('.categories') %>:</b>
-      <% @album.category_list.each do |category| %>
-        <span class="cat-label"><%= category %></span>
-      <% end %>
-    </p>
-    <div><%= link_to fa_icon('download'), download_site_album_album_photo_path(@album.slug, @album_photo), class: 'download-link' %> <%= t('.views', count: @album_photo.view_count.to_i) %></div>
+    <% if @album_photo.description.present? || @album.category_list.any? || @album_photo.view_count.to_i > 0 %>
+      <div class="photo-viewer-caption">
+        <% if @album_photo.description.present? %>
+          <div class="caption-description"><%= @album_photo.description %></div>
+        <% end %>
+        <div class="caption-footer">
+          <% if @album.category_list.any? %>
+            <div class="caption-categories">
+              <% @album.category_list.each do |category| %>
+                <span class="cat-pill"><%= category %></span>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="caption-views">
+            <%= fa_icon('eye') %> <%= t('.views', count: @album_photo.view_count.to_i) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

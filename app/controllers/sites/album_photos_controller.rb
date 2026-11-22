@@ -8,13 +8,19 @@ class Sites::AlbumPhotosController < ApplicationController
   respond_to :html, :js, :json
 
   def show
-    raise ActiveRecord::RecordNotFound if !@album.publish && @album.user != current_user
-    @album_photo = @album.album_photos.find(params[:id])
+    raise ActiveRecord::RecordNotFound if !@album.publish && @album.user != current_user && !current_user&.is_admin?
+    @album_photo = @album.album_photos.find_by(id: params[:id]) || @album.album_photos.find_by(slug: params[:id])
+    raise ActiveRecord::RecordNotFound unless @album_photo
+
+    all_photos = @album.album_photos.order(:position, :id).to_a
+    @total_photos = all_photos.size
+    @current_photo_index = (all_photos.index(@album_photo) || 0) + 1
   end
 
   def download
-    raise ActiveRecord::RecordNotFound if !@album.publish && @album.user != current_user
-    @album_photo = @album.album_photos.find(params[:id])
+    raise ActiveRecord::RecordNotFound if !@album.publish && @album.user != current_user && !current_user&.is_admin?
+    @album_photo = @album.album_photos.find_by(id: params[:id]) || @album.album_photos.find_by(slug: params[:id])
+    raise ActiveRecord::RecordNotFound unless @album_photo
 
     image = @album_photo.image
     filename = image.original_filename || "foto_#{@album_photo.id}.jpg"
@@ -38,16 +44,13 @@ class Sites::AlbumPhotosController < ApplicationController
   private
 
   def find_album
-    site = if request.subdomain.present?
-      Site.find_by(name: request.subdomain)
-    else
-      Site.first
-    end
-    raise ActiveRecord::RecordNotFound unless site
-    @album = site.albums.find_by(slug: params[:album_id])
-  end
+    raise ActiveRecord::RecordNotFound unless current_site
 
-  def choose_layout
-    # Lógica para escolher o layout
+    _id = params[:album_id] || params[:id]
+    raise ActiveRecord::RecordNotFound unless _id.present?
+
+    @album = current_site.albums.find_by(slug: _id) || current_site.albums.find_by(id: _id)
+    raise ActiveRecord::RecordNotFound unless @album
   end
 end
+

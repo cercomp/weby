@@ -61,11 +61,40 @@ WEBY.applyContrast = function(){
 };
 
 WEBY.initAlbumPhoto = function(elem){
-  elem.on('click', '.close', function(ev){
-    elem.remove();
-    $('body').css({overflow: ''})
+  elem.on('click', '.close, .photo-viewer-backdrop', function(ev){
+    $(document).off('keydown.photoViewer');
+    elem.fadeOut(150, function(){
+      elem.remove();
+      $('body').css({overflow: ''});
+    });
   });
-}
+
+  // Fechar também ao clicar no fundo fora da foto
+  elem.on('click', function(ev){
+    if ($(ev.target).hasClass('photo-viewer-overlay') || $(ev.target).hasClass('photo-viewer-photo')) {
+      if (!$(ev.target).is('img')) {
+        elem.find('.close').click();
+      }
+    }
+  });
+
+  // Navegação por teclado: Escape fecha, Setas navegam
+  $(document).off('keydown.photoViewer').on('keydown.photoViewer', function(e){
+    if (e.key === 'Escape' || e.keyCode === 27) {
+      elem.find('.close').click();
+    } else if (e.key === 'ArrowLeft' || e.keyCode === 37) {
+      var $prev = elem.find('.ctrl-prev a');
+      if ($prev.length) {
+        $prev[0].click();
+      }
+    } else if (e.key === 'ArrowRight' || e.keyCode === 39) {
+      var $next = elem.find('.ctrl-next a');
+      if ($next.length) {
+        $next[0].click();
+      }
+    }
+  });
+};
 
 ////doc ready
 
