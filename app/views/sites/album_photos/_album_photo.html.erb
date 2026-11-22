@@ -1,14 +1,22 @@
-<div class="photo-viewer-overlay">
+<div class="photo-viewer-overlay google-photos-viewer" role="dialog" aria-modal="true">
   <div class="photo-viewer-backdrop"></div>
   <div class="photo-viewer">
     <div class="photo-viewer-header">
       <div class="photo-viewer-meta">
-        <span class="photo-album-title"><%= @album.title %></span>
-        <% if @total_photos && @total_photos > 0 %>
-          <span class="photo-counter-badge"><%= @current_photo_index %> / <%= @total_photos %></span>
-        <% end %>
+        <button type="button" class="action-btn back-btn close" title="<%= t('back', default: 'Voltar') %>" aria-label="Voltar">
+          <%= fa_icon('arrow-left') %>
+        </button>
+        <div class="photo-viewer-title-group">
+          <span class="photo-album-title"><%= @album.title %></span>
+          <% if @total_photos && @total_photos > 0 %>
+            <span class="photo-counter-badge"><%= @current_photo_index %> / <%= @total_photos %></span>
+          <% end %>
+        </div>
       </div>
       <div class="photo-viewer-actions">
+        <button type="button" class="action-btn zoom-btn" title="<%= t('.zoom', default: 'Ampliar / Reduzir') %>" aria-label="Ampliar">
+          <%= fa_icon('search-plus') %>
+        </button>
         <%= link_to download_site_album_album_photo_path(@album.slug, @album_photo), class: 'action-btn download-btn', title: t('.download', default: 'Baixar imagem') do %>
           <%= fa_icon('download') %>
         <% end %>
@@ -25,8 +33,12 @@
           <% end %>
         <% end %>
       </div>
-      <div class="photo-viewer-photo">
-        <%= image_tag @album_photo.image.url(:o), alt: @album_photo.description.presence || @album.title %>
+      <div class="photo-viewer-photo"
+           data-full-url="<%= @album_photo.image.url(:o) %>"
+           data-photo-id="<%= @album_photo.id %>"
+           data-prev-url="<%= site_album_album_photo_path(@album_photo.album.slug, @album_photo.prev_photo) if @album_photo.prev_photo %>"
+           data-next-url="<%= site_album_album_photo_path(@album_photo.album.slug, @album_photo.next_photo) if @album_photo.next_photo %>">
+        <%= image_tag @album_photo.image.url(:o), alt: @album_photo.description.presence || @album.title, class: "viewer-img", draggable: false %>
       </div>
       <div class="ctrl ctrl-next">
         <% if @album_photo.next_photo %>

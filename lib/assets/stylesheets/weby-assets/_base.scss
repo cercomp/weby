@@ -268,13 +268,14 @@ img.flag {
   gap: 16px;
   margin: 20px 0 30px;
 
-  @media (max-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 10px;
   }
 
-  @media (max-width: 400px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
 }
 
@@ -283,11 +284,17 @@ img.flag {
   overflow: hidden;
   background: #f1f5f9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+  }
+
+  &:active {
+    transform: scale(0.97);
   }
 }
 
@@ -420,6 +427,7 @@ img.flag {
   }
 }
 
+/* Modern Google Photos Style Lightbox Viewer */
 .photo-viewer-overlay {
   position: fixed;
   top: 0;
@@ -429,17 +437,22 @@ img.flag {
   width: 100vw;
   height: 100vh;
   z-index: 999999;
-  background-color: rgba(10, 15, 26, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(5, 7, 12, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
-  animation: photoViewerFadeIn 0.2s ease-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  animation: photoViewerFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 
   .photo-viewer-backdrop {
     position: absolute;
     inset: 0;
     z-index: 1;
+    background-color: rgba(5, 7, 12, 0.96);
+    transition: opacity 0.24s ease;
   }
 
   .photo-viewer {
@@ -451,22 +464,46 @@ img.flag {
     box-sizing: border-box;
     z-index: 2;
   }
+
+  /* Estado com Chrome Oculto (Modo Imersivo Puro) */
+  &.chrome-hidden {
+    .photo-viewer-header {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+
+    .photo-viewer-caption {
+      opacity: 0;
+      transform: translateY(100%);
+      pointer-events: none;
+    }
+
+    .ctrl {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
 }
 
 @keyframes photoViewerFadeIn {
-  from { opacity: 0; transform: scale(0.98); }
+  from { opacity: 0; transform: scale(0.97); }
   to { opacity: 1; transform: scale(1); }
 }
 
 .photo-viewer-header {
-  height: 56px;
-  flex: 0 0 56px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-  z-index: 10;
+  padding: 0 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 65%, rgba(0,0,0,0) 100%);
+  z-index: 50;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .photo-viewer-meta {
@@ -476,7 +513,14 @@ img.flag {
   color: #f1f5f9;
   font-size: 15px;
   font-weight: 500;
-  max-width: 70%;
+  max-width: 65%;
+  overflow: hidden;
+}
+
+.photo-viewer-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   overflow: hidden;
 }
 
@@ -485,6 +529,8 @@ img.flag {
   overflow: hidden;
   text-overflow: ellipsis;
   text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .photo-counter-badge {
@@ -500,7 +546,7 @@ img.flag {
 .photo-viewer-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 
   .action-btn {
     width: 40px;
@@ -508,11 +554,13 @@ img.flag {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 15px;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -520,41 +568,64 @@ img.flag {
     line-height: 1;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.26);
       transform: scale(1.08);
       color: #fff;
+    }
+
+    &:active {
+      transform: scale(0.94);
     }
   }
 
   .close-btn {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
 .photo-viewer-content {
   flex: 1;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 0 16px;
+  padding: 0;
 
   .ctrl {
-    flex: 0 0 54px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    transition: opacity 0.25s ease;
+
+    &.ctrl-prev {
+      left: 18px;
+    }
+
+    &.ctrl-next {
+      right: 18px;
+    }
+
+    &.disabled {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .nav-arrow {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
     display: flex;
@@ -563,56 +634,88 @@ img.flag {
     font-size: 18px;
     text-decoration: none;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 
     &:hover {
       background: rgba(255, 255, 255, 0.35);
-      transform: scale(1.12);
+      transform: scale(1.1);
       color: #fff;
+    }
+
+    &:active {
+      transform: scale(0.95);
     }
   }
 
   .photo-viewer-photo {
-    flex: 1;
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    box-sizing: border-box;
+    position: relative;
+    touch-action: none;
+    overflow: hidden;
 
-    img {
-      max-width: 100%;
-      max-height: calc(100vh - 170px);
+    .viewer-img, img {
+      max-width: 100vw;
+      max-height: 100vh;
       object-fit: contain;
-      border-radius: 6px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
-      animation: photoZoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: block;
+      will-change: transform, opacity;
+      user-select: none;
+      -webkit-user-drag: none;
+
+      @media (min-width: 769px) {
+        max-height: calc(100vh - 70px);
+        max-width: calc(100vw - 110px);
+        border-radius: 4px;
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65);
+      }
+
+      @media (max-width: 768px) {
+        max-height: 100vh;
+        max-width: 100vw;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+
+    &.is-zoomed {
+      .viewer-img, img {
+        max-height: none !important;
+        max-width: none !important;
+        cursor: grab;
+      }
+
+      &:active {
+        .viewer-img, img {
+          cursor: grabbing;
+        }
+      }
     }
   }
 }
 
-@keyframes photoZoomIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
-}
-
 .photo-viewer-caption {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 14px 24px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 70%, rgba(0, 0, 0, 0) 100%);
+  padding: 24px 20px 16px;
   color: #fff;
-  max-height: 120px;
+  max-height: 140px;
   overflow-y: auto;
-  z-index: 10;
+  z-index: 50;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
   .caption-description {
     font-size: 14px;
     line-height: 1.45;
     margin-bottom: 8px;
     color: #f8fafc;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
   }
 
   .caption-footer {
@@ -621,7 +724,7 @@ img.flag {
     justify-content: space-between;
     gap: 12px;
     font-size: 13px;
-    color: #94a3b8;
+    color: #cbd5e1;
   }
 
   .cat-pill {
@@ -629,14 +732,16 @@ img.flag {
     color: #fff;
     font-size: 11px;
     font-weight: 600;
-    padding: 2px 8px;
+    padding: 2px 9px;
     border-radius: 10px;
     margin-right: 6px;
+    display: inline-block;
   }
 
   .caption-views {
     margin-left: auto;
     font-size: 12px;
+    white-space: nowrap;
   }
 }
 

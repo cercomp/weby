@@ -1,9 +1,23 @@
 <div class="album-photos">
   <% if @photos.present? %>
-    <div class="modern-photos-grid">
-      <% @photos.each do |photo| %>
+    <div class="modern-photos-grid" data-album-title="<%= @album.title %>">
+      <% @photos.each_with_index do |photo, index| %>
         <div class="photo-card-item">
-          <%= link_to site_album_album_photo_path(photo.album.slug, photo), remote: true, class: "photo-card-link" do %>
+          <%= link_to site_album_album_photo_path(photo.album.slug, photo),
+                remote: true,
+                class: "photo-card-link",
+                data: {
+                  photo_id: photo.id,
+                  index: index,
+                  full_url: photo.image.url(:o),
+                  preview_url: photo.image.url(:f),
+                  thumb_url: photo.image.url(:t),
+                  title: photo.album.title,
+                  description: photo.description.to_s,
+                  download_url: download_site_album_album_photo_path(photo.album.slug, photo),
+                  views: photo.view_count.to_i,
+                  categories: photo.album.category_list.to_a.join(', ')
+                } do %>
             <div class="photo-card-image-wrap">
               <%= image_tag photo.image.url(:f), alt: photo.description.presence || photo.album.title, loading: "lazy", class: "photo-thumb" %>
               <div class="photo-card-overlay">
