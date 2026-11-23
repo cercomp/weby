@@ -58,4 +58,33 @@ RSpec.describe "User Registration", type: :request do
       created_user.destroy
     end
   end
+
+  describe "GET /simple_captcha" do
+    it "serves an image for a valid captcha code" do
+      get "/signup"
+      key = SimpleCaptcha::SimpleCaptchaData.last.key
+
+      get "/simple_captcha", params: { code: key, time: Time.current.to_i }
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to eq("image/jpeg")
+      expect(response.headers["Cache-Control"]).to include("no-cache")
+      expect(response.body.bytesize).to be > 500
+    end
+
+    it "auto-heals and generates an image even if code does not exist in database" do
+      get "/simple_captcha", params: { code: "nonexistent_code_12345" }
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to eq("image/jpeg")
+      expect(response.body.bytesize).to be > 500
+      expect(SimpleCaptcha::Utils.simple_captcha_value("nonexistent_code_12345")).to be_present
+    end
+
+    it "serves javascript refresh code when requested with id" do
+      get "/simple_captcha", params: { id: "simple_captcha-test_element" }
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to include("text/javascript")
+      expect(response.body).to include("simple_captcha-test_element")
+      expect(response.body).to include("/simple_captcha?code=")
+    end
+  end
 end

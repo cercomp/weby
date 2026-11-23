@@ -44,6 +44,7 @@ es:
     sessions:
       signed_in: "Has ingresado iniciado sesión."
       signed_out: "Has cerrado la sesión."
+      already_signed_out: "Has cerrado la sesión."
     unlocks:
       send_instructions: "Recibirás un correo electrónico en unos minutos con instrucciones sobre cómo desbloquear tu cuenta."
       send_paranoid_instructions: "Si tu cuenta existe, recibirás un correo electrónico en unos minutos con instrucciones sobre cómo desbloquear tu cuenta."

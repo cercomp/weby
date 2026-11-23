@@ -18,7 +18,7 @@
 
   <div class="weby-captcha-box">
     <div class="weby-captcha-visual">
-      <img src="<%= image_url %>" alt="Código de verificação" id="<%= image_id %>" class="weby-captcha-img" />
+      <img src="<%= image_url.html_safe %>" alt="Código de verificação" id="<%= image_id %>" class="weby-captcha-img" loading="eager" />
       <a href="<%= refresh_url %>"
          class="btn btn-default btn-refresh-captcha"
          data-remote="true"

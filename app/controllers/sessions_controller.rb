@@ -3,7 +3,24 @@ class SessionsController < Devise::SessionsController
 
   layout 'weby_sessions'
 
+  skip_before_action :verify_authenticity_token, only: [:destroy]
+  skip_before_action :verify_signed_out_user, only: [:destroy]
+
   before_action :store_location, only: :new
+
+  def destroy
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    clear_ldap_session!
+    reset_session
+    flash[:notice] = t('devise.sessions.signed_out', default: 'Deslogado com sucesso.')
+    respond_to do |format|
+      format.all do
+        redirect_target = params[:back_url].presence || after_sign_out_path_for(resource_name)
+        redirect_to redirect_target, allow_other_host: true
+      end
+      format.json { head :no_content }
+    end
+  end
 
   def new
     if params[:cancel_ldap] == 'true'

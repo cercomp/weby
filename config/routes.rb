@@ -277,7 +277,7 @@ Rails.application.routes.draw do
   # customize devise routes
   devise_scope :user do
     # routes to session
-    delete 'logout'  => 'sessions#destroy'
+    match 'logout' => 'sessions#destroy', via: [:get, :delete]
     get 'login'   => 'sessions#new'
     post 'login'   => 'sessions#create'
     post 'link_user' => 'sessions#link_user'
