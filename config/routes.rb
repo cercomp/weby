@@ -295,6 +295,8 @@ Rails.application.routes.draw do
     put 'reset_password'  => 'devise/passwords#update'
   end
 
+  match 'simple_captcha' => 'simple_captcha#show', via: [:get, :head]
+
   namespace :admin do
     resources :users do
       member do
