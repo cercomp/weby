@@ -304,10 +304,11 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     var startIncomingAngle = (direction === 'next') ? 90 : -90;
     var endIncomingAngle = 0;
 
-    // Posiciona as faces no espaço tridimensional
+    // Posiciona as faces no espaço tridimensional com ponto de rotação (pivô) no centro do cubo
     $faceActive.css({
       transition: 'none',
-      transform: 'translateZ(' + depth + 'px) rotateY(' + startActiveAngle + 'deg)',
+      transformOrigin: '50% 50% -' + depth + 'px',
+      transform: 'rotateY(' + startActiveAngle + 'deg)',
       zIndex: 2,
       display: 'flex'
     });
@@ -318,7 +319,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
 
     $faceIncoming.css({
       transition: 'none',
-      transform: 'translateZ(' + depth + 'px) rotateY(' + startIncomingAngle + 'deg)',
+      transformOrigin: '50% 50% -' + depth + 'px',
+      transform: 'rotateY(' + startIncomingAngle + 'deg)',
       zIndex: 1,
       display: 'flex'
     });
@@ -330,12 +332,12 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     // Força reflow do navegador para engajar animação de cubo 3D
     if ($faceIncoming[0]) $faceIncoming[0].offsetHeight;
 
-    var animDuration = '400ms';
+    var animDuration = '420ms';
     var animEasing = 'cubic-bezier(0.25, 1, 0.4, 1)';
 
     $faceActive.css({
       transition: 'transform ' + animDuration + ' ' + animEasing,
-      transform: 'translateZ(' + depth + 'px) rotateY(' + endActiveAngle + 'deg)'
+      transform: 'rotateY(' + endActiveAngle + 'deg)'
     });
     $faceActive.find('.cube-face-shadow').css({
       transition: 'opacity ' + animDuration + ' ' + animEasing,
@@ -344,7 +346,7 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
 
     $faceIncoming.css({
       transition: 'transform ' + animDuration + ' ' + animEasing,
-      transform: 'translateZ(' + depth + 'px) rotateY(' + endIncomingAngle + 'deg)'
+      transform: 'rotateY(' + endIncomingAngle + 'deg)'
     });
     $faceIncoming.find('.cube-face-shadow').css({
       transition: 'opacity ' + animDuration + ' ' + animEasing,
@@ -360,7 +362,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
 
       $faceActive.removeClass('face-incoming').addClass('face-active').css({
         transition: 'none',
-        transform: 'translateZ(' + depth + 'px) rotateY(0deg)',
+        transformOrigin: '50% 50% -' + depth + 'px',
+        transform: 'rotateY(0deg)',
         zIndex: 2
       });
       $faceIncoming.removeClass('face-active').addClass('face-incoming').css({
@@ -371,7 +374,7 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
 
       isAnimating = false;
       preloadAdjacent(currentIndex);
-    }, 420);
+    }, 440);
   }
 
   function initSlide(idx) {
@@ -392,7 +395,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
 
     $faceActive.css({
       transition: 'none',
-      transform: 'translateZ(' + depth + 'px) rotateY(0deg)',
+      transformOrigin: '50% 50% -' + depth + 'px',
+      transform: 'rotateY(0deg)',
       display: 'flex',
       zIndex: 2
     });
@@ -505,7 +509,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
         var incomingAngle = 90 + activeAngle;
         $faceActive.css({
           transition: 'none',
-          transform: 'translateZ(' + depth + 'px) rotateY(' + activeAngle + 'deg)'
+          transformOrigin: '50% 50% -' + depth + 'px',
+          transform: 'rotateY(' + activeAngle + 'deg)'
         });
         $faceActive.find('.cube-face-shadow').css({
           transition: 'none',
@@ -513,7 +518,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
         });
         $faceIncoming.css({
           transition: 'none',
-          transform: 'translateZ(' + depth + 'px) rotateY(' + incomingAngle + 'deg)'
+          transformOrigin: '50% 50% -' + depth + 'px',
+          transform: 'rotateY(' + incomingAngle + 'deg)'
         });
         $faceIncoming.find('.cube-face-shadow').css({
           transition: 'none',
@@ -531,7 +537,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
         var incomingAngle = -90 + activeAngle;
         $faceActive.css({
           transition: 'none',
-          transform: 'translateZ(' + depth + 'px) rotateY(' + activeAngle + 'deg)'
+          transformOrigin: '50% 50% -' + depth + 'px',
+          transform: 'rotateY(' + activeAngle + 'deg)'
         });
         $faceActive.find('.cube-face-shadow').css({
           transition: 'none',
@@ -539,7 +546,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
         });
         $faceIncoming.css({
           transition: 'none',
-          transform: 'translateZ(' + depth + 'px) rotateY(' + incomingAngle + 'deg)'
+          transformOrigin: '50% 50% -' + depth + 'px',
+          transform: 'rotateY(' + incomingAngle + 'deg)'
         });
         $faceIncoming.find('.cube-face-shadow').css({
           transition: 'none',
@@ -549,7 +557,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
         // Primeira ou última foto (resistência elástica)
         $faceActive.css({
           transition: 'none',
-          transform: 'translateZ(' + depth + 'px) rotateY(' + activeAngle + 'deg)'
+          transformOrigin: '50% 50% -' + depth + 'px',
+          transform: 'rotateY(' + activeAngle + 'deg)'
         });
       }
     } else if (swipeDirection === 'vertical') {
@@ -608,7 +617,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
         // Retorna suavemente o cubo para a posição inicial (0 graus)
         $faceActive.css({
           transition: 'transform 0.26s cubic-bezier(0.25, 1, 0.4, 1)',
-          transform: 'translateZ(' + depth + 'px) rotateY(0deg)'
+          transformOrigin: '50% 50% -' + depth + 'px',
+          transform: 'rotateY(0deg)'
         });
         $faceActive.find('.cube-face-shadow').css({
           transition: 'opacity 0.26s ease',
@@ -616,6 +626,7 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
         });
         $faceIncoming.css({
           transition: 'transform 0.26s cubic-bezier(0.25, 1, 0.4, 1), opacity 0.26s ease',
+          transformOrigin: '50% 50% -' + depth + 'px',
           opacity: 0
         });
         setTimeout(function(){
@@ -629,7 +640,8 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
       } else {
         $faceActive.css({
           transition: 'transform 0.26s cubic-bezier(0.16, 1, 0.3, 1)',
-          transform: 'translateZ(' + depth + 'px) rotateY(0deg) scale(1)'
+          transformOrigin: '50% 50% -' + depth + 'px',
+          transform: 'rotateY(0deg) scale(1)'
         });
         $backdrop.css({ transition: 'opacity 0.26s ease', opacity: '' });
         $header.css({ transition: 'opacity 0.26s ease', opacity: '' });

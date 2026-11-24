@@ -657,9 +657,9 @@ img.flag {
     position: relative;
     touch-action: none;
     overflow: hidden;
-    perspective: 1400px;
+    perspective: 1800px;
     perspective-origin: 50% 50%;
-    -webkit-perspective: 1400px;
+    -webkit-perspective: 1800px;
     -webkit-perspective-origin: 50% 50%;
 
     .photo-cube-viewport {
@@ -671,7 +671,6 @@ img.flag {
       display: flex;
       align-items: center;
       justify-content: center;
-      will-change: transform;
     }
 
     .photo-cube-face {
@@ -714,26 +713,29 @@ img.flag {
     }
 
     .viewer-img, .viewer-img-incoming, img {
-      max-width: 100vw;
-      max-height: 100vh;
+      max-width: calc(100% - 140px);
+      max-height: calc(100% - 40px);
+      width: auto;
+      height: auto;
       object-fit: contain;
       display: block;
+      margin: auto;
       will-change: transform, opacity;
       user-select: none;
       -webkit-user-drag: none;
 
       @media (min-width: 769px) {
-        max-height: calc(100vh - 70px);
-        max-width: calc(100vw - 110px);
+        max-height: calc(100vh - 150px);
+        max-width: calc(100vw - 160px);
         border-radius: 4px;
-        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
       }
 
       @media (max-width: 768px) {
-        max-height: 100vh;
-        max-width: 100vw;
-        border-radius: 0;
-        box-shadow: none;
+        max-height: calc(100vh - 130px);
+        max-width: 95vw;
+        border-radius: 2px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
       }
     }
 
