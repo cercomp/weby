@@ -1,8 +1,16 @@
 var photoEl = $('<%= escape_javascript render(@album_photo) %>');
-WEBY.initAlbumPhoto(photoEl);
+var allPhotos = null;
+try {
+  var manifestText = photoEl.find('.album-photos-manifest').text();
+  if (manifestText && manifestText.trim() !== '') {
+    allPhotos = JSON.parse(manifestText);
+  }
+} catch(e) {}
+var initialIdx = <%= @current_photo_index.to_i - 1 %>;
 if ($('.photo-viewer-overlay').length) {
   $('.photo-viewer-overlay').replaceWith(photoEl);
 } else {
   $('body').append(photoEl);
 }
-$('body').css({overflow: 'hidden'})
+$('body').css({overflow: 'hidden'});
+WEBY.initAlbumPhoto(photoEl, allPhotos, initialIdx);

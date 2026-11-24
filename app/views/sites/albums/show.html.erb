@@ -44,7 +44,12 @@
     </div>
   </div>
 
-  <div id="album" class="photos-list">
+  <% if @all_photos_json.present? %>
+    <script type="application/json" id="album-all-photos-data">
+      <%= raw @all_photos_json.to_json %>
+    </script>
+  <% end %>
+  <div id="album" class="photos-list" data-album-slug="<%= @album.slug %>">
     <%= render 'photos' %>
   </div>
   <div style="margin-top: 20px;" class="actions">

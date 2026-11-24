@@ -63,8 +63,10 @@ WEBY.applyContrast = function(){
 WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
   var $overlay = $(elem);
   var $photoStage = $overlay.find('.photo-viewer-content');
-  var $photoContainer = $overlay.find('.photo-viewer-photo');
-  var $img = $photoContainer.find('img');
+  var $stage = $overlay.find('.photo-cube-stage, .photo-viewer-photo');
+  var $viewport = $stage.find('.photo-cube-viewport');
+  var $faceActive = $stage.find('.photo-cube-face.face-active');
+  var $faceIncoming = $stage.find('.photo-cube-face.face-incoming');
   var $header = $overlay.find('.photo-viewer-header');
   var $caption = $overlay.find('.photo-viewer-caption');
   var $backdrop = $overlay.find('.photo-viewer-backdrop');
@@ -73,11 +75,61 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
   var $downloadBtn = $overlay.find('.download-btn');
   var $zoomBtn = $overlay.find('.zoom-btn');
 
-  // Se photosData não foi passado, tenta extrair da grade presente na página
+  // Garante que o container possua a estrutura de cubo 3D
+  if (!$viewport.length) {
+    var $existingImg = $stage.find('img');
+    var existingSrc = $existingImg.attr('src') || '';
+    var existingAlt = $existingImg.attr('alt') || '';
+    $stage.addClass('photo-cube-stage').empty().append([
+      '<div class="photo-cube-viewport">',
+        '<div class="photo-cube-face face-active">',
+          '<img class="viewer-img" src="' + existingSrc + '" alt="' + existingAlt + '" draggable="false" />',
+          '<div class="cube-face-shadow"></div>',
+        '</div>',
+        '<div class="photo-cube-face face-incoming" style="display: none;">',
+          '<img class="viewer-img-incoming" src="" alt="" draggable="false" />',
+          '<div class="cube-face-shadow"></div>',
+        '</div>',
+      '</div>'
+    ].join(''));
+    $viewport = $stage.find('.photo-cube-viewport');
+    $faceActive = $stage.find('.photo-cube-face.face-active');
+    $faceIncoming = $stage.find('.photo-cube-face.face-incoming');
+  }
+
+  var $img = $faceActive.find('img');
+
+  // 1. Obter a coleção completa de todas as fotos do álbum para navegação irrestrita
   var photos = photosData || null;
+
+  if (!photos) {
+    // Tenta ler do manifesto geral do álbum na página
+    var $manifest = $('#album-all-photos-data');
+    if ($manifest.length && $manifest.text().trim() !== '') {
+      try {
+        photos = JSON.parse($manifest.text());
+      } catch(e) {
+        photos = null;
+      }
+    }
+  }
+
+  if (!photos) {
+    // Tenta ler do manifesto embutido no elemento do viewer
+    var $overlayManifest = $overlay.find('.album-photos-manifest');
+    if ($overlayManifest.length && $overlayManifest.text().trim() !== '') {
+      try {
+        photos = JSON.parse($overlayManifest.text());
+      } catch(e) {
+        photos = null;
+      }
+    }
+  }
+
+  // Fallback: extrai da grade da página atual se não houver manifesto
   if (!photos && $('.modern-photos-grid .photo-card-link').length > 0) {
     photos = [];
-    $('.modern-photos-grid .photo-card-link').each(function(i){
+    $('.modern-photos-grid .photo-card-link').each(function(){
       var $link = $(this);
       photos.push({
         id: $link.data('photo-id'),
@@ -95,7 +147,7 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
 
   var currentIndex = (typeof initialIdx === 'number') ? initialIdx : 0;
   if (photos && typeof initialIdx !== 'number') {
-    var curPhotoId = $photoContainer.data('photo-id');
+    var curPhotoId = $stage.data('photo-id');
     for (var i = 0; i < photos.length; i++) {
       if (photos[i].id == curPhotoId) {
         currentIndex = i;
@@ -111,33 +163,36 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
   var currentX = 0, currentY = 0;
   var deltaX = 0, deltaY = 0;
   var startTime = 0;
-  var swipeDirection = null; // 'horizontal', 'vertical', or null
+  var swipeDirection = null;
   var isClosing = false;
+  var isAnimating = false;
   var lastTapTime = 0;
   var panX = 0, panY = 0;
   var startPanX = 0, startPanY = 0;
+  var dragIncomingPrepared = null;
 
   function resetZoom() {
     isZoomed = false;
     panX = 0;
     panY = 0;
     $zoomBtn.html('<i class="fa fa-search-plus"></i>').attr('title', 'Ampliar');
-    $photoContainer.removeClass('is-zoomed');
-    $img.css({
+    $stage.removeClass('is-zoomed');
+    $faceActive.find('img').css({
       transition: 'transform 0.24s cubic-bezier(0.16, 1, 0.3, 1)',
       transform: 'translate3d(0, 0, 0) scale(1)',
       cursor: ''
     });
   }
 
-  function toggleZoom(originX, originY) {
+  function toggleZoom() {
     isZoomed = !isZoomed;
+    var $activeImg = $faceActive.find('img');
     if (isZoomed) {
       $zoomBtn.html('<i class="fa fa-search-minus"></i>').attr('title', 'Reduzir');
-      $photoContainer.addClass('is-zoomed');
+      $stage.addClass('is-zoomed');
       panX = 0;
       panY = 0;
-      $img.css({
+      $activeImg.css({
         transition: 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
         transform: 'translate3d(0, 0, 0) scale(' + zoomScale + ')',
         cursor: 'grab'
@@ -151,15 +206,21 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     $overlay.toggleClass('chrome-hidden');
   }
 
-  function updateSlide(idx, direction) {
+  function preloadAdjacent(idx) {
+    if (!photos) return;
+    if (photos[idx + 1]) {
+      new Image().src = photos[idx + 1].previewUrl || photos[idx + 1].fullUrl;
+    }
+    if (photos[idx - 1]) {
+      new Image().src = photos[idx - 1].previewUrl || photos[idx - 1].fullUrl;
+    }
+  }
+
+  function updateMeta(idx) {
     if (!photos || photos.length === 0) return;
-    if (idx < 0) idx = 0;
-    if (idx >= photos.length) idx = photos.length - 1;
-    currentIndex = idx;
     var photo = photos[idx];
 
-    resetZoom();
-
+    // Atualiza contador: "1 / 150", "25 / 150", etc.
     if ($counter.length) {
       $counter.text((idx + 1) + ' / ' + photos.length);
     }
@@ -195,7 +256,7 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
       }
     }
 
-    // Atualiza estado das setas
+    // Controle de setas de navegação (continua até a última foto do álbum)
     if (idx === 0) {
       $overlay.find('.ctrl-prev').addClass('disabled').css('opacity', '0.25');
     } else {
@@ -207,69 +268,150 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     } else {
       $overlay.find('.ctrl-next').removeClass('disabled').css('opacity', '');
     }
+  }
 
-    // Animação de transição fluida Google Photos
-    var outX = direction === 'next' ? '-50px' : (direction === 'prev' ? '50px' : '0px');
-    var inX = direction === 'next' ? '50px' : (direction === 'prev' ? '-50px' : '0px');
+  // --- Transição em Cubo 3D Estilizado ---
+  function rotateCube(targetIdx, direction) {
+    if (!photos || photos.length === 0) return;
+    if (isAnimating || targetIdx === currentIndex) return;
+    if (targetIdx < 0 || targetIdx >= photos.length) return;
 
-    if (direction) {
-      $img.css({
-        transition: 'transform 0.15s ease-in, opacity 0.15s ease-in',
-        transform: 'translate3d(' + outX + ', 0, 0) scale(0.96)',
-        opacity: 0
+    resetZoom();
+    isAnimating = true;
+
+    currentIndex = targetIdx;
+    var nextPhoto = photos[currentIndex];
+
+    updateMeta(currentIndex);
+
+    var stageWidth = $stage.width() || window.innerWidth;
+    var depth = Math.round(stageWidth / 2);
+
+    var $incomingImg = $faceIncoming.find('img');
+    $incomingImg.attr('src', nextPhoto.previewUrl || nextPhoto.fullUrl);
+    $incomingImg.attr('alt', nextPhoto.description || nextPhoto.title || '');
+
+    if (nextPhoto.fullUrl && nextPhoto.fullUrl !== nextPhoto.previewUrl) {
+      var highRes = new Image();
+      highRes.onload = function() {
+        if (currentIndex === targetIdx) $incomingImg.attr('src', nextPhoto.fullUrl);
+      };
+      highRes.src = nextPhoto.fullUrl;
+    }
+
+    var startActiveAngle = 0;
+    var endActiveAngle = (direction === 'next') ? -90 : 90;
+    var startIncomingAngle = (direction === 'next') ? 90 : -90;
+    var endIncomingAngle = 0;
+
+    // Posiciona as faces no espaço tridimensional
+    $faceActive.css({
+      transition: 'none',
+      transform: 'translateZ(' + depth + 'px) rotateY(' + startActiveAngle + 'deg)',
+      zIndex: 2,
+      display: 'flex'
+    });
+    $faceActive.find('.cube-face-shadow').css({
+      transition: 'none',
+      opacity: 0
+    });
+
+    $faceIncoming.css({
+      transition: 'none',
+      transform: 'translateZ(' + depth + 'px) rotateY(' + startIncomingAngle + 'deg)',
+      zIndex: 1,
+      display: 'flex'
+    });
+    $faceIncoming.find('.cube-face-shadow').css({
+      transition: 'none',
+      opacity: 0.75
+    });
+
+    // Força reflow do navegador para engajar animação de cubo 3D
+    if ($faceIncoming[0]) $faceIncoming[0].offsetHeight;
+
+    var animDuration = '400ms';
+    var animEasing = 'cubic-bezier(0.25, 1, 0.4, 1)';
+
+    $faceActive.css({
+      transition: 'transform ' + animDuration + ' ' + animEasing,
+      transform: 'translateZ(' + depth + 'px) rotateY(' + endActiveAngle + 'deg)'
+    });
+    $faceActive.find('.cube-face-shadow').css({
+      transition: 'opacity ' + animDuration + ' ' + animEasing,
+      opacity: 0.75
+    });
+
+    $faceIncoming.css({
+      transition: 'transform ' + animDuration + ' ' + animEasing,
+      transform: 'translateZ(' + depth + 'px) rotateY(' + endIncomingAngle + 'deg)'
+    });
+    $faceIncoming.find('.cube-face-shadow').css({
+      transition: 'opacity ' + animDuration + ' ' + animEasing,
+      opacity: 0
+    });
+
+    setTimeout(function(){
+      // Inverte referências das faces para o próximo ciclo
+      var $temp = $faceActive;
+      $faceActive = $faceIncoming;
+      $faceIncoming = $temp;
+      $img = $faceActive.find('img');
+
+      $faceActive.removeClass('face-incoming').addClass('face-active').css({
+        transition: 'none',
+        transform: 'translateZ(' + depth + 'px) rotateY(0deg)',
+        zIndex: 2
+      });
+      $faceIncoming.removeClass('face-active').addClass('face-incoming').css({
+        transition: 'none',
+        display: 'none',
+        zIndex: 1
       });
 
-      setTimeout(function(){
-        $img.attr('src', photo.previewUrl || photo.fullUrl);
-        $img.attr('alt', photo.description || photo.title || '');
+      isAnimating = false;
+      preloadAdjacent(currentIndex);
+    }, 420);
+  }
 
-        if (photo.fullUrl && photo.fullUrl !== photo.previewUrl) {
-          var highRes = new Image();
-          highRes.onload = function(){
-            if (currentIndex === idx) {
-              $img.attr('src', photo.fullUrl);
-            }
-          };
-          highRes.src = photo.fullUrl;
-        }
+  function initSlide(idx) {
+    if (!photos || photos.length === 0) return;
+    if (idx < 0) idx = 0;
+    if (idx >= photos.length) idx = photos.length - 1;
+    currentIndex = idx;
+    var photo = photos[idx];
 
-        $img.css({
-          transition: 'none',
-          transform: 'translate3d(' + inX + ', 0, 0) scale(0.96)',
-          opacity: 0
-        });
+    updateMeta(currentIndex);
 
-        // Força reflow do navegador
-        if ($img[0]) $img[0].offsetHeight;
+    var stageWidth = $stage.width() || window.innerWidth;
+    var depth = Math.round(stageWidth / 2);
 
-        $img.css({
-          transition: 'transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.24s ease-out',
-          transform: 'translate3d(0, 0, 0) scale(1)',
-          opacity: 1
-        });
-      }, 150);
-    } else {
-      $img.attr('src', photo.previewUrl || photo.fullUrl);
-      if (photo.fullUrl && photo.fullUrl !== photo.previewUrl) {
-        var highRes = new Image();
-        highRes.onload = function(){
-          if (currentIndex === idx) $img.attr('src', photo.fullUrl);
-        };
-        highRes.src = photo.fullUrl;
-      }
-      $img.css({
-        transform: 'translate3d(0, 0, 0) scale(1)',
-        opacity: 1
-      });
+    $img = $faceActive.find('img');
+    $img.attr('src', photo.previewUrl || photo.fullUrl);
+    $img.attr('alt', photo.description || photo.title || '');
+
+    $faceActive.css({
+      transition: 'none',
+      transform: 'translateZ(' + depth + 'px) rotateY(0deg)',
+      display: 'flex',
+      zIndex: 2
+    });
+    $faceActive.find('.cube-face-shadow').css({ opacity: 0 });
+
+    $faceIncoming.css({
+      display: 'none',
+      zIndex: 1
+    });
+
+    if (photo.fullUrl && photo.fullUrl !== photo.previewUrl) {
+      var highRes = new Image();
+      highRes.onload = function(){
+        if (currentIndex === idx) $img.attr('src', photo.fullUrl);
+      };
+      highRes.src = photo.fullUrl;
     }
 
-    // Pré-carregamento imediato das fotos adjacentes
-    if (photos[idx + 1]) {
-      new Image().src = photos[idx + 1].fullUrl || photos[idx + 1].previewUrl;
-    }
-    if (photos[idx - 1]) {
-      new Image().src = photos[idx - 1].fullUrl || photos[idx - 1].previewUrl;
-    }
+    preloadAdjacent(currentIndex);
   }
 
   function closeViewer(flyDirection) {
@@ -280,7 +422,7 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     var flyY = flyDirection === 'down' ? '70vh' : (flyDirection === 'up' ? '-70vh' : '0');
     var flyScale = flyDirection ? 0.75 : 0.94;
 
-    $img.css({
+    $faceActive.css({
       transition: 'transform 0.22s ease-in, opacity 0.22s ease-in',
       transform: 'translate3d(0, ' + flyY + ', 0) scale(' + flyScale + ')',
       opacity: 0
@@ -292,9 +434,9 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     });
   }
 
-  // --- Handlers de Gestos Touch e Arrastar com Dedo (Google Photos) ---
+  // --- Handlers de Gestos Touch e Arrastar no Celular (Cubo 3D Interativo) ---
   function onGestureStart(e) {
-    if (isClosing) return;
+    if (isClosing || isAnimating) return;
     var touch = e.touches ? e.touches[0] : e;
     startX = touch.clientX;
     startY = touch.clientY;
@@ -305,18 +447,16 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     startTime = Date.now();
     isDragging = true;
     swipeDirection = null;
+    dragIncomingPrepared = null;
 
     if (isZoomed) {
       startPanX = panX;
       startPanY = panY;
-    } else {
-      $img.css('transition', 'none');
-      $backdrop.css('transition', 'none');
     }
   }
 
   function onGestureMove(e) {
-    if (!isDragging || isClosing) return;
+    if (!isDragging || isClosing || isAnimating) return;
     var touch = e.touches ? e.touches[0] : e;
     currentX = touch.clientX;
     currentY = touch.clientY;
@@ -327,7 +467,7 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
       if (e.cancelable) e.preventDefault();
       panX = startPanX + deltaX;
       panY = startPanY + deltaY;
-      $img.css({
+      $faceActive.find('img').css({
         transition: 'none',
         transform: 'translate3d(' + panX + 'px, ' + panY + 'px, 0) scale(' + zoomScale + ')'
       });
@@ -342,22 +482,85 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
 
     if (swipeDirection === 'horizontal') {
       if (e.cancelable) e.preventDefault();
-      var isFirst = photos && currentIndex === 0 && deltaX > 0;
-      var isLast = photos && currentIndex === (photos.length - 1) && deltaX < 0;
-      var resistance = (isFirst || isLast) ? 0.35 : 1;
+
+      var stageWidth = $stage.width() || window.innerWidth;
+      var depth = Math.round(stageWidth / 2);
+      var isFirst = (currentIndex === 0 && deltaX > 0);
+      var isLast = (currentIndex === (photos.length - 1) && deltaX < 0);
+      var resistance = (isFirst || isLast) ? 0.25 : 1;
       var moveX = deltaX * resistance;
 
-      $img.css({
-        transform: 'translate3d(' + moveX + 'px, 0, 0)'
-      });
+      var ratio = Math.max(-1, Math.min(1, moveX / stageWidth));
+      var activeAngle = ratio * 90;
+
+      if (deltaX < 0 && currentIndex < photos.length - 1) {
+        // Puxando cubo para a esquerda (foto seguinte entrando pela direita)
+        var targetPhoto = photos[currentIndex + 1];
+        if (dragIncomingPrepared !== currentIndex + 1) {
+          dragIncomingPrepared = currentIndex + 1;
+          var $incImg = $faceIncoming.find('img');
+          $incImg.attr('src', targetPhoto.previewUrl || targetPhoto.fullUrl);
+          $faceIncoming.css('display', 'flex');
+        }
+        var incomingAngle = 90 + activeAngle;
+        $faceActive.css({
+          transition: 'none',
+          transform: 'translateZ(' + depth + 'px) rotateY(' + activeAngle + 'deg)'
+        });
+        $faceActive.find('.cube-face-shadow').css({
+          transition: 'none',
+          opacity: Math.abs(ratio) * 0.75
+        });
+        $faceIncoming.css({
+          transition: 'none',
+          transform: 'translateZ(' + depth + 'px) rotateY(' + incomingAngle + 'deg)'
+        });
+        $faceIncoming.find('.cube-face-shadow').css({
+          transition: 'none',
+          opacity: Math.max(0, (1 - Math.abs(ratio)) * 0.75)
+        });
+      } else if (deltaX > 0 && currentIndex > 0) {
+        // Puxando cubo para a direita (foto anterior entrando pela esquerda)
+        var targetPhoto = photos[currentIndex - 1];
+        if (dragIncomingPrepared !== currentIndex - 1) {
+          dragIncomingPrepared = currentIndex - 1;
+          var $incImg = $faceIncoming.find('img');
+          $incImg.attr('src', targetPhoto.previewUrl || targetPhoto.fullUrl);
+          $faceIncoming.css('display', 'flex');
+        }
+        var incomingAngle = -90 + activeAngle;
+        $faceActive.css({
+          transition: 'none',
+          transform: 'translateZ(' + depth + 'px) rotateY(' + activeAngle + 'deg)'
+        });
+        $faceActive.find('.cube-face-shadow').css({
+          transition: 'none',
+          opacity: Math.abs(ratio) * 0.75
+        });
+        $faceIncoming.css({
+          transition: 'none',
+          transform: 'translateZ(' + depth + 'px) rotateY(' + incomingAngle + 'deg)'
+        });
+        $faceIncoming.find('.cube-face-shadow').css({
+          transition: 'none',
+          opacity: Math.max(0, (1 - Math.abs(ratio)) * 0.75)
+        });
+      } else {
+        // Primeira ou última foto (resistência elástica)
+        $faceActive.css({
+          transition: 'none',
+          transform: 'translateZ(' + depth + 'px) rotateY(' + activeAngle + 'deg)'
+        });
+      }
     } else if (swipeDirection === 'vertical') {
       if (e.cancelable) e.preventDefault();
-      // Puxar para fechar (pull-to-dismiss)
+      // Pull to dismiss
       var progress = Math.min(Math.abs(deltaY) / 350, 0.85);
       var scale = Math.max(0.72, 1 - progress * 0.28);
       var opacity = Math.max(0.15, 1 - progress);
 
-      $img.css({
+      $faceActive.css({
+        transition: 'none',
         transform: 'translate3d(0, ' + deltaY + 'px, 0) scale(' + scale + ')'
       });
       $backdrop.css('opacity', opacity);
@@ -366,20 +569,21 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     }
   }
 
-  function onGestureEnd(e) {
+  function onGestureEnd() {
     if (!isDragging) return;
     isDragging = false;
+    dragIncomingPrepared = null;
     var duration = Date.now() - startTime;
     var vx = Math.abs(deltaX) / Math.max(duration, 1);
     var vy = Math.abs(deltaY) / Math.max(duration, 1);
 
-    if (isZoomed) return;
+    if (isZoomed || isAnimating) return;
 
     // Detecta toque rápido (Tap ou Double Tap)
     if (Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10 && duration < 300) {
       var now = Date.now();
       if (now - lastTapTime < 320) {
-        toggleZoom(startX, startY);
+        toggleZoom();
         lastTapTime = 0;
         return;
       }
@@ -392,43 +596,42 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
       return;
     }
 
-    if (swipeDirection === 'horizontal') {
-      $img.css('transition', 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease');
+    var stageWidth = $stage.width() || window.innerWidth;
+    var depth = Math.round(stageWidth / 2);
 
-      if (deltaX < -50 || (deltaX < -25 && vx > 0.35)) {
-        // Próxima foto
-        if (photos && currentIndex < photos.length - 1) {
-          updateSlide(currentIndex + 1, 'next');
-        } else {
-          var $nextAjax = $overlay.find('.ctrl-next a');
-          if ($nextAjax.length) $nextAjax[0].click();
-          else $img.css('transform', 'translate3d(0, 0, 0)');
-        }
-      } else if (deltaX > 50 || (deltaX > 25 && vx > 0.35)) {
-        // Foto anterior
-        if (photos && currentIndex > 0) {
-          updateSlide(currentIndex - 1, 'prev');
-        } else {
-          var $prevAjax = $overlay.find('.ctrl-prev a');
-          if ($prevAjax.length) $prevAjax[0].click();
-          else $img.css('transform', 'translate3d(0, 0, 0)');
-        }
+    if (swipeDirection === 'horizontal') {
+      if ((deltaX < -50 || (deltaX < -25 && vx > 0.35)) && currentIndex < photos.length - 1) {
+        rotateCube(currentIndex + 1, 'next');
+      } else if ((deltaX > 50 || (deltaX > 25 && vx > 0.35)) && currentIndex > 0) {
+        rotateCube(currentIndex - 1, 'prev');
       } else {
-        $img.css('transform', 'translate3d(0, 0, 0)');
+        // Retorna suavemente o cubo para a posição inicial (0 graus)
+        $faceActive.css({
+          transition: 'transform 0.26s cubic-bezier(0.25, 1, 0.4, 1)',
+          transform: 'translateZ(' + depth + 'px) rotateY(0deg)'
+        });
+        $faceActive.find('.cube-face-shadow').css({
+          transition: 'opacity 0.26s ease',
+          opacity: 0
+        });
+        $faceIncoming.css({
+          transition: 'transform 0.26s cubic-bezier(0.25, 1, 0.4, 1), opacity 0.26s ease',
+          opacity: 0
+        });
+        setTimeout(function(){
+          $faceIncoming.css({ display: 'none', opacity: '' });
+        }, 260);
       }
     } else if (swipeDirection === 'vertical') {
       // Pull to dismiss
       if (Math.abs(deltaY) > 75 || (Math.abs(deltaY) > 35 && vy > 0.35)) {
         closeViewer(deltaY > 0 ? 'down' : 'up');
       } else {
-        $img.css({
+        $faceActive.css({
           transition: 'transform 0.26s cubic-bezier(0.16, 1, 0.3, 1)',
-          transform: 'translate3d(0, 0, 0) scale(1)'
+          transform: 'translateZ(' + depth + 'px) rotateY(0deg) scale(1)'
         });
-        $backdrop.css({
-          transition: 'opacity 0.26s ease',
-          opacity: ''
-        });
+        $backdrop.css({ transition: 'opacity 0.26s ease', opacity: '' });
         $header.css({ transition: 'opacity 0.26s ease', opacity: '' });
         $caption.css({ transition: 'opacity 0.26s ease', opacity: '' });
       }
@@ -436,11 +639,11 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
   }
 
   // Vincular eventos de toque e mouse
-  $photoContainer.on('touchstart', onGestureStart);
-  $photoContainer.on('touchmove', onGestureMove);
-  $photoContainer.on('touchend touchcancel', onGestureEnd);
+  $stage.on('touchstart', onGestureStart);
+  $stage.on('touchmove', onGestureMove);
+  $stage.on('touchend touchcancel', onGestureEnd);
 
-  $photoContainer.on('mousedown', onGestureStart);
+  $stage.on('mousedown', onGestureStart);
   $(document).on('mousemove.photoViewerDrag', onGestureMove);
   $(document).on('mouseup.photoViewerDrag', onGestureEnd);
 
@@ -455,17 +658,17 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     toggleZoom();
   });
 
-  $overlay.on('click', '.ctrl-prev a, .stage-nav-prev', function(e){
-    if (photos) {
-      e.preventDefault();
-      if (currentIndex > 0) updateSlide(currentIndex - 1, 'prev');
+  $overlay.on('click', '.ctrl-prev a, .nav-prev', function(e){
+    e.preventDefault();
+    if (photos && currentIndex > 0) {
+      rotateCube(currentIndex - 1, 'prev');
     }
   });
 
-  $overlay.on('click', '.ctrl-next a, .stage-nav-next', function(e){
-    if (photos) {
-      e.preventDefault();
-      if (currentIndex < photos.length - 1) updateSlide(currentIndex + 1, 'next');
+  $overlay.on('click', '.ctrl-next a, .nav-next', function(e){
+    e.preventDefault();
+    if (photos && currentIndex < photos.length - 1) {
+      rotateCube(currentIndex + 1, 'next');
     }
   });
 
@@ -480,17 +683,11 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
       closeViewer();
     } else if (e.key === 'ArrowLeft' || e.keyCode === 37) {
       if (photos && currentIndex > 0) {
-        updateSlide(currentIndex - 1, 'prev');
-      } else {
-        var $prev = $overlay.find('.ctrl-prev a');
-        if ($prev.length) $prev[0].click();
+        rotateCube(currentIndex - 1, 'prev');
       }
     } else if (e.key === 'ArrowRight' || e.keyCode === 39) {
       if (photos && currentIndex < photos.length - 1) {
-        updateSlide(currentIndex + 1, 'next');
-      } else {
-        var $next = $overlay.find('.ctrl-next a');
-        if ($next.length) $next[0].click();
+        rotateCube(currentIndex + 1, 'next');
       }
     }
   });
@@ -501,9 +698,9 @@ WEBY.initAlbumPhoto = function(elem, photosData, initialIdx){
     $(document).off('keydown.photoViewer');
   });
 
-  // Inicializa o primeiro slide se dados de fotos foram fornecidos
+  // Inicializa o primeiro slide
   if (photos && photos.length > 0) {
-    updateSlide(currentIndex);
+    initSlide(currentIndex);
   }
 };
 
@@ -546,8 +743,17 @@ WEBY.openGooglePhotosViewer = function(photos, initialIdx){
               '<i class="fa fa-chevron-left"></i>',
             '</a>',
           '</div>',
-          '<div class="photo-viewer-photo">',
-            '<img class="viewer-img" src="' + (currentPhoto.previewUrl || currentPhoto.fullUrl) + '" alt="' + $('<div>').text(currentPhoto.description || currentPhoto.title || '').html() + '" draggable="false" />',
+          '<div class="photo-cube-stage photo-viewer-photo">',
+            '<div class="photo-cube-viewport">',
+              '<div class="photo-cube-face face-active">',
+                '<img class="viewer-img" src="' + (currentPhoto.previewUrl || currentPhoto.fullUrl) + '" alt="' + $('<div>').text(currentPhoto.description || currentPhoto.title || '').html() + '" draggable="false" />',
+                '<div class="cube-face-shadow"></div>',
+              '</div>',
+              '<div class="photo-cube-face face-incoming" style="display: none;">',
+                '<img class="viewer-img-incoming" src="" alt="" draggable="false" />',
+                '<div class="cube-face-shadow"></div>',
+              '</div>',
+            '</div>',
           '</div>',
           '<div class="ctrl ctrl-next' + (initialIdx === (photos.length - 1) ? ' disabled' : '') + '">',
             '<a href="#" class="nav-arrow nav-next" title="Próxima foto" aria-label="Próxima">',
@@ -636,25 +842,52 @@ $(document).ready(function(){
     e.preventDefault();
     e.stopPropagation();
 
-    var $grid = $(this).closest('.modern-photos-grid');
-    var photos = [];
-    var clickedIdx = $(this).data('index');
-    if (typeof clickedIdx !== 'number') clickedIdx = 0;
+    var $link = $(this);
+    var clickedPhotoId = $link.data('photo-id');
+    var photos = null;
+    var clickedIdx = 0;
 
-    $grid.find('.photo-card-link').each(function(i){
-      var $link = $(this);
-      photos.push({
-        id: $link.data('photo-id'),
-        fullUrl: $link.data('full-url') || $link.attr('href'),
-        previewUrl: $link.data('preview-url') || $link.find('img').attr('src'),
-        thumbUrl: $link.data('thumb-url'),
-        title: $link.data('title') || $grid.data('album-title') || '',
-        description: $link.data('description') || '',
-        downloadUrl: $link.data('download-url') || '#',
-        views: $link.data('views') || 0,
-        categories: $link.data('categories') ? $link.data('categories').toString().split(', ') : []
+    // 1. Tenta carregar todas as fotos do manifesto completo do álbum (permitindo navegar além da paginação)
+    var $manifest = $('#album-all-photos-data');
+    if ($manifest.length && $manifest.text().trim() !== '') {
+      try {
+        photos = JSON.parse($manifest.text());
+      } catch(err) {
+        photos = null;
+      }
+    }
+
+    if (photos && photos.length > 0) {
+      if (clickedPhotoId) {
+        for (var i = 0; i < photos.length; i++) {
+          if (photos[i].id == clickedPhotoId) {
+            clickedIdx = i;
+            break;
+          }
+        }
+      }
+    } else {
+      // Fallback: extrai da grade da página atual
+      var $grid = $link.closest('.modern-photos-grid');
+      photos = [];
+      clickedIdx = $link.data('index');
+      if (typeof clickedIdx !== 'number') clickedIdx = 0;
+
+      $grid.find('.photo-card-link').each(function(i){
+        var $el = $(this);
+        photos.push({
+          id: $el.data('photo-id'),
+          fullUrl: $el.data('full-url') || $el.attr('href'),
+          previewUrl: $el.data('preview-url') || $el.find('img').attr('src'),
+          thumbUrl: $el.data('thumb-url'),
+          title: $el.data('title') || $grid.data('album-title') || '',
+          description: $el.data('description') || '',
+          downloadUrl: $el.data('download-url') || '#',
+          views: $el.data('views') || 0,
+          categories: $el.data('categories') ? $el.data('categories').toString().split(', ') : []
+        });
       });
-    });
+    }
 
     WEBY.openGooglePhotosViewer(photos, clickedIdx);
   });

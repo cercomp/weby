@@ -44,6 +44,33 @@ class Sites::AlbumsController < ApplicationController
     
     # Cria objeto de paginação compatível com Kaminari
     @photos = Kaminari.paginate_array(photos.to_a, total_count: total_photos).page(page).per(photos_per_page)
+
+    # Prepara manifesto com todas as fotos do álbum para navegação contínua na galeria (sem parar no fim da página)
+    @all_photos_json = all_photos.map do |p|
+      {
+        id: p.id,
+        fullUrl: p.image.url(:o),
+        previewUrl: p.image.url(:f),
+        thumbUrl: p.image.url(:t),
+        title: @album.title,
+        description: p.description.to_s,
+        downloadUrl: download_site_album_album_photo_path(@album.slug, p),
+        views: p.view_count.to_i,
+        categories: @album.category_list.to_a
+      }
+    end
+
+    respond_with(@photos) do |format|
+      format.html
+      format.js
+      format.json do
+        render json: {
+          album_title: @album.title,
+          total_photos: total_photos,
+          photos: @all_photos_json
+        }
+      end
+    end
   end
 
   def generate

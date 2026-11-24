@@ -15,6 +15,21 @@ class Sites::AlbumPhotosController < ApplicationController
     all_photos = @album.album_photos.order(:position, :id).to_a
     @total_photos = all_photos.size
     @current_photo_index = (all_photos.index(@album_photo) || 0) + 1
+
+    # Prepara manifesto com todas as fotos do álbum para navegação contínua na galeria
+    @all_photos_json = all_photos.map do |p|
+      {
+        id: p.id,
+        fullUrl: p.image.url(:o),
+        previewUrl: p.image.url(:f),
+        thumbUrl: p.image.url(:t),
+        title: @album.title,
+        description: p.description.to_s,
+        downloadUrl: download_site_album_album_photo_path(@album.slug, p),
+        views: p.view_count.to_i,
+        categories: @album.category_list.to_a
+      }
+    end
   end
 
   def download

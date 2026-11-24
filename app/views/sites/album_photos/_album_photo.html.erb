@@ -1,4 +1,9 @@
 <div class="photo-viewer-overlay google-photos-viewer" role="dialog" aria-modal="true">
+  <% if @all_photos_json.present? %>
+    <script type="application/json" class="album-photos-manifest">
+      <%= raw @all_photos_json.to_json %>
+    </script>
+  <% end %>
   <div class="photo-viewer-backdrop"></div>
   <div class="photo-viewer">
     <div class="photo-viewer-header">
@@ -26,25 +31,42 @@
       </div>
     </div>
     <div class="photo-viewer-content">
-      <div class="ctrl ctrl-prev">
+      <div class="ctrl ctrl-prev <%= 'disabled' if @current_photo_index == 1 %>">
         <% if @album_photo.prev_photo %>
           <%= link_to site_album_album_photo_path(@album_photo.album.slug, @album_photo.prev_photo), class: 'nav-arrow nav-prev', remote: true, title: t('.previous', default: 'Anterior') do %>
             <%= fa_icon('chevron-left') %>
           <% end %>
+        <% else %>
+          <a href="#" class="nav-arrow nav-prev disabled" title="<%= t('.previous', default: 'Anterior') %>">
+            <%= fa_icon('chevron-left') %>
+          </a>
         <% end %>
       </div>
-      <div class="photo-viewer-photo"
+      <div class="photo-cube-stage photo-viewer-photo"
            data-full-url="<%= @album_photo.image.url(:o) %>"
            data-photo-id="<%= @album_photo.id %>"
            data-prev-url="<%= site_album_album_photo_path(@album_photo.album.slug, @album_photo.prev_photo) if @album_photo.prev_photo %>"
            data-next-url="<%= site_album_album_photo_path(@album_photo.album.slug, @album_photo.next_photo) if @album_photo.next_photo %>">
-        <%= image_tag @album_photo.image.url(:o), alt: @album_photo.description.presence || @album.title, class: "viewer-img", draggable: false %>
+        <div class="photo-cube-viewport">
+          <div class="photo-cube-face face-active">
+            <%= image_tag @album_photo.image.url(:o), alt: @album_photo.description.presence || @album.title, class: "viewer-img", draggable: false %>
+            <div class="cube-face-shadow"></div>
+          </div>
+          <div class="photo-cube-face face-incoming" style="display: none;">
+            <img class="viewer-img-incoming" src="" alt="" draggable="false" />
+            <div class="cube-face-shadow"></div>
+          </div>
+        </div>
       </div>
-      <div class="ctrl ctrl-next">
+      <div class="ctrl ctrl-next <%= 'disabled' if @current_photo_index == @total_photos %>">
         <% if @album_photo.next_photo %>
           <%= link_to site_album_album_photo_path(@album_photo.album.slug, @album_photo.next_photo), class: 'nav-arrow nav-next', remote: true, title: t('.next', default: 'Próxima') do %>
             <%= fa_icon('chevron-right') %>
           <% end %>
+        <% else %>
+          <a href="#" class="nav-arrow nav-next disabled" title="<%= t('.next', default: 'Próxima') %>">
+            <%= fa_icon('chevron-right') %>
+          </a>
         <% end %>
       </div>
     </div>
