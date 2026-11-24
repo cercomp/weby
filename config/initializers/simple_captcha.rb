@@ -1,6 +1,7 @@
 require 'open3'
 require 'simple_captcha/utils'
 require 'simple_captcha/middleware'
+require 'simple_captcha/image'
 
 SimpleCaptcha.setup do |sc|
   # default: 100x28
@@ -17,9 +18,39 @@ SimpleCaptcha.setup do |sc|
 
   # default: medium
   sc.implode = 'none'
+
+  # Bundled font so ImageMagick never fails on minimal environments without helvetica
+  font_path = Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf').to_s
+  sc.font = font_path if File.exist?(font_path)
 end
 
 module SimpleCaptcha
+  module ImageHelpers
+    def generate_simple_captcha_image(simple_captcha_key)
+      amplitude, frequency = ImageHelpers.distortion(SimpleCaptcha.distortion)
+      text = Utils.simple_captcha_value(simple_captcha_key).presence || 'WEBY'
+
+      params = ImageHelpers.image_params(SimpleCaptcha.image_style).dup
+      params << "-size #{SimpleCaptcha.image_size}"
+      params << "-wave #{amplitude}x#{frequency}"
+      params << "-gravity Center"
+      params << "-pointsize 22"
+      params << "-implode #{ImageHelpers.implode}"
+
+      font = SimpleCaptcha.font.presence
+      font ||= Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf').to_s if defined?(Rails) && File.exist?(Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf'))
+      params << "-font '#{font}'" if font.present?
+
+      params << "label:#{text}"
+      if SimpleCaptcha.noise && SimpleCaptcha.noise > 0
+        params << "-evaluate Uniform-noise #{SimpleCaptcha.noise}"
+      end
+      params << "jpeg:-"
+
+      SimpleCaptcha::Utils.run("convert", params.join(' '))
+    end
+  end
+
   module Utils
     # Execute command with binary mode so JPEG stream is not interpreted as UTF-8
     def self.run(cmd, params = "", expected_outcodes = 0)
@@ -62,8 +93,31 @@ module SimpleCaptcha
         data.save
       end
 
-      image_data = generate_simple_captcha_image(code)
+      font = SimpleCaptcha.font.presence
+      font ||= Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf').to_s if defined?(Rails) && File.exist?(Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf'))
+
+      image_data = begin
+        generate_simple_captcha_image(code)
+      rescue => e
+        Rails.logger.error "[SimpleCaptcha] Failed to generate image: #{e.message}\n#{e.backtrace&.first(5)&.join("\n")}"
+        # Fallback: basic ImageMagick convert with explicit font
+        text = SimpleCaptcha::Utils.simple_captcha_value(code).presence || value.presence || 'WEBY'
+        font_opt = font.present? ? "-font '#{font}'" : ""
+        cmd = "convert -size 130x42 -background white -fill darkblue #{font_opt} -gravity Center -pointsize 22 label:#{text} jpeg:-"
+        out, _ = Open3.capture2(cmd, binmode: true)
+        out.force_encoding(Encoding::BINARY)
+        out
+      end
+
       image_data.force_encoding(Encoding::BINARY) if image_data.respond_to?(:force_encoding)
+
+      # Ultimate fallback: guaranteed valid 130x42 JPEG image if everything else failed
+      if image_data.blank?
+        cmd = "convert -size 130x42 xc:white -bordercolor darkblue -border 1 jpeg:-"
+        out, _ = Open3.capture2(cmd, binmode: true)
+        out.force_encoding(Encoding::BINARY)
+        image_data = out
+      end
 
       response_headers = {
         'Content-Type' => 'image/jpeg',
@@ -75,29 +129,6 @@ module SimpleCaptcha
         'Content-Length' => image_data.bytesize.to_s
       }
       [200, response_headers, [image_data]]
-    rescue => e
-      Rails.logger.error "[SimpleCaptcha] Failed to generate image: #{e.message}\n#{e.backtrace&.first(5)&.join("\n")}"
-      # Fallback: basic ImageMagick convert
-      fallback_data = begin
-        text = SimpleCaptcha::Utils.simple_captcha_value(code) || 'WEBY'
-        cmd = "convert -size 130x42 -background white -fill darkblue -gravity Center -pointsize 22 label:#{text} jpeg:-"
-        out, _ = Open3.capture2(cmd, binmode: true)
-        out.force_encoding(Encoding::BINARY)
-        out
-      rescue => _err
-        nil
-      end
-
-      if fallback_data.present?
-        [200, {
-          'Content-Type' => 'image/jpeg',
-          'Content-Disposition' => "inline; filename='simple_captcha.jpg'",
-          'Cache-Control' => 'no-cache, no-store, must-revalidate, private',
-          'Content-Length' => fallback_data.bytesize.to_s
-        }, [fallback_data]]
-      else
-        [200, { 'Content-Type' => 'image/jpeg', 'Cache-Control' => 'no-cache' }, [""]]
-      end
     end
 
     def send_data(response_body, options = {})

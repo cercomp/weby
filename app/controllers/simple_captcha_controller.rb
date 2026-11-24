@@ -17,11 +17,15 @@ class SimpleCaptchaController < ApplicationController
         data.save
       end
 
+      font = SimpleCaptcha.font.presence
+      font ||= Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf').to_s if File.exist?(Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf'))
+
       image_data = begin
         generate_simple_captcha_image(code)
       rescue => e
         Rails.logger.error "[SimpleCaptchaController] standard image generation failed: #{e.message}"
-        cmd = "convert -size 130x42 -background white -fill darkblue -gravity Center -pointsize 22 label:#{value} jpeg:-"
+        font_opt = font.present? ? "-font '#{font}'" : ""
+        cmd = "convert -size 130x42 -background white -fill darkblue #{font_opt} -gravity Center -pointsize 22 label:#{value} jpeg:-"
         out, _ = Open3.capture2(cmd, binmode: true)
         out.force_encoding(Encoding::BINARY)
         out
@@ -29,15 +33,18 @@ class SimpleCaptchaController < ApplicationController
 
       image_data.force_encoding(Encoding::BINARY) if image_data.respond_to?(:force_encoding)
 
+      if image_data.blank?
+        cmd = "convert -size 130x42 xc:white -bordercolor darkblue -border 1 jpeg:-"
+        out, _ = Open3.capture2(cmd, binmode: true)
+        out.force_encoding(Encoding::BINARY)
+        image_data = out
+      end
+
       response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, private'
       response.headers['Pragma'] = 'no-cache'
       response.headers['Expires'] = '0'
 
-      if image_data.present?
-        send_data image_data, type: 'image/jpeg', disposition: 'inline', filename: 'simple_captcha.jpg'
-      else
-        render plain: 'Error generating captcha', status: :internal_server_error
-      end
+      send_data image_data, type: 'image/jpeg', disposition: 'inline', filename: 'simple_captcha.jpg'
     elsif params[:id].present?
       request.session.delete(:captcha) rescue nil
       key = simple_captcha_key(nil, request)
@@ -63,10 +70,14 @@ class SimpleCaptchaController < ApplicationController
       data.value = value
       data.save
 
+      font = SimpleCaptcha.font.presence
+      font ||= Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf').to_s if File.exist?(Rails.root.join('app/assets/fonts/myriad-regular/MYRIADPROREGULAR.ttf'))
+
       image_data = begin
         generate_simple_captcha_image(key)
       rescue => e
-        cmd = "convert -size 130x42 -background white -fill darkblue -gravity Center -pointsize 22 label:#{value} jpeg:-"
+        font_opt = font.present? ? "-font '#{font}'" : ""
+        cmd = "convert -size 130x42 -background white -fill darkblue #{font_opt} -gravity Center -pointsize 22 label:#{value} jpeg:-"
         out, _ = Open3.capture2(cmd, binmode: true)
         out.force_encoding(Encoding::BINARY)
         out
@@ -74,15 +85,18 @@ class SimpleCaptchaController < ApplicationController
 
       image_data.force_encoding(Encoding::BINARY) if image_data.respond_to?(:force_encoding)
 
+      if image_data.blank?
+        cmd = "convert -size 130x42 xc:white -bordercolor darkblue -border 1 jpeg:-"
+        out, _ = Open3.capture2(cmd, binmode: true)
+        out.force_encoding(Encoding::BINARY)
+        image_data = out
+      end
+
       response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, private'
       response.headers['Pragma'] = 'no-cache'
       response.headers['Expires'] = '0'
 
-      if image_data.present?
-        send_data image_data, type: 'image/jpeg', disposition: 'inline', filename: 'simple_captcha.jpg'
-      else
-        head :ok
-      end
+      send_data image_data, type: 'image/jpeg', disposition: 'inline', filename: 'simple_captcha.jpg'
     end
   end
 end

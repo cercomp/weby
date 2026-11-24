@@ -2,7 +2,7 @@
 FROM ruby:3.3.14-slim-bookworm AS base
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends imagemagick libpng-dev libpq-dev libncurses-dev libffi-dev curl build-essential libssl-dev libreadline-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libxslt-dev ghostscript ntpdate nodejs file git && \
+    apt-get install -y --no-install-recommends imagemagick libpng-dev libpq-dev libncurses-dev libffi-dev curl build-essential libssl-dev libreadline-dev zlib1g-dev zlib1g libsqlite3-dev libmagickwand-dev libxslt-dev ghostscript gsfonts fonts-dejavu-core ntpdate nodejs file git && \
     rm -rf /var/lib/apt/lists/*
 
 COPY . /opt/weby
@@ -19,7 +19,7 @@ FROM ruby:3.3.14-slim-bookworm
 MAINTAINER DevOps Team "bd-sistemas.cercomp@ufg.br"
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends tzdata imagemagick libpng-dev libpq-dev libmagickwand-dev ntpdate nodejs file && \
+    apt-get install -y --no-install-recommends tzdata imagemagick libpng-dev libpq-dev libmagickwand-dev ghostscript gsfonts fonts-dejavu-core ntpdate nodejs file && \
     rm -rf /var/lib/apt/lists/*
 
 # Config time zones
