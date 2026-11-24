@@ -40,7 +40,6 @@ base:
   only:
     - master
     - develop
-  when: manual
 
 # ==============================================================================
 # 2. PRECOMPILAÇÃO DE ASSETS (Rails Rake isolado, sem dind)
@@ -50,6 +49,8 @@ precompile:
   image: ${CI_REGISTRY_IMAGE}/${CI_PROJECT_ENV}:${CI_VERSION_ENV}
   environment:
     name: $CI_COMMIT_BRANCH
+  needs:
+    - job: base
   tags:
     - docker
   only:
@@ -69,7 +70,6 @@ precompile:
     paths:
       - public/assets/
     expire_in: 1 day
-  when: manual
 
 # ==============================================================================
 # 3. ATTACH ASSETS (Kaniko - Embala os assets gerados na imagem final)
@@ -114,6 +114,8 @@ deploy:
   image: curlimages/curl:latest
   environment:
     name: $CI_COMMIT_BRANCH
+  needs:
+    - job: attach-assets
   tags:
     - docker
   only:
@@ -135,4 +137,3 @@ deploy:
         http://200.137.218.139:9000/hooks/deploy
     - echo ""
     - echo "Deploy solicitado com sucesso! A VM de destino recebeu o compose e .env e atualizou os contêineres."
-  when: manual
