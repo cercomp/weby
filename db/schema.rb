@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_25_153000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "acadufg_settings", id: :serial, force: :cascade do |t|
     t.integer "site_id"
     t.integer "programa_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["site_id"], name: "index_acadufg_settings_on_site_id"
   end
 
@@ -27,7 +27,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -39,7 +39,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.text "metadata"
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -54,8 +54,9 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "note"
     t.integer "loggeable_id"
     t.string "loggeable_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.jsonb "differences", default: {}
     t.index ["site_id"], name: "index_activity_records_on_site_id"
     t.index ["user_id"], name: "index_activity_records_on_user_id"
   end
@@ -65,8 +66,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.bigint "locale_id"
     t.string "title"
     t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["album_id"], name: "index_album_i18ns_on_album_id"
     t.index ["locale_id"], name: "index_album_i18ns_on_locale_id"
   end
@@ -81,8 +82,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "image_fingerprint"
     t.string "title"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "position"
     t.string "slug"
     t.integer "view_count"
@@ -97,8 +98,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "name"
     t.string "slug"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["site_id"], name: "index_album_tags_on_site_id"
     t.index ["user_id"], name: "index_album_tags_on_user_id"
   end
@@ -118,8 +119,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "slug"
     t.string "source"
     t.string "video_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["site_id"], name: "index_albums_on_site_id"
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
@@ -130,16 +131,16 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.boolean "active"
     t.string "api_token"
     t.string "access_token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "auth_sources", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "source_type"
     t.string "source_login"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
   end
 
   create_table "calendar_event_i18ns", id: :serial, force: :cascade do |t|
@@ -148,8 +149,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "name"
     t.string "place"
     t.text "information"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.boolean "sync_with_parent", default: true
     t.index ["calendar_event_id"], name: "index_calendar_event_i18ns_on_calendar_event_id"
     t.index ["locale_id"], name: "index_calendar_event_i18ns_on_locale_id"
@@ -171,15 +172,15 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "site_id"
     t.integer "repository_id"
     t.integer "user_id"
-    t.datetime "begin_at"
-    t.datetime "end_at"
+    t.datetime "begin_at", precision: nil
+    t.datetime "end_at", precision: nil
     t.string "email"
     t.string "url"
     t.string "kind"
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.integer "view_count", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "slug"
     t.string "text_type"
     t.integer "parent_event_id"
@@ -200,8 +201,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.boolean "publish", default: true
     t.integer "visibility", default: 0
     t.string "alias"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "skin_id"
     t.index ["skin_id"], name: "index_components_on_skin_id"
   end
@@ -209,8 +210,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
   create_table "extensions", id: :serial, force: :cascade do |t|
     t.integer "site_id"
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.jsonb "settings", default: {}
     t.index ["site_id"], name: "index_extensions_on_site_id"
   end
@@ -219,8 +220,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "name"
     t.integer "site_id"
     t.text "emails"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "position"
     t.index ["site_id"], name: "index_groups_on_site_id"
   end
@@ -231,8 +232,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "subject"
     t.text "message"
     t.integer "site_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "read_status", default: false
     t.index ["site_id"], name: "index_feedbacks_on_site_id"
   end
@@ -246,8 +247,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
 
   create_table "groupings", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "hidden", default: false
   end
 
@@ -259,8 +260,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
   end
 
   create_table "journal_news", id: :serial, force: :cascade do |t|
-    t.datetime "date_begin_at"
-    t.datetime "date_end_at"
+    t.datetime "date_begin_at", precision: nil
+    t.datetime "date_end_at", precision: nil
     t.string "status"
     t.integer "user_id"
     t.string "url"
@@ -271,9 +272,9 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.boolean "front", default: false
     t.integer "position"
     t.integer "view_count", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
     t.string "slug"
     t.string "text_type"
     t.index ["repository_id"], name: "index_journal_news_on_repository_id"
@@ -287,8 +288,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "title"
     t.text "summary"
     t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["journal_news_id"], name: "index_journal_news_i18ns_on_journal_news_id"
     t.index ["locale_id"], name: "index_journal_news_i18ns_on_locale_id"
   end
@@ -298,8 +299,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "site_id", null: false
     t.integer "position"
     t.boolean "front", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["journal_news_id", "site_id"], name: "index_journal_news_sites_on_journal_news_id_and_site_id"
   end
 
@@ -308,8 +309,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "news_id"
     t.integer "user_id"
     t.text "emails"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
   end
 
   create_table "journal_newsletters", id: :serial, force: :cascade do |t|
@@ -318,15 +319,15 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "email"
     t.string "token"
     t.boolean "confirm"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
   end
 
   create_table "locales", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "flag"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "locales_sites", id: false, force: :cascade do |t|
@@ -341,8 +342,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "locale_id"
     t.string "title"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["locale_id"], name: "index_menu_item_i18ns_on_locale_id"
     t.index ["menu_item_id"], name: "index_menu_item_i18ns_on_menu_item_id"
   end
@@ -356,8 +357,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "parent_id"
     t.integer "position", default: 0
     t.boolean "new_tab", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "html_class"
     t.boolean "publish", default: true
     t.index ["menu_id"], name: "index_menu_items_on_menu_id"
@@ -368,8 +369,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
   create_table "menus", id: :serial, force: :cascade do |t|
     t.integer "site_id"
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "position", default: 0
     t.index ["site_id"], name: "index_menus_on_site_id"
   end
@@ -378,8 +379,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "title"
     t.text "body"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -388,8 +389,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "locale_id"
     t.string "title"
     t.text "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["locale_id"], name: "index_page_i18ns_on_locale_id"
     t.index ["page_id"], name: "index_page_i18ns_on_page_id"
   end
@@ -398,10 +399,10 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "site_id"
     t.integer "user_id"
     t.boolean "publish", default: false
-    t.datetime "deleted_at"
+    t.datetime "deleted_at", precision: nil
     t.integer "view_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "slug"
     t.string "text_type"
     t.index ["site_id"], name: "index_pages_on_site_id"
@@ -421,11 +422,11 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "archive_file_name"
     t.string "archive_content_type"
     t.integer "archive_file_size"
-    t.datetime "archive_updated_at"
+    t.datetime "archive_updated_at", precision: nil
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "deleted_at", precision: nil
     t.string "archive_fingerprint"
     t.string "title"
     t.string "legend"
@@ -437,8 +438,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
   create_table "roles", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "site_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "permissions"
     t.index ["site_id"], name: "index_roles_on_site_id"
   end
@@ -455,16 +456,16 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "name"
     t.text "value"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "group"
   end
 
   create_table "simple_captcha_data", id: :serial, force: :cascade do |t|
     t.string "key", limit: 40
     t.string "value", limit: 6
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["key"], name: "idx_key"
   end
 
@@ -482,8 +483,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "title", limit: 50
     t.integer "parent_id"
     t.integer "view_count", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "top_banner_id"
     t.integer "top_banner_width"
     t.integer "top_banner_height"
@@ -506,8 +507,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "name"
     t.text "variables"
     t.boolean "active", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["site_id"], name: "index_skins_on_site_id"
   end
 
@@ -515,14 +516,14 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "sticker_banner_id", null: false
     t.integer "site_id", null: false
     t.integer "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.index ["sticker_banner_id", "site_id"], name: "index_sticker_banner_sites_on_sticker_banner_id_and_site_id"
   end
 
   create_table "sticker_banners", id: :serial, force: :cascade do |t|
-    t.datetime "date_begin_at"
-    t.datetime "date_end_at"
+    t.datetime "date_begin_at", precision: nil
+    t.datetime "date_end_at", precision: nil
     t.string "title"
     t.text "text"
     t.string "url"
@@ -538,8 +539,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "target_id"
     t.boolean "new_tab", default: false
     t.integer "click_count", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "target_type"
     t.boolean "shareable", default: false
     t.index ["repository_id"], name: "index_banners_on_repository_id"
@@ -553,8 +554,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.text "css"
     t.boolean "publish", default: true
     t.integer "position", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "style_id"
     t.integer "skin_id"
     t.index ["skin_id"], name: "index_styles_on_skin_id"
@@ -568,7 +569,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.integer "tagger_id"
     t.string "tagger_type"
     t.string "context", limit: 128
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
@@ -591,8 +592,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "login_ip"
     t.string "browser"
     t.string "platform"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["user_id"], name: "index_user_login_histories_on_user_id"
   end
 
@@ -603,8 +604,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "password_salt"
     t.integer "sign_in_count", default: 0
     t.integer "failed_attempts", default: 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.boolean "is_admin", default: false
@@ -613,18 +614,18 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "phone"
     t.string "mobile"
     t.integer "locale_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "unread_notifications"
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.string "unlock_token"
-    t.datetime "locked_at"
+    t.datetime "locked_at", precision: nil
     t.jsonb "preferences", default: {}
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -644,8 +645,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_12_15_204034) do
     t.string "ip_address"
     t.string "referer"
     t.string "query_string"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["created_at", "site_id"], name: "index_views_on_created_at_and_site_id"
     t.index ["created_at"], name: "index_views_on_created_at"
     t.index ["ip_address"], name: "index_views_on_ip_address"

@@ -482,12 +482,12 @@ class ApplicationController < ActionController::Base
     session[:return_to] || root_path
   end
 
-  def record_activity(note, loggeable)
+  def record_activity(note, loggeable, differences: nil)
     # real_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
     # if !ActivityRecord.where(user_id: current_user.id, site_id: current_site.id, controller: controller_name, action: action_name, loggeable: loggeable,
     @activity = ActivityRecord.new
-    @activity.user_id = current_user.id
-    @activity.site_id = current_site.id if current_site
+    @activity.user_id = current_user.try(:id)
+    @activity.site_id = current_site.try(:id) if current_site
     @activity.note = note
     @activity.browser = request.user_agent
     @activity.ip_address = request.remote_ip
@@ -495,7 +495,12 @@ class ApplicationController < ActionController::Base
     @activity.action = action_name
     @activity.params = params.inspect
     @activity.loggeable = loggeable
+
+    diffs = differences || ActivityRecord.extract_changes(loggeable)
+    @activity.differences = diffs if @activity.has_attribute?(:differences) && diffs.present?
+
     @activity.save!
+    @activity
     # end
   end
 

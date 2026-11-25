@@ -6,12 +6,18 @@ en:
           activity_records:           " Activity records "
         show:
           activity_records:           " Activity records "
+          differences_title:          " Changes Made "
+          attribute_name:             " Field / Attribute "
+          value_before:               " Previous Value "
+          value_after:                " New Value "
+          empty_value:                " (empty) "
         list:
           no_activity_records:        " No activity records found "
           details:                    " Details "
           show:                       " Show "
           created_at:                 " Date "
           note:                       " Activity "
+          changed_fields:             " Changes "
 #--- Sites/Admin/Menus/MenuItem ---#
           created_menu_item:          " created a menu item "
           updated_menu_item:          " updated a menu item "

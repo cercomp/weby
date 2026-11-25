@@ -148,6 +148,115 @@ module ActivityRecordsHelper
     end
   end
 
+  def activity_record_attr_name(activity_record, attribute)
+    attr_str = attribute.to_s
+    locale_match = attr_str.match(/\s*\(([^)]+)\)\z/)
+    locale_suffix = locale_match ? " (#{locale_match[1]})" : ""
+    base_attr = attr_str.sub(/\s*\([^)]+\)\z/, '')
+
+    model_class = activity_record.loggeable_type.safe_constantize
+
+    name = case base_attr
+    when 'date_begin_at'
+      I18n.t('activity_records.attr_date_begin_at', default: 'Data de publicação / início')
+    when 'date_end_at'
+      I18n.t('activity_records.attr_date_end_at', default: 'Data de término / despublicação')
+    when 'repository_id', 'image'
+      I18n.t('activity_records.attr_image', default: 'Imagem principal')
+    when 'category_list'
+      I18n.t('activity_records.attr_category_list', default: 'Categorias')
+    when 'front'
+      I18n.t('activity_records.attr_front', default: 'Destaque na capa')
+    when 'status'
+      I18n.t('activity_records.attr_status', default: 'Status de publicação')
+    when 'slug'
+      I18n.t('activity_records.attr_slug', default: 'Identificador da URL (slug)')
+    when 'source'
+      I18n.t('activity_records.attr_source', default: 'Fonte')
+    when 'url'
+      I18n.t('activity_records.attr_url', default: 'Link / URL')
+    when 'text_type'
+      I18n.t('activity_records.attr_text_type', default: 'Tipo do texto')
+    when 'title'
+      I18n.t('activity_records.attr_title', default: 'Título')
+    when 'summary'
+      I18n.t('activity_records.attr_summary', default: 'Resumo')
+    when 'text'
+      I18n.t('activity_records.attr_text', default: 'Conteúdo')
+    when 'begin_at'
+      I18n.t('activity_records.attr_begin_at', default: 'Data de início')
+    when 'end_at'
+      I18n.t('activity_records.attr_end_at', default: 'Data de término')
+    when 'place'
+      I18n.t('activity_records.attr_place', default: 'Local')
+    when 'information'
+      I18n.t('activity_records.attr_information', default: 'Informações')
+    else
+      if model_class.respond_to?(:human_attribute_name)
+        model_class.human_attribute_name(base_attr)
+      else
+        base_attr.humanize
+      end
+    end
+
+    "#{name}#{locale_suffix}"
+  end
+
+  def format_diff_display(attribute, value)
+    return content_tag(:span, I18n.t('activity_records.empty_value', default: '(vazio)'), class: 'text-muted') if value.blank?
+
+    base_attr = attribute.to_s.sub(/\s*\([^)]+\)\z/, '')
+
+    case base_attr
+    when 'status'
+      badge_class = case value.to_s
+                    when 'published' then 'label-success'
+                    when 'review' then 'label-info'
+                    when 'draft' then 'label-warning'
+                    else 'label-default'
+                    end
+      status_label = I18n.t("journal.admin.news.form.#{value}", default: value.to_s.humanize)
+      content_tag(:span, status_label, class: "label #{badge_class}")
+    when 'front'
+      if value == 'Sim' || value == true
+        content_tag(:span, I18n.t('activity_records.yes', default: 'Sim (destaque)'), class: 'label label-success')
+      else
+        content_tag(:span, I18n.t('activity_records.no', default: 'Não'), class: 'label label-default')
+      end
+    when 'text', 'summary'
+      if value.to_s.length > 200
+        content_tag(:div, class: 'diff-text-block') do
+          content_tag(:span, truncate(value.to_s, length: 180)) +
+          content_tag(:small, " (#{value.to_s.length} caracteres)", class: 'text-muted')
+        end
+      else
+        simple_format(h(value.to_s))
+      end
+    else
+      h(value.to_s)
+    end
+  end
+
+  def activity_differences_summary(activity_record)
+    return unless activity_record.has_differences?
+
+    diffs = activity_record.differences
+    content_tag(:div, class: 'activity-diff-summary table-meta-sub', style: 'margin-top: 5px; font-size: 12px;') do
+      if diffs.size == 1
+        attr_name, (before_val, after_val) = diffs.first
+        label = activity_record_attr_name(activity_record, attr_name)
+
+        before_display = before_val.present? ? content_tag(:del, before_val, style: 'color: #b91c1c;') : content_tag(:em, I18n.t('activity_records.empty', default: 'vazio'), class: 'text-muted')
+        after_display = after_val.present? ? content_tag(:strong, after_val, style: 'color: #15803d;') : content_tag(:em, I18n.t('activity_records.empty', default: 'vazio'), class: 'text-muted')
+
+        "<i class=\"fa fa-exchange text-info\" style=\"margin-right: 3px;\"></i> <strong>#{h(label)}:</strong> de #{before_display} para #{after_display}".html_safe
+      else
+        labels = diffs.keys.map { |k| activity_record_attr_name(activity_record, k) }
+        "<i class=\"fa fa-exchange text-info\" style=\"margin-right: 3px;\"></i> <strong>#{I18n.t('activity_records.changed_fields', default: 'Alterações')}:</strong> <span class=\"text-muted\">#{h(labels.join(', '))}</span>".html_safe
+      end
+    end
+  end
+
   private
 
   def loggeable_url activity_record

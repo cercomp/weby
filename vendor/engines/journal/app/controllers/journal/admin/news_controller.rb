@@ -187,8 +187,8 @@ end
       params[:news][:related_file_ids] ||= []
       if @news.update(news_params)
         set_draft(nil, @news.id)
+        record_activity('updated_news', @news)
       end
-      record_activity('updated_news', @news)
       respond_with(:admin, @news)
     end
 

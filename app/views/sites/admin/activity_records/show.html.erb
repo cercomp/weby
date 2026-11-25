@@ -26,6 +26,41 @@
       </div>
     </div>
 
+    <% if @activity_record.has_differences? %>
+      <hr>
+      <h4>
+        <%= fa_icon('exchange') %> <%= t('.differences_title', default: "Alterações Realizadas") %>
+      </h4>
+      <div class="table-responsive" style="margin-top: 15px;">
+        <table class="table table-bordered align-middle">
+          <thead>
+            <tr class="active">
+              <th width="30%"><%= t('.attribute_name', default: "Campo / Atributo") %></th>
+              <th width="35%" style="color: #b91c1c;"><%= fa_icon('minus-circle') %> <%= t('.value_before', default: "Valor Anterior") %></th>
+              <th width="35%" style="color: #15803d;"><%= fa_icon('plus-circle') %> <%= t('.value_after', default: "Novo Valor") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @activity_record.differences.each do |attribute, values| %>
+              <% before_val, after_val = values %>
+              <tr>
+                <td>
+                  <strong><%= activity_record_attr_name(@activity_record, attribute) %></strong>
+                  <br><small class="text-muted"><code><%= attribute %></code></small>
+                </td>
+                <td style="background-color: #fef2f2; word-break: break-word;">
+                  <%= format_diff_display(attribute, before_val) %>
+                </td>
+                <td style="background-color: #f0fdf4; word-break: break-word;">
+                  <%= format_diff_display(attribute, after_val) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
     <% if @activity_record.params.present? %>
       <hr>
       <h4><%= t('.params', default: "Parâmetros da Requisição") %></h4>

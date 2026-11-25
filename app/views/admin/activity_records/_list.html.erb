@@ -28,6 +28,7 @@
             <td><%= activity_action_badge(activity_record) %></td>
             <td>
               <%= activity_item_view(activity_record) %>
+              <%= activity_differences_summary(activity_record) %>
               <div class="visible-xs-block visible-sm-block table-meta-sub">
                 <% if activity_record.site %>
                   <span><%= link_to activity_record.site.name, site_url(subdomain: activity_record.site), target: :_blank %></span>
