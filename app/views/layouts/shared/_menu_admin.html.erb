@@ -23,12 +23,12 @@
           <li class="menu-heading">
             <span class="menu-heading-text"><%= t(".administration", default: "Administração") %></span>
           </li>
-          <%= menu_item_to fa_icon('users fw', text: t(".users")), main_app.manage_roles_site_admin_users_path if check_permission(Sites::Admin::UsersController, [:manage_roles])%>
-          <%= menu_item_to fa_icon('paint-brush fw', text: t(".theme")), main_app.site_admin_skins_path if check_permission(Sites::Admin::StylesController, [:index]) || check_permission(Sites::Admin::ComponentsController, [:index]) || (!current_site.restrict_theme && check_permission(Sites::Admin::SkinsController, [:index])) %>
-          <%= menu_item_to fa_icon('list-alt fw', text: t(".activity_records")), main_app.site_admin_activity_records_path if check_permission(Sites::Admin::ActivityRecordsController, [:index]) %>
-          <%= menu_item_to fa_icon('plug fw', text: t(".extensions")), main_app.site_admin_extensions_path if check_permission(Sites::Admin::ExtensionsController, [:index]) %>
-          <%= menu_item_to fa_icon('download fw', text: t(".backup")), main_app.site_admin_backups_path if current_user.is_admin? %>
-          <%= menu_item_to fa_icon('cog fw', text: t(".settings")), main_app.edit_site_admin_path if check_permission(SitesController, [:edit]) %>
+          <%= menu_item_to fa_icon('users fw', text: t(".users")), main_app.manage_roles_site_admin_users_path, active: (request.path.match?(%r{\A/admin/users\b}) || params[:controller].to_s.include?('users')) if check_permission(Sites::Admin::UsersController, [:manage_roles])%>
+          <%= menu_item_to fa_icon('paint-brush fw', text: t(".theme")), main_app.site_admin_skins_path, active: (request.path.match?(%r{\A/admin/(?:skins|styles|components)\b}) || params[:controller].to_s.match?(%r{sites/admin/(?:skins|styles|components)})) if check_permission(Sites::Admin::StylesController, [:index]) || check_permission(Sites::Admin::ComponentsController, [:index]) || (!current_site.restrict_theme && check_permission(Sites::Admin::SkinsController, [:index])) %>
+          <%= menu_item_to fa_icon('list-alt fw', text: t(".activity_records")), main_app.site_admin_activity_records_path, active: (request.path.match?(%r{\A/admin/activity_records\b}) || params[:controller].to_s.include?('activity_records')) if check_permission(Sites::Admin::ActivityRecordsController, [:index]) %>
+          <%= menu_item_to fa_icon('plug fw', text: t(".extensions")), main_app.site_admin_extensions_path, active: (request.path.match?(%r{\A/admin/extensions\b}) || params[:controller].to_s.include?('extensions')) if check_permission(Sites::Admin::ExtensionsController, [:index]) %>
+          <%= menu_item_to fa_icon('download fw', text: t(".backup")), main_app.site_admin_backups_path, active: (request.path.match?(%r{\A/admin/backups\b}) || params[:controller].to_s.include?('backups')) if current_user.is_admin? %>
+          <%= menu_item_to fa_icon('cog fw', text: t(".settings")), main_app.edit_site_admin_path, active: (request.path.match?(%r{\A/admin/edit\b}) || (params[:controller].to_s == 'sites' && params[:action].to_s == 'edit')) if check_permission(SitesController, [:edit]) %>
 
           <li class="menu-heading">
             <span class="menu-heading-text"><%= t(".contents") %></span>

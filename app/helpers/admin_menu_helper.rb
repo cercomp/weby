@@ -14,8 +14,33 @@ module AdminMenuHelper
     end.flatten.compact.join.html_safe
   end
 
-  def menu_item_to(title, url)
-    content_tag :li, link_to(title, url), class: request.path.match(url.to_s) ? 'active' : ''
+  def menu_item_to(title, url, active: nil)
+    is_active = if !active.nil?
+      active
+    elsif url.to_s == '/admin' || (respond_to?(:main_app) && (url.to_s == main_app.site_admin_path || url.to_s == main_app.admin_path rescue false))
+      request.path == '/admin' || request.path == '/admin/'
+    else
+      request.path.match?(%r{\A#{Regexp.escape(url.to_s)}(/|\z)})
+    end
+    content_tag :li, link_to(title, url), class: is_active ? 'active' : ''
+  end
+
+  def extension_active?(extension_name)
+    ext = extension_name.to_s
+    return true if params[:controller].to_s.start_with?("#{ext}/")
+
+    case ext
+    when 'journal'
+      request.path.match?(%r{\A/admin/(?:journal|news|newsletters)\b})
+    when 'calendar'
+      request.path.match?(%r{\A/admin/(?:calendar|events)\b})
+    when 'sticker'
+      request.path.match?(%r{\A/admin/(?:sticker|banners)\b})
+    when 'feedback'
+      request.path.match?(%r{\A/admin/(?:feedback|messages|groups)\b})
+    else
+      request.path.match?(%r{\A/admin/#{Regexp.escape(ext)}\b})
+    end
   end
 
   private
@@ -34,7 +59,11 @@ module AdminMenuHelper
       current_site.extensions.sort_by { |e| t("extensions.#{e.name}.name") }.each do |extension|
         position = Weby.extensions[extension.name.to_sym].menu_position
         result[position] ||= []
-        result[position] << menu_item_to(fa_icon(extension_icon[extension.name.to_sym], text: t("extensions.#{extension.name}.name")), "/admin/#{extension.name}")
+        result[position] << menu_item_to(
+          fa_icon(extension_icon[extension.name.to_sym], text: t("extensions.#{extension.name}.name")),
+          "/admin/#{extension.name}",
+          active: extension_active?(extension.name)
+        )
       end if check_permission(Sites::Admin::ExtensionsController, [:index])
     end
   end

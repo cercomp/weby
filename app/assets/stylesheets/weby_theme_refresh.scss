@@ -224,12 +224,40 @@ table.table {
   .menu-entry .link-text { color: #64748b; }
 }
 
-.pagination > li {
-  > a, > span { border-radius: 8px; }
-  &.active > a, &.active > span,
-  &.active > a:hover, &.active > span:hover {
-    background: var(--weby-primary);
-    border-color: var(--weby-primary);
+.pagination {
+  display: inline-flex !important;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 4px;
+
+  > li {
+    display: inline-flex !important;
+    align-items: center;
+    float: none !important;
+
+    > a, > span {
+      border-radius: 8px;
+      display: inline-flex !important;
+      align-items: center;
+      float: none !important;
+      height: 34px;
+      box-sizing: border-box;
+    }
+
+    select.form-control, select {
+      display: inline-block !important;
+      width: auto !important;
+      height: 34px !important;
+      border-radius: 8px;
+      margin: 0 4px !important;
+    }
+
+    &.active > a, &.active > span,
+    &.active > a:hover, &.active > span:hover {
+      background: var(--weby-primary);
+      border-color: var(--weby-primary);
+    }
   }
 }
 

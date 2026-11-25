@@ -676,24 +676,84 @@ textarea.form-control {
 }
 
 // Paginator - Cercomp standard
+.pagination-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .pagination {
-  margin: 16px 0;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 4px;
+  margin: 12px 0;
+  padding: 0;
+  vertical-align: middle;
+  list-style: none;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 
   > li {
+    display: inline-flex !important;
+    align-items: center;
+    float: none !important;
+    margin: 0 !important;
+    padding: 0;
+    vertical-align: middle;
+
     > a, > span {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
       color: #005088;
+      background-color: #ffffff;
       border: 1px solid #e2e8f0;
       padding: 6px 12px;
       font-size: 13px;
       font-weight: 500;
-      border-radius: 4px;
-      margin: 0 2px;
+      border-radius: 6px;
+      margin: 0;
+      float: none !important;
+      white-space: nowrap;
       transition: all 0.15s ease;
+      height: 34px;
+      line-height: 1;
+      box-sizing: border-box;
 
       &:hover {
         background-color: #e0f2fe;
         border-color: #bae6fd;
         color: #005088;
+      }
+    }
+
+    // Select inside pagination (for pages jump dropdown)
+    select.form-control,
+    select {
+      display: inline-block !important;
+      width: auto !important;
+      min-width: 60px;
+      height: 34px !important;
+      padding: 4px 8px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      background-color: #ffffff;
+      color: #005088;
+      margin: 0 4px !important;
+      vertical-align: middle;
+      box-sizing: border-box;
+      box-shadow: none;
+      line-height: normal;
+
+      &:focus {
+        border-color: #005088;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(0, 80, 136, 0.2);
       }
     }
 
@@ -708,6 +768,39 @@ textarea.form-control {
     &.disabled > a, &.disabled > span {
       color: #94a3b8;
       border-color: #e2e8f0;
+      background-color: #f8fafc;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  }
+
+  &.pagination-sm > li {
+    > a, > span {
+      height: 28px;
+      padding: 3px 8px;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+    select.form-control, select {
+      height: 28px !important;
+      padding: 2px 6px;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+  }
+
+  &.pagination-lg > li {
+    > a, > span {
+      height: 42px;
+      padding: 8px 16px;
+      font-size: 15px;
+      border-radius: 8px;
+    }
+    select.form-control, select {
+      height: 42px !important;
+      padding: 6px 12px;
+      font-size: 15px;
+      border-radius: 8px;
     }
   }
 }
