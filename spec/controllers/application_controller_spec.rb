@@ -287,5 +287,11 @@ describe ApplicationController do
       expect(response.status).to eq(422)
       expect(JSON.parse(response.body)["error"]).to be_present
     end
+
+    it "prioritizes InvalidCrossOriginRequest handler to render_404" do
+      handler = controller.send(:handler_for_rescue, ActionController::InvalidCrossOriginRequest.new)
+      expect(handler).not_to be_nil
+      expect(handler.name).to eq(:render_404)
+    end
   end
 end

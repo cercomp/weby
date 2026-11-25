@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :redirect_to_ssl, if: :should_be_ssl?
 
   protect_from_forgery with: :exception, prepend: true
+  skip_before_action :verify_authenticity_token, only: [:render_404], raise: false
 
   before_action :set_tld_length, :set_global_vars
   before_action :set_contrast, :set_locale, :set_view_types
@@ -157,6 +158,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActionController::InvalidAuthenticityToken, with: :handle_invalid_authenticity_token
+  rescue_from ActionController::InvalidCrossOriginRequest, with: :render_404
 
   @@weby_error_logger = Logger.new("#{Rails.root}/log/error.log")
   @@weby_error_logger.formatter = ->(severity, datetime, progname, msg) { msg }

@@ -25,6 +25,8 @@ module Journal
     end
 
     def show
+      return unless @news
+
       # Permite visualização se:
       # 1. A notícia está publicada, OU
       # 2. O usuário é o autor da notícia, OU

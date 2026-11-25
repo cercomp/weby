@@ -39,6 +39,10 @@ $(document).ready(function(){
           if (data.ok) {
             FlashMsg.info(data.message);
           }
+        }).fail(function(xhr){
+          if (xhr.status === 422 || xhr.status === 401) {
+            FlashMsg.alert('Sua sessão expirou. O rascunho não pôde ser salvo automaticamente.');
+          }
         });
       }
     }

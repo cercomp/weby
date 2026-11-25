@@ -37,11 +37,12 @@ module Journal
     end
 
     def find_news
-      if params[:id].match(/^\d+\-?/)
-        @news = current_site.news.find(params[:id])
+      if params[:id].to_s.match(/^\d+\-?/)
+        @news = current_site.news.find_by(id: params[:id].to_i)
       else
         @news = current_site.news.find_by(slug: params[:id])
       end
+      render_404 unless @news
     end
   end
 end
