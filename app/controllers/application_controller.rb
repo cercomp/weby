@@ -7,11 +7,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception, prepend: true
 
-  rescue_from ActionController::InvalidAuthenticityToken do |_exception|
-    flash[:error] = t('invalid_authenticity_token', default: 'Sua sessão expirou ou o token de segurança é inválido. Por favor, tente novamente.')
-    redirect_back(fallback_location: root_path)
-  end
-
   before_action :set_tld_length, :set_global_vars
   before_action :set_contrast, :set_locale, :set_view_types
   before_action :maintenance_mode
@@ -137,12 +132,8 @@ class ApplicationController < ActionController::Base
 
   def set_tld_length
     if current_site && request.domain
-      #if current_site.domain.present? && request.domain.match(current_site.domain)
-      #  tld_length = current_site.domain.split('.').length - 1
-      #  request.session_options[:tld_length] = tld_length
-      #els
-      if Weby::Settings::Weby.domain.present? && !(request.domain.match(Weby::Settings::Weby.domain))
-        request.session_options[:tld_length] = current_site.domain.split('.').length + 1 if current_site.domain
+      if Weby::Settings::Weby.domain.present? && !request.host.end_with?(Weby::Settings::Weby.domain)
+        request.session_options[:tld_length] = current_site.domain.split('.').length if current_site.domain.present?
       end
     end
   end
@@ -158,15 +149,32 @@ class ApplicationController < ActionController::Base
   end
 
   unless Rails.application.config.consider_all_requests_local
-    rescue_from Exception, with: :render_500
+    rescue_from StandardError, with: :render_500
     rescue_from ActionController::RoutingError, with: :render_404
     rescue_from AbstractController::ActionNotFound, with: :render_404
     rescue_from ActionController::UnknownFormat, with: :render_404
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
   end
 
+  rescue_from ActionController::InvalidAuthenticityToken, with: :handle_invalid_authenticity_token
+
   @@weby_error_logger = Logger.new("#{Rails.root}/log/error.log")
   @@weby_error_logger.formatter = ->(severity, datetime, progname, msg) { msg }
+
+  def handle_invalid_authenticity_token(exception = nil)
+    logger.warn "Invalid authenticity token on #{request.method} #{request.fullpath} from #{request.remote_ip}: #{exception&.message}"
+    msg = t('invalid_authenticity_token', default: 'Sua sessão expirou ou o token de segurança é inválido. Por favor, tente novamente.')
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        fallback = current_site ? (is_in_admin_context? ? admin_path : site_path) : root_path
+        redirect_back(fallback_location: fallback)
+      end
+      format.js { render plain: msg, status: :unprocessable_entity }
+      format.json { render json: { error: msg }, status: :unprocessable_entity }
+      format.all { head :unprocessable_entity }
+    end
+  end
 
   # Redirection when the address does not exist
   def render_404(exception = nil)

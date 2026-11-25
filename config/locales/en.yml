@@ -76,6 +76,7 @@ en:
 #---H---#
 #---I---#
   invalid_activation_token:             " Invalid or expired activation link! "
+  invalid_authenticity_token:           " Your session has expired or the security token is invalid. Please try again. "
   import:                               " Import "
   inactive:                             "Inactive"
 #---J---#

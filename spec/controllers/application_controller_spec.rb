@@ -255,4 +255,37 @@ describe ApplicationController do
       expect(response).to use_layout('weby_pages')
     end
   end
+
+  describe "CSRF exception handling" do
+    controller(ApplicationController) do
+      def trigger_csrf
+        raise ActionController::InvalidAuthenticityToken, "Can't verify CSRF token authenticity."
+      end
+    end
+
+    before do
+      routes.draw do
+        post "trigger_csrf" => "anonymous#trigger_csrf"
+      end
+    end
+
+    it "prioritizes InvalidAuthenticityToken handler over render_500" do
+      handler = controller.send(:handler_for_rescue, ActionController::InvalidAuthenticityToken.new)
+      expect(handler).not_to be_nil
+      expect(handler.name).to eq(:handle_invalid_authenticity_token)
+    end
+
+    it "redirects back with flash[:error] on html request" do
+      request.env["HTTP_REFERER"] = "/admin/news/new"
+      post :trigger_csrf
+      expect(response).to redirect_to("/admin/news/new")
+      expect(flash[:error]).to be_present
+    end
+
+    it "responds with 422 on json request" do
+      post :trigger_csrf, format: :json
+      expect(response.status).to eq(422)
+      expect(JSON.parse(response.body)["error"]).to be_present
+    end
+  end
 end

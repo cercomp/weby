@@ -76,6 +76,7 @@ pt-BR:
 #---H---#
 #---I---#
   invalid_activation_token:             " Link de ativação inválido ou expirado! "
+  invalid_authenticity_token:           " Sua sessão expirou ou o formulário expirou. Por favor, tente novamente. "
   import:                               " Importar "
   inactive:                             "Inativo"
 #---J---#
