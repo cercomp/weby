@@ -6,7 +6,9 @@ else
 end
 AddTaggingsCounterCacheToTags.class_eval do
   def self.up
-    add_column ActsAsTaggableOn.tags_table, :taggings_count, :integer, default: 0
+    unless column_exists?(ActsAsTaggableOn.tags_table, :taggings_count)
+      add_column ActsAsTaggableOn.tags_table, :taggings_count, :integer, default: 0
+    end
 
     ActsAsTaggableOn::Tag.reset_column_information
     ActsAsTaggableOn::Tag.find_each do |tag|
@@ -15,6 +17,8 @@ AddTaggingsCounterCacheToTags.class_eval do
   end
 
   def self.down
-    remove_column ActsAsTaggableOn.tags_table, :taggings_count
+    if column_exists?(ActsAsTaggableOn.tags_table, :taggings_count)
+      remove_column ActsAsTaggableOn.tags_table, :taggings_count
+    end
   end
 end
