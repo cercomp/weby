@@ -126,7 +126,7 @@ deploy:
     - COMPOSE_B64=$(base64 "docker/docker-compose.yml" | tr -d '\r\n')
     - ENV_B64=$(base64 "${ENV_FILE}" | tr -d '\r\n')
     - |
-      curl -f -sS -X POST \
+      HTTP_CODE=$(curl -sS --max-time 300 -o /tmp/deploy_response.txt -w "%{http_code}" -X POST \
         -H "X-Gitlab-Token: ${WEBHOOK_SECRET}" \
         -H "Content-Type: application/json" \
         -d "{
@@ -134,6 +134,14 @@ deploy:
           \"compose_base64\": \"${COMPOSE_B64}\",
           \"env_base64\": \"${ENV_B64}\"
         }" \
-        http://200.137.218.139:9000/hooks/deploy
-    - echo ""
-    - echo "Deploy solicitado com sucesso! A VM de destino recebeu o compose e .env e atualizou os contêineres."
+        http://200.137.218.139:9000/hooks/deploy || true)
+      if [ -f /tmp/deploy_response.txt ]; then
+        cat /tmp/deploy_response.txt
+        echo ""
+      fi
+      echo "=== HTTP Status retornado pela VM: ${HTTP_CODE:-000} ==="
+      if [ -z "${HTTP_CODE}" ] || [ "${HTTP_CODE}" -lt 200 ] || [ "${HTTP_CODE}" -ge 300 ]; then
+        echo "ERRO: Deploy falhou na VM (HTTP ${HTTP_CODE:-000})."
+        exit 1
+      fi
+    - echo "Deploy efetivado com sucesso na VM de destino!"
