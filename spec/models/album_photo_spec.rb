@@ -15,9 +15,9 @@ RSpec.describe AlbumPhoto, type: :model do
     let!(:locale) { Locale.first || create(:locale, name: 'pt-BR') }
     let!(:site) { create(:site, name: 'photospecsite', locales: [locale]) }
     let!(:user) { create(:user) }
-    let(:image1) { File.open(Rails.root.join('app/assets/images/mime_list/png.png')) }
-    let(:image2) { File.open(Rails.root.join('app/assets/images/mime_list/bmp.png')) }
-    let(:image3) { File.open(Rails.root.join('app/assets/images/mime_list/gif.png')) }
+    let(:image1) { fixture_file_upload(Rails.root.join('app/assets/images/mime_list/png.png'), 'image/png') }
+    let(:image2) { fixture_file_upload(Rails.root.join('app/assets/images/mime_list/bmp.png'), 'image/png') }
+    let(:image3) { fixture_file_upload(Rails.root.join('app/assets/images/mime_list/gif.png'), 'image/png') }
 
     it 'navigates reliably between photos using position and id' do
       album = Album.new(

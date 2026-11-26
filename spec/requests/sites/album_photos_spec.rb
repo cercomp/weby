@@ -4,7 +4,7 @@ RSpec.describe 'Sites AlbumPhotos', type: :request do
   let!(:locale) { Locale.first || create(:locale, name: 'pt-BR') }
   let!(:site) { create(:site, name: 'photos-site', locales: [locale]) }
   let!(:user) { create(:user) }
-  let(:test_image) { File.open(Rails.root.join('app/assets/images/mime_list/photoshop.png')) }
+  let(:test_image) { fixture_file_upload(Rails.root.join('app/assets/images/mime_list/photoshop.png'), 'image/png') }
 
   let!(:album) do
     alb = Album.new(
